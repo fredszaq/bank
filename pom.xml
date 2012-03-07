@@ -6,4 +6,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>bank</name>
+  <modules>
+  	<module>bean</module>
+  	<module>dao</module>
+  	<module>service</module>
+  	<module>web</module>
+  </modules>
 </project>
