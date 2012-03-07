@@ -58,50 +58,50 @@
 	</properties>
 	<dependencyManagement>
 		<dependencies>
-			                        <!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
-                dependencies from org.jboss.spec will have their version defined by this
-                BOM -->
-            <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
-                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
-                of artifacts. We use this here so that we always get the correct versions
-                of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this
-                as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version
-                2.0.0.Beta1 which is the latest release of the stack. You can actually use
-                this stack with any version of JBoss AS that implements Java EE 6, not just
-                JBoss AS 7! -->
-            <dependency>
-                <groupId>org.jboss.spec</groupId>
-                <artifactId>jboss-javaee-web-6.0</artifactId>
-                <version>3.0.0.Beta1</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+			<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any 
+				dependencies from org.jboss.spec will have their version defined by this 
+				BOM -->
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+				of artifacts. We use this here so that we always get the correct versions 
+				of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this 
+				as the JBoss stack of the Java EE Web Profile 6 APIs), and we use version 
+				2.0.0.Beta1 which is the latest release of the stack. You can actually use 
+				this stack with any version of JBoss AS that implements Java EE 6, not just 
+				JBoss AS 7! -->
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-web-6.0</artifactId>
+				<version>3.0.0.Beta1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<!-- SGBDR dependencies -->
-		    <dependency>
-		    	<groupId>postgresql</groupId>
-		    	<artifactId>postgresql</artifactId>
-		    	<version>9.1-901.jdbc4</version>
-		      	<scope>runtime</scope>
-		    </dependency>
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>9.1-901.jdbc4</version>
+				<scope>runtime</scope>
+			</dependency>
 			<!-- Spring Security dependencies -->
-		    <dependency>
-		    	<groupId>org.springframework.security</groupId>
-		    	<artifactId>spring-security-web</artifactId>
-		    	<version>3.1.0.RELEASE</version>
-		      	<scope>compile</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>org.springframework.security</groupId>
-		    	<artifactId>spring-security-config</artifactId>
-		    	<version>3.1.0.RELEASE</version>
-		      	<scope>compile</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>org.springframework.security</groupId>
-		    	<artifactId>spring-security-core</artifactId>
-		    	<version>3.1.0.RELEASE</version>
-		      	<scope>compile</scope>
-		    </dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>3.1.0.RELEASE</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>3.1.0.RELEASE</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>3.1.0.RELEASE</version>
+				<scope>compile</scope>
+			</dependency>
 			<!-- Spring dependencies -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -169,68 +169,80 @@
 				<version>${version.spring}</version>
 				<scope>compile</scope>
 			</dependency>
-			
-			
+
+
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.10</version>
 				<scope>test</scope>
 			</dependency>
-		    <dependency>
-		    	<groupId>joda-time</groupId>
+			<dependency>
+				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
 				<version>2.0</version>
-		      	<scope>compile</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>javax.servlet</groupId>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>2.5</version>
-		      	<scope>provided</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>org.hibernate.javax.persistence</groupId>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
 				<artifactId>hibernate-jpa-2.0-api</artifactId>
 				<version>1.0.1.Final</version>
-		      	<scope>compile</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>cglib</groupId>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
 				<artifactId>cglib</artifactId>
 				<version>2.2.2</version>
-		      	<scope>compile</scope>
-		    </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.1.1</version>
-		      	<scope>compile</scope>
-            </dependency>
-		    <dependency>
-		    	<groupId>org.aspectj</groupId>
-		    	<artifactId>aspectjweaver</artifactId>
-		    	<version>1.6.12</version>
-		      	<scope>compile</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>javassist</groupId>
-		    	<artifactId>javassist</artifactId>
-		    	<version>3.12.1.GA</version>
-		      	<scope>runtime</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>org.aspectj</groupId>
-		    	<artifactId>aspectjrt</artifactId>
-		    	<version>1.6.12</version>
-		      	<scope>compile</scope>
-		    </dependency>
-		    <dependency>
-		    	<groupId>jstl</groupId>
-		    	<artifactId>jstl</artifactId>
-		    	<version>1.2</version>
-		      	<scope>compile</scope>
-		    </dependency>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.1.1</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.6.12</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>3.12.1.GA</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>1.6.12</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.8.1</version>
+				<type>maven-plugin</type>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
+				<type>maven-plugin</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -241,7 +253,7 @@
 	</dependencies>
 	<build>
 		<finalName>
-			${project.name}_${destination.name}_${version}
+			${project.name}_${destination.name}_${project.version}
 		</finalName>
 		<plugins>
 			<!-- Force Java 6 -->
@@ -254,12 +266,17 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-            
-            <!-- Surefire plugin before 2.9 version is buggy -->
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.9</version>
-            </plugin>
+
+			<!-- Surefire plugin before 2.9 version is buggy -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.5.1</version>
+			</plugin>
 		</plugins>
 	</build>
 	<reporting>
