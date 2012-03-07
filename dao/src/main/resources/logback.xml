@@ -1,0 +1,3 @@
+<configuration debug="true">
+	<include file="../config/logfile/logback.xml"/>
+</configuration>
