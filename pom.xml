@@ -55,6 +55,7 @@
 	</developers>
 	<properties>
 		<version.spring>3.1.1.RELEASE</version.spring>
+		<filter.chemin>../config/filters</filter.chemin>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -261,7 +262,41 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<filters>
+			<filter>
+				${filter.chemin}/${filter.name}
+			</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>
+					src/main/resources
+				</directory>
+				<filtering>
+					true
+				</filtering>
+			</resource>
+		</resources>
 	</build>
+	<profiles>
+		<profile>
+			<id>profil-dev</id>
+			<properties>
+				<filter.name>filter-dev.properties</filter.name>
+				<destination.name>DEV</destination.name>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>profil-prod</id>
+			<properties>
+				<filter.name>filter-prod.properties</filter.name>
+				<destination.name>PROD</destination.name>
+			</properties>
+		</profile>
+	</profiles>
 	<reporting>
 		<plugins>
 			<plugin>
