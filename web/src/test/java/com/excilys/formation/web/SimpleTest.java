@@ -1,19 +1,19 @@
 package com.excilys.formation.web;
 
 import org.junit.Assert;
-import org.junit.Test;;
+import org.junit.Test;
 
 /**
- * A class used for test purposes.
- *
- * TODO delete this :D
- *
+ * 
  * @author excilys
- *
+ * 
  */
 public class SimpleTest {
+	/**
+	 * A very rigorous test.
+	 */
 	@Test
-    public void additionAvecDeuxNombres() {
-        Assert.assertEquals(1, 1);
-    }
+	public void oneEqualsOne() {
+		Assert.assertEquals(1, 1);
+	}
 }
