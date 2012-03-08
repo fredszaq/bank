@@ -17,4 +17,13 @@ public class SimpleTest {
 	public void oneEqualsOne() {
 		Assert.assertEquals(1, 1);
 	}
+	
+	/**
+	 * A cobertura test.
+	 */
+	@Test
+	public void cobertura() {
+		SomeEntity someEntity = new SomeEntity();
+		Assert.assertNotNull(someEntity.getSomeString());
+	}
 }
