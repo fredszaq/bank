@@ -104,6 +104,12 @@
         	<version>${version.scalate}</version>
         	<scope>runtime</scope>
         </dependency>
+        <dependency>
+        	<groupId>org.fusesource.scalate</groupId>
+        	<artifactId>scalate-util</artifactId>
+        	<version>${version.scalate}</version>
+        	<scope>runtime</scope>
+        </dependency>
     </dependencies>
 
 	<build>
