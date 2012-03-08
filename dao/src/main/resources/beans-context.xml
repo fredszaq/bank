@@ -16,11 +16,15 @@
 <!-- 	<aop:aspectj-autoproxy/> -->
 	<tx:annotation-driven/>
 	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">      
+   		<property name="location" value="classpath:app.properties" />   
+   	</bean>
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SingleConnectionDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver"/>
-		<property name="url" value="jdbc:postgresql://localhost/bank"/>
-		<property name="username" value="excilys"/>
-		<property name="password" value="excilys"/>
+		<property name="driverClassName" value="${database.driverClassName}"/>
+		<property name="url" value="${database.url}"/>
+		<property name="username" value="${database.user}"/>
+		<property name="password" value="${database.password}"/>
 		<property name="suppressClose" value="true"/>
 	</bean>
 	
@@ -29,8 +33,8 @@
 		<property name="packagesToScan" value="com.excilys.formation.dao"/>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 			</props>
 		</property>
 	</bean>
