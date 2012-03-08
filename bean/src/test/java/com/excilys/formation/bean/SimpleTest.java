@@ -1,4 +1,4 @@
-package com.excilys.formation.service;
+package com.excilys.formation.bean;
 
 /**
  * A class used for test purposes.
@@ -8,6 +8,6 @@ package com.excilys.formation.service;
  * @author excilys
  *
  */
-public class Test {
+public class SimpleTest {
 
 }
