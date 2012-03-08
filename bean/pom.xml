@@ -15,14 +15,4 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
-    	<groupId>org.slf4j</groupId>
-    	<artifactId>slf4j-api</artifactId>
-    </dependency>
-  </dependencies>
 </project>
