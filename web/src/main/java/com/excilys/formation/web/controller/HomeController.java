@@ -3,6 +3,7 @@ package com.excilys.formation.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 public class HomeController {
 
@@ -11,6 +12,6 @@ public class HomeController {
 	 */
 	@RequestMapping("/index.html")
 	public String home() {
-		return "index";
+		return "index.html";
 	}
 }
