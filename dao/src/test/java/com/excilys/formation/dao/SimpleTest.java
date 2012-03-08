@@ -24,6 +24,6 @@ public class SimpleTest {
 	@Test
 	public void cobertura() {
 		SomeEntity someEntity = new SomeEntity();
-		Assert.assertNotNull(someEntity.getSomeString());
+		Assert.assertNull(someEntity.getSomeString());
 	}
 }
