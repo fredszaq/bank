@@ -11,7 +11,7 @@ import org.junit.Test;;
  * @author excilys
  *
  */
-public class TestSimple {
+public class SimpleTest {
 	@Test
     public void additionAvecDeuxNombres() {
         Assert.assertEquals(1, 1);
