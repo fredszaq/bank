@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 public class SomeEntity {
 
 	@Id
-	@Column(name="SOME_STRING")
+	@Column(name = "SOME_STRING")
 	private String someString;
 	@Column(name="SOME_INT")
 	private int someInteger;
@@ -23,13 +23,13 @@ public class SomeEntity {
 	public String getSomeString() {
 		return someString;
 	}
-	public void setSomeString(String someString) {
+	public final void setSomeString(String someString) {
 		this.someString = someString;
 	}
-	public int getSomeInteger() {
+	public final int getSomeInteger() {
 		return someInteger;
 	}
-	public void setSomeInteger(int someInteger) {
+	public final void setSomeInteger(int someInteger) {
 		this.someInteger = someInteger;
 	}
 	public Date getSomeDate() {
