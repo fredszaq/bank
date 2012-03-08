@@ -41,10 +41,5 @@ public class Main {
 
 		dao.deleteEntity(entity);
 		dao.deleteEntity(entity2);
-
-		for (SomeEntity someEntity : dao.findAllEntities()) {
-			System.out.println(someEntity);
-		}
 	}
-
 }
