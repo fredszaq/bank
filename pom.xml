@@ -315,7 +315,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <phase>com.excilys.formation</phase>
                         <goals>
                             <goal>cobertura</goal>
                         </goals>
