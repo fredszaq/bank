@@ -16,4 +16,5 @@ public class SimpleTest {
 	public void oneEqualsOne() {
 		Assert.assertEquals(1, 1);
 	}
+
 }

@@ -9,6 +9,7 @@ import org.junit.Test;
  * 
  */
 public class SimpleTest {
+
 	/**
 	 * A very rigorous test.
 	 */
