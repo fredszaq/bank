@@ -1,5 +1,8 @@
 package com.excilys.formation.service;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  * A class used for test purposes.
  *
@@ -10,4 +13,8 @@ package com.excilys.formation.service;
  */
 public class SimpleTest {
 
+	@Test
+    public void essaiTest() {
+        Assert.assertEquals(1, 1);
+    }
 }

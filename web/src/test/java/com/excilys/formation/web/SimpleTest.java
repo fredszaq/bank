@@ -13,7 +13,7 @@ import org.junit.Test;;
  */
 public class SimpleTest {
 	@Test
-    public void additionAvecDeuxNombres() {
+    public void essaiTest() {
         Assert.assertEquals(1, 1);
     }
 }
