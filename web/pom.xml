@@ -84,5 +84,45 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>profil-perf</id>
+			<properties>
+				<filter.name>filter-perf.properties</filter.name>
+				<destination.name>PERF</destination.name>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
+						<executions>
+							<execution>
+								<id>jmeter-tests</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<echo message="Starting JMeter tests" />
+										<ant antfile="build.xml" target="jmeter" />
+										<echo message="JMeter tests done" />
+									</tasks>
+									<reportDir>
+										${project.build.directory}/jmeter-reports
+									</reportDir>
+									<jmeterUserProperties>
+										<hostname>localhost</hostname>
+										<port>8080</port>
+									</jmeterUserProperties>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
