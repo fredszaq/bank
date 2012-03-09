@@ -273,14 +273,14 @@
 			<groupId>org.easytesting</groupId>
 			<artifactId>fest-assert</artifactId>
 		</dependency>
-			<dependency>
-				<groupId>org.fluentlenium</groupId>
-				<artifactId>fluentlenium-core</artifactId>
-			</dependency>
-			<dependency>
-				<groupId>org.fluentlenium</groupId>
-				<artifactId>fluentlenium-festassert</artifactId>
-			</dependency>
+		<dependency>
+			<groupId>org.fluentlenium</groupId>
+			<artifactId>fluentlenium-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fluentlenium</groupId>
+			<artifactId>fluentlenium-festassert</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -307,6 +307,29 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.jmeter</groupId>
+				<artifactId>maven-jmeter-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>jmeter-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>jmeter</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<reportDir>
+						${project.build.directory}/jmeter-reports
+					</reportDir>
+					<jmeterUserProperties>
+						<hostname>localhost</hostname>
+						<port>8080</port>
+					</jmeterUserProperties>
 				</configuration>
 			</plugin>
 			<plugin>
