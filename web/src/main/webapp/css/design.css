@@ -1,0 +1,78 @@
+html{
+	background: url("../images/bg.jpg") no-repeat center bottom fixed;
+	background-size:100%;
+}
+
+body {
+	width:1000px;
+	text-align:justify;
+	border:1px solid #aaa;
+	border-radius:10px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	box-shadow:5px 5px 15px #555555;
+	-moz-box-shadow:5px 5px 15px #555555;
+	-webkit-box-shadow:5px 5px 15px #555555;
+	padding:30px;
+	margin: -10px auto 50px;
+	text-align:justify;
+	background-color: #ffffff;
+}
+
+header{
+	width:100%;
+	margin-bottom:15px;
+	padding-bottom:15px;
+	border-bottom:1px solid #aaa;
+
+}
+
+#logo{
+	width:170px;
+}
+#logo img {
+	border:0;
+	width:170px;
+}
+
+#title{
+	width:100%;
+	text-align:center;
+	font-size:200%;
+}
+
+#logininfo{
+	min-width:170px;
+	text-align:right;
+}
+
+aside {
+	float:left;
+	width:150px;
+	padding: 40px 10px 10px 0px;
+}
+
+footer{
+	clear:left;
+	width:100%;
+	margin-top:50px;
+	text-align:center;
+	font-size:70%;
+}
+
+nav {
+	margin-bottom:20px;
+}
+
+nav a {
+	
+}
+
+.content {
+	margin-left:170px;
+	padding: 20px 0px 20px 20px;
+	border-left:1px solid #aaa;
+
+}
+
+
