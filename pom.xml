@@ -59,6 +59,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.spring-security>3.1.0.RELEASE</version.spring-security>
 		<version.logback>1.0.1</version.logback>
+		<version.aspectj>1.6.12</version.aspectj>
+		<version.fluentlenium>0.5.6</version.fluentlenium>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -161,6 +163,24 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
+				<groupId>org.easytesting</groupId>
+				<artifactId>fest-assert</artifactId>
+				<version>1.4</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.fluentlenium</groupId>
+				<artifactId>fluentlenium-core</artifactId>
+				<version>${version.fluentlenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.fluentlenium</groupId>
+				<artifactId>fluentlenium-festassert</artifactId>
+				<version>${version.fluentlenium}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
 				<version>2.1</version>
@@ -186,7 +206,13 @@
 			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
-				<version>1.6.12</version>
+				<version>${version.aspectj}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${version.aspectj}</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
@@ -194,12 +220,6 @@
 				<artifactId>javassist</artifactId>
 				<version>3.12.1.GA</version>
 				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjrt</artifactId>
-				<version>1.6.12</version>
-				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>jstl</groupId>
@@ -250,6 +270,18 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert</artifactId>
+		</dependency>
+			<dependency>
+				<groupId>org.fluentlenium</groupId>
+				<artifactId>fluentlenium-core</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.fluentlenium</groupId>
+				<artifactId>fluentlenium-festassert</artifactId>
+			</dependency>
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
@@ -277,24 +309,24 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			 <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <formats>
-                        <format>xml</format>
-                    </formats>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>com.excilys.formation</phase>
-                        <goals>
-                            <goal>cobertura</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<formats>
+						<format>xml</format>
+					</formats>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>com.excilys.formation</phase>
+						<goals>
+							<goal>cobertura</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 		<filters>
 			<filter>
