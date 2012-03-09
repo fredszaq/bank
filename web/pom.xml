@@ -12,19 +12,9 @@
 	<artifactId>web</artifactId>
 	<packaging>war</packaging>
 
-	<name>Getting Started with Spring on JBoss</name>
-
-	
-    <properties>
-        <!-- JBoss AS plugin for deployment -->
-        <version.jboss.as.maven.plugin>7.1.0.Final</version.jboss.as.maven.plugin>
-        <version.scala>2.9.1-1</version.scala>
-        <version.scalate>1.5.3</version.scalate>
-    </properties>
+	<name>Web bank application</name>
     
     <dependencies>
-		<!-- Import the JPA API using the provided scope It is included in JBoss 
-			AS 7 / EAP 6 -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -76,66 +66,17 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-
-        <dependency>
-        	<groupId>org.scala-lang</groupId>
-        	<artifactId>scala-compiler</artifactId>
-        	<version>${version.scala}</version>
-        	<scope>runtime</scope>
-        </dependency>
-        <dependency>
-        	<groupId>org.scala-lang</groupId>
-        	<artifactId>scala-library</artifactId>
-        	<version>${version.scala}</version>
-        	<scope>runtime</scope>
-        </dependency>
-        <dependency>
-        	<groupId>org.fusesource.scalate</groupId>
-        	<artifactId>scalate-core</artifactId>
-        	<version>${version.scalate}</version>
-        </dependency>
         <dependency>
         	<groupId>javax.servlet</groupId>
         	<artifactId>servlet-api</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>org.fusesource.scalate</groupId>
-        	<artifactId>scalate-spring-mvc</artifactId>
-        	<version>${version.scalate}</version>
-        	<scope>runtime</scope>
-        </dependency>
-        <dependency>
-        	<groupId>org.fusesource.scalate</groupId>
-        	<artifactId>scalate-util</artifactId>
-        	<version>${version.scalate}</version>
-        	<scope>runtime</scope>
         </dependency>
     </dependencies>
 
 	<build>
 		<plugins>
-			<!-- Deployent on AS from console -->
-			<plugin>
-				<groupId>org.jboss.as.plugins</groupId>
-				<artifactId>jboss-as-maven-plugin</artifactId>
-				<version>${version.jboss.as.maven.plugin}</version>
-				<configuration>
-					<filename>${project.build.finalName}.${project.packaging}</filename>
-					<force>true</force>
-					<name>bank</name>
-					<packaging>${project.packaging}</packaging>
-					<hostname>localhost</hostname>
-					<port>8080</port>
-					<targetDir>${project.build.directory}</targetDir>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-				</executions>
+			 <plugin>
+			        <groupId>org.codehaus.mojo</groupId>
+			        <artifactId>tomcat-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

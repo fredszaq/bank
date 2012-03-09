@@ -10,13 +10,7 @@
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
-	<bean class="org.fusesource.scalate.spring.view.ScalateViewResolver">
-		<property name="prefix" value="/WEB-INF/views/scalate/" />
-		<property name="suffix" value=".jade" />
-	</bean>
-
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="2" />
 		<property name="prefix" value="/WEB-INF/views/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
