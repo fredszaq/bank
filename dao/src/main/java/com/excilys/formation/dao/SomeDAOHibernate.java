@@ -23,6 +23,58 @@ public class SomeDAOHibernate implements SomeDAOInterface {
 	private SessionFactory sessionFactory;
 
 	/**
+	 * delete an entity.
+	 * 
+	 * @param entity
+	 *            the entity to delete
+	 */
+	@Override
+	@Transactional
+	public final void deleteEntity(SomeEntity entity) {
+		this.sessionFactory.getCurrentSession().delete(entity);
+	}
+
+	/**
+	 * find all entities.
+	 * 
+	 * @return the list of all entities
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public final List<SomeEntity> findAllEntities() {
+		return this.sessionFactory.getCurrentSession()
+				.createQuery("from SomeEntity").list();
+	}
+
+	/**
+	 * get an entity by string.
+	 * 
+	 * @param string
+	 *            the string
+	 * @return the entity
+	 */
+	@Override
+	@Transactional
+	public final SomeEntity getEntityByString(String string) {
+		return (SomeEntity) this.sessionFactory.getCurrentSession().get(
+				SomeEntity.class, string);
+
+	}
+
+	/**
+	 * save an entity.
+	 * 
+	 * @param entity
+	 *            the entity to save
+	 */
+	@Override
+	@Transactional
+	public final void saveEntity(SomeEntity entity) {
+		this.sessionFactory.getCurrentSession().save(entity);
+	}
+
+	/**
 	 * set the SessionFactory.
 	 * 
 	 * @param factory
@@ -33,61 +85,15 @@ public class SomeDAOHibernate implements SomeDAOInterface {
 	}
 
 	/**
-	 * get an entity by string.
-	 * 
-	 * @param string
-	 *            the string
-	 * @return the entity
-	 */
-	@Transactional
-	public final SomeEntity getEntityByString(String string) {
-		return (SomeEntity) sessionFactory.getCurrentSession().get(
-				SomeEntity.class, string);
-
-	}
-
-	/**
-	 * find all entities.
-	 * 
-	 * @return the list of all entities
-	 */
-	@Transactional
-	public final List<SomeEntity> findAllEntities() {
-		return sessionFactory.getCurrentSession()
-				.createQuery("from SomeEntity").list();
-	}
-
-	/**
-	 * save an entity.
-	 * 
-	 * @param entity
-	 *            the entity to save
-	 */
-	@Transactional
-	public final void saveEntity(SomeEntity entity) {
-		sessionFactory.getCurrentSession().save(entity);
-	}
-
-	/**
 	 * update an existing entity.
 	 * 
 	 * @param entity
 	 *            the entity to update
 	 */
+	@Override
 	@Transactional
 	public final void updateEntity(SomeEntity entity) {
-		sessionFactory.getCurrentSession().update(entity);
-	}
-
-	/**
-	 * delete an entity.
-	 * 
-	 * @param entity
-	 *            the entity to delete
-	 */
-	@Transactional
-	public final void deleteEntity(SomeEntity entity) {
-		sessionFactory.getCurrentSession().delete(entity);
+		this.sessionFactory.getCurrentSession().update(entity);
 	}
 
 }
