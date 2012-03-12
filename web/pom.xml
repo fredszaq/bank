@@ -88,7 +88,7 @@
 			<artifactId>jsp-api</artifactId>
 		</dependency>
 
-		<!-- Project dependencies -->
+		<!-- Project dependencies 
 
 		<dependency>
 			<groupId>com.excilys.formation</groupId>
@@ -97,7 +97,7 @@
 		<dependency>
 			<groupId>com.excilys.formation</groupId>
 			<artifactId>bean</artifactId>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<build>
