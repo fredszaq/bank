@@ -6,10 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "SOME_ENTITY", uniqueConstraints = { @UniqueConstraint(columnNames = { "SOME_STRING" }) })
+@Table(name = "SOME_ENTITY")
 public class SomeEntity {
 
 	@Id
