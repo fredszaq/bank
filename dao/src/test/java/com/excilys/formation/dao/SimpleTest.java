@@ -20,7 +20,7 @@ import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("beans-context.xml")
+@ContextConfiguration({ "classpath:beans-context.xml", "test.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
 @DataSet

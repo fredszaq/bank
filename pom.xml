@@ -62,7 +62,6 @@
 	</developers>
 	<properties>
 		<version.spring>3.1.1.RELEASE</version.spring>
-		<filter.chemin>../src/etc/filters</filter.chemin>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.spring-security>3.1.0.RELEASE</version.spring-security>
 		<version.logback>1.0.1</version.logback>
@@ -472,52 +471,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<filters>
-			<filter>
-				${filter.chemin}/${filter.name}
-			</filter>
-		</filters>
-		<resources>
-			<resource>
-				<directory>
-					src/main/resources
-				</directory>
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<directory>
-					src/test/resources
-				</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 	</build>
-	<profiles>
-		<profile>
-			<id>profil-dev</id>
-			<properties>
-				<filter.name>filter-dev.properties</filter.name>
-				<destination.name>DEV</destination.name>
-			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-		</profile>
-		<profile>
-			<id>profil-test</id>
-			<properties>
-				<filter.name>filter-test.properties</filter.name>
-				<destination.name>TEST</destination.name>
-			</properties>
-		</profile>
-		<profile>
-			<id>profil-prod</id>
-			<properties>
-				<filter.name>filter-prod.properties</filter.name>
-				<destination.name>PROD</destination.name>
-			</properties>
-		</profile>
-	</profiles>
 	<reporting>
 		<plugins>
 			<plugin>
