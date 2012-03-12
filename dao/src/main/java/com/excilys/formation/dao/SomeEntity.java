@@ -7,6 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * TODO delete this.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "SOME_ENTITY")
 public class SomeEntity {
@@ -19,32 +25,32 @@ public class SomeEntity {
 	@Column(name = "SOME_DATE")
 	private Date someDate;
 
-	public Date getSomeDate() {
+	public final Date getSomeDate() {
 		return this.someDate;
 	}
 
-	public int getSomeInteger() {
+	public final int getSomeInteger() {
 		return this.someInteger;
 	}
 
-	public String getSomeString() {
+	public final String getSomeString() {
 		return this.someString;
 	}
 
-	public void setSomeDate(Date someDate) {
+	public final void setSomeDate(Date someDate) {
 		this.someDate = someDate;
 	}
 
-	public void setSomeInteger(int someInteger) {
+	public final void setSomeInteger(int someInteger) {
 		this.someInteger = someInteger;
 	}
 
-	public void setSomeString(String someString) {
+	public final void setSomeString(String someString) {
 		this.someString = someString;
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "SomeEntity [someString=" + this.someString + ", someInteger="
 				+ this.someInteger + ", someDate=" + this.someDate + "]";
 	}
