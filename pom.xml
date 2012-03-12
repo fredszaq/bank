@@ -501,10 +501,6 @@
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
-				<property>
-					<name>environment.type</name>
-					<value>dev</value>
-				</property>
 			</activation>
 		</profile>
 		<profile>
@@ -513,12 +509,6 @@
 				<filter.name>filter-test.properties</filter.name>
 				<destination.name>TEST</destination.name>
 			</properties>
-			<activation>
-				<property>
-					<name>environment.type</name>
-					<value>test</value>
-				</property>
-			</activation>
 		</profile>
 		<profile>
 			<id>profil-prod</id>
@@ -526,12 +516,6 @@
 				<filter.name>filter-prod.properties</filter.name>
 				<destination.name>PROD</destination.name>
 			</properties>
-			<activation>
-				<property>
-					<name>environment.type</name>
-					<value>prod</value>
-				</property>
-			</activation>
 		</profile>
 	</profiles>
 	<reporting>
