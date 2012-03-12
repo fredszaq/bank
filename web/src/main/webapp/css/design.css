@@ -8,11 +8,7 @@ body {
 	text-align:justify;
 	border:1px solid #aaa;
 	border-radius:10px;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
 	box-shadow:5px 5px 15px #555555;
-	-moz-box-shadow:5px 5px 15px #555555;
-	-webkit-box-shadow:5px 5px 15px #555555;
 	padding:30px;
 	margin: -10px auto 50px;
 	text-align:justify;
@@ -58,7 +54,9 @@ header{
 aside {
 	float:left;
 	width:150px;
-	padding: 40px 10px 10px 0px;
+	margin: 40px 0px 10px 0px;
+	padding-right:20px;
+	border-right:1px solid #aaa;
 }
 
 footer{

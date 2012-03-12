@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true">
-	<include file="../config/logfile/logback.xml"/>
+	<include file="../src/etc/logfile/logback.xml"/>
 </configuration>

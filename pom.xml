@@ -55,7 +55,7 @@
 	</developers>
 	<properties>
 		<version.spring>3.1.1.RELEASE</version.spring>
-		<filter.chemin>../config/filters</filter.chemin>
+		<filter.chemin>../src/etc/filters</filter.chemin>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.spring-security>3.1.0.RELEASE</version.spring-security>
 		<version.logback>1.0.1</version.logback>
