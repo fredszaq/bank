@@ -299,7 +299,9 @@
 				<version>1.0.2</version>
 				<scope>compile</scope>
 			</dependency>
+			
 			<!-- Project dependencies -->
+			
 			<dependency>
 				<groupId>com.excilys.formation</groupId>
 				<artifactId>bean</artifactId>
