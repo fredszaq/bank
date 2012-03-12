@@ -20,10 +20,10 @@
    	</bean>
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SingleConnectionDataSource">
-		<property name="driverClassName" value="${database.driverClassName}"/>
-		<property name="url" value="${database.url}"/>
-		<property name="username" value="${database.user}"/>
-		<property name="password" value="${database.password}"/>
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+		<property name="url" value="jdbc:hsqldb:mem:bank"/>
+		<property name="username" value="SA"/>
+		<property name="password" value=""/>
 		<property name="suppressClose" value="true"/>
 	</bean>
 	
@@ -32,8 +32,8 @@
 		<property name="packagesToScan" value="com.excilys.formation.dao"/>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
 	</bean>
