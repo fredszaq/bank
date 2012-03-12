@@ -1,5 +1,7 @@
 package com.excilys.formation.dao;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.util.Date;
 
 import org.junit.Assert;
@@ -33,7 +35,7 @@ public class SimpleTest {
 	 * A cobertura test.
 	 */
 	@Test
-	public void cobertura() {
+	public final void cobertura() {
 		SomeEntity someEntity = new SomeEntity();
 		Assert.assertNull(someEntity.getSomeString());
 	}
@@ -46,8 +48,11 @@ public class SimpleTest {
 		Assert.assertEquals(1, 1);
 	}
 
+	/**
+	 * A very ugly test that helps having a good coverage.
+	 */
 	@Test
-	public void testOfTheDeathWhoKillsYourMomFromHerGraveWithASpoon() {
+	public final void testOfTheDeathWhoKillsYourMomFromHerGraveWithASpoon() {
 		SomeEntity theEntity = new SomeEntity();
 		theEntity.setSomeDate(new Date());
 		theEntity.setSomeString("ta sœur");
@@ -57,5 +62,10 @@ public class SimpleTest {
 		System.out.println(this.someDAOHibernate.getEntityByString("ta sœur"));
 		System.out.println(theEntity);
 		System.out.println(this.someDAOHibernate.getEntityByString("blabla"));
+		theEntity.setSomeDate(new Date());
+		this.someDAOHibernate.updateEntity(theEntity);
+		this.someDAOHibernate.deleteEntity(theEntity);
+		assertThat(this.someDAOHibernate.findAllEntities()).isNotIn(theEntity);
+
 	}
 }
