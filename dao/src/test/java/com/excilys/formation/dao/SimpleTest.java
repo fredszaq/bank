@@ -56,5 +56,6 @@ public class SimpleTest {
 		// .isEqualTo(theEntity);
 		System.out.println(this.someDAOHibernate.getEntityByString("ta sœur"));
 		System.out.println(theEntity);
+		System.out.println(this.someDAOHibernate.getEntityByString("blabla"));
 	}
 }
