@@ -2,16 +2,52 @@ package com.excilys.formation.dao;
 
 import java.util.List;
 
+/**
+ * TODO delete this.
+ * 
+ * @author excilys
+ * 
+ */
 public interface SomeDAOInterface {
 
-	public abstract SomeEntity getEntityByString(String string);
+	/**
+	 * TODO delete this.
+	 * 
+	 * @param entity
+	 *            aa
+	 */
+	void deleteEntity(SomeEntity entity);
 
-	public abstract List<SomeEntity> findAllEntities();
+	/**
+	 * TODO delete this.
+	 * 
+	 * @return aa
+	 */
+	List<SomeEntity> findAllEntities();
 
-	public abstract void saveEntity(SomeEntity entity);
+	/**
+	 * TODO delete this.
+	 * 
+	 * @param string
+	 *            aa
+	 * @return aa
+	 */
+	SomeEntity getEntityByString(String string);
 
-	public abstract void updateEntity(SomeEntity entity);
+	/**
+	 * TODO delete this.
+	 * 
+	 * @param entity
+	 *            aa
+	 */
+	void saveEntity(SomeEntity entity);
 
-	public abstract void deleteEntity(SomeEntity entity);
+	/**
+	 * TODO delete this.
+	 * 
+	 * @param entity
+	 *            aa
+	 */
+	void updateEntity(SomeEntity entity);
 
 }

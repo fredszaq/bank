@@ -13,7 +13,7 @@ public class SimpleTest {
 	 * A very rigorous test.
 	 */
 	@Test
-	public void oneEqualsOne() {
+	public final void oneEqualsOne() {
 		Assert.assertEquals(1, 1);
 	}
 

@@ -11,19 +11,19 @@ import org.junit.Test;
 public class SimpleTest {
 
 	/**
-	 * A very rigorous test.
-	 */
-	@Test
-	public void oneEqualsOne() {
-		Assert.assertEquals(1, 1);
-	}
-	
-	/**
 	 * A cobertura test.
 	 */
 	@Test
-	public void cobertura() {
+	public final void cobertura() {
 		SomeEntity someEntity = new SomeEntity();
 		Assert.assertNull(someEntity.getSomeString());
+	}
+
+	/**
+	 * A very rigorous test.
+	 */
+	@Test
+	public final void oneEqualsOne() {
+		Assert.assertEquals(1, 1);
 	}
 }

@@ -5,8 +5,22 @@ import java.util.GregorianCalendar;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * A main class used for test purposes.
+ * 
+ * TODO delete that :D
+ * 
+ * @author excilys
+ * 
+ */
 public class Main {
 
+	/**
+	 * This is a main method.
+	 * 
+	 * @param args
+	 *            cli args
+	 */
 	public static void main(String[] args) {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"beans-context.xml");
@@ -41,5 +55,12 @@ public class Main {
 
 		dao.deleteEntity(entity);
 		dao.deleteEntity(entity2);
+	}
+
+	/**
+	 * private constructor to prevent this class from being instantiated.
+	 */
+	private Main() {
+
 	}
 }
