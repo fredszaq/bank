@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<some_entity some_string="blabla" some_int="3" some_date="2011-03-12"/>
+</dataset>

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author excilys
  * 
  */
-@Repository
+@Repository("someDAOHibernate")
 public class SomeDAOHibernate implements SomeDAOInterface {
 
 	/**

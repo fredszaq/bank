@@ -45,12 +45,14 @@
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 		</dependency>
-
 		<!-- Project dependencies -->
-
 		<dependency>
 			<groupId>com.excilys.formation</groupId>
 			<artifactId>bean</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.excilys.ebi.spring-dbunit</groupId>
+			<artifactId>spring-dbunit-test</artifactId>
 		</dependency>
 	</dependencies>
 </project>
