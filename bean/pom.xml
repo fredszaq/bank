@@ -12,4 +12,10 @@
   <packaging>jar</packaging>
   <name>bean</name>
   <url>http://maven.apache.org</url>
+  <dependencies>
+  	<dependency>
+  		<groupId>javax.persistence</groupId>
+  		<artifactId>persistence-api</artifactId>
+  	</dependency>
+  </dependencies>
 </project>

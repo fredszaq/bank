@@ -1,4 +1,4 @@
-package com.excilys.formation.dao;
+package com.excilys.formation.bean;
 
 import java.util.Date;
 

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.excilys.formation.bean.SomeEntity;
+
 /**
  * A dao class to work with hibernate 4.
  * 
