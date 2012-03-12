@@ -1,7 +1,10 @@
 package com.excilys.formation.web;
 
-import org.junit.Assert;
+import static org.fest.assertions.Assertions.assertThat;
+
 import org.junit.Test;
+
+import com.excilys.formation.web.controller.HomeController;
 
 /**
  * 
@@ -14,6 +17,6 @@ public class SimpleTest {
 	 */
 	@Test
 	public final void oneEqualsOne() {
-		Assert.assertEquals(1, 1);
+		assertThat(new HomeController().home()).isEqualTo("index");
 	}
 }
