@@ -45,6 +45,7 @@
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 		</dependency>
+		
 		<!-- Project dependencies -->
 		<dependency>
 			<groupId>com.excilys.formation</groupId>
