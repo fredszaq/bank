@@ -67,10 +67,6 @@
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 		</dependency>
@@ -88,7 +84,7 @@
 			<artifactId>jsp-api</artifactId>
 		</dependency>
 
-		<!-- Project dependencies 
+		<!-- Project dependencies -->
 
 		<dependency>
 			<groupId>com.excilys.formation</groupId>
@@ -97,7 +93,7 @@
 		<dependency>
 			<groupId>com.excilys.formation</groupId>
 			<artifactId>bean</artifactId>
-		</dependency>-->
+		</dependency>
 	</dependencies>
 
 	<build>
