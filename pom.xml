@@ -505,6 +505,12 @@
 		</profile>
 		<profile>
 			<id>profil-test</id>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>test</value>
+				</property>
+			</activation>
 			<properties>
 				<filter.name>filter-test.properties</filter.name>
 				<destination.name>TEST</destination.name>
