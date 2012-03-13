@@ -24,7 +24,7 @@ import com.excilys.formation.bank.bean.SomeEntity;
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:beans-context.xml", "test-context.xml" })
+@ContextConfiguration({ "classpath*:context/applicationContext*.xml", "classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
 @DataSet
