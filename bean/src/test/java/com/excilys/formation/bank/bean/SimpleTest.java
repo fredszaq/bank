@@ -34,6 +34,7 @@ public class SimpleTest {
 		assertThat(entity.getSomeInteger()).isEqualTo(1);
 		entity.setSomeString("hello");
 		assertThat(entity.getSomeString()).isEqualTo("hello");
+		entity.toString();
 	}
 
 }
