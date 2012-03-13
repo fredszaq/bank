@@ -14,5 +14,6 @@
 		<property name="url" value="${database.url}" />
 		<property name="username" value="${database.user}" />
 		<property name="password" value="${database.password}" />
+		<property name="suppressClose" value="true" />
 	</bean>
 </beans>

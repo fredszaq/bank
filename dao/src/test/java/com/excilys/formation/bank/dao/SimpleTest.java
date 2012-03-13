@@ -24,10 +24,11 @@ import com.excilys.formation.bank.bean.SomeEntity;
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath*:context/applicationContext*.xml", "classpath*:contextTest/applicationContext*.xml" })
+@ContextConfiguration({ "classpath*:context/applicationContext*.xml",
+		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet
+@DataSet("/dataSet.xml")
 public class SimpleTest {
 
 	@Autowired
