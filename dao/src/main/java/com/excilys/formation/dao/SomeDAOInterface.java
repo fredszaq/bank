@@ -2,6 +2,8 @@ package com.excilys.formation.dao;
 
 import java.util.List;
 
+import com.excilys.formation.bean.SomeEntity;
+
 /**
  * TODO delete this.
  * 
