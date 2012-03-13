@@ -34,7 +34,7 @@ public class SimpleTest {
 	private SomeDAOInterface someDAOHibernate;
 
 	/**
-	 * a test without any asserts
+	 * a test without any asserts.
 	 */
 	@Test
 	public final void anotherFuckingTest() {
