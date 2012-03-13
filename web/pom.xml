@@ -12,7 +12,7 @@
 	<artifactId>web</artifactId>
 	<packaging>war</packaging>
 
-	<name>web</name>
+	<name>bankroot</name>
 
 	<dependencies>
 		<dependency>
