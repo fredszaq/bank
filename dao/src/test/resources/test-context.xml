@@ -5,7 +5,7 @@
 
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:com/excilys/formation/dao/test.properties" />
+		<property name="location" value="classpath:test.properties" />
 	</bean>
 
 	<bean id="dataSource"
@@ -14,6 +14,5 @@
 		<property name="url" value="${database.url}" />
 		<property name="username" value="${database.user}" />
 		<property name="password" value="${database.password}" />
-		<property name="suppressClose" value="true" />
 	</bean>
 </beans>
