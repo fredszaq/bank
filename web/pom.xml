@@ -86,14 +86,14 @@
 
 		<!-- Project dependencies -->
 
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.excilys.formation</groupId>
 			<artifactId>service</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.excilys.formation</groupId>
 			<artifactId>bean</artifactId>
-		</dependency>-->
+		</dependency>
 	</dependencies>
 
 	<build>
