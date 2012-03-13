@@ -364,7 +364,7 @@
 	</dependencies>
 	<build>
 		<finalName>
-			${project.name}_${destination.name}_${project.version}
+			${project.name}_${project.version}
 		</finalName>
 		<pluginManagement>
 			<plugins>
