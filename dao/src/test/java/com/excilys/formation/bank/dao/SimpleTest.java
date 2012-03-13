@@ -107,6 +107,7 @@ public class SimpleTest {
 		this.someDAOHibernate.updateEntity(theEntity);
 		this.someDAOHibernate.deleteEntity(theEntity);
 		assertThat(this.someDAOHibernate.findAllEntities()).isNotIn(theEntity);
+		new SomeDAOHibernate().setSessionFactory(null);
 
 	}
 }
