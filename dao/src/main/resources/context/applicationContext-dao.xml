@@ -17,8 +17,16 @@
 	<!-- <aop:aspectj-autoproxy/> -->
 	<tx:annotation-driven />
 
+	<bean id="flyway" class="com.googlecode.flyway.core.Flyway" init-method="migrate">
+		<property name="dataSource" ref="dataSource" />
+<!-- emplacement des classes de migration -->
+		<property name="basePackage" value="com.excilys.formation.bank.migration" />
+<!-- emplacement des fichiers sql de migration -->
+		<property name="baseDir" value="sql/migration" />
+	</bean>
+
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" depends-on="flyway">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="com.excilys.formation.bank.bean" />
 		<property name="hibernateProperties">

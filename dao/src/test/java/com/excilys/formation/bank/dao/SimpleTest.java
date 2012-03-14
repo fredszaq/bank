@@ -2,7 +2,7 @@ package com.excilys.formation.bank.dao;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.GregorianCalendar;
 
 import org.junit.Assert;
@@ -14,9 +14,10 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.SomeEntity;
+import com.googlecode.flyway.test.annotation.FlywayTest;
+import com.googlecode.flyway.test.dbunit.DBUnitSupport;
 
 /**
  * 
@@ -28,7 +29,10 @@ import com.excilys.formation.bank.bean.SomeEntity;
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/dataSet.xml")
+// demarre avec une base de donnees toute fraiche
+@FlywayTest
+// charge le fichier descripteur de la base de donnees au demarrage
+@DBUnitSupport(loadFilesForRun = { "INSERT", "/dataSet.xml" })
 public class SimpleTest {
 
 	@Autowired
@@ -95,15 +99,14 @@ public class SimpleTest {
 	@Test
 	public final void testOfTheDeathWhoKillsYourMomFromHerGraveWithASpoon() {
 		SomeEntity theEntity = new SomeEntity();
-		theEntity.setSomeDate(new Date());
-		theEntity.setSomeString("ta sœur");
+		theEntity.setSomeDate(new Date(0));
+		theEntity.setSomeString("bachibouzouk");
 		this.someDAOHibernate.saveEntity(theEntity);
-		// assertThat(this.someDAOHibernate.getEntityByString("ta sœur"))
-		// .isEqualTo(theEntity);
-		System.out.println(this.someDAOHibernate.getEntityByString("ta sœur"));
+		System.out.println(this.someDAOHibernate
+				.getEntityByString("bachibouzouk"));
 		System.out.println(theEntity);
 		System.out.println(this.someDAOHibernate.getEntityByString("blabla"));
-		theEntity.setSomeDate(new Date());
+		theEntity.setSomeDate(new Date(0));
 		this.someDAOHibernate.updateEntity(theEntity);
 		this.someDAOHibernate.deleteEntity(theEntity);
 		assertThat(this.someDAOHibernate.findAllEntities()).isNotIn(theEntity);
