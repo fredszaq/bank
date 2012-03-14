@@ -1,4 +1,5 @@
-<included>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
 			by default -->
@@ -16,4 +17,4 @@
 	<root level="warn">
 		<appender-ref ref="STDOUT" />
 	</root>
-</included>
+</configuration>
