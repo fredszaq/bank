@@ -5,18 +5,18 @@ CREATE TABLESPACE
 OWNER
 	excilys
 LOCATION
-	'/tmp/postgresql/tablespace/index';
+	'/var/lib/postgresql/8.4/tablespace/index';
 	
 CREATE TABLESPACE
 	ts_data
 OWNER
 	excilys
 LOCATION
-	'/tmp/postgresql/tablespace/data';
+	'/var/lib/postgresql/8.4/tablespace/data';
 
 CREATE TABLESPACE
 	ts_temp
 OWNER
 	excilys
 LOCATION
-	'/tmp/postgresql/tablespace/temp';
+	'/var/lib/postgresql/8.4/tablespace/temp';
