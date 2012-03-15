@@ -8,12 +8,9 @@
 
 	<authentication-manager>
 		<authentication-provider>
-<!-- 			Connection à la base de données (version officielle) -->
-<!-- 			<jdbc-user-service data-source-ref="dataSource" /> -->
-<!-- 			Role ajoutés « à la mano » -->
-			<user-service>
-				<user name="tibo" password="tibo" authorities="ROLE_AUTHENTICATED, ROLE_ADMIN"/>
-			</user-service>
+			<jdbc-user-service data-source-ref="dataSource" 
+				users-by-username-query="SELECT U.username, U.password, 1 FROM users U where U.username = ?"
+				authorities-by-username-query="SELECT U.username, A.authority FROM users u join authorities A ON A.id_authorities = U.id_authorities where U.username = ?"/>
 		</authentication-provider>
 	</authentication-manager>
 
