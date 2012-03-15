@@ -8,7 +8,7 @@
 	<jsp:output doctype-root-element="html"
 		doctype-system="about:legacy-compat" omit-xml-declaration="true" />
 
-	<html lang="fr">
+	<html lang="${pageContext.response.locale.language}">
 <fmt:setBundle basename="localization.Messages" />
 <head>
 <link rel="stylesheet"
@@ -25,12 +25,11 @@
 				alt="BankRoot logo" /></a>
 		</div>
 		<div id="title">Login</div>
-		<div id="logininfo"></div>
 
 	</header>
 	<div class="content">
 		<c:if test="${not empty param.login_error}">
-			<font color="red"> <fmt:message key="error">
+			<font color="red"> <fmt:message key="login.error">
 					<fmt:param value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
 				</fmt:message>
 			</font>
@@ -52,7 +51,8 @@
 					<input id="j_password" type="password" name='j_password' />
 				</div>
 				<div>
-					<input name="submit" type="submit" /><input id="_spring_security_remember_me" type="checkbox"
+					<input name="submit" type="submit" /><input
+						id="_spring_security_remember_me" type="checkbox"
 						name="_spring_security_remember_me" /> <label
 						for="_spring_security_remember_me"><fmt:message
 							key="login.rememberme" /></label>
