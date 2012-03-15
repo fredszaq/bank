@@ -2,9 +2,11 @@
 
 CREATE TABLE 
 	users(
-		id_user SERIAL PRIMARY KEY USING INDEX TABLESPACE ts_index
-		, username VARCHAR(50) NOT NULL
+		username VARCHAR(50) PRIMARY KEY USING INDEX TABLESPACE ts_index
 		, password VARCHAR(50) NOT NULL
+		, lastname varchar(50) NOT NULL
+		, firstname varchar(50) NOT NULL
+		, address varchar(150)
 		, id_authorities INTEGER NOT NULL
 		, CONSTRAINT fk_authorities_users FOREIGN KEY(id_authorities) REFERENCES authorities(id_authorities)
 	)
