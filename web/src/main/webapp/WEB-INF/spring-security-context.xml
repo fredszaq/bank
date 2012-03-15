@@ -10,8 +10,8 @@
 <!-- 			<jdbc-user-service data-source-ref="dataSource" /> -->
 <!-- 			Role ajoutés « à la mano » -->
 			<user-service>
-				<user name="tibo" authorities="ROLE_AUTHENTICATED, ROLE_ADMIN"/>
-				<user name="robert" authorities=""/>
+				<user name="tibo" password="tibo" authorities="ROLE_AUTHENTICATED, ROLE_ADMIN"/>
+				<user name="robert" password="robert" authorities=""/>
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
