@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<authentication-manager>
+		<authentication-provider>
+<!-- 			Connection à la base de données (version officielle) -->
+<!-- 			<jdbc-user-service data-source-ref="dataSource" /> -->
+<!-- 			Role ajoutés « à la mano » -->
+			<user-service>
+				<user name="tibo" authorities="ROLE_AUTHENTICATED, ROLE_ADMIN"/>
+				<user name="robert" authorities=""/>
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+	<http pattern="/login.jsp" security="none" />
+	<http pattern="/index.html" security="none" />
+
+	<http auto-config="true">
+		<form-login login-page="/login.jsp" default-target-url="/index.html"
+			always-use-default-target="true" />
+		<logout logout-success-url="/index.html" />
+		<intercept-url pattern="/secure/**" access="ROLE_AUTHENTICATED" />
+		<intercept-url pattern="/secure/admin/**" access="ROLE_ADMIN" />
+	</http>
+</beans:beans>
