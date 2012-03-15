@@ -17,8 +17,18 @@ public class HomeController {
 	 * 
 	 * @return "index"
 	 */
-	@RequestMapping("/index")
+	@RequestMapping("/index.html")
 	public final String home() {
 		return "index";
+	}
+
+	/**
+	 * Returns the login page.
+	 * 
+	 * @return "login"
+	 */
+	@RequestMapping("/login.html")
+	public final String login() {
+		return "login";
 	}
 }
