@@ -12,5 +12,4 @@
 	</bean>
 
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/dataSourceBank" />
-
 </beans>
