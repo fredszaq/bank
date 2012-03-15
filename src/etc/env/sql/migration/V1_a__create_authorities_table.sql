@@ -2,7 +2,7 @@
 
 CREATE TABLE 
 	authorities(
-		id_authorities SERIAL PRIMARY KEY USING INDEX TABLESPACE ts_index
+		authority_id SERIAL PRIMARY KEY USING INDEX TABLESPACE ts_index
 		, authority VARCHAR(50) NOT NULL
     )
 TABLESPACE 
