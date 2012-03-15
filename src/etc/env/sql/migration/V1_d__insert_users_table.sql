@@ -1,7 +1,7 @@
 -- Fichier de peuplement de la table authorities
 
 INSERT INTO
-	users (username, password, lastname, firstname, id_authorities)
+	users (login, password, lastname, firstname, authority_id)
 VALUES
 	('luc', 'admin', 'Mazon', 'Luc', 2),
 	('fredszaq', 'admin', 'Lorrain', 'Thibaut', 2),
