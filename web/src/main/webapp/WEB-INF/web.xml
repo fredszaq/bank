@@ -24,12 +24,6 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- maps the sample dispatcher to *.form -->
-	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>*.form</url-pattern>
-	</servlet-mapping>
-
 	<!-- maps the sample dispatcher to *.html -->
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>

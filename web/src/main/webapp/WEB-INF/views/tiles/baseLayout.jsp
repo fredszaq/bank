@@ -9,7 +9,7 @@
 	<jsp:output doctype-root-element="html"
 		doctype-system="about:legacy-compat" omit-xml-declaration="true" />
 
-<fmt:setBundle basename="localization.Messages" />
+	<fmt:setBundle basename="localization.Messages" />
 	<html lang="${pageContext.response.locale.language}">
 <head>
 <link rel="stylesheet"
@@ -26,24 +26,36 @@
 				alt="BankRoot logo" /></a>
 		</div>
 		<div id="title">This is the header</div>
-
-		<c:if test="${pageContext['request'].userPrincipal != null}">
 		<div id="logininfo">
-			Logged as ${pageContext['request'].userPrincipal.name} <br /> <a href="#">Disconnect</a>
+			<c:choose>
+				<c:when test="${pageContext['request'].userPrincipal != null}">	
+			Logged as ${pageContext['request'].userPrincipal.name} <br />
+					<a
+						href="${pageContext.request.contextPath}/j_spring_security_logout"><fmt:message
+							key="baselayout.disconnect" /></a>
+				</c:when>
+				<c:otherwise>
+					<a href="${pageContext.request.contextPath}/login.html"><fmt:message
+							key="baselayout.login" /></a>
+				</c:otherwise>
+			</c:choose>
 		</div>
-		</c:if>
+
 
 	</header>
 	<aside>
 		This is the menu
-		<ul>
-			<li>a menu item</li>
-			<li>a menu item</li>
-			<li>a menu item</li>
-			<li>a menu item</li>
-			<li>a menu item</li>
-		</ul>
+		<c:if test="${pageContext['request'].userPrincipal != null}">
+			<ul>
+				<li>a menu item</li>
+				<li>a menu item</li>
+				<li>a menu item</li>
+				<li>a menu item</li>
+				<li>a menu item</li>
+			</ul>
+		</c:if>
 	</aside>
+
 	<nav>
 		<a href="#">vous</a> &gt; <a href="#">êtes</a> &gt; ici
 	</nav>
