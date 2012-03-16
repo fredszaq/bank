@@ -205,36 +205,23 @@
 									<cargo.servlet.port>${tomcat.http.port}</cargo.servlet.port>
 									<cargo.tomcat.ajp.port>${tomcat.ajp.port}</cargo.tomcat.ajp.port>
 									<cargo.datasource.datasource.postgres>
-										driverClassName="org.postgresql.Driver" |
-										factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" |
-										initialSize="10"
-										jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer"
-										|
-										jmxEnabled="true" | logAbandoned="true" | maxActive="100" |
-										maxWait="10000" |
-										minEvictableIdleTimeMillis="30000" |
-										minIdle="10" |
-										name="jdbc/dataSourceBank" |
-										password="excilys" |
-										removeAbandoned="true" | removeAbandonedTimeout="60" |
-										testOnBorrow="true" | testOnReturn="false" |
-										testWhileIdle="true" |
-										timeBetweenEvictionRunsMillis="30000" |
-										type="javax.sql.DataSource" |
-										url="jdbc:postgresql://localhost/bank" | username="excilys" |
-										validationInterval="30000" | validationQuery="SELECT 1"
+										cargo.datasource.jndi=jdbc/dataSourceBank|
+										cargo.datasource.driver=org.postgresql.Driver|
+										cargo.datasource.url=jdbc:postgresql://localhost/bank|
+										cargo.datasource.username=excilys|
+										cargo.datasource.password=excilys
 									</cargo.datasource.datasource.postgres>
 								</properties>
 								<configfiles>
-										<configfile>
-											<file>../src/etc/env/app.properties</file>
-											<todir>lib</todir>
-										</configfile>
-										<configfile>
-											<file>../src/etc/env/logback.xml</file>
-											<todir>lib</todir>
-										</configfile>
-									</configfiles>
+									<configfile>
+										<file>../src/etc/env/app.properties</file>
+										<todir>lib</todir>
+									</configfile>
+									<configfile>
+										<file>../src/etc/env/logback.xml</file>
+										<todir>lib</todir>
+									</configfile>
+								</configfiles>
 							</configuration>
 						</configuration>
 					</plugin>
