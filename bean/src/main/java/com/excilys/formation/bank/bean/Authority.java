@@ -16,8 +16,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "authorities")
 public enum Authority {
-	ROLE_AUTHENTICATED(1, "ROLE_AUTHENTICATED"),
-	ROLE_ADMIN(2, "ROLE_ADMIN");
+	ROLE_AUTHENTICATED(1, "ROLE_AUTHENTICATED"), ROLE_ADMIN(2, "ROLE_ADMIN");
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,17 +25,24 @@ public enum Authority {
 	@Column(nullable = false)
 	private final String authority;
 
-	private Authority(Integer authority_id, String authority){
+	private Authority(Integer authority_id, String authority) {
 		this.authority = authority;
 		this.authority_id = authority_id;
 	}
 
-	public Integer getAuthority_id() {
-		return authority_id;
+	public String getAuthority() {
+		return this.authority;
 	}
 
-	public String getAuthority() {
-		return authority;
+	public Integer getAuthority_id() {
+		return this.authority_id;
 	}
-	
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Authority [authority_id=").append(this.authority_id)
+				.append(", authority=").append(this.authority).append("]");
+		return builder.toString();
+	}
 }

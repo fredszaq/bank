@@ -20,10 +20,14 @@ public class UserDAOHibernateImpl implements UserDAO {
 	@Override
 	public User loadUserByUsername(String username)
 			throws UsernameNotFoundException {
+		System.out.println("test");
+		System.out.println(this.sessionFactory.getCurrentSession() == null);
 		User user = (User) this.sessionFactory.getCurrentSession().get(
 				User.class, username);
+		System.out.println("test2");
+		System.out.println(user);
 		if (user == null) {
-			throw new UsernameNotFoundException(username + "not found");
+			throw new UsernameNotFoundException(username + " not found");
 		}
 		return user;
 	}
