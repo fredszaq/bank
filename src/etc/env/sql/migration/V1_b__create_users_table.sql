@@ -3,7 +3,7 @@
 CREATE TABLE 
 	users(
 		login VARCHAR(50) PRIMARY KEY USING INDEX TABLESPACE ts_index
-		, password VARCHAR(50) NOT NULL
+		, password VARCHAR(150) NOT NULL
 		, lastname varchar(50) NOT NULL
 		, firstname varchar(50) NOT NULL
 		, address varchar(150)
