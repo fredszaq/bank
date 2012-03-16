@@ -45,18 +45,22 @@
 	</header>
 	<aside>
 		This is the menu
-		<c:if test="${pageContext['request'].userPrincipal != null}">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/secure/user.html">user</a></li>
-				<li><a href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a></li>
+		<ul>
+			<li><a
+				href="${pageContext.request.contextPath}/">accueil</a></li>
+			<c:if test="${pageContext['request'].userPrincipal != null}">
+				<li><a
+					href="${pageContext.request.contextPath}/secure/user.html">user</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a></li>
+			</c:if>
+		</ul>
 
-			</ul>
-		</c:if>
 	</aside>
 
-	<nav>
+	<!--<nav>
 		<a href="#">vous</a> &gt; <a href="#">êtes</a> &gt; ici
-	</nav>
+	</nav>  -->
 	<div class="content">
 		<tiles:insertAttribute name="body" />
 	</div>

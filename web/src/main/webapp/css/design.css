@@ -83,17 +83,25 @@ nav a {
 .error {
 	color: #ff0000;
 	font-style: italic;
-	margin-bottom: 10px;
-}
-
-.loginbox {
-	width:250px;
+	text-align: center;
 	background-color: #eeeeee;
 	border: 1px solid #aaa;
 	padding: 10px;
-	border-radius:10px;
+	margin: auto;
+	margin-bottom: 10px;
+	border: 1px solid #aaa;
+	border-radius: 10px;
+}
+
+.loginbox {
+	width: 250px;
+	background-color: #eeeeee;
+	border: 1px solid #aaa;
+	padding: 10px;
+	border-radius: 10px;
 	margin: auto;
 }
+
 .loginbox input[type=text],.loginbox input[type=password] {
-	width:240px;
+	width: 240px;
 }
