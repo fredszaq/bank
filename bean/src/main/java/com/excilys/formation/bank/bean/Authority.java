@@ -22,8 +22,13 @@ public enum Authority {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private final Integer authority_id;
 
-	@Column(nullable = false)
+	@Column
 	private final String authority;
+
+	private Authority() {
+		this.authority_id = null;
+		this.authority = null;
+	}
 
 	private Authority(Integer authority_id, String authority) {
 		this.authority = authority;

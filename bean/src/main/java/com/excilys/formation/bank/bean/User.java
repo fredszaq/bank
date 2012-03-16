@@ -5,6 +5,8 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -28,19 +30,20 @@ public class User implements Serializable, UserDetails {
 	@Id
 	private String login;
 
-	@Column(nullable = false)
+	@Column
 	private String password;
 
-	@Column(nullable = false)
+	@Column
 	private String lastname;
 
-	@Column(nullable = false)
+	@Column
 	private String firstname;
 
-	@Column(nullable = true)
+	@Column
 	private String address;
 
-	@Column(name = "authority_id", nullable = false)
+	@Column(updatable = false, name = "authority_id")
+	@Enumerated(EnumType.STRING)
 	private Authority authority;
 
 	public User() {

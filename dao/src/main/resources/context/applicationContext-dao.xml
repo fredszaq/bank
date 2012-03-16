@@ -8,17 +8,15 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.excilys.formation.bank.dao" />
 
 	<bean id="flyway" class="com.googlecode.flyway.core.Flyway" init-method="migrate">
 		<property name="dataSource" ref="dataSource" />
-		<!-- emplacement des classes de migration -->
-		<property name="basePackage" value="com.excilys.formation.bank.migration" />
 		<!-- emplacement des fichiers sql de migration -->
 		<property name="baseDir" value="sql/migration" />
 	</bean>
