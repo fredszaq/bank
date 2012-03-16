@@ -4,5 +4,5 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
-	<fmt:message key="index.welcome" />
+	This is a secured page ! Only admins can view this !
 </jsp:root>
