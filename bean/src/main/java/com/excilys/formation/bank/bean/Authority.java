@@ -15,13 +15,14 @@ import javax.persistence.Table;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 @Component
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 @Entity
 @Table(name = "authorities")
-public class Authority implements Serializable {
+public class Authority implements Serializable, GrantedAuthority {
 
 	/**
 	 * 
@@ -39,6 +40,7 @@ public class Authority implements Serializable {
 	@Column
 	private String authority;
 
+	@Override
 	public String getAuthority() {
 		return this.authority;
 	}
