@@ -3,6 +3,7 @@ package com.excilys.formation.bank.bean;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ public class User implements Serializable, UserDetails {
 	private static final long serialVersionUID = -1695314120127290908L;
 
 	@Id
+	@Generated("assigned")
 	private String login;
 
 	@Column
