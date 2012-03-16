@@ -126,4 +126,16 @@ public class User implements Serializable, UserDetails {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [login=").append(this.login).append(", password=")
+				.append(this.password).append(", lastname=")
+				.append(this.lastname).append(", firstname=")
+				.append(this.firstname).append(", address=")
+				.append(this.address).append(", authority=")
+				.append(this.authority).append("]");
+		return builder.toString();
+	}
+
 }
