@@ -4,14 +4,16 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
-	<form name="f" action="${pageContext.request.contextPath}/j_spring_security_check" method="POST">
-		<div class="loginbox">
-			<c:if test="${not empty param.login_error}">
-				<div class="error">
-					<fmt:message key="login.error" />
+	<c:if test="${not empty param.login_error}">
+		<div class="error">
+			<fmt:message key="login.error" />
 
-				</div>
-			</c:if>
+		</div>
+	</c:if>
+	<form name="f"
+		action="${pageContext.request.contextPath}/j_spring_security_check"
+		method="POST">
+		<div class="loginbox">
 			<div>
 				<label for="j_username"><fmt:message key="login.username" /></label>
 			</div>
