@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<!-- <beans:bean id="authenticationManager"
+	<beans:bean id="authenticationManager"
 		class="org.springframework.security.authentication.ProviderManager">
 		<beans:property name="providers">
 			<beans:list>
@@ -23,17 +23,21 @@
 	<beans:bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="userService" />
-	</beans:bean>-->
-
-
-	<authentication-manager>
+		<beans:property name="saltSource" ref="saltSource"/>
+		<beans:property name="passwordEncoder" ref="passwordEncoder"/>
+	</beans:bean>
+	
+	<authentication-manager alias="authenticationManager"/>
+	
+	<!--<authentication-manager >
+		<authentication-provider/>
 		<authentication-provider >
 			<password-encoder hash="sha-256"/>
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="SELECT U.login, U.password, 1 FROM users U where U.login = ?"
 				authorities-by-username-query="SELECT U.login, A.authority FROM users u join authorities A ON A.authority_id = U.authority_id where U.login = ?" />
 		</authentication-provider>
-	</authentication-manager>
+	</authentication-manager>-->
 
 <http pattern="/login.jsp" security="none" />
 
