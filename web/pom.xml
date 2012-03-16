@@ -214,11 +214,11 @@
 								</properties>
 								<configfiles>
 									<configfile>
-										<file>../src/etc/env/app.properties</file>
+										<file>src/test/ressources/env/app.properties</file>
 										<todir>lib</todir>
 									</configfile>
 									<configfile>
-										<file>../src/etc/env/logback.xml</file>
+										<file>src/test/ressources/env/logback.xml</file>
 										<todir>lib</todir>
 									</configfile>
 								</configfiles>
