@@ -2,6 +2,9 @@ package com.excilys.formation.bank.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -16,7 +19,8 @@ public enum Authority {
 	ROLE_AUTHENTICATED(1, "ROLE_AUTHENTICATED"),
 	ROLE_ADMIN(2, "ROLE_ADMIN");
 
-	@Column(nullable = false)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private final Integer authority_id;
 
 	@Column(nullable = false)
