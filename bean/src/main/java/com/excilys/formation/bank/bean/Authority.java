@@ -25,11 +25,11 @@ public class Authority implements Serializable {
 	private static final long serialVersionUID = -2240814123594749921L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer authority_id;
 
-	@Column(name = "login")
-	private User user;
+	@Column
+	private String login;
 
 	@Column
 	private String authority;
@@ -42,8 +42,8 @@ public class Authority implements Serializable {
 		return this.authority_id;
 	}
 
-	public User getUser() {
-		return this.user;
+	public String getLogin() {
+		return this.login;
 	}
 
 	public void setAuthority(String authority) {
@@ -54,8 +54,8 @@ public class Authority implements Serializable {
 		this.authority_id = authority_id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 }
