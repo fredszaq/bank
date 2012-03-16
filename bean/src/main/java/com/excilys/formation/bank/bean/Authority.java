@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,25 +17,22 @@ import org.springframework.stereotype.Component;
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 @Entity
 @Table(name = "authorities")
-public enum Authority {
-	ROLE_AUTHENTICATED(1, "ROLE_AUTHENTICATED"), ROLE_ADMIN(2, "ROLE_ADMIN");
+public class Authority implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2240814123594749921L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private final Integer authority_id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer authority_id;
+
+	@Column(name = "login")
+	private User user;
 
 	@Column
-	private final String authority;
-
-	private Authority() {
-		this.authority_id = null;
-		this.authority = null;
-	}
-
-	private Authority(Integer authority_id, String authority) {
-		this.authority = authority;
-		this.authority_id = authority_id;
-	}
+	private String authority;
 
 	public String getAuthority() {
 		return this.authority;
@@ -43,11 +42,20 @@ public enum Authority {
 		return this.authority_id;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Authority [authority_id=").append(this.authority_id)
-				.append(", authority=").append(this.authority).append("]");
-		return builder.toString();
+	public User getUser() {
+		return this.user;
 	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+
+	public void setAuthority_id(Integer authority_id) {
+		this.authority_id = authority_id;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }
