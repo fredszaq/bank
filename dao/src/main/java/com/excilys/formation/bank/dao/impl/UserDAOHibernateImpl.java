@@ -22,6 +22,7 @@ public class UserDAOHibernateImpl implements UserDAO {
 			throws UsernameNotFoundException {
 		User user = (User) this.sessionFactory.getCurrentSession().get(
 				User.class, login);
+		System.out.println(user);
 		if (user == null) {
 			throw new UsernameNotFoundException(login + " not found");
 		}

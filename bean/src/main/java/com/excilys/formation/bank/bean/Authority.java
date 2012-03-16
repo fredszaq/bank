@@ -1,12 +1,16 @@
 package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -28,8 +32,9 @@ public class Authority implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer authority_id;
 
-	@Column
-	private String login;
+	@ManyToMany
+	@JoinTable(name = "users_authorities", joinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) })
+	private Set<User> users;
 
 	@Column
 	private String authority;
@@ -42,8 +47,8 @@ public class Authority implements Serializable {
 		return this.authority_id;
 	}
 
-	public String getLogin() {
-		return this.login;
+	public Set<User> getUser() {
+		return this.users;
 	}
 
 	public void setAuthority(String authority) {
@@ -54,8 +59,8 @@ public class Authority implements Serializable {
 		this.authority_id = authority_id;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUser(Set<User> users) {
+		this.users = users;
 	}
 
 }

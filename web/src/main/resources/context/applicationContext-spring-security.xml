@@ -14,7 +14,6 @@
 	<beans:bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="userService" />
-		<beans:property name="saltSource" ref="saltSource"/>
 		<beans:property name="passwordEncoder" ref="passwordEncoder"/>
 	</beans:bean>
 	

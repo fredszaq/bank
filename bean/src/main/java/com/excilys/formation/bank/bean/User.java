@@ -2,11 +2,14 @@ package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -42,6 +45,9 @@ public class User implements Serializable, UserDetails {
 	@Column
 	private String address;
 
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	private Set<Authority> authorities;
+
 	public User() {
 
 	}
@@ -52,7 +58,7 @@ public class User implements Serializable, UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return (Collection<? extends GrantedAuthority>) this.authorities;
 	}
 
 	public String getFirstname() {
@@ -99,6 +105,10 @@ public class User implements Serializable, UserDetails {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
 	}
 
 	public void setFirstname(String firstname) {
