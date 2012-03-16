@@ -26,7 +26,7 @@
 				<input id="j_password" type="password" name='j_password' />
 			</div>
 			<div>
-				<input name="submit" type="submit" /><input
+				<input name="submit" type="submit" id="submit" /><input
 					id="_spring_security_remember_me" type="checkbox"
 					name="_spring_security_remember_me" /> <label
 					for="_spring_security_remember_me"><fmt:message

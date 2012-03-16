@@ -17,4 +17,15 @@ public class LoginPage extends FluentPage {
 		assertThat(find("#j_password")).hasSize(1);
 		assertThat(find("#_spring_security_remember_me")).hasSize(1);
 	}
+
+	public void isShowingErrors() {
+		assertThat(find(".error")).isNotEmpty();
+	}
+
+	public void login(String username, String password) {
+		fill("#j_username").with(username);
+		fill("#j_password").with(password);
+		click("#submit");
+
+	}
 }
