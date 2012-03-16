@@ -1,11 +1,8 @@
 package com.excilys.formation.bank.web;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 import org.fluentlenium.adapter.FluentTest;
+import org.fluentlenium.core.annotation.Page;
 import org.junit.Test;
-
-import com.excilys.formation.bank.web.controller.HomeController;
 
 /**
  * 
@@ -13,12 +10,16 @@ import com.excilys.formation.bank.web.controller.HomeController;
  * 
  */
 public class LoginTest extends FluentTest {
+
+	@Page
+	public LoginPage loginPage;
+
 	/**
 	 * A very rigorous test.
 	 */
 	@Test
 	public final void goToLogin() {
-
-		assertThat(new HomeController().home()).isEqualTo("index");
+		goTo(this.loginPage);
+		this.loginPage.isAt();
 	}
 }

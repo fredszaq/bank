@@ -39,7 +39,7 @@
 
 	<http auto-config="true">
 		<form-login login-page="/login.jsp" default-target-url="/index.html"
-			always-use-default-target="true" authentication-failure-url="/login.jsp?login_error=1"/>
+			always-use-default-target="true" authentication-failure-url="/login.html?login_error=1"/>
 		<logout logout-success-url="/index.html" />
 		<intercept-url pattern="/secure/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/secure/**" access="ROLE_AUTHENTICATED" />
