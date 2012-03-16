@@ -5,8 +5,6 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -42,10 +40,6 @@ public class User implements Serializable, UserDetails {
 	@Column
 	private String address;
 
-	@Column(updatable = false, name = "authority_id")
-	@Enumerated(EnumType.STRING)
-	private Authority authority;
-
 	public User() {
 
 	}
@@ -57,10 +51,6 @@ public class User implements Serializable, UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;
-	}
-
-	public Authority getAuthority() {
-		return this.authority;
 	}
 
 	public String getFirstname() {
@@ -109,10 +99,6 @@ public class User implements Serializable, UserDetails {
 		this.address = address;
 	}
 
-	public void setAuthority(Authority authority) {
-		this.authority = authority;
-	}
-
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
@@ -136,8 +122,7 @@ public class User implements Serializable, UserDetails {
 				.append(this.password).append(", lastname=")
 				.append(this.lastname).append(", firstname=")
 				.append(this.firstname).append(", address=")
-				.append(this.address).append(", authority=")
-				.append(this.authority).append("]");
+				.append(this.address).append("]");
 		return builder.toString();
 	}
 
