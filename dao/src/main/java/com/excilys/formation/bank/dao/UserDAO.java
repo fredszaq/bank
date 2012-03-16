@@ -5,5 +5,5 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.excilys.formation.bank.bean.User;
 
 public interface UserDAO {
-	User loadUserByUsername(String username) throws UsernameNotFoundException;
+	User loadUserByUsername(String login) throws UsernameNotFoundException;
 }
