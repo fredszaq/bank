@@ -1,74 +1,73 @@
-html{
+html {
 	background: url("../images/bg.jpg") no-repeat center bottom fixed;
-	background-size:100%;
+	background-size: 100%;
 }
 
 body {
-	width:1000px;
-	text-align:justify;
-	border:1px solid #aaa;
-	border-radius:10px;
-	box-shadow:5px 5px 15px #555555;
-	padding:30px;
+	width: 1000px;
+	text-align: justify;
+	border: 1px solid #aaa;
+	border-radius: 10px;
+	box-shadow: 5px 5px 15px #555555;
+	padding: 30px;
 	margin: -10px auto 50px;
-	text-align:justify;
+	text-align: justify;
 	background-color: #ffffff;
 }
 
-header{
-	width:100%;
+header {
+	width: 100%;
 	display: table;
-	margin-bottom:15px;
-	padding-bottom:15px;
-	border-bottom:1px solid #aaa;
-
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #aaa;
 }
 
-#logo{
-	width:170px;
-	display:table-cell;
-	
+#logo {
+	width: 170px;
+	display: table-cell;
 }
+
 #logo img {
-	border:0;
-	width:170px;
+	border: 0;
+	width: 170px;
 }
 
-#title{
+#title {
 	text-align: center;
 	font-size: 200%;
-	vertical-align:middle;
-	display:table-cell ;
+	vertical-align: middle;
+	display: table-cell;
 	width: 100%;
 	height: 100%;
 }
 
-#logininfo{
-	min-width:170px;
-	text-align:right;
+#logininfo {
+	min-width: 170px;
+	text-align: right;
 	display: table-cell;
-	vertical-align:middle;
+	vertical-align: middle;
 	height: 100%;
 }
 
 aside {
-	float:left;
-	width:150px;
+	float: left;
+	width: 150px;
 	margin: 40px 0px 10px 0px;
-	padding-right:20px;
-	border-right:1px solid #aaa;
+	padding-right: 20px;
+	border-right: 1px solid #aaa;
 }
 
-footer{
-	clear:left;
-	width:100%;
-	margin-top:50px;
-	text-align:center;
-	font-size:70%;
+footer {
+	clear: left;
+	width: 100%;
+	margin-top: 50px;
+	text-align: center;
+	font-size: 70%;
 }
 
 nav {
-	margin-bottom:20px;
+	margin-bottom: 20px;
 }
 
 nav a {
@@ -76,10 +75,25 @@ nav a {
 }
 
 .content {
-	margin-left:170px;
+	margin-left: 170px;
 	padding: 20px 0px 20px 20px;
-	border-left:1px solid #aaa;
-
+	border-left: 1px solid #aaa;
 }
 
+.error {
+	color: #ff0000;
+	font-style: italic;
+	margin-bottom: 10px;
+}
 
+.loginbox {
+	width:250px;
+	background-color: #eeeeee;
+	border: 1px solid #aaa;
+	padding: 10px;
+	border-radius:10px;
+	margin: auto;
+}
+.loginbox input[type=text],.loginbox input[type=password] {
+	width:240px;
+}

@@ -47,11 +47,9 @@
 		This is the menu
 		<c:if test="${pageContext['request'].userPrincipal != null}">
 			<ul>
-				<li>a menu item</li>
-				<li>a menu item</li>
-				<li>a menu item</li>
-				<li>a menu item</li>
-				<li>a menu item</li>
+				<li><a href="${pageContext.request.contextPath}/secure/user.html">user</a></li>
+				<li><a href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a></li>
+
 			</ul>
 		</c:if>
 	</aside>

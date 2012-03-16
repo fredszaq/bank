@@ -13,6 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	/**
+	 * Returns the user page.
+	 * 
+	 * @return "admin"
+	 */
+	@RequestMapping("/secure/admin/admin.html")
+	public final String admin() {
+		return "admin";
+	}
+
+	/**
 	 * Simply selects the home view to render by returning its name.
 	 * 
 	 * @return "index"
@@ -31,4 +41,15 @@ public class HomeController {
 	public final String login() {
 		return "login";
 	}
+
+	/**
+	 * Returns the user page.
+	 * 
+	 * @return "user"
+	 */
+	@RequestMapping("/secure/user.html")
+	public final String user() {
+		return "user";
+	}
+
 }
