@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "comptes")
-public class Compte implements Serializable {
+public class Compte implements Serializable, Comparable<Compte> {
 
 	public enum CompteType {
 		EPARGNE("EPARGNE"), COURANT("COURANT");
@@ -37,6 +37,11 @@ public class Compte implements Serializable {
 	@Id
 	@Column(name = "compte_id")
 	private String compteId;
+
+	@Override
+	public int compareTo(Compte compte) {
+		return getCompteId().compareTo(compte.getCompteId());
+	}
 
 	public String getCompteId() {
 		return this.compteId;

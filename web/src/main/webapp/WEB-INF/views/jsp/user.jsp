@@ -11,8 +11,8 @@
 			<th>Nom du compte</th>
 			<th>Solde</th>
 		</tr>
-		<c:forEach var="compte" items="${comptes}">
-			<tr>
+		<c:forEach var="compte" items="${comptes}" varStatus="loopStatus">
+			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
 				<td>${compte.compteType}</td>
 				<td>${compte.compteId}</td>
 				<td>${compte.solde}</td>
