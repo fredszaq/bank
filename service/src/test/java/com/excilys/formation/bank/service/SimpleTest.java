@@ -1,7 +1,10 @@
 package com.excilys.formation.bank.service;
 
-import org.junit.Assert;
+import static org.fest.assertions.Assertions.assertThat;
+
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 /**
  * A class used for test purposes.
@@ -11,13 +14,30 @@ import org.junit.Test;
  * @author excilys
  * 
  */
+// @RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {
+		"classpath*:context/applicationContext*.xml",
+		"classpath*:contextTest/applicationContext*.xml" })
 public class SimpleTest {
+
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * A very rigorous test.
 	 */
 	@Test
 	public final void essaiTest() {
-		Assert.assertEquals(1, 1);
+
+		/*
+		 * String password = null; Set<Authority> authorities = new
+		 * HashSet<Authority>(); Authority authorityAdmin = new
+		 * Authority(Type.ROLE_ADMIN); Authority authorityAuthenticated = new
+		 * Authority( Type.ROLE_AUTHENTICATED); authorities.add(authorityAdmin);
+		 * authorities.add(authorityAuthenticated); User user = new User("stan",
+		 * password, "test", "test", "test", authorities);
+		 * this.userService.ajouter(user);
+		 */
+		assertThat(true);
 	}
 }

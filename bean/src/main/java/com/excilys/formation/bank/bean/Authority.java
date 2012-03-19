@@ -3,8 +3,9 @@ package com.excilys.formation.bank.bean;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,16 +14,25 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 
-@Component
-@Scope(BeanDefinition.SCOPE_SINGLETON)
 @Entity
 @Table(name = "authorities")
 public class Authority implements Serializable, GrantedAuthority {
+
+	public enum Type {
+		ROLE_AUTHENTICATED("ROLE_AUTHENTICATED"), ROLE_ADMIN("ROLE_ADMIN");
+
+		private final String value;
+
+		private Type(String value) {
+			this.value = value;
+		}
+
+		public String getValue() {
+			return this.value;
+		}
+	}
 
 	/**
 	 * 
@@ -37,12 +47,22 @@ public class Authority implements Serializable, GrantedAuthority {
 	@JoinTable(name = "users_authorities", joinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) })
 	private Set<User> users;
 
-	@Column
-	private String authority;
+	@Enumerated(EnumType.STRING)
+	private Type authority;
+
+	// private String authority;
+
+	public Authority() {
+
+	}
+
+	public Authority(Type authority) {
+		this.authority = authority;
+	}
 
 	@Override
 	public String getAuthority() {
-		return this.authority;
+		return this.authority.getValue();
 	}
 
 	public Integer getAuthority_id() {
@@ -53,7 +73,7 @@ public class Authority implements Serializable, GrantedAuthority {
 		return this.users;
 	}
 
-	public void setAuthority(String authority) {
+	public void setAuthority(Type authority) {
 		this.authority = authority;
 	}
 
