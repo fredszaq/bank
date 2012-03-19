@@ -49,7 +49,7 @@
 		<ul>
 			<li><a
 				href="${pageContext.request.contextPath}/">accueil</a></li>
-			<c:if test="${pageContext['request'].userPrincipal != null}">
+			<c:if test="${not empty pageContext.request.userPrincipal}">
 				<li><a
 					href="${pageContext.request.contextPath}/secure/user.html">user</a></li>
 				<li><a
