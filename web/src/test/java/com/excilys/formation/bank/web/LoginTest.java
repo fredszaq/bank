@@ -1,5 +1,6 @@
 package com.excilys.formation.bank.web;
 
+import static org.fest.assertions.Assertions.assertThat;
 import static org.fest.assertions.fluentlenium.FluentLeniumAssertions.assertThat;
 
 import org.fluentlenium.adapter.FluentTest;
@@ -34,7 +35,7 @@ public class LoginTest extends FluentTest {
 	@Test
 	public final void goodUsername() {
 		this.loginPage.login("luc", "admin");
-		// assertThat(pageSource()).contains("luc");
+		assertThat(pageSource()).contains("luc");
 
 	}
 
