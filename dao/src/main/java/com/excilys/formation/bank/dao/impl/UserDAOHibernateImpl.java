@@ -1,5 +1,6 @@
 package com.excilys.formation.bank.dao.impl;
 
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -32,6 +33,7 @@ public class UserDAOHibernateImpl implements UserDAO {
 		if (user == null) {
 			throw new UsernameNotFoundException(login + " not found");
 		}
+		Hibernate.initialize(user.getAuthorities());
 		return user;
 	}
 
