@@ -17,9 +17,7 @@ import org.junit.Test;
 public class LoginTest extends FluentTest {
 
 	@Page
-	public LoginPage loginPage;
-	
-	
+	private LoginPage loginPage;
 
 	/**
 	 * Set up method, we go to the login page.
