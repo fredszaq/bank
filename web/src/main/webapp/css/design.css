@@ -33,9 +33,8 @@ header {
 	width: 170px;
 }
 
-#title {
+header h1 {
 	text-align: center;
-	font-size: 200%;
 	vertical-align: middle;
 	display: table-cell;
 	width: 100%;
