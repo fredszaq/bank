@@ -17,7 +17,7 @@
 	type="text/css" media="screen" />
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <meta charset="utf-8" />
-<title>Bank</title>
+<title>BankRoot</title>
 </head>
 <body>
 	<header>
@@ -26,7 +26,7 @@
 				src="${pageContext.request.contextPath}/images/logo.svg"
 				alt="BankRoot logo" /></a>
 		</div>
-		<div id="title">This is the header</div>
+		<h1><fmt:message key="baselayout.header" /></h1>
 		<div id="logininfo">
 			<c:choose>
 				<c:when test="${pageContext['request'].userPrincipal != null}">	
