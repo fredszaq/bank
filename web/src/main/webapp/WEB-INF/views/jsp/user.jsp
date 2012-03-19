@@ -5,4 +5,7 @@
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
 	This is a secured page ! Only logged users can view this ! 
+	<c:forEach var="compte" items="${pageContext['request'].userPrincipal.principal.comptes}">
+		${compte.solde}
+	</c:forEach>
 </jsp:root>

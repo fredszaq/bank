@@ -8,7 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,6 +44,10 @@ public class User implements Serializable, UserDetails {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
 	private Set<Authority> authorities;
 
+	@OneToMany
+	@JoinTable(name = "users_comptes", joinColumns = @JoinColumn(name = "login"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
+	private Set<Compte> comptes;
+
 	public User() {
 
 	}
@@ -62,6 +69,10 @@ public class User implements Serializable, UserDetails {
 	@Override
 	public Set<Authority> getAuthorities() {
 		return this.authorities;
+	}
+
+	public Set<Compte> getComptes() {
+		return this.comptes;
 	}
 
 	public String getFirstname() {
@@ -112,6 +123,10 @@ public class User implements Serializable, UserDetails {
 
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
+	}
+
+	public void setComptes(Set<Compte> comptes) {
+		this.comptes = comptes;
 	}
 
 	public void setFirstname(String firstname) {

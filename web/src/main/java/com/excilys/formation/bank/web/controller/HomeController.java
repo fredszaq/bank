@@ -1,6 +1,7 @@
 package com.excilys.formation.bank.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -48,7 +49,7 @@ public class HomeController {
 	 * @return "user"
 	 */
 	@RequestMapping("/secure/user.html")
-	public final String user() {
+	public final String user(ModelMap model) {
 		return "user";
 	}
 
