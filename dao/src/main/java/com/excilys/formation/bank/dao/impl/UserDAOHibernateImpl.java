@@ -18,6 +18,12 @@ public class UserDAOHibernateImpl implements UserDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
+	public void ajouter(User user) {
+		System.err.println(this.sessionFactory);
+		this.sessionFactory.getCurrentSession().save(user);
+	}
+
+	@Override
 	public User loadUserByUsername(String login)
 			throws UsernameNotFoundException {
 		User user = (User) this.sessionFactory.getCurrentSession().get(

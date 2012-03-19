@@ -12,14 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
-@Component
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Entity
 @Table(name = "users")
 public class User implements Serializable, UserDetails {
@@ -52,13 +47,23 @@ public class User implements Serializable, UserDetails {
 
 	}
 
+	public User(String login, String password, String lastname,
+			String firstname, String address, Set<Authority> authorities) {
+		this.login = login;
+		this.password = password;
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.address = address;
+		this.authorities = authorities;
+	}
+
 	public String getAddress() {
 		return this.address;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return (Collection<? extends GrantedAuthority>) this.authorities;
+		return this.authorities;
 	}
 
 	public String getFirstname() {
@@ -121,10 +126,6 @@ public class User implements Serializable, UserDetails {
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Override
