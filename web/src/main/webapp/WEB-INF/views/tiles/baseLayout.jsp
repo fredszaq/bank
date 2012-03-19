@@ -30,7 +30,7 @@
 		<div id="logininfo">
 			<c:choose>
 				<c:when test="${pageContext['request'].userPrincipal != null}">	
-			Logged as <br /> ${pageContext['request'].userPrincipal.principal.firstname} ${pageContext['request'].userPrincipal.principal.lastname} <br />
+			Logged as <br /> ${pageContext['request'].userPrincipal.principal.firstName} ${pageContext['request'].userPrincipal.principal.lastName} <br />
 					<a
 						href="${pageContext.request.contextPath}/j_spring_security_logout"><fmt:message
 							key="baselayout.disconnect" /></a>
