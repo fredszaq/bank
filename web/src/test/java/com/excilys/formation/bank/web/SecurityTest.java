@@ -27,7 +27,7 @@ public class SecurityTest extends FluentTest {
 	private UserPage userPage;
 
 	/**
-	 * Set up method, we go to the login page.
+	 * Set up method, going to the login page.
 	 */
 	@Before
 	public final void before() {
@@ -35,7 +35,7 @@ public class SecurityTest extends FluentTest {
 	}
 
 	/**
-	 * In this test we check that we are on the right page.
+	 * In this test checks that we are on the right page.
 	 */
 	@Test
 	public final void loginIsAccesible() {
@@ -63,6 +63,9 @@ public class SecurityTest extends FluentTest {
 		this.loginPage.isShowingErrors();
 	}
 
+	/**
+	 * this test tries to access an admin page after having logged as an admin.
+	 */
 	@Test
 	public final void tryToViewAnAdminPageAsAnAdmin() {
 		this.loginPage.login("fredszaq", "admin");
@@ -70,19 +73,50 @@ public class SecurityTest extends FluentTest {
 		assertThat(this.adminPage).isAt();
 	}
 
+	/**
+	 * this test tries to access an admin page after having logged as a normal
+	 * user.
+	 */
 	@Test
 	public final void tryToViewAnAdminPageAsANormalUser() {
 		this.loginPage.login("robert", "robert");
 		goTo(this.adminPage);
-		assertThat(this.loginPage).isAt();
+		assertThat(pageSource()).contains("403");
 	}
 
+	/**
+	 * this test tries to access an admin page without having logged.
+	 */
 	@Test
 	public final void tryToViewAnAdminPageWithoutBeingLogged() {
 		goTo(this.adminPage);
 		assertThat(this.loginPage).isAt();
 	}
 
+	/**
+	 * this test tries to access a secured page after having logged as an admin.
+	 */
+	@Test
+	public final void tryToViewASecuredPageAnAdmin() {
+		this.loginPage.login("stan", "admin");
+		goTo(this.userPage);
+		assertThat(this.userPage).isAt();
+	}
+
+	/**
+	 * this test tries to access a secured page after having logged as a normal
+	 * user.
+	 */
+	@Test
+	public final void tryToViewASecuredPageAsANormalUser() {
+		this.loginPage.login("jacky", "jacky");
+		goTo(this.userPage);
+		assertThat(this.userPage).isAt();
+	}
+
+	/**
+	 * this test tries to access a secured page without having logged.
+	 */
 	@Test
 	public final void tryToViewASecuredPageWithoutBeingLogged() {
 		goTo(this.userPage);
