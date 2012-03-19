@@ -49,7 +49,7 @@ public class SecurityTest extends FluentTest {
 	@Test
 	public final void tryToLoginWithAGoodUsername() {
 		this.loginPage.login("luc", "admin");
-		assertThat($("#logininfo").first().getText()).contains("luc");
+		assertThat($("#logininfo").first().getText()).contains("Luc Mazon");
 
 	}
 
