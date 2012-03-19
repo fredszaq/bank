@@ -1,8 +1,13 @@
 package com.excilys.formation.bank.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.excilys.formation.bank.service.UserService;
 
 /**
  * A controller used for test purposes.
@@ -12,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
+
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * Returns the user page.
@@ -50,7 +58,10 @@ public class HomeController {
 	 */
 	@RequestMapping("/secure/user.html")
 	public final String user(ModelMap model) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		model.put("comptes", this.userService.getComptesByUsername(userDetails
+				.getUsername()));
 		return "user";
 	}
-
 }
