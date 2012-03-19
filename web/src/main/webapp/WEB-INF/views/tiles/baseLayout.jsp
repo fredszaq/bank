@@ -15,6 +15,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/design.css"
 	type="text/css" media="screen" />
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <meta charset="utf-8" />
 <title>Bank</title>
 </head>
