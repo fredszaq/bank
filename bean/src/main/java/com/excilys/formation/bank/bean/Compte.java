@@ -28,32 +28,34 @@ public class Compte implements Serializable {
 	}
 
 	@Enumerated(EnumType.STRING)
-	private CompteType compte_type;
+	@Column(name = "compte_type")
+	private CompteType compteType;
 
 	@Column
 	private Double solde;
 
 	@Id
-	private String compte_id;
+	@Column(name = "compte_id")
+	private String compteId;
 
-	public String getCompte_id() {
-		return this.compte_id;
+	public String getCompteId() {
+		return this.compteId;
 	}
 
 	public CompteType getCompteType() {
-		return this.compte_type;
+		return this.compteType;
 	}
 
 	public Double getSolde() {
 		return this.solde;
 	}
 
-	public void setCompte_id(String compte_id) {
-		this.compte_id = compte_id;
+	public void setCompteId(String compteId) {
+		this.compteId = compteId;
 	}
 
-	public void setCompteType(CompteType compte) {
-		this.compte_type = compte;
+	public void setCompteType(CompteType compteType) {
+		this.compteType = compteType;
 	}
 
 	public void setSolde(Double solde) {
