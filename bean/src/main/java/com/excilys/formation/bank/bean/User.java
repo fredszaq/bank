@@ -71,17 +71,12 @@ public class User implements Serializable, UserDetails {
 		return this.authorities;
 	}
 
-<<<<<<< HEAD
 	public Set<Compte> getComptes() {
 		return this.comptes;
 	}
 
-	public String getFirstname() {
-		return this.firstname;
-=======
 	public String getFirstName() {
 		return this.firstName;
->>>>>>> modif login
 	}
 
 	public String getLastName() {
@@ -130,17 +125,12 @@ public class User implements Serializable, UserDetails {
 		this.authorities = authorities;
 	}
 
-<<<<<<< HEAD
 	public void setComptes(Set<Compte> comptes) {
 		this.comptes = comptes;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-=======
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
->>>>>>> modif login
 	}
 
 	public void setLastName(String lastName) {
