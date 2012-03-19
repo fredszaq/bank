@@ -4,35 +4,31 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
-	
-	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
 
 	<beans:bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="userService" />
-		<beans:property name="passwordEncoder" ref="passwordEncoder"/>
+		<beans:property name="passwordEncoder" ref="passwordEncoder" />
 	</beans:bean>
-	
+
 	<authentication-manager>
-		<authentication-provider ref="daoAuthenticationProvider"/>
+		<authentication-provider ref="daoAuthenticationProvider" />
 	</authentication-manager>
-	
-	<!--<authentication-manager >
-		<authentication-provider/>
-		<authentication-provider >
-			<password-encoder hash="sha-256"/>
-			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="SELECT U.login, U.password, 1 FROM users U where U.login = ?"
-				authorities-by-username-query="SELECT U.login, A.authority FROM users u join authorities A ON A.authority_id = U.authority_id where U.login = ?" />
-		</authentication-provider>
-	</authentication-manager>-->
+
 
 	<http pattern="/login.jsp" security="none" />
 
 	<http auto-config="true">
-		<form-login login-page="/login.html" default-target-url="/index.html"
-			always-use-default-target="true" authentication-failure-url="/login.html?login_error=1"/>
-		<logout logout-success-url="/index.html" />
+		<form-login login-page="/login.jsp" default-target-url="/index.html"
+			always-use-default-target="true" authentication-failure-url="/login.html?login_error=1" />
+		<logout logout-success-url="/index.html" delete-cookies="JSESSIONID" />
+		<session-management invalid-session-url="/login.html?login_error=2">
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" />
+		</session-management>
 		<intercept-url pattern="/secure/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/secure/**" access="ROLE_AUTHENTICATED" />
 	</http>

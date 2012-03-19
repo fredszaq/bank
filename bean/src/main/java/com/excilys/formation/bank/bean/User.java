@@ -1,7 +1,6 @@
 package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Set;
 
 import javax.annotation.Generated;
@@ -12,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -62,7 +60,7 @@ public class User implements Serializable, UserDetails {
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	public Set<Authority> getAuthorities() {
 		return this.authorities;
 	}
 

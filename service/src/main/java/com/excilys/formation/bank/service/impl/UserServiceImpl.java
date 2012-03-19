@@ -18,14 +18,8 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 
 	@Override
-	public void ajouter(User user) {
-		this.userDAO.ajouter(user);
-
-	}
-
-	@Override
-	public User loadUserByUsername(String username)
+	public User loadUserByUsername(String login)
 			throws UsernameNotFoundException {
-		return this.userDAO.loadUserByUsername(username);
+		return this.userDAO.loadUserByUsername(login);
 	}
 }
