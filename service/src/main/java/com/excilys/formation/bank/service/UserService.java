@@ -9,9 +9,6 @@ import com.excilys.formation.bank.bean.User;
 @Transactional
 public interface UserService extends UserDetailsService {
 
-	@Transactional(rollbackFor = RuntimeException.class)
-	void ajouter(User user);
-
 	@Override
 	@Transactional(readOnly = true)
 	User loadUserByUsername(String username) throws UsernameNotFoundException;
