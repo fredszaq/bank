@@ -24,10 +24,11 @@
 	<http auto-config="true">
 		<form-login login-page="/login.jsp" default-target-url="/index.html"
 			always-use-default-target="true" authentication-failure-url="/login.html?login_error=1" />
-		<logout logout-success-url="/index.html" delete-cookies="JSESSIONID" />
-		<session-management invalid-session-url="/login.html?login_error=2">
+		<logout logout-success-url="/index.html" invalidate-session="true" delete-cookies="JSESSIONID" />
+		<session-management invalid-session-url="/login.html?login_timeout=1"
+			session-authentication-error-url="/login.html?login_max_session_exceed=1">
 			<concurrency-control max-sessions="1"
-				error-if-maximum-exceeded="true" />
+				error-if-maximum-exceeded="true" expired-url="/login.html?login_timeout=1"/>
 		</session-management>
 		<intercept-url pattern="/secure/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/secure/**" access="ROLE_AUTHENTICATED" />

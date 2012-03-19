@@ -33,10 +33,10 @@ public class User implements Serializable, UserDetails {
 	private String password;
 
 	@Column
-	private String lastname;
+	private String lastName;
 
 	@Column
-	private String firstname;
+	private String firstName;
 
 	@Column
 	private String address;
@@ -52,12 +52,12 @@ public class User implements Serializable, UserDetails {
 
 	}
 
-	public User(String login, String password, String lastname,
-			String firstname, String address, Set<Authority> authorities) {
+	public User(String login, String password, String lastName,
+			String firstName, String address, Set<Authority> authorities) {
 		this.login = login;
 		this.password = password;
-		this.lastname = lastname;
-		this.firstname = firstname;
+		this.lastName = lastName;
+		this.firstName = firstName;
 		this.address = address;
 		this.authorities = authorities;
 	}
@@ -71,16 +71,21 @@ public class User implements Serializable, UserDetails {
 		return this.authorities;
 	}
 
+<<<<<<< HEAD
 	public Set<Compte> getComptes() {
 		return this.comptes;
 	}
 
 	public String getFirstname() {
 		return this.firstname;
+=======
+	public String getFirstName() {
+		return this.firstName;
+>>>>>>> modif login
 	}
 
-	public String getLastname() {
-		return this.lastname;
+	public String getLastName() {
+		return this.lastName;
 	}
 
 	public String getLogin() {
@@ -125,16 +130,21 @@ public class User implements Serializable, UserDetails {
 		this.authorities = authorities;
 	}
 
+<<<<<<< HEAD
 	public void setComptes(Set<Compte> comptes) {
 		this.comptes = comptes;
 	}
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+=======
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+>>>>>>> modif login
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public void setLogin(String login) {
@@ -145,9 +155,9 @@ public class User implements Serializable, UserDetails {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [login=").append(this.login).append(", password=")
-				.append(this.password).append(", lastname=")
-				.append(this.lastname).append(", firstname=")
-				.append(this.firstname).append(", address=")
+				.append(this.password).append(", lastName=")
+				.append(this.lastName).append(", firstName=")
+				.append(this.firstName).append(", address=")
 				.append(this.address).append("]");
 		return builder.toString();
 	}
