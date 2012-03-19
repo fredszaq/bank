@@ -18,11 +18,8 @@
 		<authentication-provider ref="daoAuthenticationProvider" />
 	</authentication-manager>
 
-
-	<http pattern="/login.jsp" security="none" />
-
 	<http auto-config="true">
-		<form-login login-page="/login.jsp" default-target-url="/index.html"
+		<form-login login-page="/login.html" default-target-url="/index.html"
 			always-use-default-target="true" authentication-failure-url="/login.html?login_error=1" />
 		<logout logout-success-url="/index.html" invalidate-session="true" delete-cookies="JSESSIONID" />
 		<session-management invalid-session-url="/login.html?login_timeout=1"
