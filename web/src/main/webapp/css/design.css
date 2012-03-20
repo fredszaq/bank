@@ -134,3 +134,7 @@ table tr:last-child td:first-child {
 table tr:last-child td:last-child {
 	border-bottom-right-radius: 10px;
 }
+
+table td.numeric, table th.numeric {
+	text-align: right;
+}
