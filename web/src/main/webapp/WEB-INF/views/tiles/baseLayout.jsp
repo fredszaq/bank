@@ -28,7 +28,8 @@
 				alt="BankRoot logo" /></a>
 		</div>
 		<h1>
-			<fmt:message key="baselayout.header" />
+			<!-- <fmt:message key="baselayout.header" />-->
+			<tiles:insertAttribute name="title" />
 		</h1>
 		<div id="logininfo">
 			<c:choose>
@@ -59,9 +60,11 @@
 					</c:if>
 				</c:forEach>
 
-				<li><a
-					href="${pageContext.request.contextPath}/secure/user.html">user</a>
-				</li>
+				<c:if test="${not pageScope.isAdmin }">
+					<li><a
+						href="${pageContext.request.contextPath}/secure/user.html">user</a>
+					</li>
+				</c:if>
 				<c:if test="${pageScope.isAdmin }">
 					<li><a
 						href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a>

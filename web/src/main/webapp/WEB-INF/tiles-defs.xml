@@ -17,18 +17,22 @@
 	</definition>
 
 	<definition name="login" extends="baseLayout">
+		<put-attribute name="title" value="Welcome" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp" />
 	</definition>
 
 	<definition name="user" extends="baseLayout">
+		<put-attribute name="title" value="Customer Area" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/user.jsp" />
 	</definition>
 
 	<definition name="admin" extends="baseLayout">
+		<put-attribute name="title" value="Admin Area" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/admin.jsp" />
 	</definition>
 
 	<definition name="accessDenied" extends="baseLayout">
+		<put-attribute name="title" value="Error" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/accessDenied.jsp" />
 	</definition>
 
