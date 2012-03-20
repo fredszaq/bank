@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  */
 @Controller
+@RequestMapping("/error/*")
 public class ErrorController {
 	/**
 	 * Returns the accessDenied page.
 	 * 
 	 * @return "accessDenied"
 	 */
-	@RequestMapping("/error/accessDenied.html")
+	@RequestMapping("/accessDenied.html")
 	public final String accessDenied() {
 		return "accessDenied";
 	}
@@ -26,7 +27,7 @@ public class ErrorController {
 	 * 
 	 * @return "accessDenied"
 	 */
-	@RequestMapping("/error/403.html")
+	@RequestMapping("/403.html")
 	public final String error403() {
 		return "redirect:/error/accessDenied.html";
 	}
