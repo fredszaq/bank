@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,43 +49,43 @@ public class User implements Serializable, UserDetails {
 	@JoinTable(name = "users_authorities", joinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) })
 	private Set<Authority> authorities;
 
-	@OneToMany
+	@ManyToMany
 	@JoinTable(name = "users_comptes", joinColumns = @JoinColumn(name = "login"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
 	private Set<Compte> comptes;
 
 	public final String getAddress() {
-		return this.address;
+		return address;
 	}
 
 	@Override
 	public final Set<Authority> getAuthorities() {
-		return this.authorities;
+		return authorities;
 	}
 
 	public final Set<Compte> getComptes() {
-		return this.comptes;
+		return comptes;
 	}
 
 	public final String getFirstName() {
-		return this.firstName;
+		return firstName;
 	}
 
 	public final String getLastName() {
-		return this.lastName;
+		return lastName;
 	}
 
 	public final String getLogin() {
-		return this.login;
+		return login;
 	}
 
 	@Override
 	public final String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	@Override
 	public final String getUsername() {
-		return this.login;
+		return login;
 	}
 
 	@Override
@@ -136,11 +135,10 @@ public class User implements Serializable, UserDetails {
 	@Override
 	public final String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("User [login=").append(this.login).append(", password=")
-				.append(this.password).append(", lastName=")
-				.append(this.lastName).append(", firstName=")
-				.append(this.firstName).append(", address=")
-				.append(this.address).append("]");
+		builder.append("User [login=").append(login).append(", password=")
+				.append(password).append(", lastName=").append(lastName)
+				.append(", firstName=").append(firstName).append(", address=")
+				.append(address).append("]");
 		return builder.toString();
 	}
 }
