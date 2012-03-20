@@ -69,7 +69,6 @@ public class SecurityTest extends FluentTest {
 	@Test
 	public final void tryToViewAnAdminPageAsAnAdmin() {
 		this.loginPage.login("fredszaq", "admin");
-		goTo(this.adminPage);
 		assertThat(this.adminPage).isAt();
 	}
 
@@ -110,7 +109,6 @@ public class SecurityTest extends FluentTest {
 	@Test
 	public final void tryToViewASecuredPageAsANormalUser() {
 		this.loginPage.login("jacky", "jacky");
-		goTo(this.userPage);
 		assertThat(this.userPage).isAt();
 	}
 
