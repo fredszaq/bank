@@ -10,10 +10,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+/**
+ * RoleBasedTargetUrlResolver class.
+ * 
+ * @author excilys
+ * 
+ */
 public class RoleBasedTargetUrlResolver implements AuthenticationSuccessHandler {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request,
+	public final void onAuthenticationSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws IOException {
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication

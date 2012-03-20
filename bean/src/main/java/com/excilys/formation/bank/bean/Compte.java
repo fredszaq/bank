@@ -10,15 +10,33 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Compte bean.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "comptes")
 public class Compte implements Serializable, Comparable<Compte> {
 
+	/**
+	 * CompteType enum.
+	 * 
+	 * @author excilys
+	 * 
+	 */
 	public enum CompteType {
 		EPARGNE("EPARGNE"), COURANT("COURANT");
 
 		private final String value;
 
+		/**
+		 * Logical constructor.
+		 * 
+		 * @param value
+		 *            the value of the CompteType enum
+		 */
 		private CompteType(String value) {
 			this.value = value;
 		}
@@ -27,6 +45,11 @@ public class Compte implements Serializable, Comparable<Compte> {
 			return this.value;
 		}
 	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8546946063789928623L;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "compte_type")
@@ -41,32 +64,41 @@ public class Compte implements Serializable, Comparable<Compte> {
 	private String compteId;
 
 	@Override
-	public int compareTo(Compte compte) {
+	public final int compareTo(Compte compte) {
 		return getCompteId().compareTo(compte.getCompteId());
 	}
 
-	public String getCompteId() {
+	public final String getCompteId() {
 		return this.compteId;
 	}
 
-	public CompteType getCompteType() {
+	public final CompteType getCompteType() {
 		return this.compteType;
 	}
 
-	public Double getSolde() {
+	public final Double getSolde() {
 		return this.solde;
 	}
 
-	public void setCompteId(String compteId) {
+	public final void setCompteId(String compteId) {
 		this.compteId = compteId;
 	}
 
-	public void setCompteType(CompteType compteType) {
+	public final void setCompteType(CompteType compteType) {
 		this.compteType = compteType;
 	}
 
-	public void setSolde(Double solde) {
+	public final void setSolde(Double solde) {
 		this.solde = solde;
+	}
+
+	@Override
+	public final String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Compte [compteType=").append(this.compteType)
+				.append(", solde=").append(this.solde).append(", compteId=")
+				.append(this.compteId).append("]");
+		return builder.toString();
 	}
 
 }

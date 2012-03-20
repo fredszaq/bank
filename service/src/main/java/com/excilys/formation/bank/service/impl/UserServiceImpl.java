@@ -14,6 +14,12 @@ import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.dao.UserDAO;
 import com.excilys.formation.bank.service.UserService;
 
+/**
+ * Implementation of the UserService interface.
+ * 
+ * @author excilys
+ * 
+ */
 @Service("userService")
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class UserServiceImpl implements UserService {
@@ -21,8 +27,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Set<Compte> getComptesByUsername(String login)
+	public final Set<Compte> getComptesByUsername(String login)
 			throws UsernameNotFoundException {
 		Set<Compte> comptes = this.userDAO.loadUserByUsername(login)
 				.getComptes();
@@ -30,8 +39,11 @@ public class UserServiceImpl implements UserService {
 		return comptes;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public User loadUserByUsername(String login)
+	public final User loadUserByUsername(String login)
 			throws UsernameNotFoundException {
 		return this.userDAO.loadUserByUsername(login);
 	}

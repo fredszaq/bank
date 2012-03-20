@@ -3,6 +3,7 @@ package com.excilys.formation.bank.bean;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,15 +17,32 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * Authority bean.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "authorities")
 public class Authority implements Serializable, GrantedAuthority {
 
+	/**
+	 * AuthorityType enum.
+	 * 
+	 * @author excilys
+	 * 
+	 */
 	public enum AuthorityType {
 		ROLE_AUTHENTICATED("ROLE_AUTHENTICATED"), ROLE_ADMIN("ROLE_ADMIN");
 
 		private final String value;
 
+		/**
+		 * Logical constructor.
+		 * 
+		 * @param value
+		 */
 		private AuthorityType(String value) {
 			this.value = value;
 		}
@@ -41,7 +59,8 @@ public class Authority implements Serializable, GrantedAuthority {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer authority_id;
+	@Column(name = "authority_id")
+	private Integer authorityId;
 
 	@ManyToMany
 	@JoinTable(name = "users_authorities", joinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) })
@@ -50,38 +69,45 @@ public class Authority implements Serializable, GrantedAuthority {
 	@Enumerated(EnumType.STRING)
 	private AuthorityType authority;
 
-	// private String authority;
-
+	/**
+	 * Default constructor.
+	 */
 	public Authority() {
 
 	}
 
+	/**
+	 * Logical constructor.
+	 * 
+	 * @param authority
+	 *            the authority
+	 */
 	public Authority(AuthorityType authority) {
 		this.authority = authority;
 	}
 
 	@Override
-	public String getAuthority() {
+	public final String getAuthority() {
 		return this.authority.getValue();
 	}
 
-	public Integer getAuthority_id() {
-		return this.authority_id;
+	public final Integer getAuthorityId() {
+		return this.authorityId;
 	}
 
-	public Set<User> getUser() {
+	public final Set<User> getUser() {
 		return this.users;
 	}
 
-	public void setAuthority(AuthorityType authority) {
+	public final void setAuthority(AuthorityType authority) {
 		this.authority = authority;
 	}
 
-	public void setAuthority_id(Integer authority_id) {
-		this.authority_id = authority_id;
+	public final void setAuthorityId(Integer authorityId) {
+		this.authorityId = authorityId;
 	}
 
-	public void setUser(Set<User> users) {
+	public final void setUser(Set<User> users) {
 		this.users = users;
 	}
 
