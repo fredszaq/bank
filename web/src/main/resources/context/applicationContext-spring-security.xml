@@ -31,6 +31,7 @@
 		</session-management>
 		<intercept-url pattern="/secure/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/secure/**" access="ROLE_AUTHENTICATED" />
+		<access-denied-handler error-page="/error/403.html"/>
 	</http>
 
 </beans:beans>
