@@ -3,11 +3,6 @@
 CREATE USER
 	excilys;
 
-ALTER ROLE 
-	excilys
-WITH 
-	CREATEDB;
-	
 CREATE DATABASE 
 	bank 
 OWNER 
