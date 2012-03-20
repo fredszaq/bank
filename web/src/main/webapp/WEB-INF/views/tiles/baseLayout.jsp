@@ -15,7 +15,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/design.css"
 	type="text/css" media="screen" />
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/favicon.ico" />
 <meta charset="utf-8" />
 <title>BankRoot</title>
 </head>
@@ -26,7 +27,9 @@
 				src="${pageContext.request.contextPath}/images/logo.svg"
 				alt="BankRoot logo" /></a>
 		</div>
-		<h1><fmt:message key="baselayout.header" /></h1>
+		<h1>
+			<fmt:message key="baselayout.header" />
+		</h1>
 		<div id="logininfo">
 			<c:choose>
 				<c:when test="${pageContext['request'].userPrincipal != null}">	
@@ -47,13 +50,23 @@
 	<aside>
 		This is the menu
 		<ul>
-			<li><a
-				href="${pageContext.request.contextPath}/">accueil</a></li>
+			<li><a href="${pageContext.request.contextPath}/">accueil</a></li>
 			<c:if test="${not empty pageContext.request.userPrincipal}">
+				<c:forEach var="role"
+					items="${pageContext['request'].userPrincipal.principal.authorities}">
+					<c:if test="${role.authority == 'ROLE_ADMIN' }">
+						<c:set scope="page" var="isAdmin" value="true" />
+					</c:if>
+				</c:forEach>
+
 				<li><a
-					href="${pageContext.request.contextPath}/secure/user.html">user</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a></li>
+					href="${pageContext.request.contextPath}/secure/user.html">user</a>
+				</li>
+				<c:if test="${pageScope.isAdmin }">
+					<li><a
+						href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a>
+					</li>
+				</c:if>
 			</c:if>
 		</ul>
 

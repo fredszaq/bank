@@ -28,4 +28,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/admin.jsp" />
 	</definition>
 
+	<definition name="accessDenied" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/jsp/accessDenied.jsp" />
+	</definition>
+
 </tiles-definitions>

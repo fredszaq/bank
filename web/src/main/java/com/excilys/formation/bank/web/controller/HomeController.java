@@ -27,6 +27,16 @@ public class HomeController {
 	private UserService userService;
 
 	/**
+	 * Returns the accessDenied page.
+	 * 
+	 * @return "accessDenied"
+	 */
+	@RequestMapping("/error/accessDenied.html")
+	public final String accessDenied() {
+		return "accessDenied";
+	}
+
+	/**
 	 * Returns the user page.
 	 * 
 	 * @return "admin"
@@ -34,6 +44,16 @@ public class HomeController {
 	@RequestMapping("/secure/admin/admin.html")
 	public final String admin() {
 		return "admin";
+	}
+
+	/**
+	 * Returns the accessDenied page.
+	 * 
+	 * @return "accessDenied"
+	 */
+	@RequestMapping("/error/403.html")
+	public final String error403() {
+		return "redirect:/error/accessDenied.html";
 	}
 
 	/**
