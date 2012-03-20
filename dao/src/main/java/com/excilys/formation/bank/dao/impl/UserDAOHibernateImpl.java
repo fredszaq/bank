@@ -11,6 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.dao.UserDAO;
 
+/**
+ * Hibernate implementation for the UserDAO interface.
+ * 
+ * @author excilys
+ * 
+ */
 @Repository("userDAO")
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 public class UserDAOHibernateImpl implements UserDAO {
@@ -18,8 +24,11 @@ public class UserDAOHibernateImpl implements UserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public User loadUserByUsername(String login)
+	public final User loadUserByUsername(String login)
 			throws UsernameNotFoundException {
 		User user = (User) this.sessionFactory.getCurrentSession().get(
 				User.class, login);

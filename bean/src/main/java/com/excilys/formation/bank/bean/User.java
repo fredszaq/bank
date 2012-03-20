@@ -16,6 +16,12 @@ import javax.persistence.Table;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * User bean.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "users")
 public class User implements Serializable, UserDetails {
@@ -48,10 +54,29 @@ public class User implements Serializable, UserDetails {
 	@JoinTable(name = "users_comptes", joinColumns = @JoinColumn(name = "login"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
 	private Set<Compte> comptes;
 
+	/**
+	 * Default constructor.
+	 */
 	public User() {
 
 	}
 
+	/**
+	 * Logical constructor.
+	 * 
+	 * @param login
+	 *            the login
+	 * @param password
+	 *            the password
+	 * @param lastName
+	 *            the last name
+	 * @param firstName
+	 *            the first name
+	 * @param address
+	 *            the address
+	 * @param authorities
+	 *            the authorities
+	 */
 	public User(String login, String password, String lastName,
 			String firstName, String address, Set<Authority> authorities) {
 		this.login = login;
@@ -62,87 +87,87 @@ public class User implements Serializable, UserDetails {
 		this.authorities = authorities;
 	}
 
-	public String getAddress() {
+	public final String getAddress() {
 		return this.address;
 	}
 
 	@Override
-	public Set<Authority> getAuthorities() {
+	public final Set<Authority> getAuthorities() {
 		return this.authorities;
 	}
 
-	public Set<Compte> getComptes() {
+	public final Set<Compte> getComptes() {
 		return this.comptes;
 	}
 
-	public String getFirstName() {
+	public final String getFirstName() {
 		return this.firstName;
 	}
 
-	public String getLastName() {
+	public final String getLastName() {
 		return this.lastName;
 	}
 
-	public String getLogin() {
+	public final String getLogin() {
 		return this.login;
 	}
 
 	@Override
-	public String getPassword() {
+	public final String getPassword() {
 		return this.password;
 	}
 
 	@Override
-	public String getUsername() {
+	public final String getUsername() {
 		return this.login;
 	}
 
 	@Override
-	public boolean isAccountNonExpired() {
+	public final boolean isAccountNonExpired() {
 		return true;
 	}
 
 	@Override
-	public boolean isAccountNonLocked() {
+	public final boolean isAccountNonLocked() {
 		return true;
 	}
 
 	@Override
-	public boolean isCredentialsNonExpired() {
+	public final boolean isCredentialsNonExpired() {
 		return true;
 	}
 
 	@Override
-	public boolean isEnabled() {
+	public final boolean isEnabled() {
 		return true;
 	}
 
-	public void setAddress(String address) {
+	public final void setAddress(String address) {
 		this.address = address;
 	}
 
-	public void setAuthorities(Set<Authority> authorities) {
+	public final void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
 	}
 
-	public void setComptes(Set<Compte> comptes) {
+	public final void setComptes(Set<Compte> comptes) {
 		this.comptes = comptes;
 	}
 
-	public void setFirstName(String firstName) {
+	public final void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public void setLastName(String lastName) {
+	public final void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	public void setLogin(String login) {
+	public final void setLogin(String login) {
 		this.login = login;
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [login=").append(this.login).append(", password=")
 				.append(this.password).append(", lastName=")
