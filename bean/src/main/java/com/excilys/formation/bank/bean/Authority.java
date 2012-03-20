@@ -20,12 +20,12 @@ import org.springframework.security.core.GrantedAuthority;
 @Table(name = "authorities")
 public class Authority implements Serializable, GrantedAuthority {
 
-	public enum Type {
+	public enum AuthorityType {
 		ROLE_AUTHENTICATED("ROLE_AUTHENTICATED"), ROLE_ADMIN("ROLE_ADMIN");
 
 		private final String value;
 
-		private Type(String value) {
+		private AuthorityType(String value) {
 			this.value = value;
 		}
 
@@ -48,7 +48,7 @@ public class Authority implements Serializable, GrantedAuthority {
 	private Set<User> users;
 
 	@Enumerated(EnumType.STRING)
-	private Type authority;
+	private AuthorityType authority;
 
 	// private String authority;
 
@@ -56,7 +56,7 @@ public class Authority implements Serializable, GrantedAuthority {
 
 	}
 
-	public Authority(Type authority) {
+	public Authority(AuthorityType authority) {
 		this.authority = authority;
 	}
 
@@ -73,7 +73,7 @@ public class Authority implements Serializable, GrantedAuthority {
 		return this.users;
 	}
 
-	public void setAuthority(Type authority) {
+	public void setAuthority(AuthorityType authority) {
 		this.authority = authority;
 	}
 

@@ -2,6 +2,7 @@ package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,6 +36,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 	private Double solde;
 
 	@Id
+	@Generated("assigned")
 	@Column(name = "compte_id")
 	private String compteId;
 
