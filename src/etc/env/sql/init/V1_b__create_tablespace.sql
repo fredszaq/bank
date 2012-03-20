@@ -13,10 +13,3 @@ OWNER
 	excilys
 LOCATION
 	'/var/lib/postgresql/8.4/tablespace/data';
-
-CREATE TABLESPACE
-	ts_temp
-OWNER
-	excilys
-LOCATION
-	'/var/lib/postgresql/8.4/tablespace/temp';
