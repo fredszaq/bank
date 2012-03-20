@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -47,45 +46,13 @@ public class User implements Serializable, UserDetails {
 	@Column
 	private String address;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	@ManyToMany
+	@JoinTable(name = "users_authorities", joinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) })
 	private Set<Authority> authorities;
 
 	@OneToMany
 	@JoinTable(name = "users_comptes", joinColumns = @JoinColumn(name = "login"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
 	private Set<Compte> comptes;
-
-	/**
-	 * Default constructor.
-	 */
-	public User() {
-
-	}
-
-	/**
-	 * Logical constructor.
-	 * 
-	 * @param login
-	 *            the login
-	 * @param password
-	 *            the password
-	 * @param lastName
-	 *            the last name
-	 * @param firstName
-	 *            the first name
-	 * @param address
-	 *            the address
-	 * @param authorities
-	 *            the authorities
-	 */
-	public User(String login, String password, String lastName,
-			String firstName, String address, Set<Authority> authorities) {
-		this.login = login;
-		this.password = password;
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.address = address;
-		this.authorities = authorities;
-	}
 
 	public final String getAddress() {
 		return this.address;
@@ -176,5 +143,4 @@ public class User implements Serializable, UserDetails {
 				.append(this.address).append("]");
 		return builder.toString();
 	}
-
 }

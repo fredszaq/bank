@@ -8,6 +8,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.User;
@@ -22,6 +23,7 @@ import com.excilys.formation.bank.service.UserService;
  */
 @Service("userService")
 @Scope(BeanDefinition.SCOPE_SINGLETON)
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -31,8 +33,7 @@ public class UserServiceImpl implements UserService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final Set<Compte> getComptesByUsername(String login)
-			throws UsernameNotFoundException {
+	public final Set<Compte> getComptesByUsername(String login) {
 		Set<Compte> comptes = this.userDAO.loadUserByUsername(login)
 				.getComptes();
 		Hibernate.initialize(comptes);
@@ -45,7 +46,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public final User loadUserByUsername(String login)
 			throws UsernameNotFoundException {
-		return this.userDAO.loadUserByUsername(login);
+		User user = this.userDAO.loadUserByUsername(login);
+		if (user == null) {
+			throw new UsernameNotFoundException(login + " not found");
+		}
+		Hibernate.initialize(user.getAuthorities());
+		return user;
 	}
 
 }

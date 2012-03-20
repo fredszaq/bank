@@ -1,7 +1,5 @@
 package com.excilys.formation.bank.dao;
 
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import com.excilys.formation.bank.bean.User;
 
 /**
@@ -18,8 +16,6 @@ public interface UserDAO {
 	 * @param login
 	 *            the login
 	 * @return user
-	 * @throws UsernameNotFoundException
-	 *             throws when the username is unknown
 	 */
-	User loadUserByUsername(String login) throws UsernameNotFoundException;
+	User loadUserByUsername(String login);
 }
