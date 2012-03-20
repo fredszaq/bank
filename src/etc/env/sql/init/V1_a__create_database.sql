@@ -2,7 +2,7 @@
 
 CREATE USER
 	excilys;
-
+	
 CREATE DATABASE 
 	bank 
 OWNER 
