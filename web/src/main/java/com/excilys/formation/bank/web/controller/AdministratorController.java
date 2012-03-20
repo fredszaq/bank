@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  */
 @Controller
+@RequestMapping("/secure/admin/*")
 public class AdministratorController {
 	/**
 	 * Returns the user page.
 	 * 
 	 * @return "admin"
 	 */
-	@RequestMapping("/secure/admin/admin.html")
+	@RequestMapping("/admin.html")
 	public final String admin() {
 		return "admin";
 	}

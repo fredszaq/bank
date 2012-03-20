@@ -21,6 +21,7 @@ import com.excilys.formation.bank.service.UserService;
  * 
  */
 @Controller
+@RequestMapping("/secure/*")
 public class AuthenticatedController {
 
 	@Autowired
@@ -33,7 +34,7 @@ public class AuthenticatedController {
 	 *            the modelMap
 	 * @return "user"
 	 */
-	@RequestMapping("/secure/user.html")
+	@RequestMapping("/user.html")
 	public final String user(ModelMap model) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
