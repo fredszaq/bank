@@ -34,22 +34,7 @@ public class Authority implements Serializable, GrantedAuthority {
 	 * 
 	 */
 	public enum AuthorityType {
-		ROLE_AUTHENTICATED("ROLE_AUTHENTICATED"), ROLE_ADMIN("ROLE_ADMIN");
-
-		private final String value;
-
-		/**
-		 * Logical constructor.
-		 * 
-		 * @param value
-		 */
-		private AuthorityType(String value) {
-			this.value = value;
-		}
-
-		public String getValue() {
-			return this.value;
-		}
+		ROLE_AUTHENTICATED, ROLE_ADMIN;
 	}
 
 	/**
@@ -88,7 +73,7 @@ public class Authority implements Serializable, GrantedAuthority {
 
 	@Override
 	public final String getAuthority() {
-		return this.authority.getValue();
+		return this.authority.name();
 	}
 
 	public final Integer getAuthorityId() {

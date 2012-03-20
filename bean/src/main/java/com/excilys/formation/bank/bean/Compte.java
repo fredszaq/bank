@@ -27,23 +27,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 	 * 
 	 */
 	public enum CompteType {
-		EPARGNE("EPARGNE"), COURANT("COURANT");
-
-		private final String value;
-
-		/**
-		 * Logical constructor.
-		 * 
-		 * @param value
-		 *            the value of the CompteType enum
-		 */
-		private CompteType(String value) {
-			this.value = value;
-		}
-
-		public String getValue() {
-			return this.value;
-		}
+		EPARGNE, COURANT;
 	}
 
 	/**
