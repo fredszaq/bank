@@ -18,8 +18,10 @@
 		<authentication-provider ref="daoAuthenticationProvider" />
 	</authentication-manager>
 
+	<beans:bean id="successHandler" class="com.excilys.formation.bank.web.RoleBasedTargetUrlResolver" />
+
 	<http auto-config="true">
-		<form-login login-page="/login.html" default-target-url="/index.html"
+		<form-login login-page="/login.html" authentication-success-handler-ref="successHandler"
 			always-use-default-target="true" authentication-failure-url="/login.html?login_error=1" />
 		<logout logout-success-url="/index.html" invalidate-session="true" delete-cookies="JSESSIONID" />
 		<session-management invalid-session-url="/login.html"
