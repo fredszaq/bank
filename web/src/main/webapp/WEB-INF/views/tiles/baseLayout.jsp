@@ -60,11 +60,9 @@
 					</c:if>
 				</c:forEach>
 
-				<c:if test="${not pageScope.isAdmin }">
-					<li><a
-						href="${pageContext.request.contextPath}/secure/user.html">user</a>
-					</li>
-				</c:if>
+				<li><a
+					href="${pageContext.request.contextPath}/secure/user.html">user</a>
+				</li>
 				<c:if test="${pageScope.isAdmin }">
 					<li><a
 						href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a>
