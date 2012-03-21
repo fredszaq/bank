@@ -18,4 +18,5 @@ public interface UserDAO {
 	 * @return user
 	 */
 	User loadUserByUsername(String login);
+
 }

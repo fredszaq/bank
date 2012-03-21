@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.service.UserService;
@@ -26,6 +27,16 @@ public class AuthenticatedController {
 
 	@Autowired
 	private UserService userService;
+
+	@RequestMapping("/account.html")
+	public final String account(ModelMap model, @RequestParam String id) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Compte compte = userService.getCompteByUsernameAndAccountId(
+				userDetails.getUsername(), id);
+		model.put("compte", compte);
+		return "account";
+	}
 
 	/**
 	 * Returns the user page.
