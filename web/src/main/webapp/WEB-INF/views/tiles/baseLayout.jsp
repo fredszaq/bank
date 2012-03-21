@@ -23,7 +23,7 @@
 <body>
 	<header>
 		<div id="logo">
-			<a href="#"><img
+			<a href="${pageContext.request.contextPath}"><img
 				src="${pageContext.request.contextPath}/images/logo.svg"
 				alt="BankRoot logo" /></a>
 		</div>
