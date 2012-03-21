@@ -42,6 +42,12 @@ public class Compte implements Serializable, Comparable<Compte> {
 	@Column
 	private Double solde;
 
+	@Column(name = "taux_interet")
+	private Double tauxInteret;
+
+	@Column(name = "num_carte")
+	private String numCarte;
+
 	@Id
 	@Generated("assigned")
 	@Column(name = "compte_id")
@@ -60,8 +66,16 @@ public class Compte implements Serializable, Comparable<Compte> {
 		return this.compteType;
 	}
 
+	public String getNumCarte() {
+		return this.numCarte;
+	}
+
 	public final Double getSolde() {
 		return this.solde;
+	}
+
+	public Double getTauxInteret() {
+		return this.tauxInteret;
 	}
 
 	public final void setCompteId(String compteId) {
@@ -72,8 +86,16 @@ public class Compte implements Serializable, Comparable<Compte> {
 		this.compteType = compteType;
 	}
 
+	public void setNumCarte(String numCarte) {
+		this.numCarte = numCarte;
+	}
+
 	public final void setSolde(Double solde) {
 		this.solde = solde;
+	}
+
+	public void setTauxInteret(Double tauxInteret) {
+		this.tauxInteret = tauxInteret;
 	}
 
 	@Override
