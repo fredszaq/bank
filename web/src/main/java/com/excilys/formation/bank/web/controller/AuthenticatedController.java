@@ -34,15 +34,16 @@ public class AuthenticatedController {
 	 *            the modelMap
 	 * @return "user"
 	 */
-	@RequestMapping("/user.html")
-	public final String user(ModelMap model) {
+	@RequestMapping("/accounts.html")
+	public final String accounts(ModelMap model) {
+
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
-		Set<Compte> comptes = this.userService.getComptesByUsername(userDetails
+		Set<Compte> comptes = userService.getComptesByUsername(userDetails
 				.getUsername());
 		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
 		Collections.sort(listeComptes);
 		model.put("comptes", listeComptes);
-		return "user";
+		return "accounts";
 	}
 }

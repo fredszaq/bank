@@ -61,7 +61,7 @@
 				</c:forEach>
 
 				<li><a
-					href="${pageContext.request.contextPath}/secure/user.html">user</a>
+					href="${pageContext.request.contextPath}/secure/accounts.html">accounts</a>
 				</li>
 				<c:if test="${pageScope.isAdmin }">
 					<li><a
