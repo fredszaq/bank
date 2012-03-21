@@ -30,7 +30,7 @@ public class RoleBasedTargetUrlResolver implements AuthenticationSuccessHandler 
 		if (roles.contains("ROLE_ADMIN")) {
 			response.sendRedirect("secure/admin/admin.html");
 		} else {
-			response.sendRedirect("secure/user.html");
+			response.sendRedirect("secure/accounts.html");
 		}
 	}
 }

@@ -21,9 +21,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp" />
 	</definition>
 
-	<definition name="user" extends="baseLayout">
+	<definition name="accounts" extends="baseLayout">
 		<put-attribute name="title" value="Customer Area" />
-		<put-attribute name="body" value="/WEB-INF/views/jsp/user.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/accounts.jsp" />
 	</definition>
 
 	<definition name="admin" extends="baseLayout">

@@ -24,7 +24,7 @@ public class SecurityTest extends FluentTest {
 	private AdminPage adminPage;
 
 	@Page
-	private UserPage userPage;
+	private AccountsPage userPage;
 
 	/**
 	 * Set up method, going to the login page.

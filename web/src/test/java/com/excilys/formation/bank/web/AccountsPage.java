@@ -11,11 +11,11 @@ import org.fluentlenium.core.FluentPage;
  * @author excilys
  * 
  */
-public class UserPage extends FluentPage {
+public class AccountsPage extends FluentPage {
 
 	@Override
 	public final String getUrl() {
-		return TestConstants.BASE_URL + "secure/user.html";
+		return TestConstants.BASE_URL + "secure/accounts.html";
 	}
 
 	@Override
