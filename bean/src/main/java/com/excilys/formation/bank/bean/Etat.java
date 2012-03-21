@@ -9,6 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Bean Etat.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "etats")
 public class Etat {

@@ -9,10 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Bean OperationType.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "operation_types")
 public class OperationType {
 
+	/**
+	 * OperationCategorie Enum.
+	 * 
+	 * @author excilys
+	 * 
+	 */
 	public enum OperationCategorie {
 		CREDIT, DEBIT
 	}
@@ -26,19 +38,19 @@ public class OperationType {
 	@Enumerated(EnumType.STRING)
 	private OperationCategorie operationType;
 
-	public Integer getOperationId() {
-		return this.operationId;
+	public final Integer getOperationId() {
+		return operationId;
 	}
 
-	public OperationCategorie getOperationType() {
-		return this.operationType;
+	public final OperationCategorie getOperationType() {
+		return operationType;
 	}
 
-	public void setOperationId(Integer operationId) {
+	public final void setOperationId(Integer operationId) {
 		this.operationId = operationId;
 	}
 
-	public void setOperationType(OperationCategorie operationType) {
+	public final void setOperationType(OperationCategorie operationType) {
 		this.operationType = operationType;
 	}
 

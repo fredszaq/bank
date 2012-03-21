@@ -9,6 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Bean Opertation.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "operations")
 public class Operation {
@@ -29,35 +35,35 @@ public class Operation {
 	@JoinColumn(name = "transaction_id")
 	private Transaction transaction;
 
-	public Double getMontant() {
-		return this.montant;
+	public final Double getMontant() {
+		return montant;
 	}
 
-	public Integer getOperationId() {
-		return this.operationId;
+	public final Integer getOperationId() {
+		return operationId;
 	}
 
-	public OperationType getOperationType() {
-		return this.operationType;
+	public final OperationType getOperationType() {
+		return operationType;
 	}
 
-	public Transaction getTransaction() {
-		return this.transaction;
+	public final Transaction getTransaction() {
+		return transaction;
 	}
 
-	public void setMontant(Double montant) {
+	public final void setMontant(Double montant) {
 		this.montant = montant;
 	}
 
-	public void setOperationId(Integer operationId) {
+	public final void setOperationId(Integer operationId) {
 		this.operationId = operationId;
 	}
 
-	public void setOperationType(OperationType operationType) {
+	public final void setOperationType(OperationType operationType) {
 		this.operationType = operationType;
 	}
 
-	public void setTransaction(Transaction transaction) {
+	public final void setTransaction(Transaction transaction) {
 		this.transaction = transaction;
 	}
 
