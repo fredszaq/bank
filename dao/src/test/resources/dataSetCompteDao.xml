@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<users login="testUser1" password="pass" firstname="test"
+		lastname="user" address="somewhere" />
+	<users login="testUser2" password="pass" firstname="test"
+		lastname="user" address="somewhere" />
+	<comptes compte_id="compte1user1" compte_type="COURANT" solde="4273" />
+	<comptes compte_id="compte2user1" compte_type="EPARGNE" solde="10000.01" />
+	<comptes compte_id="compte1user2" compte_type="COURANT" solde="3.14" />
+	<users_comptes login="testUser1" compte_id="compte1user1" />
+	<users_comptes login="testUser1" compte_id="compte2user1" />
+	<users_comptes login="testUser2" compte_id="compte1user2" />
+</dataset>

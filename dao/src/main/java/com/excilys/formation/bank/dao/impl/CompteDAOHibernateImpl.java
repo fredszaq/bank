@@ -15,13 +15,16 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 
 	@Override
 	public Compte loadCompteByUsernameAndAccountId(String login, String id) {
-		// TODO prendre en compte le login !
 		return (Compte) sessionFactory.getCurrentSession()
 				.get(Compte.class, id);
-
-		// String query =
-		// "select user.comptes from User user where user.comptes.compteId = ? and user.login= ?";
-		// return (Compte) sessionFactory.getCurrentSession().createQuery(query)
-		// .setString(0, id).setString(1, login).list().get(0);
+		// List<?> result = sessionFactory
+		// .getCurrentSession()
+		// .createSQLQuery(
+		// "select c from comptes c, users_comptes u where c.compte_id=:compteId and c.compte_id=u.compte_id and u.login=:login")
+		// .setString("compteId", id).setString("login", login).list();
+		// if (result.isEmpty()) {
+		// return null;
+		// }
+		// return (Compte) result.get(0);
 	}
 }
