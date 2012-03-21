@@ -4,16 +4,23 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+/**
+ * Transaction bean.
+ * 
+ * @author excilys
+ * 
+ */
+@Entity
+@Table(name = "transactions")
 public class Transaction implements Serializable {
-
-	public enum Etat {
-		VALIDATED, WAITING;
-	}
 
 	/**
 	 * 
@@ -21,9 +28,9 @@ public class Transaction implements Serializable {
 	private static final long serialVersionUID = -7809510233884919283L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "transaction_id")
-	private String transactionId;
+	private Integer transactionId;
 
 	@Column(name = "date_init")
 	private Timestamp dateInit;
@@ -31,8 +38,8 @@ public class Transaction implements Serializable {
 	@Column(name = "date_valid")
 	private Timestamp dateValid;
 
-	@Column(name = "etat_id")
-	@Enumerated(EnumType.STRING)
+	@ManyToOne
+	@JoinColumn(name = "etat_id")
 	private Etat etat;
 
 	public final Timestamp getDateInit() {
@@ -47,7 +54,7 @@ public class Transaction implements Serializable {
 		return etat;
 	}
 
-	public final String getTransactionId() {
+	public final Integer getTransactionId() {
 		return transactionId;
 	}
 
@@ -63,7 +70,7 @@ public class Transaction implements Serializable {
 		this.etat = etat;
 	}
 
-	public final void setTransactionId(String transactionId) {
+	public final void setTransactionId(Integer transactionId) {
 		this.transactionId = transactionId;
 	}
 
