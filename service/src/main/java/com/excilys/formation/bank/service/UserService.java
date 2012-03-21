@@ -18,6 +18,17 @@ import com.excilys.formation.bank.bean.User;
 public interface UserService extends UserDetailsService {
 
 	/**
+	 * Get a specific account of a user
+	 * 
+	 * @param login
+	 *            the login of the user
+	 * @param id
+	 *            the id of the account
+	 * @return the account (null if not found)
+	 */
+	Compte getCompteByUsernameAndAccountId(String login, String id);
+
+	/**
 	 * Get the compte by username.
 	 * 
 	 * @param login
@@ -32,4 +43,5 @@ public interface UserService extends UserDetailsService {
 	 */
 	@Override
 	User loadUserByUsername(String login);
+
 }

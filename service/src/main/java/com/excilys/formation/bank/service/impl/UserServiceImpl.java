@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.User;
+import com.excilys.formation.bank.dao.CompteDAO;
 import com.excilys.formation.bank.dao.UserDAO;
 import com.excilys.formation.bank.service.UserService;
 
@@ -29,13 +30,25 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
+	private CompteDAO compteDAO;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Compte getCompteByUsernameAndAccountId(String login, String id) {
+		Compte compte = compteDAO.loadCompteByUsernameAndAccountId(login, id);
+		// TODO Hibernate.initialise(compte.getOperations()) ?
+		return compte;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public final Set<Compte> getComptesByUsername(String login) {
-		Set<Compte> comptes = this.userDAO.loadUserByUsername(login)
-				.getComptes();
+		Set<Compte> comptes = userDAO.loadUserByUsername(login).getComptes();
 		Hibernate.initialize(comptes);
 		return comptes;
 	}
@@ -46,7 +59,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public final User loadUserByUsername(String login)
 			throws UsernameNotFoundException {
-		User user = this.userDAO.loadUserByUsername(login);
+		User user = userDAO.loadUserByUsername(login);
 		if (user == null) {
 			throw new UsernameNotFoundException(login + " not found");
 		}
