@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 public class Transaction implements Serializable {
 
@@ -18,6 +20,8 @@ public class Transaction implements Serializable {
 	 */
 	private static final long serialVersionUID = -7809510233884919283L;
 
+	@Id
+	@GeneratedValue
 	@Column(name = "transaction_id")
 	private String transactionId;
 
