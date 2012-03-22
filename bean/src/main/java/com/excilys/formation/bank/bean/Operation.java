@@ -21,7 +21,7 @@ public class Operation {
 
 	@ManyToOne
 	@JoinColumn(name = "operation_type_id")
-	private OperationComptable operationType;
+	private OperationComptable operationComptable;
 
 	@Column
 	private Double montant;
@@ -46,8 +46,8 @@ public class Operation {
 		return operationId;
 	}
 
-	public final OperationComptable getOperationType() {
-		return operationType;
+	public final OperationComptable getOperationComptable() {
+		return operationComptable;
 	}
 
 	public final Transaction getTransaction() {
@@ -62,8 +62,8 @@ public class Operation {
 		this.operationId = operationId;
 	}
 
-	public final void setOperationType(OperationComptable operationType) {
-		this.operationType = operationType;
+	public final void setOperationType(OperationComptable operationComptable) {
+		this.operationComptable = operationComptable;
 	}
 
 	public final void setTransaction(Transaction transaction) {
