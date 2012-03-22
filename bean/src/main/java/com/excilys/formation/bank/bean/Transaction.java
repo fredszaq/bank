@@ -45,6 +45,10 @@ public class Transaction implements Serializable {
 	@Column
 	private String libelle;
 
+	@ManyToOne
+	@JoinColumn(name = "transaction_categorie_id")
+	private TransactionCategorie transactionCategorie;
+
 	public final Date getDateInit() {
 		return dateInit;
 	}
@@ -92,6 +96,14 @@ public class Transaction implements Serializable {
 				.append(", dateInit=").append(dateInit).append(", dateValid=")
 				.append(dateValid).append("]");
 		return builder.toString();
+	}
+
+	public TransactionCategorie getTransactionCategorie() {
+		return transactionCategorie;
+	}
+
+	public void setTransactionCategorie(TransactionCategorie transactionCategorie) {
+		this.transactionCategorie = transactionCategorie;
 	}
 
 }

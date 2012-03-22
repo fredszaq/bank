@@ -35,7 +35,7 @@
 					varStatus="loopStatus">
 					<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
 						<td><fmt:formatDate value="${operation.transaction.dateInit}" /></td>
-						<td>${operation.libelle}</td>
+						<td>${operation.transaction.libelle}</td>
 						<td class="numeric ${operation.operationComptable.operationComptableType=='DEBIT' ? 'negative' : 'positive'}"><fmt:formatNumber type="currency"
 								currencyCode="EUR"
 								value="${operation.operationComptable.operationComptableType=='DEBIT' ? - operation.montant : operation.montant}" /></td>
