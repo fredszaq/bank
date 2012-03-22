@@ -1,6 +1,8 @@
 package com.excilys.formation.bank.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.Etat.EtatType;
@@ -9,6 +11,8 @@ import com.excilys.formation.bank.dao.EtatDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
 import com.excilys.formation.bank.service.TransactionService;
 
+@Service("transactionService")
+@Transactional
 public class TransactionServiceImpl implements TransactionService {
 
 	@Autowired
@@ -22,6 +26,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public final Transaction getTransactionById(Integer transactionId) {
 		return transactionDAO.getTransactionById(transactionId);
