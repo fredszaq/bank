@@ -50,6 +50,7 @@
 				<p>The asked account doesn't exists or you don't have access to
 					it.</p>
 			</div>
+			
 		</c:otherwise>
 	</c:choose>
 </jsp:root>
