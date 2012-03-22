@@ -4,36 +4,34 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
-<h2>Resumé du compte</h2>
-	<table>
-		<tr>
-			<th>Type de compte</th>
-			<th>Nom du compte</th>
-			<th class="numeric">Solde</th>
-		</tr>
-			<tr>
-				<td>${compte.compteType}</td>
-				<td><a href="${pageContext.request.contextPath}/secure/account.html?id=${compte.compteId}">${compte.compteId}</a></td>
-				<td class="numeric"> <fmt:formatNumber type="currency" currencyCode="EUR" value="${compte.solde}" /></td>
-			</tr>
-	</table>  
-	
-	
-	<h2>Opérations</h2>
-	<table>
-	<tr>
-		<th>
-			Date
-		</th>
-		<th>
-			Libellé
-		</th>
-		<th>
-			Montant
-		</th>
-	</tr>
 
-	<!--<c:forEach var="operation" items="${compte.operations}" varStatus="loopStatus">
+	<c:choose>
+		<c:when test="${compte!=null}">
+			<h2>Resumé du compte</h2>
+			<table>
+				<tr>
+					<th>Type de compte</th>
+					<th>Nom du compte</th>
+					<th class="numeric">Solde</th>
+				</tr>
+				<tr>
+					<td>${compte.compteType}</td>
+					<td>${compte.compteId}</td>
+					<td class="numeric"><fmt:formatNumber type="currency"
+							currencyCode="EUR" value="${compte.solde}" /></td>
+				</tr>
+			</table>
+
+
+			<h2>Opérations</h2>
+			<table>
+				<tr>
+					<th>Date</th>
+					<th>Libellé</th>
+					<th>Montant</th>
+				</tr>
+
+				<!--<c:forEach var="operation" items="${compte.operations}" varStatus="loopStatus">
 			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
 				<td>${operation.date}</td>
 				<td>${operation.libelle}</td>
@@ -41,5 +39,13 @@
 			</tr>
 		</c:forEach> -->
 
-	</table>
+			</table>
+		</c:when>
+		<c:otherwise>
+			<div class="error">
+				<h2>Can't find the account</h2>
+				The asked account doesn't exists or you don't have access to it.
+			</div>
+		</c:otherwise>
+	</c:choose>
 </jsp:root>

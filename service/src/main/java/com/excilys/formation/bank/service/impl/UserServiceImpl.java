@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.User;
-import com.excilys.formation.bank.dao.CompteDAO;
 import com.excilys.formation.bank.dao.UserDAO;
 import com.excilys.formation.bank.service.UserService;
 
@@ -30,17 +29,19 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
-	@Autowired
-	private CompteDAO compteDAO;
-
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Compte getCompteByUsernameAndAccountId(String login, String id) {
-		Compte compte = compteDAO.loadCompteByUsernameAndAccountId(login, id);
-		// TODO Hibernate.initialise(compte.getOperations()) ?
-		return compte;
+		Set<Compte> comptes = getComptesByUsername(login);
+		for (Compte compte : comptes) {
+			if (compte.getCompteId().equals(id)) {
+				// TODO Hibernate.initialise(compte.getOperations()) ?
+				return compte;
+			}
+		}
+		return null;
 	}
 
 	/**
