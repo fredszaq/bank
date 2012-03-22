@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "operation_types")
-public class OperationType {
+public class OperationComptable {
 
 	/**
 	 * OperationCategorie Enum.
@@ -25,7 +25,7 @@ public class OperationType {
 	 * @author excilys
 	 * 
 	 */
-	public enum OperationCategorie {
+	public enum OperationComptableType {
 		CREDIT, DEBIT
 	}
 
@@ -36,22 +36,23 @@ public class OperationType {
 
 	@Column(name = "operation_type")
 	@Enumerated(EnumType.STRING)
-	private OperationCategorie operationType;
+	private OperationComptableType operationComptableType;
 
 	public final Integer getOperationId() {
 		return operationId;
 	}
 
-	public final OperationCategorie getOperationType() {
-		return operationType;
+	public final OperationComptableType getOperationComptableType() {
+		return operationComptableType;
 	}
 
 	public final void setOperationId(Integer operationId) {
 		this.operationId = operationId;
 	}
 
-	public final void setOperationType(OperationCategorie operationType) {
-		this.operationType = operationType;
+	public final void setOperationComptableType(
+			OperationComptableType operationComptableType) {
+		this.operationComptableType = operationComptableType;
 	}
 
 }

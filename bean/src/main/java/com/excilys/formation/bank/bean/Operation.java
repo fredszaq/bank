@@ -21,7 +21,7 @@ public class Operation {
 
 	@ManyToOne
 	@JoinColumn(name = "operation_type_id")
-	private OperationType operationType;
+	private OperationComptable operationType;
 
 	@Column
 	private Double montant;
@@ -46,7 +46,7 @@ public class Operation {
 		return operationId;
 	}
 
-	public final OperationType getOperationType() {
+	public final OperationComptable getOperationType() {
 		return operationType;
 	}
 
@@ -62,7 +62,7 @@ public class Operation {
 		this.operationId = operationId;
 	}
 
-	public final void setOperationType(OperationType operationType) {
+	public final void setOperationType(OperationComptable operationType) {
 		this.operationType = operationType;
 	}
 
@@ -70,11 +70,11 @@ public class Operation {
 		this.transaction = transaction;
 	}
 
-	public String getLibelle() {
+	public final String getLibelle() {
 		return libelle;
 	}
 
-	public void setLibelle(String libelle) {
+	public final void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
 
