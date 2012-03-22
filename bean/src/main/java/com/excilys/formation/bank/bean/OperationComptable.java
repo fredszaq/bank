@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Bean OperationType.
+ * Bean OperationComptable.
  * 
  * @author excilys
  * 
@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class OperationComptable {
 
 	/**
-	 * OperationCategorie Enum.
+	 * OperationComptableType Enum.
 	 * 
 	 * @author excilys
 	 * 
@@ -32,27 +32,37 @@ public class OperationComptable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "operation_type_id")
-	private Integer operationId;
+	private Integer operationComptableId;
 
 	@Column(name = "operation_type")
 	@Enumerated(EnumType.STRING)
 	private OperationComptableType operationComptableType;
 
-	public final Integer getOperationId() {
-		return operationId;
+	public final Integer getOperationComptableId() {
+		return operationComptableId;
 	}
 
 	public final OperationComptableType getOperationComptableType() {
 		return operationComptableType;
 	}
 
-	public final void setOperationId(Integer operationId) {
-		this.operationId = operationId;
+	public final void setOperationComptableId(Integer operationComptableId) {
+		this.operationComptableId = operationComptableId;
 	}
 
 	public final void setOperationComptableType(
 			OperationComptableType operationComptableType) {
 		this.operationComptableType = operationComptableType;
+	}
+
+	@Override
+	public final String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("OperationComptable [operationComptableId=")
+				.append(operationComptableId)
+				.append(", operationComptableType=")
+				.append(operationComptableType).append("]");
+		return builder.toString();
 	}
 
 }
