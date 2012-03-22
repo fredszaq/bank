@@ -1,6 +1,7 @@
 package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Generated;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -61,33 +63,37 @@ public class Compte implements Serializable, Comparable<Compte> {
 	@JoinTable(name = "users_comptes", joinColumns = @JoinColumn(name = "compte_id"), inverseJoinColumns = @JoinColumn(name = "login"))
 	private Set<User> users;
 
+	@OneToMany
+	@JoinTable(name = "comptes_operations", joinColumns = @JoinColumn(name = "compte_id"), inverseJoinColumns = @JoinColumn(name = "operation_id"))
+	private List<Operation> operations;
+
 	@Override
 	public final int compareTo(Compte compte) {
 		return getCompteId().compareTo(compte.getCompteId());
 	}
 
 	public final String getCompteId() {
-		return this.compteId;
+		return compteId;
 	}
 
 	public final CompteType getCompteType() {
-		return this.compteType;
+		return compteType;
 	}
 
 	public String getNumCarte() {
-		return this.numCarte;
+		return numCarte;
 	}
 
 	public final Double getSolde() {
-		return this.solde;
+		return solde;
 	}
 
 	public Double getTauxInteret() {
-		return this.tauxInteret;
+		return tauxInteret;
 	}
 
 	public Set<User> getUsers() {
-		return this.users;
+		return users;
 	}
 
 	public final void setCompteId(String compteId) {
@@ -117,10 +123,18 @@ public class Compte implements Serializable, Comparable<Compte> {
 	@Override
 	public final String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Compte [compteType=").append(this.compteType)
-				.append(", solde=").append(this.solde).append(", compteId=")
-				.append(this.compteId).append("]");
+		builder.append("Compte [compteType=").append(compteType)
+				.append(", solde=").append(solde).append(", compteId=")
+				.append(compteId).append("]");
 		return builder.toString();
+	}
+
+	public List<Operation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(List<Operation> operations) {
+		this.operations = operations;
 	}
 
 }
