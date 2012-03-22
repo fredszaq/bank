@@ -65,11 +65,11 @@ public class Authority implements Serializable, GrantedAuthority {
 
 	@Override
 	public final String getAuthority() {
-		return this.authority.name();
+		return authority.name();
 	}
 
 	public final Integer getAuthorityId() {
-		return this.authorityId;
+		return authorityId;
 	}
 
 	public final void setAuthority(AuthorityType authority) {
@@ -78,6 +78,14 @@ public class Authority implements Serializable, GrantedAuthority {
 
 	public final void setAuthorityId(Integer authorityId) {
 		this.authorityId = authorityId;
+	}
+
+	@Override
+	public final String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Authority [authorityId=").append(authorityId)
+				.append(", authority=").append(authority).append("]");
+		return builder.toString();
 	}
 
 }
