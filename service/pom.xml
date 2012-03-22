@@ -13,7 +13,7 @@
 	<name>service</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-	
+
 		<!-- Project dependencies -->
 
 		<dependency>
@@ -35,6 +35,10 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.excilys.ebi.spring-dbunit</groupId>
+			<artifactId>spring-dbunit-test</artifactId>
 		</dependency>
 	</dependencies>
 </project>
