@@ -22,7 +22,7 @@ import com.excilys.formation.bank.bean.Etat.EtatType;
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetEtatService.xml")
+@DataSet("/datasets/dataSetTransactionEtatService.xml")
 public class TestEtatService {
 
 	@Autowired
