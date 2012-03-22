@@ -1,7 +1,7 @@
 package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,20 +33,20 @@ public class Transaction implements Serializable {
 	private Integer transactionId;
 
 	@Column(name = "date_init")
-	private Timestamp dateInit;
+	private Date dateInit;
 
 	@Column(name = "date_valid")
-	private Timestamp dateValid;
+	private Date dateValid;
 
 	@ManyToOne
 	@JoinColumn(name = "etat_id")
 	private Etat etat;
 
-	public final Timestamp getDateInit() {
+	public final Date getDateInit() {
 		return dateInit;
 	}
 
-	public final Timestamp getDateValid() {
+	public final Date getDateValid() {
 		return dateValid;
 	}
 
@@ -58,11 +58,11 @@ public class Transaction implements Serializable {
 		return transactionId;
 	}
 
-	public final void setDateInit(Timestamp dateInit) {
+	public final void setDateInit(Date dateInit) {
 		this.dateInit = dateInit;
 	}
 
-	public final void setDateValid(Timestamp dateValid) {
+	public final void setDateValid(Date dateValid) {
 		this.dateValid = dateValid;
 	}
 

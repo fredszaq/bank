@@ -33,20 +33,20 @@ public class Etat {
 	@Column(name = "etat_id")
 	private Integer etatId;
 
-	@Column
+	@Column(name = "etat")
 	@Enumerated(EnumType.STRING)
-	private EtatType etat;
-
-	public final EtatType getEtat() {
-		return etat;
-	}
+	private EtatType etatType;
 
 	public final Integer getEtatId() {
 		return etatId;
 	}
 
-	public final void setEtat(EtatType etat) {
-		this.etat = etat;
+	public final EtatType getEtatType() {
+		return etatType;
+	}
+
+	public final void setEtatType(EtatType etatType) {
+		this.etatType = etatType;
 	}
 
 	public final void setEtatId(Integer etatId) {
@@ -56,8 +56,8 @@ public class Etat {
 	@Override
 	public final String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Etat [etatId=").append(etatId).append(", etat=")
-				.append(etat).append("]");
+		builder.append("Etat [etatId=").append(etatId).append(", etatType=")
+				.append(etatType).append("]");
 		return builder.toString();
 	}
 
