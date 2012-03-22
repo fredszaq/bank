@@ -35,6 +35,10 @@ public class Operation {
 	@JoinColumn(name = "transaction_id")
 	private Transaction transaction;
 
+	@ManyToOne
+	@JoinColumn(name = "compte_id")
+	private Compte compte;
+
 	public final Double getMontant() {
 		return montant;
 	}
@@ -65,6 +69,14 @@ public class Operation {
 
 	public final void setTransaction(Transaction transaction) {
 		this.transaction = transaction;
+	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 }
