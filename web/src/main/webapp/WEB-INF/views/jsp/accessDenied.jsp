@@ -4,7 +4,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<div class="error">
-		<h3>HTTP Status 403 - Access is denied</h3>
+		<h2>HTTP Status 403 - Access is denied</h2>
 		<p>You don't have the authority to access this page.</p>
 	</div>
 </jsp:root>
