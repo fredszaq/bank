@@ -21,7 +21,7 @@ public class TransactionCategorie implements Serializable {
 	private static final long serialVersionUID = 6360299831361322000L;
 
 	public enum TransactionCategorieType {
-		CREDIT, DEBIT
+		CARTE, VIREMENT_INTERNE, VIREMENT_EXTERNE
 	}
 
 	@Id

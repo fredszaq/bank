@@ -31,12 +31,18 @@ public class Operation {
 	@Column(name = "operation_id")
 	private Integer operationId;
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Operation [montant=").append(montant)
+				.append(", operationId=").append(operationId)
+				.append(", transaction=").append(transaction).append("]");
+		return builder.toString();
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "transaction_id")
 	private Transaction transaction;
-
-	@Column
-	private String libelle;
 
 	public final Double getMontant() {
 		return montant;
@@ -68,14 +74,6 @@ public class Operation {
 
 	public final void setTransaction(Transaction transaction) {
 		this.transaction = transaction;
-	}
-
-	public final String getLibelle() {
-		return libelle;
-	}
-
-	public final void setLibelle(String libelle) {
-		this.libelle = libelle;
 	}
 
 }
