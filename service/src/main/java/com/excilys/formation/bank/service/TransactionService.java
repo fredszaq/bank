@@ -1,5 +1,6 @@
 package com.excilys.formation.bank.service;
 
+import com.excilys.formation.bank.bean.Etat.EtatType;
 import com.excilys.formation.bank.bean.Transaction;
 
 public interface TransactionService {
@@ -37,6 +38,6 @@ public interface TransactionService {
 	 *            : the transaction
 	 * @return boolean
 	 */
-	void update(Transaction transaction);
+	void update(Transaction transaction, EtatType etatType);
 
 }
