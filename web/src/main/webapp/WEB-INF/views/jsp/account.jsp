@@ -28,16 +28,17 @@
 				<tr>
 					<th>Date</th>
 					<th>Libellé</th>
-					<th>Montant</th>
+					<th class="numeric">Montant</th>
 				</tr>
 
 				<c:forEach var="operation" items="${compte.operations}"
 					varStatus="loopStatus">
 					<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
-						<td>${operation.transaction.dateInit}</td>
+						<td><fmt:formatDate value="${operation.transaction.dateInit}" /></td>
 						<td>${operation.libelle}</td>
-						<td class="numeric"><fmt:formatNumber type="currency" currencyCode="EUR"
-								value="${operation.montant}" /></td>
+						<td class="numeric ${operation.operationType.operationType=='DEBIT' ? 'negative' : 'positive'}"><fmt:formatNumber type="currency"
+								currencyCode="EUR"
+								value="${operation.operationType.operationType=='DEBIT' ? - operation.montant : operation.montant}" /></td>
 					</tr>
 				</c:forEach>
 

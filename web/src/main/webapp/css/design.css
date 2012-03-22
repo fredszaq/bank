@@ -135,6 +135,13 @@ table tr:last-child td:last-child {
 	border-bottom-right-radius: 10px;
 }
 
-table td.numeric, table th.numeric {
+.numeric {
 	text-align: right;
+}
+
+.negative {
+	color: #ff0000;
+}
+
+.positive {
 }
