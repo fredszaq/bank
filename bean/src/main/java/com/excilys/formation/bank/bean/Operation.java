@@ -35,9 +35,8 @@ public class Operation {
 	@JoinColumn(name = "transaction_id")
 	private Transaction transaction;
 
-	@ManyToOne
-	@JoinColumn(name = "compte_id")
-	private Compte compte;
+	@Column
+	private String libelle;
 
 	public final Double getMontant() {
 		return montant;
@@ -71,12 +70,12 @@ public class Operation {
 		this.transaction = transaction;
 	}
 
-	public Compte getCompte() {
-		return compte;
+	public String getLibelle() {
+		return libelle;
 	}
 
-	public void setCompte(Compte compte) {
-		this.compte = compte;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 }
