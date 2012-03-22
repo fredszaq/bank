@@ -1,7 +1,7 @@
 -- Création de la table operation_categories
 
 CREATE TABLE 
-	operation_categories(
+	etats(
 		etat_id SERIAL PRIMARY KEY USING INDEX TABLESPACE ts_index
 		, etat VARCHAR(50) NOT NULL
     )
