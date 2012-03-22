@@ -19,7 +19,7 @@ import com.excilys.formation.bank.bean.Compte;
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/dataSetUserService.xml")
+@DataSet("/datasets/dataSetUserService.xml")
 public class TestUserService {
 	@Autowired
 	private UserService userService;
