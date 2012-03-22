@@ -25,7 +25,7 @@ import com.excilys.formation.bank.bean.Transaction;
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetTransactionService.xml")
+@DataSet("/datasets/dataSetTransactionEtatService.xml")
 public class TestTransactionService {
 	@Autowired
 	private TransactionService transactionService;
