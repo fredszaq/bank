@@ -1,4 +1,4 @@
-package com.excilys.formation.bank.dao;
+package com.excilys.formation.bank.service;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -11,11 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
@@ -24,29 +21,23 @@ import com.excilys.formation.bank.bean.Etat.EtatType;
 import com.excilys.formation.bank.bean.Transaction;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-		"classpath*:context/applicationContext*.xml",
+@ContextConfiguration({ "classpath*:context/applicationContext*.xml",
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetTransactionDao.xml")
-@Transactional
-@TransactionConfiguration
-public class TransactionDaoTest extends
-		AbstractTransactionalJUnit4SpringContextTests {
+@DataSet("/datasets/dataSetTransactionService.xml")
+public class TestTransactionService {
+	@Autowired
+	private TransactionService transactionService;
 
 	@Autowired
-	private TransactionDAO transactionDAO;
-
-	@Autowired
-	private EtatDAO etatDAO;
+	private EtatService etatService;
 
 	private Transaction transaction;
 
-	@Transactional(readOnly = true)
 	@Before
 	public final void init() {
-		transaction = transactionDAO.getTransactionById(1);
+		transaction = transactionService.getTransactionById(1);
 	}
 
 	@Test
@@ -57,16 +48,16 @@ public class TransactionDaoTest extends
 
 	@Test
 	public void updateTransactionEtatTest() {
-		Etat etat = etatDAO.getEtatByType(EtatType.WAITING);
-		transaction.setEtat(etat);
-		transactionDAO.update(transaction);
-		assertThat(transaction.getEtat()).isEqualTo(etat);
+		transactionService.update(transaction, EtatType.WAITING);
+		assertThat(transaction.getEtat().getEtatType()).isEqualTo(
+				EtatType.WAITING);
 	}
 
 	@Test
 	public final void deleteTransactionTest() {
-		transactionDAO.delete(transaction);
-		transaction = transactionDAO.getTransactionById(1);
+		transactionService.delete(transaction);
+		transaction = transactionService.getTransactionById(1);
+		System.out.println(transaction);
 		assertThat(transaction).isNull();
 	}
 
@@ -74,20 +65,20 @@ public class TransactionDaoTest extends
 	public void insertTransactionTest() {
 		Transaction transaction = new Transaction();
 		transaction.setTransactionId(1);
-		Etat etat = etatDAO.getEtatByType(EtatType.VALIDATED);
+		Etat etat = etatService.getEtatByType(EtatType.VALIDATED);
 		transaction.setEtat(etat);
 		Date date = new Date();
 		transaction.setDateValid(date);
 		transaction.setDateInit(date);
-		transactionDAO.insert(transaction);
-		transaction = transactionDAO.getTransactionById(1);
+		transactionService.insert(transaction);
+		transaction = transactionService.getTransactionById(1);
 		assertThat(transaction).isEqualTo(transaction);
 	}
 
 	@After
 	public final void end() {
 		transaction = null;
-		etatDAO = null;
-		transactionDAO = null;
+		etatService = null;
+		transactionService = null;
 	}
 }
