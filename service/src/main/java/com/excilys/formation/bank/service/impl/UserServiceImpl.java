@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		Set<Compte> comptes = getComptesByUsername(login);
 		for (Compte compte : comptes) {
 			if (compte.getCompteId().equals(id)) {
-				// TODO Hibernate.initialise(compte.getOperations()) ?
+				Hibernate.initialize(compte.getOperations());
 				return compte;
 			}
 		}

@@ -31,20 +31,23 @@
 					<th>Montant</th>
 				</tr>
 
-				<!--<c:forEach var="operation" items="${compte.operations}" varStatus="loopStatus">
-			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
-				<td>${operation.date}</td>
-				<td>${operation.libelle}</td>
-				<td class="numeric"> <fmt:formatNumber type="currency" value="${operation.montant}" /></td>
-			</tr>
-		</c:forEach> -->
+				<c:forEach var="operation" items="${compte.operations}"
+					varStatus="loopStatus">
+					<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
+						<td>${operation.transaction.dateInit}</td>
+						<td>${operation.libelle}</td>
+						<td class="numeric"><fmt:formatNumber type="currency" currencyCode="EUR"
+								value="${operation.montant}" /></td>
+					</tr>
+				</c:forEach>
 
 			</table>
 		</c:when>
 		<c:otherwise>
 			<div class="error">
 				<h2>Can't find the account</h2>
-				<p>The asked account doesn't exists or you don't have access to it.<p>
+				<p>The asked account doesn't exists or you don't have access to
+					it.</p>
 			</div>
 		</c:otherwise>
 	</c:choose>
