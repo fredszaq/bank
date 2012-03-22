@@ -42,6 +42,9 @@ public class Transaction implements Serializable {
 	@JoinColumn(name = "etat_id")
 	private Etat etat;
 
+	@Column
+	private String libelle;
+
 	public final Date getDateInit() {
 		return dateInit;
 	}
@@ -72,6 +75,14 @@ public class Transaction implements Serializable {
 
 	public final void setTransactionId(Integer transactionId) {
 		this.transactionId = transactionId;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
 	@Override
