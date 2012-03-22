@@ -44,7 +44,7 @@
 		<c:otherwise>
 			<div class="error">
 				<h2>Can't find the account</h2>
-				The asked account doesn't exists or you don't have access to it.
+				<p>The asked account doesn't exists or you don't have access to it.<p>
 			</div>
 		</c:otherwise>
 	</c:choose>
