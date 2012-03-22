@@ -1,15 +1,8 @@
-package com.excilys.formation.bank.dao;
+package com.excilys.formation.bank.service;
 
 import com.excilys.formation.bank.bean.Transaction;
 
-/**
- * Interface TransactionDAO.
- * 
- * @author excilys
- * 
- */
-public interface TransactionDAO {
-
+public interface TransactionService {
 	/**
 	 * Suppression d'une transaction.
 	 * 
