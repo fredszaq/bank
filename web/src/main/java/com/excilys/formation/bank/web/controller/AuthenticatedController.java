@@ -38,8 +38,9 @@ public class AuthenticatedController {
 			return "redirect:/";
 		}
 		model.put("compte", compte);
-		model.put("operations", compte.getOperations());
-		model.put("totalCarte", 99945666);
+		model.put("operations", userService.getOperationsNonCarteByCompteId(id));
+		model.put("totalCarte",
+				userService.getTotalOperationsCarteByCompteId(id));
 		return "account";
 	}
 
@@ -73,7 +74,7 @@ public class AuthenticatedController {
 			return "redirect:/";
 		}
 		model.put("compte", compte);
-		model.put("operations", compte.getOperations());
+		model.put("operations", userService.getOperationsCarteByCompteId(id));
 		return "detailCarte";
 
 	}
