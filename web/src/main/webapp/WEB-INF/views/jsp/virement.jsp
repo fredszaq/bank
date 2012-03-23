@@ -7,7 +7,7 @@
 	<h2>Effectuer un virement</h2>
 
 
-	<form action="${pageContext.request.contextPath}/secure/vir.html"
+	<form action="${pageContext.request.contextPath}/secure/virement.form"
 		method="POST">
 		<div class="box">
 			<div>
