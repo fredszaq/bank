@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.formation.bank.bean.Compte;
-import com.excilys.formation.bank.bean.Etat.EtatType;
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.OperationComptable;
 import com.excilys.formation.bank.bean.OperationComptable.OperationComptableType;
@@ -18,7 +17,6 @@ import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.bean.TransactionCategorie.TransactionCategorieType;
 import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.dao.CompteDAO;
-import com.excilys.formation.bank.dao.EtatDAO;
 import com.excilys.formation.bank.dao.OperationComptableDAO;
 import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.TransactionCategorieDAO;
@@ -38,9 +36,6 @@ public class VirementServiceImpl implements VirementService {
 
 	@Autowired
 	private CompteDAO compteDAO;
-
-	@Autowired
-	private EtatDAO etatDAO;
 
 	@Autowired
 	private TransactionCategorieDAO categorieDAO;
@@ -132,7 +127,7 @@ public class VirementServiceImpl implements VirementService {
 							.getTransactionCategorieByType(TransactionCategorieType.VIREMENT_INTERNE));
 		}
 
-		transaction.setEtat(etatDAO.getEtatByType(EtatType.VALIDATED));
+		// transaction.setEtat(etatDAO.getEtatByType(EtatType.VALIDATED));
 
 		// Insertion de la transaction
 		transactionDAO.insert(transaction);

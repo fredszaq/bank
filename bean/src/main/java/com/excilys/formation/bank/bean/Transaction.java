@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
+
 /**
  * Transaction bean.
  * 
@@ -38,8 +41,13 @@ public class Transaction implements Serializable {
 	@Column(name = "date_valid")
 	private Date dateValid;
 
-	@ManyToOne
-	@JoinColumn(name = "etat_id")
+	@Column(name = "etat")
+	@Type(type = "com.excilys.formation.bank.bean.StringEnumPersistenceType", parameters = {
+			@Parameter(name = "enumClass", value = "com.excilys.formation.bank.bean.Etat"),
+
+			@Parameter(name = "identifierMethod", value = "getEtat"),
+
+			@Parameter(name = "valueOfMethod", value = "valueByString") })
 	private Etat etat;
 
 	@Column
@@ -102,7 +110,8 @@ public class Transaction implements Serializable {
 		return transactionCategorie;
 	}
 
-	public void setTransactionCategorie(TransactionCategorie transactionCategorie) {
+	public void setTransactionCategorie(
+			TransactionCategorie transactionCategorie) {
 		this.transactionCategorie = transactionCategorie;
 	}
 

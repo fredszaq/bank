@@ -28,7 +28,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
-		    <artifactId>javax.persistence</artifactId>
+			<artifactId>javax.persistence</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
 		</dependency>
 	</dependencies>
 </project>
