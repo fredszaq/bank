@@ -40,5 +40,9 @@
 			<groupId>com.excilys.ebi.spring-dbunit</groupId>
 			<artifactId>spring-dbunit-test</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
 	</dependencies>
 </project>
