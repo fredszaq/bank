@@ -19,24 +19,24 @@ import com.excilys.formation.bank.bean.Compte;
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetUserService.xml")
+@DataSet("/datasets/dataSetService.xml")
 public class TestUserService {
 	@Autowired
 	private UserService userService;
 
 	@Test
 	public void testGetCompteByUsernameAndAccountIdWhenTheUserDoesNotOwnsTheCompte() {
-		Compte compte = userService.getCompteByUsernameAndAccountId(
-				"testUser2", "compte1user1");
+		Compte compte = userService.getCompteByUsernameAndAccountId("user2",
+				"compte1");
 		assertThat(compte).isNull();
 	}
 
 	@Test
 	public void testGetCompteByUsernameAndAccountIdWhenTheUserOwnsTheCompte() {
-		Compte compte = userService.getCompteByUsernameAndAccountId(
-				"testUser2", "compte1user2");
-		assertThat(compte.getCompteId()).isEqualTo("compte1user2");
+		Compte compte = userService.getCompteByUsernameAndAccountId("user2",
+				"compte3");
+		assertThat(compte.getCompteId()).isEqualTo("compte3");
 		assertThat(compte.getCompteType()).isEqualTo(Compte.CompteType.COURANT);
-		assertThat(compte.getSolde()).isEqualTo(3.14);
+		assertThat(compte.getSolde()).isEqualTo(150.0);
 	}
 }

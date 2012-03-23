@@ -64,13 +64,6 @@ public class TransactionDaoTest extends
 	}
 
 	@Test
-	public final void deleteTransactionTest() {
-		transactionDAO.delete(transaction);
-		transaction = transactionDAO.getTransactionById(1);
-		assertThat(transaction).isNull();
-	}
-
-	@Test
 	public void insertTransactionTest() {
 		Transaction transaction = new Transaction();
 		transaction.setTransactionId(1);

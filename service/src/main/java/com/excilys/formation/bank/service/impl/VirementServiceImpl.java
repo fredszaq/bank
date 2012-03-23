@@ -10,16 +10,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.formation.bank.bean.Compte;
-import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.Etat.EtatType;
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.OperationComptable;
 import com.excilys.formation.bank.bean.OperationComptable.OperationComptableType;
 import com.excilys.formation.bank.bean.Transaction;
-import com.excilys.formation.bank.bean.TransactionCategorie;
 import com.excilys.formation.bank.bean.TransactionCategorie.TransactionCategorieType;
 import com.excilys.formation.bank.bean.User;
+import com.excilys.formation.bank.dao.CompteDAO;
+import com.excilys.formation.bank.dao.EtatDAO;
+import com.excilys.formation.bank.dao.OperationComptableDAO;
 import com.excilys.formation.bank.dao.OperationDAO;
+import com.excilys.formation.bank.dao.TransactionCategorieDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
 import com.excilys.formation.bank.service.VirementService;
 
@@ -33,13 +35,24 @@ public class VirementServiceImpl implements VirementService {
 	@Autowired
 	private OperationDAO operationDAO;
 
-	@Override
-	@Transactional
-	public void createVirement(Compte compteDebiteur, Compte compteCrediteur,
-			double montant, String libelle) {
+	@Autowired
+	private CompteDAO compteDAO;
 
-		Transaction transaction = createTransaction(compteDebiteur,
-				compteCrediteur, libelle);
+	@Autowired
+	private EtatDAO etatDAO;
+
+	@Autowired
+	private TransactionCategorieDAO categorieDAO;
+
+	@Autowired
+	private OperationComptableDAO operationComptableDAO;
+
+	@Override
+	public void createVirement(String compteDebiteurId,
+			String compteCrediteurId, double montant, String libelle) {
+
+		Transaction transaction = createTransaction(compteDebiteurId,
+				compteCrediteurId, libelle);
 
 		createOperations(transaction, montant);
 
@@ -52,11 +65,11 @@ public class VirementServiceImpl implements VirementService {
 		operationDebit.setMontant(montant);
 		operationCredit.setMontant(montant);
 
-		OperationComptable typeDebit = new OperationComptable();
-		typeDebit.setOperationComptableType(OperationComptableType.DEBIT);
+		OperationComptable typeDebit = operationComptableDAO
+				.getOperationComptableByType(OperationComptableType.DEBIT);
 
-		OperationComptable typeCredit = new OperationComptable();
-		typeDebit.setOperationComptableType(OperationComptableType.CREDIT);
+		OperationComptable typeCredit = operationComptableDAO
+				.getOperationComptableByType(OperationComptableType.CREDIT);
 
 		operationDebit.setOperationType(typeDebit);
 		operationCredit.setOperationType(typeCredit);
@@ -65,8 +78,11 @@ public class VirementServiceImpl implements VirementService {
 		operationDAO.insert(operationCredit);
 	}
 
-	private Transaction createTransaction(Compte compteDebiteur,
-			Compte compteCrediteur, String libelle) {
+	private Transaction createTransaction(String compteDebiteurId,
+			String compteCrediteurId, String libelle) {
+
+		Compte compteDebiteur = compteDAO.loadCompteById(compteDebiteurId);
+		Compte compteCrediteur = compteDAO.loadCompteById(compteCrediteurId);
 		Set<User> usersDebiteurs = compteDebiteur.getUsers();
 		Set<User> usersCrediteurs = compteCrediteur.getUsers();
 		Set<User> userIntersection = new HashSet<User>(usersDebiteurs);
@@ -84,21 +100,17 @@ public class VirementServiceImpl implements VirementService {
 			transaction.setLibelle(libelle);
 		}
 
-		TransactionCategorie categorie = new TransactionCategorie();
-
 		if (userIntersection.isEmpty()) {
-			categorie
-					.setTransactionCategorieType(TransactionCategorieType.VIREMENT_EXTERNE);
-			transaction.setTransactionCategorie(categorie);
+			transaction
+					.setTransactionCategorie(categorieDAO
+							.getTransactionCategorieByType(TransactionCategorieType.VIREMENT_EXTERNE));
 		} else {
-			categorie
-					.setTransactionCategorieType(TransactionCategorieType.VIREMENT_INTERNE);
-			transaction.setTransactionCategorie(categorie);
+			transaction
+					.setTransactionCategorie(categorieDAO
+							.getTransactionCategorieByType(TransactionCategorieType.VIREMENT_INTERNE));
 		}
 
-		Etat etat = new Etat();
-		etat.setEtatType(EtatType.VALIDATED);
-		transaction.setEtat(etat);
+		transaction.setEtat(etatDAO.getEtatByType(EtatType.VALIDATED));
 
 		// Insertion de la transaction
 		transactionDAO.insert(transaction);

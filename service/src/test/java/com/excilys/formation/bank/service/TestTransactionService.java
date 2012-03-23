@@ -25,7 +25,7 @@ import com.excilys.formation.bank.bean.Transaction;
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetTransactionEtatService.xml")
+@DataSet("/datasets/dataSetService.xml")
 public class TestTransactionService {
 	@Autowired
 	private TransactionService transactionService;
@@ -51,14 +51,6 @@ public class TestTransactionService {
 		transactionService.update(transaction, EtatType.WAITING);
 		assertThat(transaction.getEtat().getEtatType()).isEqualTo(
 				EtatType.WAITING);
-	}
-
-	@Test
-	public final void deleteTransactionTest() {
-		transactionService.delete(transaction);
-		transaction = transactionService.getTransactionById(1);
-		System.out.println(transaction);
-		assertThat(transaction).isNull();
 	}
 
 	@Test

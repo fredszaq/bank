@@ -20,12 +20,6 @@ public class TransactionServiceImpl implements TransactionService {
 	@Autowired
 	private EtatDAO etatDAO;
 
-	@Override
-	public final void delete(Transaction transaction) {
-		transactionDAO.delete(transaction);
-
-	}
-
 	@Transactional(readOnly = true)
 	@Override
 	public final Transaction getTransactionById(Integer transactionId) {

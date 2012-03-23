@@ -4,14 +4,6 @@ import com.excilys.formation.bank.bean.Etat.EtatType;
 import com.excilys.formation.bank.bean.Transaction;
 
 public interface TransactionService {
-	/**
-	 * Suppression d'une transaction.
-	 * 
-	 * @param transaction
-	 *            : the transaction
-	 * @return boolean
-	 */
-	void delete(Transaction transaction);
 
 	/**
 	 * Obtention d'une transaction en fonction de son id.
