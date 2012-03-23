@@ -2,6 +2,8 @@ package com.excilys.formation.bank.service;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.util.Date;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +16,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
+import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.Transaction;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,26 +43,26 @@ public class TestTransactionService {
 
 	@Test
 	public void updateTransactionEtatTest() {
-
-		/*
-		 * transactionService.update(transaction, Etat.WAITING);
-		 * assertThat(transaction.getEtat()).isEqualTo(Etat.WAITING);
-		 */
-
+		transactionService.update(transaction, Etat.WAITING);
+		assertThat(transaction.getEtat()).isEqualTo(Etat.WAITING);
+		transactionService.update(transaction, Etat.VALIDATED);
 	}
 
 	@Test
 	public void insertTransactionTest() {
+
+		Transaction transaction = new Transaction();
+		transaction.setTransactionId(1);
+		transaction.setEtat(Etat.VALIDATED);
+		Date date = new Date();
+		transaction.setDateValid(date);
+		transaction.setDateInit(date);
 		/*
-		 * Transaction transaction = new Transaction();
-		 * transaction.setTransactionId(1); Etat etat =
-		 * etatService.getEtatByType(Etat.VALIDATED); transaction.setEtat(etat);
-		 * Date date = new Date(); transaction.setDateValid(date);
-		 * transaction.setDateInit(date);
 		 * transactionService.insert(transaction); transaction =
 		 * transactionService.getTransactionById(1);
 		 * assertThat(transaction).isEqualTo(transaction);
 		 */
+
 	}
 
 	@After

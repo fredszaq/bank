@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Properties;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.ParameterizedType;
@@ -122,7 +121,10 @@ public class StringEnumPersistenceType<T extends Enum<?>> implements UserType,
 
 	@Override
 	public boolean equals(Object x, Object y) throws HibernateException {
-		return ObjectUtils.equals(x, y);
+		if (x != y) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override

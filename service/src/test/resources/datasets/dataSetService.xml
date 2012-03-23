@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<!-- Users 
+	<!-- Users -->
 	<users login="user1" password="pass" firstname="user" lastname="1" address="somewhere" />
-	<users login="user2" password="pass" firstname="user" lastname="2" address="somewhere else" />-->
-	<!-- États 
+	<users login="user2" password="pass" firstname="user" lastname="2" address="somewhere else" />
+	<!-- États -->
 	<etats etat="VALIDATED" />
-	<etats etat="WAITING" />-->
-	<!-- Catégories 
+	<etats etat="WAITING" />
+	<!-- Catégories -->
 	<transaction_categories transaction_categorie_id="1" transaction_categorie="CARTE" />
 	<transaction_categories transaction_categorie_id="2" transaction_categorie="VIREMENT_INTERNE" />
-	<transaction_categories transaction_categorie_id="3" transaction_categorie="VIREMENT_EXTERNE" />-->
-	<!-- Transactions 
+	<transaction_categories transaction_categorie_id="3" transaction_categorie="VIREMENT_EXTERNE" />
+	<!-- Transactions -->
 	<transactions transaction_id="1" date_init="2010-09-13" date_valid="2010-09-13" etat="VALIDATED" transaction_categorie_id="2"/>
 	<transactions transaction_id="2" date_init="2010-09-13" date_valid="2010-09-13" etat="WAITING" transaction_categorie_id="1"/>
 	<transactions transaction_id="3" date_init="2010-09-13" date_valid="2010-09-13" etat="WAITING" transaction_categorie_id="1"/>-->
-	<!-- Type d'opérations 
+	<!-- Type d'opérations -->
 	<operation_types operation_type_id="1" operation_type="CREDIT" />
-	<operation_types operation_type_id="2" operation_type="DEBIT" />-->
-	<!-- Opérations 
+	<operation_types operation_type_id="2" operation_type="DEBIT" />
+	<!-- Opérations 	-->
 	<operations operation_id="1" transaction_id="1" montant="42" operation_type_id="2"/>
 	<operations operation_id="2" transaction_id="1" montant="42" operation_type_id="1"/>
 	<operations operation_id="3" transaction_id="2" montant="444" operation_type_id="2"/>
@@ -34,7 +34,7 @@
 	<comptes_operations compte_id="compte1" operation_id="1" />	
 	<comptes_operations compte_id="compte2" operation_id="2" />	
 	<comptes_operations compte_id="compte1" operation_id="3" />	
-	<comptes_operations compte_id="compte1" operation_id="4" />	-->
+	<comptes_operations compte_id="compte1" operation_id="4" />
 	
 	
 </dataset>

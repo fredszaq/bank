@@ -63,5 +63,9 @@
 			<groupId>com.googlecode.flyway-test-extensions</groupId>
 			<artifactId>flyway-dbunit-test</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+		</dependency>
 	</dependencies>
 </project>
