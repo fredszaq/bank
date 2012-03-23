@@ -127,16 +127,25 @@ table tr.even td {
 	background: #eee;
 }
 
-table tr:last-child td:first-child {
+table tr:first-child td:first-of-type {
+	border-top-left-radius: 10px;
+}
+
+table tr:first-child td:last-of-type {
+	border-top-right-radius: 10px;
+}
+
+table tr:last-child td:first-of-type {
 	border-bottom-left-radius: 10px;
 }
 
-table tr:last-child td:last-child {
+table tr:last-child td:last-of-type {
 	border-bottom-right-radius: 10px;
 }
 
 .numeric {
 	text-align: right;
+	width: 120px;
 }
 
 .negative {

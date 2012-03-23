@@ -34,7 +34,12 @@ public class AuthenticatedController {
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
 				userDetails.getUsername(), id);
+		if (compte == null) {
+			return "redirect:/";
+		}
 		model.put("compte", compte);
+		model.put("operations", compte.getOperations());
+		model.put("totalCarte", 99945666);
 		return "account";
 	}
 
@@ -56,5 +61,20 @@ public class AuthenticatedController {
 		Collections.sort(listeComptes);
 		model.put("comptes", listeComptes);
 		return "accounts";
+	}
+
+	@RequestMapping("/detailCarte.html")
+	public final String detailsCarte(ModelMap model, @RequestParam String id) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Compte compte = userService.getCompteByUsernameAndAccountId(
+				userDetails.getUsername(), id);
+		if (compte == null) {
+			return "redirect:/";
+		}
+		model.put("compte", compte);
+		model.put("operations", compte.getOperations());
+		return "detailCarte";
+
 	}
 }
