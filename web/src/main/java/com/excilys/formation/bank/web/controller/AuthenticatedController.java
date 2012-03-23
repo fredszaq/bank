@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.service.UserService;
+import com.excilys.formation.bank.service.VirementService;
 
 /**
  * A controller used for authenticated section.
@@ -27,6 +28,9 @@ public class AuthenticatedController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private VirementService virementService;
 
 	@RequestMapping("/account.html")
 	public final String account(ModelMap model, @RequestParam String id) {
@@ -75,6 +79,15 @@ public class AuthenticatedController {
 		Collections.sort(listeComptes);
 		model.put("comptes", listeComptes);
 		return "virement";
+	}
+
+	@RequestMapping("/virement.form")
+	public final String doVirement(@RequestParam String compteDebiteur,
+			@RequestParam String compteCrediteur, @RequestParam double montant,
+			@RequestParam String libelle) {
+		virementService.createVirement(compteDebiteur, compteCrediteur,
+				montant, libelle);
+		return "redirect:/secure/account.html?id=" + compteDebiteur;
 	}
 
 	@RequestMapping("/detailCarte.html")
