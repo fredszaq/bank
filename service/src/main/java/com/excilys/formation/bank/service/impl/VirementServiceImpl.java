@@ -50,14 +50,15 @@ public class VirementServiceImpl implements VirementService {
 	@Override
 	public void createVirement(String compteDebiteurId,
 			String compteCrediteurId, double montant, String libelle) {
+		if (!compteCrediteurId.equals(compteDebiteurId)) {
+			Transaction transaction = createTransaction(compteDebiteurId,
+					compteCrediteurId, libelle);
 
-		Transaction transaction = createTransaction(compteDebiteurId,
-				compteCrediteurId, libelle);
+			createOperations(transaction, montant);
 
-		createOperations(transaction, montant);
-
-		compteDAO.updateSolde(compteDebiteurId, -montant);
-		compteDAO.updateSolde(compteCrediteurId, montant);
+			compteDAO.updateSolde(compteDebiteurId, -montant);
+			compteDAO.updateSolde(compteCrediteurId, montant);
+		}
 	}
 
 	private void createOperations(Transaction transaction, double montant) {
