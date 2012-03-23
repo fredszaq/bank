@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,5 +34,28 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	@Override
 	public void update(Operation operation) {
 		sessionFactory.getCurrentSession().merge(operation);
+	}
+
+	@Override
+	public List<Operation> getOperationCarteFromCompteId(String compteId) {
+		String query = "select operation from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorieType='CARTE'";
+		return sessionFactory.getCurrentSession().createQuery(query)
+				.setString("compteId", compteId).list();
+	}
+
+	@Override
+	public double getTotalOperationCarteFromCompteId(String compteId) {
+		String query = "select sum(operation.montant) from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorieType='CARTE'";
+		List<?> resultList = sessionFactory.getCurrentSession()
+				.createQuery(query).setString("compteId", compteId).list();
+		Object result = resultList.get(0);
+		return result == null ? 0 : (Double) result;
+	}
+
+	@Override
+	public List<Operation> getOperationNonCarteFromCompteId(String compteId) {
+		String query = "select operation from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorieType!='CARTE'";
+		return sessionFactory.getCurrentSession().createQuery(query)
+				.setString("compteId", compteId).list();
 	}
 }
