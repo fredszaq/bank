@@ -4,32 +4,20 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
-	<h2>Resumé du compte</h2>
+	<h2>Détails carte</h2>
 	<table>
 		<tr>
-			<th>Type de compte</th>
 			<th>Nom du compte</th>
-			<th class="numeric">Solde</th>
+			<td>${compte.compteId}</td>
 		</tr>
 		<tr>
-			<td>${compte.compteType}</td>
-			<td>${compte.compteId}</td>
-			<td class="numeric"><fmt:formatNumber type="currency"
-					currencyCode="EUR" value="${compte.solde}" /></td>
+			<th>Nom de la carte</th>
+			<td>${compte.numCarte}</td>
 		</tr>
 	</table>
 
 
 	<h2>Opérations</h2>
-
-	<table>
-		<tr>
-			<th><a
-				href="${pageContext.request.contextPath}/secure/detailCarte.html?id=${compte.compteId}">Total
-					des operations carte :</a></th>
-			<td class="numeric"><fmt:formatNumber type="currency" currencyCode="EUR" value="${totalCarte }" /></td>
-		</tr>
-	</table>
 
 	<table>
 		<tr>
