@@ -25,7 +25,7 @@ import com.excilys.formation.bank.bean.Transaction;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath*:context/applicationContext*.xml",
-		"classpath*:contextTest/applicationContext*.xml" })
+		"classpath:contextTest/applicationContext-daoTest.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
 @DataSet("/datasets/dataSetTransactionOperationDao.xml")
@@ -42,10 +42,7 @@ public class TransactionDaoTest extends
 	@Transactional(readOnly = true)
 	@Before
 	public final void init() {
-		System.err
-				.println("########################################################################################################");
 		transaction = transactionDAO.getTransactionById(1);
-		System.err.println(transaction);
 	}
 
 	@Test
