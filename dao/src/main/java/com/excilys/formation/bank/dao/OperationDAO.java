@@ -16,7 +16,7 @@ public interface OperationDAO {
 	 * @param operationId
 	 *            l'identifiant de l'opération
 	 */
-	void deleteByOperationId(Integer operationId);
+	void delete(Operation operation);
 
 	/**
 	 * récupère une Operation.
