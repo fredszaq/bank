@@ -10,6 +10,7 @@
 	<!-- Transactions -->
 	<transactions transaction_id="1" date_init="2010-09-13" date_valid="2010-09-13" etat="VALIDATED" transaction_categorie_id="2"/>
 	<transactions transaction_id="2" date_init="2010-09-13" date_valid="2010-09-13" etat="WAITING" transaction_categorie_id="1"/>
+	<transactions transaction_id="3" date_init="2010-09-13" date_valid="2010-09-13" etat="WAITING" transaction_categorie_id="1"/>
 	<!-- Type d'opérations -->
 	<operation_types operation_type_id="1" operation_type="CREDIT" />
 	<operation_types operation_type_id="2" operation_type="DEBIT" />
