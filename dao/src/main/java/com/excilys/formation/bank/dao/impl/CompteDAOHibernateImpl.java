@@ -30,6 +30,9 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 				.get(Compte.class, id);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Compte loadCompteByUsernameAndCompteId(String username,
 			String compteId) {
@@ -38,6 +41,17 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 				.createQuery(query).setString("login", username)
 				.setString("compteId", compteId).list();
 		return resultList.isEmpty() ? null : (Compte) resultList.get(0);
+
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void updateSolde(String compteId, double difference) {
+		Compte compte = loadCompteById(compteId);
+		compte.setSolde(compte.getSolde() + difference);
+		sessionFactory.getCurrentSession().update(compte);
 
 	}
 }
