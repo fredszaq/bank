@@ -105,6 +105,28 @@ nav a {
 	width: 240px;
 }
 
+.box {
+	background-color: #eee;
+	border: 1px solid #aaa;
+	padding: 10px;
+	border-radius: 10px;
+	margin: auto;
+	display: table;
+}
+
+.box > div {
+	display: table-row;
+}
+
+.box > div label, .box > div input {
+	display: table-cell;
+}
+
+.box > div label {
+	padding-right: 10px; 
+}
+
+
 table {
 	background: #ddd;
 	width: 100%;
@@ -154,3 +176,4 @@ table tr:last-child td:last-of-type {
 
 .positive {
 }
+
