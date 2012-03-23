@@ -23,14 +23,6 @@ public class TransactionDAOHibernateImpl implements TransactionDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final void delete(Transaction transaction) {
-		sessionFactory.getCurrentSession().delete(transaction);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public final Transaction getTransactionById(Integer transactionId) {
 		return (Transaction) sessionFactory.getCurrentSession().get(
 				Transaction.class, transactionId);

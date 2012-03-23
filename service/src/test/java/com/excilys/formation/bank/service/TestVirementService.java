@@ -12,14 +12,13 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
-import com.excilys.formation.bank.bean.Compte;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetTransactionEtatService.xml")
+@DataSet("/datasets/dataSetService.xml")
 public class TestVirementService {
 
 	@Autowired
@@ -27,12 +26,12 @@ public class TestVirementService {
 
 	@Before
 	public final void init() {
-		Compte compteDebiteur = new Compte();
 	}
 
 	@Test
 	public final void createVirementTest() {
-
+		virementService.createVirement("compte1", "compte2", 35,
+				"oh le beau virement");
 	}
 
 	@After
