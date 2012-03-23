@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dataset>
-	<etats etat="VALIDATED" />
-	<etats etat="WAITING" />
-	<transactions transaction_id="1" date_init="2010-09-13" date_valid="2010-09-13" etat="VALIDATED"/>
-	<transactions transaction_id="2" date_init="2010-09-13" date_valid="2010-09-13" etat="VALIDATED"/>
-	<transactions transaction_id="3" date_init="2010-09-13" date_valid="2010-09-13" etat="WAITING"/>
-	<transactions transaction_id="4" date_init="2010-09-13" date_valid="2010-09-13" etat="WAITING"/>
-</dataset>
