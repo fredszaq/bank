@@ -64,6 +64,19 @@ public class AuthenticatedController {
 		return "accounts";
 	}
 
+	@RequestMapping("/virement.html")
+	public final String virement(ModelMap model) {
+
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Set<Compte> comptes = userService.getComptesByUsername(userDetails
+				.getUsername());
+		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
+		Collections.sort(listeComptes);
+		model.put("comptes", listeComptes);
+		return "virement";
+	}
+
 	@RequestMapping("/detailCarte.html")
 	public final String detailsCarte(ModelMap model, @RequestParam String id) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder

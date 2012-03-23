@@ -63,6 +63,9 @@
 				<li><a
 					href="${pageContext.request.contextPath}/secure/accounts.html">accounts</a>
 				</li>
+				<li><a
+					href="${pageContext.request.contextPath}/secure/virement.html">virement</a>
+				</li>
 				<c:if test="${pageScope.isAdmin }">
 					<li><a
 						href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a>
