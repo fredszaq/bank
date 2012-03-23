@@ -2,6 +2,8 @@ package com.excilys.formation.bank.dao;
 
 import static org.fest.assertions.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,7 +79,7 @@ public class OperationDaoTest extends
 		operationCarte.setOperationType(operationComptable);
 
 		operationDAO.insert(operationCarte);
-		assertThat(operationDAO.getOperationById(3)).isEqualTo(operationCarte);
+		assertThat(operationDAO.getOperationById(5)).isEqualTo(operationCarte);
 	}
 
 	@Test
@@ -93,6 +95,44 @@ public class OperationDaoTest extends
 		operationDAO.delete(operationCredit);
 		operationCredit = operationDAO.getOperationById(2);
 		assertThat(operationCredit).isNull();
+	}
+
+	@Test
+	public final void getOperationCarteFromCompteId() {
+		List<Operation> operations = operationDAO
+				.getOperationCarteFromCompteId("compte1");
+		assertThat(operations).hasSize(2);
+		assertThat(operations.get(0).getMontant()).isEqualTo(444);
+		assertThat(operations.get(1).getMontant()).isEqualTo(555);
+	}
+
+	@Test
+	public final void getOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
+		List<Operation> operations = operationDAO
+				.getOperationCarteFromCompteId("compte2");
+		assertThat(operations).isEmpty();
+	}
+
+	@Test
+	public final void getTotalOperationCarteFromCompteId() {
+		assertThat(operationDAO.getTotalOperationCarteFromCompteId("compte1"))
+				.isEqualTo(999);
+
+	}
+
+	@Test
+	public final void getTotalOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
+		assertThat(operationDAO.getTotalOperationCarteFromCompteId("compte2"))
+				.isEqualTo(0);
+
+	}
+
+	@Test
+	public final void getOperationNonCarteFromCompteId() {
+		List<Operation> operations = operationDAO
+				.getOperationNonCarteFromCompteId("compte1");
+		assertThat(operations).hasSize(1);
+		assertThat(operations.get(0).getMontant()).isEqualTo(42);
 	}
 
 	@After

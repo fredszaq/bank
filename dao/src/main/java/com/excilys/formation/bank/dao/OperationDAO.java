@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.dao;
 
+import java.util.List;
+
 import com.excilys.formation.bank.bean.Operation;
 
 /**
@@ -36,10 +38,37 @@ public interface OperationDAO {
 	void insert(Operation operation);
 
 	/**
-	 * met à jour une opération
+	 * met à jour une opération.
 	 * 
 	 * @param operation
 	 *            l'opération à mettre à jour
 	 */
 	void update(Operation operation);
+
+	/**
+	 * Retourne la liste des operations carte d'un compte.
+	 * 
+	 * @param compteId
+	 *            l'id du compte dont il faut chercher les operations carte
+	 * @return la liste des operation
+	 */
+	List<Operation> getOperationCarteFromCompteId(String compteId);
+
+	/**
+	 * Retourne le total des operations carte d'un compte.
+	 * 
+	 * @param compteId
+	 *            l'id du compte dont il faut chercher les operations carte
+	 * @return le total des operations
+	 */
+	double getTotalOperationCarteFromCompteId(String compteId);
+
+	/**
+	 * Retourne la liste des operations non carte d'un compte.
+	 * 
+	 * @param compteId
+	 *            l'id du compte dont il faut chercher les operations non carte
+	 * @return la liste des operations
+	 */
+	List<Operation> getOperationNonCarteFromCompteId(String compteId);
 }

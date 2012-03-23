@@ -348,6 +348,12 @@
 				<artifactId>flyway-spring-test</artifactId>
 				<version>${version.flyway}</version>
 				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<artifactId>slf4j-simple</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.flyway-test-extensions</groupId>

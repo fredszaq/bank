@@ -10,10 +10,21 @@
 	<!-- Transactions -->
 	<transactions transaction_id="1" date_init="2010-09-13" date_valid="2010-09-13" etat_id="1" transaction_categorie_id="2"/>
 	<transactions transaction_id="2" date_init="2010-09-13" date_valid="2010-09-13" etat_id="2" transaction_categorie_id="1"/>
+	<transactions transaction_id="3" date_init="2010-09-13" date_valid="2010-09-13" etat_id="2" transaction_categorie_id="1"/>
 	<!-- Type d'opérations -->
 	<operation_types operation_type_id="1" operation_type="CREDIT" />
 	<operation_types operation_type_id="2" operation_type="DEBIT" />
 	<!-- Opérations -->
 	<operations operation_id="1" transaction_id="1" montant="42" operation_type_id="2"/>
 	<operations operation_id="2" transaction_id="1" montant="42" operation_type_id="1"/>
+	<operations operation_id="3" transaction_id="2" montant="444" operation_type_id="2"/>
+	<operations operation_id="4" transaction_id="3" montant="555" operation_type_id="2"/>
+	
+	<comptes compte_id="compte1" solde="123" taux_interet="0" num_carte="1234567890"  compte_type="COURANT"/>
+	<comptes compte_id="compte2" solde="73" taux_interet="0"   compte_type="EPARGNE"/>
+	
+	<comptes_operations compte_id="compte1" operation_id="1" />	
+	<comptes_operations compte_id="compte2" operation_id="2" />	
+	<comptes_operations compte_id="compte1" operation_id="3" />	
+	<comptes_operations compte_id="compte1" operation_id="4" />	
 </dataset>
