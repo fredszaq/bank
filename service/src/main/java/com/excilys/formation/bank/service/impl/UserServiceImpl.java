@@ -1,5 +1,6 @@
 package com.excilys.formation.bank.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.formation.bank.bean.Compte;
+import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.User;
+import com.excilys.formation.bank.dao.CompteDAO;
+import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.UserDAO;
 import com.excilys.formation.bank.service.UserService;
 
@@ -26,19 +30,18 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
+	private CompteDAO compteDAO;
+
+	@Autowired
+	private OperationDAO operationDAO;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Compte getCompteByUsernameAndAccountId(String login, String id) {
-		Set<Compte> comptes = getComptesByUsername(login);
-		for (Compte compte : comptes) {
-			if (compte.getCompteId().equals(id)) {
-				Hibernate.initialize(compte.getOperations());
-				return compte;
-			}
-		}
-		return null;
+		return compteDAO.loadCompteByUsernameAndCompteId(login, id);
 	}
 
 	/**
@@ -63,6 +66,21 @@ public class UserServiceImpl implements UserService {
 		}
 		Hibernate.initialize(user.getAuthorities());
 		return user;
+	}
+
+	@Override
+	public List<Operation> getOperationsCarteByCompteId(String compteId) {
+		return operationDAO.getOperationCarteFromCompteId(compteId);
+	}
+
+	@Override
+	public List<Operation> getOperationsNonCarteByCompteId(String compteId) {
+		return operationDAO.getOperationNonCarteFromCompteId(compteId);
+	}
+
+	@Override
+	public double getTotalOperationsCarteByCompteId(String compteId) {
+		return operationDAO.getTotalOperationCarteFromCompteId(compteId);
 	}
 
 }

@@ -1,11 +1,13 @@
 package com.excilys.formation.bank.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.excilys.formation.bank.bean.Compte;
+import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.User;
 
 /**
@@ -43,5 +45,11 @@ public interface UserService extends UserDetailsService {
 	 */
 	@Override
 	User loadUserByUsername(String login);
+
+	List<Operation> getOperationsCarteByCompteId(String compteId);
+
+	List<Operation> getOperationsNonCarteByCompteId(String compteId);
+
+	double getTotalOperationsCarteByCompteId(String compteId);
 
 }
