@@ -29,10 +29,9 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Override
 	public final void update(Transaction transaction, Etat etatType) {
-		/*
-		 * Etat etat = etatDAO.getEtatByType(etatType);
-		 * transaction.setEtat(etat); transactionDAO.update(transaction);
-		 */
+		transaction.setEtat(etatType);
+		transactionDAO.update(transaction);
+
 	}
 
 }
