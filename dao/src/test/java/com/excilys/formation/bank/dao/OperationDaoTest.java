@@ -26,7 +26,7 @@ import com.excilys.formation.bank.bean.OperationComptable.OperationComptableType
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath*:context/applicationContext*.xml",
-		"classpath*:contextTest/applicationContext*.xml" })
+		"classpath:contextTest/applicationContext-daoTest.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
 @DataSet("/datasets/dataSetTransactionOperationDao.xml")

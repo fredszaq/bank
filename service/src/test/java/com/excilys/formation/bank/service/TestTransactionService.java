@@ -18,7 +18,7 @@ import com.excilys.formation.bank.bean.Transaction;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
-		"classpath*:contextTest/applicationContext*.xml" })
+		"classpath:contextTest/applicationContext-serviceTest.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
 @DataSet("/datasets/dataSetService.xml")
@@ -35,16 +35,17 @@ public class TestTransactionService {
 
 	@Test
 	public final void getTransactionTest() {
-		System.err.println("test");
 		assertThat(transaction.getEtat().name()).isEqualTo("VALIDATED");
 	}
 
 	@Test
 	public void updateTransactionEtatTest() {
+
 		/*
 		 * transactionService.update(transaction, Etat.WAITING);
 		 * assertThat(transaction.getEtat()).isEqualTo(Etat.WAITING);
 		 */
+
 	}
 
 	@Test

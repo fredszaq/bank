@@ -16,7 +16,7 @@ import com.excilys.formation.bank.bean.Compte;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
-		"classpath*:contextTest/applicationContext*.xml" })
+		"classpath:contextTest/applicationContext-serviceTest.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
 @DataSet("/datasets/dataSetService.xml")
