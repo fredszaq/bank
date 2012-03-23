@@ -2,20 +2,20 @@ package com.excilys.formation.bank.dao.impl;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.dao.OperationDAO;
 
+@Repository("operationDAO")
 public class OperationDAOHibernateImpl implements OperationDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void deleteByOperationId(Integer operationId) {
-		// TODO voir si on élimine par id ou par operation directement
-		sessionFactory.getCurrentSession()
-				.delete(getOperationById(operationId));
+	public void delete(Operation operation) {
+		sessionFactory.getCurrentSession().delete(operation);
 	}
 
 	@Override

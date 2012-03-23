@@ -29,7 +29,7 @@ import com.excilys.formation.bank.bean.Transaction;
 		"classpath*:contextTest/applicationContext*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetTransactionDao.xml")
+@DataSet("/datasets/dataSetTransactionOperationDao.xml")
 @Transactional
 @TransactionConfiguration
 public class TransactionDaoTest extends
