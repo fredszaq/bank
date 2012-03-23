@@ -47,4 +47,21 @@ public class CompteDaoTest extends
 						"compte1user2")).isNull();
 	}
 
+	@Test
+	public final void updateCompteEnleverArgent() {
+		Double soldeInitial = compteDAO.loadCompteById("compte1user1")
+				.getSolde();
+		compteDAO.updateSolde("compte1user1", -20);
+		assertThat(compteDAO.loadCompteById("compte1user1").getSolde())
+				.isEqualTo(soldeInitial - 20);
+	}
+
+	@Test
+	public final void updateCompteAjouterArgent() {
+		Double soldeInitial = compteDAO.loadCompteById("compte1user1")
+				.getSolde();
+		compteDAO.updateSolde("compte1user1", 20);
+		assertThat(compteDAO.loadCompteById("compte1user1").getSolde())
+				.isEqualTo(soldeInitial + 20);
+	}
 }

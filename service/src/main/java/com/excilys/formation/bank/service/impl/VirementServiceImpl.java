@@ -56,6 +56,8 @@ public class VirementServiceImpl implements VirementService {
 
 		createOperations(transaction, montant);
 
+		compteDAO.updateSolde(compteDebiteurId, -montant);
+		compteDAO.updateSolde(compteCrediteurId, montant);
 	}
 
 	private void createOperations(Transaction transaction, double montant) {
@@ -91,6 +93,7 @@ public class VirementServiceImpl implements VirementService {
 		Transaction transaction = new Transaction();
 		Date now = new Date(DateTime.now().getMillis());
 		transaction.setDateInit(now);
+		transaction.setDateValid(now);
 
 		if ("".equals(libelle)) {
 			transaction.setLibelle("virement de "

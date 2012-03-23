@@ -24,4 +24,12 @@ public interface CompteDAO {
 	 *         by the user
 	 */
 	Compte loadCompteByUsernameAndCompteId(String username, String compteId);
+
+	/**
+	 * update the Compte solde.
+	 * 
+	 * @param compteId
+	 * @param difference
+	 */
+	void updateSolde(String compteId, double difference);
 }
