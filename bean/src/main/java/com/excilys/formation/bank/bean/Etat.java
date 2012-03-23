@@ -1,11 +1,12 @@
 package com.excilys.formation.bank.bean;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,48 +18,32 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "etats")
-public class Etat {
-	/**
-	 * Enum de l'état de la transaction.
-	 * 
-	 * @author excilys
-	 * 
-	 */
-	public enum EtatType {
-		VALIDATED, WAITING;
-	}
+public enum Etat {
+	VALIDATED("VALIDATED"), WAITING("WAITING");
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "etat_id")
-	private Integer etatId;
+	@Generated("assigned")
+	@Column
+	private final String etat;
 
-	@Column(name = "etat")
-	@Enumerated(EnumType.STRING)
-	private EtatType etatType;
+	private static final Map<String, Etat> idMap = new HashMap<String, Etat>();
 
-	public final Integer getEtatId() {
-		return etatId;
+	static {
+		for (Etat etat : EnumSet.allOf(Etat.class)) {
+			idMap.put(etat.getEtat(), etat);
+		}
 	}
 
-	public final EtatType getEtatType() {
-		return etatType;
+	private Etat(final String etat) {
+		this.etat = etat;
 	}
 
-	public final void setEtatType(EtatType etatType) {
-		this.etatType = etatType;
+	public String getEtat() {
+		return etat;
 	}
 
-	public final void setEtatId(Integer etatId) {
-		this.etatId = etatId;
-	}
-
-	@Override
-	public final String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Etat [etatId=").append(etatId).append(", etatType=")
-				.append(etatType).append("]");
-		return builder.toString();
+	public static Etat valueByString(String etat) {
+		return idMap.get(etat);
 	}
 
 }

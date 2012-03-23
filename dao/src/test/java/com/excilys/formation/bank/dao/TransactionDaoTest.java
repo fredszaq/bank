@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Etat;
-import com.excilys.formation.bank.bean.Etat.EtatType;
 import com.excilys.formation.bank.bean.Transaction;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,49 +37,49 @@ public class TransactionDaoTest extends
 	@Autowired
 	private TransactionDAO transactionDAO;
 
-	@Autowired
-	private EtatDAO etatDAO;
-
 	private Transaction transaction;
 
 	@Transactional(readOnly = true)
 	@Before
 	public final void init() {
+		System.err
+				.println("########################################################################################################");
 		transaction = transactionDAO.getTransactionById(1);
+		System.err.println(transaction);
 	}
 
 	@Test
 	public final void getTransactionTest() {
-		assertThat(transaction.getEtat().getEtatType().name()).isEqualTo(
-				"VALIDATED");
+		System.out.println(transaction.getEtat());
+		assertThat(transaction.getEtat().name()).isEqualTo("VALIDATED");
 	}
 
 	@Test
 	public void updateTransactionEtatTest() {
-		Etat etat = etatDAO.getEtatByType(EtatType.WAITING);
-		transaction.setEtat(etat);
+		transaction.setEtat(Etat.WAITING);
 		transactionDAO.update(transaction);
-		assertThat(transaction.getEtat()).isEqualTo(etat);
+		assertThat(transaction.getEtat()).isEqualTo(Etat.WAITING);
+
 	}
 
 	@Test
 	public void insertTransactionTest() {
+
 		Transaction transaction = new Transaction();
 		transaction.setTransactionId(1);
-		Etat etat = etatDAO.getEtatByType(EtatType.VALIDATED);
-		transaction.setEtat(etat);
+		transaction.setEtat(Etat.VALIDATED);
 		Date date = new Date();
 		transaction.setDateValid(date);
 		transaction.setDateInit(date);
 		transactionDAO.insert(transaction);
 		transaction = transactionDAO.getTransactionById(1);
 		assertThat(transaction).isEqualTo(transaction);
+
 	}
 
 	@After
 	public final void end() {
 		transaction = null;
-		etatDAO = null;
 		transactionDAO = null;
 	}
 }
