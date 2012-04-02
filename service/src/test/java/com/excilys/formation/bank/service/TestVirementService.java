@@ -17,7 +17,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Transaction;
-import com.excilys.formation.bank.bean.TransactionCategorie.TransactionCategorieType;
+import com.excilys.formation.bank.bean.TransactionCategorie;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
@@ -47,9 +47,8 @@ public class TestVirementService {
 		double soldeInitialCrediteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte2").getSolde();
 		DateTime now = DateTime.now();
-		virementService.createVirement("user1", "compte1", "compte2", 35,
-				"oh le beau virement");
-		Transaction transaction = transactionService.getTransactionById(5);
+		Transaction transaction = virementService.createVirement("user1",
+				"compte1", "compte2", 35, "oh le beau virement");
 
 		assertThat(transaction.getLibelle()).isEqualTo("oh le beau virement");
 
@@ -73,10 +72,8 @@ public class TestVirementService {
 		assertThat(soldeFinalCrediteur).isEqualTo(soldeInitialCrediteur + 35);
 
 		// VIREMENT INTERNE
-		assertThat(
-				transaction.getTransactionCategorie()
-						.getTransactionCategorieType()).isEqualTo(
-				TransactionCategorieType.VIREMENT_INTERNE);
+		assertThat(transaction.getTransactionCategorie()).isEqualTo(
+				TransactionCategorie.VIREMENT_INTERNE);
 	}
 
 	@Test
@@ -86,8 +83,8 @@ public class TestVirementService {
 		double soldeInitialCrediteur = userService
 				.getCompteByUsernameAndAccountId("user2", "compte3").getSolde();
 		DateTime now = DateTime.now();
-		virementService.createVirement("user1", "compte1", "compte3", 35, "");
-		Transaction transaction = transactionService.getTransactionById(6);
+		Transaction transaction = virementService.createVirement("user1",
+				"compte1", "compte3", 35, "");
 
 		assertThat(transaction.getLibelle()).isEqualTo(
 				"virement de compte1 vers compte3");
@@ -112,10 +109,8 @@ public class TestVirementService {
 		assertThat(soldeFinalCrediteur).isEqualTo(soldeInitialCrediteur + 35);
 
 		// VIREMENT EXTERNE
-		assertThat(
-				transaction.getTransactionCategorie()
-						.getTransactionCategorieType()).isEqualTo(
-				TransactionCategorieType.VIREMENT_EXTERNE);
+		assertThat(transaction.getTransactionCategorie()).isEqualTo(
+				TransactionCategorie.VIREMENT_EXTERNE);
 	}
 
 	@After

@@ -1,63 +1,44 @@
 package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "transaction_categories")
-public class TransactionCategorie implements Serializable {
+public enum TransactionCategorie implements Serializable {
+	CARTE("CARTE"), VIREMENT_INTERNE("VIREMENT_INTERNE"), VIREMENT_EXTERNE(
+			"VIREMENT_EXTERNE");
+	@Id
+	@Generated("assigned")
+	@Column(name = "transaction_categorie")
+	private final String transactionCategorie;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6360299831361322000L;
+	private static final Map<String, TransactionCategorie> idMap = new HashMap<String, TransactionCategorie>();
 
-	public enum TransactionCategorieType {
-		CARTE, VIREMENT_INTERNE, VIREMENT_EXTERNE
+	static {
+		for (TransactionCategorie categorie : EnumSet
+				.allOf(TransactionCategorie.class)) {
+			idMap.put(categorie.getTransactionCategorie(), categorie);
+		}
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "transaction_categorie_id")
-	private Integer transactionCategorie;
+	private TransactionCategorie(final String categorie) {
+		transactionCategorie = categorie;
+	}
 
-	@Column(name = "transaction_categorie")
-	@Enumerated(EnumType.STRING)
-	private TransactionCategorieType transactionCategorieType;
-
-	public final Integer getTransactionCategorie() {
+	public String getTransactionCategorie() {
 		return transactionCategorie;
 	}
 
-	public final void setTransactionCategorie(Integer transactionCategorie) {
-		this.transactionCategorie = transactionCategorie;
+	public static TransactionCategorie valueByString(String categorie) {
+		return idMap.get(categorie);
 	}
-
-	public final TransactionCategorieType getTransactionCategorieType() {
-		return transactionCategorieType;
-	}
-
-	public final void setTransactionCategorieType(
-			TransactionCategorieType transactionCategorieType) {
-		this.transactionCategorieType = transactionCategorieType;
-	}
-
-	@Override
-	public final String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("TransactionCategorie [transactionCategorie=")
-				.append(transactionCategorie)
-				.append(", transactionCategorieType=")
-				.append(transactionCategorieType).append("]");
-		return builder.toString();
-	}
-
 }

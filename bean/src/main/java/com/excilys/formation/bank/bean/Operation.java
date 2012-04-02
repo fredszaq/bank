@@ -10,6 +10,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
+
 /**
  * Bean Opertation.
  * 
@@ -20,9 +23,14 @@ import javax.persistence.Table;
 @Table(name = "operations")
 public class Operation {
 
-	@ManyToOne
-	@JoinColumn(name = "operation_type_id")
-	private OperationComptable operationComptable;
+	@Column(name = "operation_type")
+	@Type(type = "com.excilys.formation.bank.bean.StringEnumPersistenceType", parameters = {
+			@Parameter(name = "enumClass", value = "com.excilys.formation.bank.bean.OperationType"),
+
+			@Parameter(name = "identifierMethod", value = "getOperationType"),
+
+			@Parameter(name = "valueOfMethod", value = "valueByString") })
+	private OperationType operationType;
 
 	@Column
 	private Double montant;
@@ -53,12 +61,16 @@ public class Operation {
 		return montant;
 	}
 
-	public final Integer getOperationId() {
-		return operationId;
+	public final OperationType getOperationType() {
+		return operationType;
 	}
 
-	public final OperationComptable getOperationComptable() {
-		return operationComptable;
+	public final void setOperationType(OperationType operationType) {
+		this.operationType = operationType;
+	}
+
+	public final Integer getOperationId() {
+		return operationId;
 	}
 
 	public final Transaction getTransaction() {
@@ -71,10 +83,6 @@ public class Operation {
 
 	public final void setOperationId(Integer operationId) {
 		this.operationId = operationId;
-	}
-
-	public final void setOperationType(OperationComptable operationComptable) {
-		this.operationComptable = operationComptable;
 	}
 
 	public final void setTransaction(Transaction transaction) {
