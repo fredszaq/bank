@@ -54,14 +54,16 @@ public class VirementServiceImpl implements VirementService {
 			Transaction transaction = createTransaction(compteDebiteurId,
 					compteCrediteurId, libelle);
 
-			createOperations(transaction, montant);
+			createOperations(compteDebiteurId, compteCrediteurId, transaction,
+					montant);
 
 			compteDAO.updateSolde(compteDebiteurId, -montant);
 			compteDAO.updateSolde(compteCrediteurId, montant);
 		}
 	}
 
-	private void createOperations(Transaction transaction, double montant) {
+	private void createOperations(String compteDebiteurId,
+			String compteCrediteurId, Transaction transaction, double montant) {
 		Operation operationDebit = new Operation();
 		Operation operationCredit = new Operation();
 
@@ -76,6 +78,12 @@ public class VirementServiceImpl implements VirementService {
 
 		operationDebit.setOperationType(typeDebit);
 		operationCredit.setOperationType(typeCredit);
+
+		operationDebit.setTransaction(transaction);
+		operationCredit.setTransaction(transaction);
+
+		operationDebit.setCompte(compteDAO.loadCompteById(compteDebiteurId));
+		operationCredit.setCompte(compteDAO.loadCompteById(compteCrediteurId));
 
 		operationDAO.insert(operationDebit);
 		operationDAO.insert(operationCredit);

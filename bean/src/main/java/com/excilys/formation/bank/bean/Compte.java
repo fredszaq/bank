@@ -1,7 +1,6 @@
 package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Generated;
@@ -65,7 +64,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 
 	@OneToMany
 	@JoinTable(name = "comptes_operations", joinColumns = @JoinColumn(name = "compte_id"), inverseJoinColumns = @JoinColumn(name = "operation_id"))
-	private List<Operation> operations;
+	private Set<Operation> operations;
 
 	@Override
 	public final int compareTo(Compte compte) {
@@ -129,11 +128,11 @@ public class Compte implements Serializable, Comparable<Compte> {
 		return builder.toString();
 	}
 
-	public List<Operation> getOperations() {
+	public Set<Operation> getOperations() {
 		return operations;
 	}
 
-	public void setOperations(List<Operation> operations) {
+	public void setOperations(Set<Operation> operations) {
 		this.operations = operations;
 	}
 

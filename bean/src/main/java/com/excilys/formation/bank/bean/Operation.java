@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,6 +31,10 @@ public class Operation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "operation_id")
 	private Integer operationId;
+
+	@ManyToOne
+	@JoinTable(name = "comptes_operations", joinColumns = @JoinColumn(name = "operation_id"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
+	private Compte compte;
 
 	@Override
 	public String toString() {
@@ -74,6 +79,14 @@ public class Operation {
 
 	public final void setTransaction(Transaction transaction) {
 		this.transaction = transaction;
+	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 }
