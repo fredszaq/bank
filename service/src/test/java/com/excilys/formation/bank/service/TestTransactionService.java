@@ -4,7 +4,6 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.Date;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -61,11 +60,5 @@ public class TestTransactionService {
 		transaction = transactionService.getTransactionById(1);
 		assertThat(transaction).isEqualTo(transaction);
 
-	}
-
-	@After
-	public final void end() {
-		transaction = null;
-		transactionService = null;
 	}
 }

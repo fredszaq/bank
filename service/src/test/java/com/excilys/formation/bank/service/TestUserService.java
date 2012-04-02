@@ -13,6 +13,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Compte;
+import com.excilys.formation.bank.bean.CompteType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
@@ -36,7 +37,7 @@ public class TestUserService {
 		Compte compte = userService.getCompteByUsernameAndAccountId("user2",
 				"compte3");
 		assertThat(compte.getCompteId()).isEqualTo("compte3");
-		assertThat(compte.getCompteType()).isEqualTo(Compte.CompteType.COURANT);
+		assertThat(compte.getCompteType()).isEqualTo(CompteType.COURANT);
 		assertThat(compte.getSolde()).isEqualTo(150.0);
 	}
 }
