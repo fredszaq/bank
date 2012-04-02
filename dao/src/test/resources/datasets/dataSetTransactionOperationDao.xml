@@ -26,5 +26,5 @@
 	<comptes_operations compte_id="compte1" operation_id="1" />	
 	<comptes_operations compte_id="compte2" operation_id="2" />	
 	<comptes_operations compte_id="compte1" operation_id="3" />	
-	<comptes_operations compte_id="compte1" operation_id="4" />	
+	<comptes_operations compte_id="compte1" operation_id="4" />
 </dataset>
