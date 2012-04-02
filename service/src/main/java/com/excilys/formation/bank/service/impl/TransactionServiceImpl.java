@@ -31,7 +31,6 @@ public class TransactionServiceImpl implements TransactionService {
 	public final void update(Transaction transaction, Etat etatType) {
 		transaction.setEtat(etatType);
 		transactionDAO.update(transaction);
-
 	}
 
 }

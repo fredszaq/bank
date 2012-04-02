@@ -22,7 +22,6 @@
 		<property name="definitions" value="/WEB-INF/tiles-defs.xml" />
 	</bean>
 
-
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:app.properties" />
