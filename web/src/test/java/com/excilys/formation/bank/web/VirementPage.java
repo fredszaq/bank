@@ -39,14 +39,24 @@ public class VirementPage extends FluentPage {
 	 * knowing its id). The hacked option is the first one
 	 * 
 	 * @param account
+	 *            the account id to be debited
 	 */
 	public final void hackForm(String account) {
 		executeScript("document.getElementById('compteDebiteur').options[0].value='"
 				+ account + "'");
 	}
 
+	/**
+	 * Fills the form with the given values.
+	 * 
+	 * TODO give the accounts to !
+	 * 
+	 * @param montant
+	 *            the montant of the virement
+	 * @param libelle
+	 *            the libelle
+	 */
 	public final void fillFormAndSend(int montant, String libelle) {
-
 		fill("#montant").with("" + montant);
 		fill("#libelle").with(libelle);
 		click("#submit");

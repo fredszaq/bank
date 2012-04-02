@@ -7,6 +7,8 @@ import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 /**
  * Tests on the login page.
@@ -26,12 +28,17 @@ public class SecurityTest extends FluentTest {
 	@Page
 	private AccountsPage userPage;
 
+	@Override
+	public WebDriver getDefaultDriver() {
+		return new HtmlUnitDriver();
+	}
+
 	/**
 	 * Set up method, going to the login page.
 	 */
 	@Before
 	public final void before() {
-		goTo(this.loginPage);
+		goTo(loginPage);
 	}
 
 	/**
@@ -39,7 +46,7 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void loginIsAccesible() {
-		assertThat(this.loginPage).isAt();
+		assertThat(loginPage).isAt();
 	}
 
 	/**
@@ -48,7 +55,7 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToLoginWithAGoodUsername() {
-		this.loginPage.login("luc", "admin");
+		loginPage.login("luc", "admin");
 		assertThat($("#logininfo").first().getText()).contains("Luc Mazon");
 
 	}
@@ -59,8 +66,8 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToLoginWithAWrongUsername() {
-		this.loginPage.login("awrongusename", "andawrongpassword");
-		this.loginPage.isShowingErrors();
+		loginPage.login("awrongusename", "andawrongpassword");
+		loginPage.isShowingErrors();
 	}
 
 	/**
@@ -68,8 +75,8 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToViewAnAdminPageAsAnAdmin() {
-		this.loginPage.login("fredszaq", "admin");
-		assertThat(this.adminPage).isAt();
+		loginPage.login("fredszaq", "admin");
+		assertThat(adminPage).isAt();
 	}
 
 	/**
@@ -78,8 +85,8 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToViewAnAdminPageAsANormalUser() {
-		this.loginPage.login("robert", "robert");
-		goTo(this.adminPage);
+		loginPage.login("robert", "robert");
+		goTo(adminPage);
 		assertThat(pageSource()).contains("403");
 	}
 
@@ -88,8 +95,8 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToViewAnAdminPageWithoutBeingLogged() {
-		goTo(this.adminPage);
-		assertThat(this.loginPage).isAt();
+		goTo(adminPage);
+		assertThat(loginPage).isAt();
 	}
 
 	/**
@@ -97,9 +104,9 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToViewASecuredPageAnAdmin() {
-		this.loginPage.login("stan", "admin");
-		goTo(this.userPage);
-		assertThat(this.userPage).isAt();
+		loginPage.login("stan", "admin");
+		goTo(userPage);
+		assertThat(userPage).isAt();
 	}
 
 	/**
@@ -108,8 +115,8 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToViewASecuredPageAsANormalUser() {
-		this.loginPage.login("jacky", "jacky");
-		assertThat(this.userPage).isAt();
+		loginPage.login("jacky", "jacky");
+		assertThat(userPage).isAt();
 	}
 
 	/**
@@ -117,8 +124,8 @@ public class SecurityTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToViewASecuredPageWithoutBeingLogged() {
-		goTo(this.userPage);
-		assertThat(this.loginPage).isAt();
+		goTo(userPage);
+		assertThat(loginPage).isAt();
 	}
 
 }

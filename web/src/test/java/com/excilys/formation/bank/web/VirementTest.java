@@ -7,6 +7,8 @@ import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.core.annotation.Page;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 /**
  * Tests on the login page.
@@ -21,16 +23,18 @@ public class VirementTest extends FluentTest {
 	private LoginPage loginPage;
 
 	@Page
-	private AdminPage adminPage;
-
-	@Page
 	private AccountsPage userPage;
 
 	@Page
 	private VirementPage virementPage;
 
+	@Override
+	public WebDriver getDefaultDriver() {
+		return new HtmlUnitDriver(true);
+	}
+
 	/**
-	 * Set up method, loging as robert and going to the user page
+	 * Set up method, logging as robert and going to the user page.
 	 */
 	@Before
 	public final void before() {
@@ -40,13 +44,18 @@ public class VirementTest extends FluentTest {
 	}
 
 	/**
-	 * In this test checks that we are on the right page.
+	 * This test checks that we are on the right page.
 	 */
 	@Test
 	public final void virementIsAccesible() {
 		assertThat(virementPage).isAt();
 	}
 
+	/**
+	 * This test uses some javascript to modify the html page and sets the
+	 * compte debiteur to one owned by another user. We check that the virement
+	 * doesn't have any effect in tht case.
+	 */
 	@Test
 	public final void tryTohackTheForm() {
 		goTo(userPage);
