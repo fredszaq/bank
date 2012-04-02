@@ -20,8 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Operation;
-import com.excilys.formation.bank.bean.OperationComptable;
-import com.excilys.formation.bank.bean.OperationComptable.OperationComptableType;
+import com.excilys.formation.bank.bean.OperationType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -53,19 +52,15 @@ public class OperationDaoTest extends
 	@Test
 	public final void getOperationDebitTest() {
 		assertThat(operationDebit.getMontant()).isEqualTo(42);
-		assertThat(
-				operationDebit.getOperationComptable()
-						.getOperationComptableType()).isEqualTo(
-				OperationComptableType.DEBIT);
+		assertThat(operationDebit.getOperationType()).isEqualTo(
+				OperationType.DEBIT);
 	}
 
 	@Test
 	public final void getOperationCreditTest() {
 		assertThat(operationCredit.getMontant()).isEqualTo(42);
-		assertThat(
-				operationCredit.getOperationComptable()
-						.getOperationComptableType()).isEqualTo(
-				OperationComptableType.CREDIT);
+		assertThat(operationCredit.getOperationType()).isEqualTo(
+				OperationType.CREDIT);
 	}
 
 	@Test
@@ -73,10 +68,7 @@ public class OperationDaoTest extends
 		Operation operationCarte = new Operation();
 		operationCarte.setMontant(34.0);
 		operationCarte.setOperationId(3);
-		OperationComptable operationComptable = new OperationComptable();
-		operationComptable
-				.setOperationComptableType(OperationComptableType.DEBIT);
-		operationCarte.setOperationType(operationComptable);
+		operationCarte.setOperationType(OperationType.DEBIT);
 
 		operationDAO.insert(operationCarte);
 		assertThat(operationDAO.getOperationById(5)).isEqualTo(operationCarte);

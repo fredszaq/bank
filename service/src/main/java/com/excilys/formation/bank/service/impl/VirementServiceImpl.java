@@ -12,15 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.Operation;
-import com.excilys.formation.bank.bean.OperationComptable;
-import com.excilys.formation.bank.bean.OperationComptable.OperationComptableType;
+import com.excilys.formation.bank.bean.OperationType;
 import com.excilys.formation.bank.bean.Transaction;
-import com.excilys.formation.bank.bean.TransactionCategorie.TransactionCategorieType;
+import com.excilys.formation.bank.bean.TransactionCategorie;
 import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.dao.CompteDAO;
-import com.excilys.formation.bank.dao.OperationComptableDAO;
 import com.excilys.formation.bank.dao.OperationDAO;
-import com.excilys.formation.bank.dao.TransactionCategorieDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
 import com.excilys.formation.bank.service.VirementService;
 
@@ -37,14 +34,8 @@ public class VirementServiceImpl implements VirementService {
 	@Autowired
 	private CompteDAO compteDAO;
 
-	@Autowired
-	private TransactionCategorieDAO categorieDAO;
-
-	@Autowired
-	private OperationComptableDAO operationComptableDAO;
-
 	@Override
-	public void createVirement(String login, String compteDebiteurId,
+	public Transaction createVirement(String login, String compteDebiteurId,
 			String compteCrediteurId, double montant, String libelle) {
 
 		if (!compteCrediteurId.equals(compteDebiteurId)) {
@@ -60,8 +51,10 @@ public class VirementServiceImpl implements VirementService {
 
 				compteDAO.updateSolde(compteDebiteurId, -montant);
 				compteDAO.updateSolde(compteCrediteurId, montant);
+				return transaction;
 			}
 		}
+		return null;
 	}
 
 	private void createOperations(String compteDebiteurId,
@@ -72,14 +65,8 @@ public class VirementServiceImpl implements VirementService {
 		operationDebit.setMontant(montant);
 		operationCredit.setMontant(montant);
 
-		OperationComptable typeDebit = operationComptableDAO
-				.getOperationComptableByType(OperationComptableType.DEBIT);
-
-		OperationComptable typeCredit = operationComptableDAO
-				.getOperationComptableByType(OperationComptableType.CREDIT);
-
-		operationDebit.setOperationType(typeDebit);
-		operationCredit.setOperationType(typeCredit);
+		operationDebit.setOperationType(OperationType.DEBIT);
+		operationCredit.setOperationType(OperationType.CREDIT);
 
 		operationDebit.setTransaction(transaction);
 		operationCredit.setTransaction(transaction);
@@ -116,12 +103,10 @@ public class VirementServiceImpl implements VirementService {
 
 		if (userIntersection.isEmpty()) {
 			transaction
-					.setTransactionCategorie(categorieDAO
-							.getTransactionCategorieByType(TransactionCategorieType.VIREMENT_EXTERNE));
+					.setTransactionCategorie(TransactionCategorie.VIREMENT_EXTERNE);
 		} else {
 			transaction
-					.setTransactionCategorie(categorieDAO
-							.getTransactionCategorieByType(TransactionCategorieType.VIREMENT_INTERNE));
+					.setTransactionCategorie(TransactionCategorie.VIREMENT_INTERNE);
 		}
 
 		transaction.setEtat(Etat.VALIDATED);

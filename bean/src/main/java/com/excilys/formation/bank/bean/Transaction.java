@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Parameter;
@@ -53,8 +51,13 @@ public class Transaction implements Serializable {
 	@Column
 	private String libelle;
 
-	@ManyToOne
-	@JoinColumn(name = "transaction_categorie_id")
+	@Column(name = "transaction_categorie")
+	@Type(type = "com.excilys.formation.bank.bean.StringEnumPersistenceType", parameters = {
+			@Parameter(name = "enumClass", value = "com.excilys.formation.bank.bean.TransactionCategorie"),
+
+			@Parameter(name = "identifierMethod", value = "getTransactionCategorie"),
+
+			@Parameter(name = "valueOfMethod", value = "valueByString") })
 	private TransactionCategorie transactionCategorie;
 
 	public final Date getDateInit() {

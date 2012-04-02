@@ -38,14 +38,14 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 
 	@Override
 	public List<Operation> getOperationCarteFromCompteId(String compteId) {
-		String query = "select operation from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorieType='CARTE'";
+		String query = "select operation from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorie='CARTE'";
 		return sessionFactory.getCurrentSession().createQuery(query)
 				.setString("compteId", compteId).list();
 	}
 
 	@Override
 	public double getTotalOperationCarteFromCompteId(String compteId) {
-		String query = "select sum(operation.montant) from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorieType='CARTE'";
+		String query = "select sum(operation.montant) from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorie='CARTE'";
 		List<?> resultList = sessionFactory.getCurrentSession()
 				.createQuery(query).setString("compteId", compteId).list();
 		Object result = resultList.get(0);
@@ -54,7 +54,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 
 	@Override
 	public List<Operation> getOperationNonCarteFromCompteId(String compteId) {
-		String query = "select operation from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorieType!='CARTE'";
+		String query = "select operation from Compte compte join compte.operations operation where compte.id=:compteId and operation.transaction.transactionCategorie.transactionCategorie!='CARTE'";
 		return sessionFactory.getCurrentSession().createQuery(query)
 				.setString("compteId", compteId).list();
 	}
