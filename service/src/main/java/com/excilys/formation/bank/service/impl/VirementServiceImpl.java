@@ -23,6 +23,7 @@ import com.excilys.formation.bank.dao.OperationComptableDAO;
 import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.TransactionCategorieDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
+import com.excilys.formation.bank.dao.UserDAO;
 import com.excilys.formation.bank.service.VirementService;
 
 @Service("virementService")
@@ -47,18 +48,27 @@ public class VirementServiceImpl implements VirementService {
 	@Autowired
 	private OperationComptableDAO operationComptableDAO;
 
+	@Autowired
+	private UserDAO userDAO;
+
 	@Override
-	public void createVirement(String compteDebiteurId,
+	public void createVirement(String login, String compteDebiteurId,
 			String compteCrediteurId, double montant, String libelle) {
+
 		if (!compteCrediteurId.equals(compteDebiteurId)) {
-			Transaction transaction = createTransaction(compteDebiteurId,
-					compteCrediteurId, libelle);
+			Compte compteDebiteurUser = compteDAO
+					.loadCompteByUsernameAndCompteId(login, compteDebiteurId);
+			if (compteDebiteurUser != null) {
 
-			createOperations(compteDebiteurId, compteCrediteurId, transaction,
-					montant);
+				Transaction transaction = createTransaction(compteDebiteurId,
+						compteCrediteurId, libelle);
 
-			compteDAO.updateSolde(compteDebiteurId, -montant);
-			compteDAO.updateSolde(compteCrediteurId, montant);
+				createOperations(compteDebiteurId, compteCrediteurId,
+						transaction, montant);
+
+				compteDAO.updateSolde(compteDebiteurId, -montant);
+				compteDAO.updateSolde(compteCrediteurId, montant);
+			}
 		}
 	}
 

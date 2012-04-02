@@ -85,7 +85,10 @@ public class AuthenticatedController {
 	public final String doVirement(@RequestParam String compteDebiteur,
 			@RequestParam String compteCrediteur, @RequestParam double montant,
 			@RequestParam String libelle) {
-		virementService.createVirement(compteDebiteur, compteCrediteur,
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		String login = userDetails.getUsername();
+		virementService.createVirement(login, compteDebiteur, compteCrediteur,
 				montant, libelle);
 		return "redirect:/secure/account.html?id=" + compteDebiteur;
 	}
