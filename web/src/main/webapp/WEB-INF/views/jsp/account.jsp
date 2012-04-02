@@ -44,9 +44,9 @@
 				<td><fmt:formatDate value="${operation.transaction.dateInit}" /></td>
 				<td>${operation.transaction.libelle}</td>
 				<td
-					class="numeric ${operation.operationComptable.operationComptableType=='DEBIT' ? 'negative' : 'positive'}"><fmt:formatNumber
+					class="numeric ${operation.operationType=='DEBIT' ? 'negative' : 'positive'}"><fmt:formatNumber
 						type="currency" currencyCode="EUR"
-						value="${operation.operationComptable.operationComptableType=='DEBIT' ? - operation.montant : operation.montant}" /></td>
+						value="${operation.operationType=='DEBIT' ? - operation.montant : operation.montant}" /></td>
 			</tr>
 		</c:forEach>
 
