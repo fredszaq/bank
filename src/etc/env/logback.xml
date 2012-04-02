@@ -10,7 +10,7 @@
 	</appender>
 
 	<logger name="com.excilys.formation" additivity="false">
-		<level value="debug"/>
+		<level value="warn"/>
 		<appender-ref ref="STDOUT"/>
 	</logger>
 

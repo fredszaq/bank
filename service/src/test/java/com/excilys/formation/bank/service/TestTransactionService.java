@@ -57,11 +57,9 @@ public class TestTransactionService {
 		Date date = new Date();
 		transaction.setDateValid(date);
 		transaction.setDateInit(date);
-		/*
-		 * transactionService.insert(transaction); transaction =
-		 * transactionService.getTransactionById(1);
-		 * assertThat(transaction).isEqualTo(transaction);
-		 */
+		transactionService.insert(transaction);
+		transaction = transactionService.getTransactionById(1);
+		assertThat(transaction).isEqualTo(transaction);
 
 	}
 
