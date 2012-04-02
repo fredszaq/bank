@@ -6,14 +6,15 @@ import java.util.Set;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
 
 /**
  * Compte bean.
@@ -31,17 +32,14 @@ public class Compte implements Serializable, Comparable<Compte> {
 	 * @author excilys
 	 * 
 	 */
-	public enum CompteType {
-		EPARGNE, COURANT;
-	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8546946063789928623L;
-
-	@Enumerated(EnumType.STRING)
 	@Column(name = "compte_type")
+	@Type(type = "com.excilys.formation.bank.bean.StringEnumPersistenceType", parameters = {
+			@Parameter(name = "enumClass", value = "com.excilys.formation.bank.bean.CompteType"),
+
+			@Parameter(name = "identifierMethod", value = "getCompteType"),
+
+			@Parameter(name = "valueOfMethod", value = "valueByString") })
 	private CompteType compteType;
 
 	@Column

@@ -4,7 +4,6 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -111,12 +110,5 @@ public class TestVirementService {
 		// VIREMENT EXTERNE
 		assertThat(transaction.getTransactionCategorie()).isEqualTo(
 				TransactionCategorie.VIREMENT_EXTERNE);
-	}
-
-	@After
-	public final void end() {
-		virementService = null;
-		transactionService = null;
-		userService = null;
 	}
 }

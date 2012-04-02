@@ -4,7 +4,6 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -125,12 +124,5 @@ public class OperationDaoTest extends
 				.getOperationNonCarteFromCompteId("compte1");
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(42);
-	}
-
-	@After
-	public final void end() {
-		operationCredit = null;
-		operationDebit = null;
-		operationDAO = null;
 	}
 }
