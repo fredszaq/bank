@@ -30,4 +30,10 @@ public class AccountsPage extends FluentPage {
 		assertThat(find(".error")).isNotEmpty();
 	}
 
+	public final double getAccountSolde(String account) {
+		String solde = $("#solde_" + account).getTexts().get(0).toString();
+
+		return Double.parseDouble(solde.replaceAll("EUR| ", "").replace(",",
+				"."));
+	}
 }

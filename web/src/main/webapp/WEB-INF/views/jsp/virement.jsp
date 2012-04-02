@@ -30,12 +30,12 @@
 
 			<div>
 				<label for="montant">Montant</label> <input name="montant"
-					type="number" />
+					type="number" id="montant"/>
 			</div>
 
 			<div>
 				<label for="libelle">Libellé</label><input name="libelle"
-					type="text" />
+					type="text" id="libelle"/>
 			</div>
 
 
