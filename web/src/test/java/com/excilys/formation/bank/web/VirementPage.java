@@ -49,6 +49,7 @@ public class VirementPage extends FluentPage {
 
 		fill("#montant").with("" + montant);
 		fill("#libelle").with(libelle);
+		click("#submit");
 	}
 
 }
