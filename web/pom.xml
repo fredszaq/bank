@@ -186,11 +186,11 @@
 								</properties>
 								<configfiles>
 									<configfile>
-										<file>${project.basedir}/src/test/resources/env/app.properties</file>
+										<file>${project.parent.basedir}/src/etc/env/app.properties</file>
 										<todir>lib</todir>
 									</configfile>
 									<configfile>
-										<file>${project.basedir}/src/test/resources/env/logback.xml</file>
+										<file>${project.parent.basedir}/src/etc/env/logback.xml</file>
 										<todir>lib</todir>
 									</configfile>
 									<configfile>
