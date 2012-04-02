@@ -15,7 +15,7 @@
 			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
 				<td>${compte.compteType}</td>
 				<td><a href="${pageContext.request.contextPath}/secure/account.html?id=${compte.compteId}">${compte.compteId}</a></td>
-				<td class="numeric"> <fmt:formatNumber type="currency" currencyCode="EUR" value="${compte.solde}" /></td>
+				<td class="numeric" id="solde_${compte.compteId}"> <fmt:formatNumber type="currency" currencyCode="EUR" value="${compte.solde}" /></td>
 			</tr>
 		</c:forEach>
 	</table> 
