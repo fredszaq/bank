@@ -47,7 +47,7 @@ public class TestVirementService {
 		double soldeInitialCrediteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte2").getSolde();
 		DateTime now = DateTime.now();
-		virementService.createVirement("compte1", "compte2", 35,
+		virementService.createVirement("user1", "compte1", "compte2", 35,
 				"oh le beau virement");
 		Transaction transaction = transactionService.getTransactionById(4);
 
@@ -86,7 +86,7 @@ public class TestVirementService {
 		double soldeInitialCrediteur = userService
 				.getCompteByUsernameAndAccountId("user2", "compte3").getSolde();
 		DateTime now = DateTime.now();
-		virementService.createVirement("compte1", "compte3", 35, "");
+		virementService.createVirement("user1", "compte1", "compte3", 35, "");
 		Transaction transaction = transactionService.getTransactionById(5);
 
 		assertThat(transaction.getLibelle()).isEqualTo(
