@@ -61,8 +61,8 @@ WHERE
 ALTER TABLE
 	transactions
 ADD CONSTRAINT 
-	fk_transactions_etat
+	fk_transactions_categories
 FOREIGN KEY 
-	(etat)
+	(transaction_categorie)
 REFERENCES 
-	etats(etat);
+	transaction_categories(transaction_categorie);
