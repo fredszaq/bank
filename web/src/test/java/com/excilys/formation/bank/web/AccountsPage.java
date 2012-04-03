@@ -23,8 +23,7 @@ public class AccountsPage extends BankRootPage {
 
 	public final double getAccountSolde(String account) {
 		String solde = $("#solde_" + account).getTexts().get(0).toString();
-
-		return Double.parseDouble(solde.replaceAll("EUR| ", "").replace(",",
-				"."));
+		return Double.parseDouble(solde.replaceAll("EUR| ", "")
+				.replace(",", ""));
 	}
 }
