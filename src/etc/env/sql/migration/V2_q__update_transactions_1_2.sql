@@ -1,0 +1,1 @@
+UPDATE transactions SET date_valid = '2012-03-21 00:00:00' where transaction_id = 1;

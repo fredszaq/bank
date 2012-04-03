@@ -45,7 +45,7 @@ public class SecurityTest extends FluentTest {
 	 * In this test checks that we are on the right page.
 	 */
 	@Test
-	public final void loginIsAccesible() {
+	public final void loginIsAccessible() {
 		assertThat(loginPage).isAt();
 	}
 

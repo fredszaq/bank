@@ -61,7 +61,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	public final List<Operation> getOperationCarteFromCompteId(String compteId) {
 		String query = "select operation from Compte compte join "
 				+ "compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie='CARTE'";
+				+ "and operation.transaction.transactionCategorie='CARTE' "
+				+ "order by operation.transaction.dateValid ASC";
 		return sessionFactory.getCurrentSession().createQuery(query)
 				.setString("compteId", compteId).list();
 	}
@@ -73,7 +74,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	public final double getTotalOperationCarteFromCompteId(String compteId) {
 		String query = "select sum(operation.montant) from Compte compte "
 				+ "join compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie='CARTE'";
+				+ "and operation.transaction.transactionCategorie='CARTE' ";
 		List<?> resultList = sessionFactory.getCurrentSession()
 				.createQuery(query).setString("compteId", compteId).list();
 		Object result = resultList.get(0);
@@ -88,7 +89,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 			String compteId) {
 		String query = "select operation from Compte compte join "
 				+ "compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie!='CARTE'";
+				+ "and operation.transaction.transactionCategorie!='CARTE' "
+				+ "order by operation.transaction.dateValid ASC";
 		return sessionFactory.getCurrentSession().createQuery(query)
 				.setString("compteId", compteId).list();
 	}
