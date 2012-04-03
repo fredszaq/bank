@@ -13,5 +13,5 @@ public class TestConstants {
 	 * changes as this is the URL used on the Jenkins server (and the one used
 	 * if you run Maven)
 	 */
-	public final static String BASE_URL = "http://localhost:8080/bankroot/";
+	public final static String BASE_URL = "http://localhost:9090/bankroot/";
 }
