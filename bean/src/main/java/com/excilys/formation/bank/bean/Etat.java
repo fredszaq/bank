@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Bean Etat.
+ * Enum Etat.
  * 
  * @author excilys
  * 
@@ -26,14 +26,20 @@ public enum Etat {
 	@Column
 	private final String etat;
 
-	private static final Map<String, Etat> idMap = new HashMap<String, Etat>();
+	private static final Map<String, Etat> ID_MAP = new HashMap<String, Etat>();
 
 	static {
 		for (Etat etat : EnumSet.allOf(Etat.class)) {
-			idMap.put(etat.getEtat(), etat);
+			ID_MAP.put(etat.getEtat(), etat);
 		}
 	}
 
+	/**
+	 * Constructeur logique.
+	 * 
+	 * @param etat
+	 *            : l'état
+	 */
 	private Etat(final String etat) {
 		this.etat = etat;
 	}
@@ -42,8 +48,15 @@ public enum Etat {
 		return etat;
 	}
 
+	/**
+	 * Retourne l'état en fonction du nom de l'état.
+	 * 
+	 * @param etat
+	 *            : l'état
+	 * @return Etat
+	 */
 	public static Etat valueByString(String etat) {
-		return idMap.get(etat);
+		return ID_MAP.get(etat);
 	}
 
 }

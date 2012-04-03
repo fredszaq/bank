@@ -92,11 +92,11 @@ public class Transaction implements Serializable {
 		this.transactionId = transactionId;
 	}
 
-	public String getLibelle() {
+	public final String getLibelle() {
 		return libelle;
 	}
 
-	public void setLibelle(String libelle) {
+	public final void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
 
@@ -109,11 +109,11 @@ public class Transaction implements Serializable {
 		return builder.toString();
 	}
 
-	public TransactionCategorie getTransactionCategorie() {
+	public final TransactionCategorie getTransactionCategorie() {
 		return transactionCategorie;
 	}
 
-	public void setTransactionCategorie(
+	public final void setTransactionCategorie(
 			TransactionCategorie transactionCategorie) {
 		this.transactionCategorie = transactionCategorie;
 	}

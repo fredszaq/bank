@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Bean Etat.
+ * Enum CompteType.
  * 
  * @author excilys
  * 
@@ -26,24 +26,37 @@ public enum CompteType {
 	@Column(name = "compte_type")
 	private final String compteType;
 
-	private static final Map<String, CompteType> idMap = new HashMap<String, CompteType>();
+	private static final Map<String, CompteType> ID_MAP = new HashMap<String, CompteType>();
 
 	static {
 		for (CompteType compteType : EnumSet.allOf(CompteType.class)) {
-			idMap.put(compteType.getCompteType(), compteType);
+			ID_MAP.put(compteType.getCompteType(), compteType);
 		}
 	}
 
+	/**
+	 * Constructeur logique.
+	 * 
+	 * @param compteType
+	 *            : le type du compte
+	 */
 	private CompteType(final String compteType) {
 		this.compteType = compteType;
 	}
 
-	public String getCompteType() {
+	public final String getCompteType() {
 		return compteType;
 	}
 
+	/**
+	 * Retourne le CompteType en fonction de son nom.
+	 * 
+	 * @param compteType
+	 *            : le compteType
+	 * @return CompteType
+	 */
 	public static CompteType valueByString(String compteType) {
-		return idMap.get(compteType);
+		return ID_MAP.get(compteType);
 	}
 
 }

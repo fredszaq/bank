@@ -14,7 +14,7 @@ import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
 /**
- * Bean Opertation.
+ * Bean Operation.
  * 
  * @author excilys
  * 
@@ -45,7 +45,7 @@ public class Operation {
 	private Compte compte;
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Operation [montant=").append(montant)
 				.append(", operationId=").append(operationId)
@@ -89,11 +89,11 @@ public class Operation {
 		this.transaction = transaction;
 	}
 
-	public Compte getCompte() {
+	public final Compte getCompte() {
 		return compte;
 	}
 
-	public void setCompte(Compte compte) {
+	public final void setCompte(Compte compte) {
 		this.compte = compte;
 	}
 

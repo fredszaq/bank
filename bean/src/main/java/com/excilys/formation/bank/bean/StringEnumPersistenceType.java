@@ -14,6 +14,13 @@ import org.hibernate.usertype.ParameterizedType;
 import org.hibernate.usertype.UserType;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class StringEnumPersistenceType.
+ * 
+ * @author excilys
+ * 
+ * @param <T>
+ */
 @Component
 public class StringEnumPersistenceType<T extends Enum<?>> implements UserType,
 		ParameterizedType {
@@ -24,12 +31,18 @@ public class StringEnumPersistenceType<T extends Enum<?>> implements UserType,
 	private Class<?> identifierType;
 	private Class<T> enumClass;
 
+	/**
+	 * Constructeur par défaut.
+	 */
 	public StringEnumPersistenceType() {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public void setParameterValues(Properties parameters) {
+	public final void setParameterValues(Properties parameters) {
 		String enumClassName = parameters.getProperty("enumClass");
 		try {
 			enumClass = (Class<T>) Class.forName(enumClassName).asSubclass(
@@ -44,9 +57,8 @@ public class StringEnumPersistenceType<T extends Enum<?>> implements UserType,
 					new Class[0]);
 			identifierType = identifierMethod.getReturnType();
 		} catch (Exception e) {
-			throw new HibernateException(
-					"Failed to obtain identifier method. Setting default method name value",
-					e);
+			throw new HibernateException("Failed to obtain identifier method. "
+					+ "Setting default method name value", e);
 		}
 		String valueOfMethodName = parameters.getProperty("valueOfMethod",
 				DEFAULT_FROM_VALUE_METHOD_NAME);
@@ -54,24 +66,19 @@ public class StringEnumPersistenceType<T extends Enum<?>> implements UserType,
 			fromValueMethod = enumClass.getMethod(valueOfMethodName,
 					new Class[] { identifierType });
 		} catch (Exception e) {
-			throw new HibernateException(
-					"Failed to obtain fromValue method. Setting default method name value",
-					e);
+			throw new HibernateException("Failed to obtain fromValue method. "
+					+ "Setting default method name value", e);
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Object nullSafeGet(ResultSet resultSet, String[] names,
-			SessionImplementor session, Object owner)
-			throws HibernateException, SQLException {
+	public final Object nullSafeGet(ResultSet resultSet, String[] names,
+			SessionImplementor session, Object owner) throws SQLException {
 		try {
 			String propertyValue = resultSet.getString(names[0]);
-			/*
-			 * Integer propertyNumericValue; try { propertyNumericValue =
-			 * Integer.valueOf(propertyValue); } catch (NumberFormatException e)
-			 * { return null; } return fromValueMethod.invoke(enumClass,
-			 * propertyNumericValue);
-			 */
 			return fromValueMethod.invoke(enumClass, propertyValue);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,10 +89,13 @@ public class StringEnumPersistenceType<T extends Enum<?>> implements UserType,
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public void nullSafeSet(PreparedStatement preparedStatement, Object value,
-			int index, SessionImplementor session) throws HibernateException,
-			SQLException {
+	public final void nullSafeSet(PreparedStatement preparedStatement,
+			Object value, int index, SessionImplementor session)
+			throws SQLException {
 		try {
 			if (null == value) {
 				preparedStatement.setNull(index, Types.VARCHAR);
@@ -104,54 +114,79 @@ public class StringEnumPersistenceType<T extends Enum<?>> implements UserType,
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Class<T> returnedClass() {
+	public final Class<T> returnedClass() {
 		return enumClass;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public int[] sqlTypes() {
+	public final int[] sqlTypes() {
 		return new int[] { Types.VARCHAR };
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean isMutable() {
+	public final boolean isMutable() {
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean equals(Object x, Object y) throws HibernateException {
+	public final boolean equals(Object x, Object y) {
 		if (x != y) {
 			return false;
 		}
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public int hashCode(Object x) throws HibernateException {
+	public final int hashCode(Object x) {
 		assert (x != null);
 		return x.hashCode();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Object deepCopy(Object value) throws HibernateException {
+	public final Object deepCopy(Object value) {
 		return value;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Object replace(Object original, Object target, Object owner)
-			throws HibernateException {
+	public final Object replace(Object original, Object target, Object owner) {
 		return original;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Serializable disassemble(Object value) throws HibernateException {
+	public final Serializable disassemble(Object value) {
 		return (Serializable) value;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Object assemble(Serializable cached, Object owner)
-			throws HibernateException {
+	public final Object assemble(Serializable cached, Object owner) {
 		return cached;
 	}
 

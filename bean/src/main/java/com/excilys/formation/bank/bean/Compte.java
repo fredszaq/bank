@@ -27,6 +27,11 @@ import org.hibernate.annotations.Type;
 public class Compte implements Serializable, Comparable<Compte> {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5415634325439473807L;
+
+	/**
 	 * CompteType enum.
 	 * 
 	 * @author excilys
@@ -77,7 +82,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 		return compteType;
 	}
 
-	public String getNumCarte() {
+	public final String getNumCarte() {
 		return numCarte;
 	}
 
@@ -85,11 +90,11 @@ public class Compte implements Serializable, Comparable<Compte> {
 		return solde;
 	}
 
-	public Double getTauxInteret() {
+	public final Double getTauxInteret() {
 		return tauxInteret;
 	}
 
-	public Set<User> getUsers() {
+	public final Set<User> getUsers() {
 		return users;
 	}
 
@@ -101,7 +106,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 		this.compteType = compteType;
 	}
 
-	public void setNumCarte(String numCarte) {
+	public final void setNumCarte(String numCarte) {
 		this.numCarte = numCarte;
 	}
 
@@ -109,11 +114,11 @@ public class Compte implements Serializable, Comparable<Compte> {
 		this.solde = solde;
 	}
 
-	public void setTauxInteret(Double tauxInteret) {
+	public final void setTauxInteret(Double tauxInteret) {
 		this.tauxInteret = tauxInteret;
 	}
 
-	public void setUsers(Set<User> users) {
+	public final void setUsers(Set<User> users) {
 		this.users = users;
 	}
 
@@ -126,11 +131,11 @@ public class Compte implements Serializable, Comparable<Compte> {
 		return builder.toString();
 	}
 
-	public Set<Operation> getOperations() {
+	public final Set<Operation> getOperations() {
 		return operations;
 	}
 
-	public void setOperations(Set<Operation> operations) {
+	public final void setOperations(Set<Operation> operations) {
 		this.operations = operations;
 	}
 

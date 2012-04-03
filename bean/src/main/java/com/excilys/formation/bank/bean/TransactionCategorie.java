@@ -11,6 +11,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Enum TransactionCategorie.
+ * 
+ * @author excilys
+ * 
+ */
 @Entity
 @Table(name = "transaction_categories")
 public enum TransactionCategorie implements Serializable {
@@ -21,15 +27,21 @@ public enum TransactionCategorie implements Serializable {
 	@Column(name = "transaction_categorie")
 	private final String transactionCategorie;
 
-	private static final Map<String, TransactionCategorie> idMap = new HashMap<String, TransactionCategorie>();
+	private static final Map<String, TransactionCategorie> ID_MAP = new HashMap<String, TransactionCategorie>();
 
 	static {
 		for (TransactionCategorie categorie : EnumSet
 				.allOf(TransactionCategorie.class)) {
-			idMap.put(categorie.getTransactionCategorie(), categorie);
+			ID_MAP.put(categorie.getTransactionCategorie(), categorie);
 		}
 	}
 
+	/**
+	 * Constructeur logique.
+	 * 
+	 * @param categorie
+	 *            : la categorie de la transaction
+	 */
 	private TransactionCategorie(final String categorie) {
 		transactionCategorie = categorie;
 	}
@@ -38,7 +50,14 @@ public enum TransactionCategorie implements Serializable {
 		return transactionCategorie;
 	}
 
+	/**
+	 * Retourne la TransactionCategorie en fonction de son nom.
+	 * 
+	 * @param categorie
+	 *            : la catégorie de la transaction
+	 * @return TransactionCategorie
+	 */
 	public static TransactionCategorie valueByString(String categorie) {
-		return idMap.get(categorie);
+		return ID_MAP.get(categorie);
 	}
 }
