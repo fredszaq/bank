@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
+import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.service.UserService;
 import com.excilys.formation.bank.service.VirementService;
 
@@ -88,9 +89,13 @@ public class AuthenticatedController {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		String login = userDetails.getUsername();
-		virementService.createVirement(login, compteDebiteur, compteCrediteur,
-				montant, libelle);
-		return "redirect:/secure/account.html?id=" + compteDebiteur;
+		Transaction transaction = virementService.createVirement(login,
+				compteDebiteur, compteCrediteur, montant, libelle);
+		if (transaction != null) {
+			return "redirect:/secure/account.html?id=" + compteDebiteur;
+		}
+		return "redirect:/secure/virement.html?error=1";
+
 	}
 
 	@RequestMapping("/detailCarte.html")
