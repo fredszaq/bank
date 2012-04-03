@@ -29,7 +29,7 @@ public class VirementTest extends FluentTest {
 	private VirementPage virementPage;
 
 	@Override
-	public WebDriver getDefaultDriver() {
+	public final WebDriver getDefaultDriver() {
 		return new HtmlUnitDriver(true);
 	}
 
@@ -51,6 +51,9 @@ public class VirementTest extends FluentTest {
 		assertThat(virementPage).isAt();
 	}
 
+	/**
+	 * Just a simple virement test.
+	 */
 	@Test
 	public final void tryMakeAVirement() {
 		goTo(userPage);
@@ -91,7 +94,7 @@ public class VirementTest extends FluentTest {
 	/**
 	 * This test uses some javascript to modify the html page and sets the
 	 * compte debiteur to one owned by another user. We check that the virement
-	 * doesn't have any effect in tht case.
+	 * doesn't have any effect in that case.
 	 */
 	@Test
 	public final void tryTohackTheForm() {
