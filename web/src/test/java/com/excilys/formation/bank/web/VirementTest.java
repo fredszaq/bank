@@ -52,6 +52,16 @@ public class VirementTest extends FluentTest {
 	}
 
 	/**
+	 * This test tries to make a virement between twice the same compte and
+	 * checks that an error is displayed.
+	 */
+	@Test
+	public final void tryToMakeAVirementBetweenTwiceTheSameCompte() {
+		virementPage.fillFormAndSend(1, "test");
+		virementPage.isShowingErrors();
+	}
+
+	/**
 	 * This test uses some javascript to modify the html page and sets the
 	 * compte debiteur to one owned by another user. We check that the virement
 	 * doesn't have any effect in tht case.
