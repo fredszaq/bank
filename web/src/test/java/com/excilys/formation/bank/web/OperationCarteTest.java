@@ -1,6 +1,7 @@
 package com.excilys.formation.bank.web;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.fest.assertions.Delta.delta;
 import static org.fest.assertions.fluentlenium.FluentLeniumAssertions.assertThat;
 
 import org.fluentlenium.adapter.FluentTest;
@@ -60,7 +61,7 @@ public class OperationCarteTest extends FluentTest {
 				"test");
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))
-				.isEqualTo(solde1 - 0.01);
+				.isEqualTo(solde1 - 0.01, delta(0.00000001));
 	}
 
 	/**
