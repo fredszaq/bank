@@ -22,14 +22,17 @@
 
 	<h2>Opérations</h2>
 
-	<table>
-		<tr>
-			<th><a
-				href="${pageContext.request.contextPath}/secure/detailCarte.html?id=${compte.compteId}">Total
-					des operations carte :</a></th>
-			<td class="numeric"><fmt:formatNumber type="currency" currencyCode="EUR" value="${totalCarte }" /></td>
-		</tr>
-	</table>
+	<c:if test="${compte.hasCarte()}">
+		<table>
+			<tr>
+				<th><a
+					href="${pageContext.request.contextPath}/secure/detailCarte.html?id=${compte.compteId}">Total
+						des operations carte :</a></th>
+				<td class="numeric"><fmt:formatNumber type="currency"
+						currencyCode="EUR" value="${totalCarte }" /></td>
+			</tr>
+		</table>
+	</c:if>
 
 	<table>
 		<tr>
