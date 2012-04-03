@@ -6,7 +6,7 @@
 	<fmt:setBundle basename="localization.Messages" />
 	<table id="accountList">
 		<tr>
-			<th><fmt:message key="comptes.types" /></th>
+			<th><fmt:message key="comptes.type" /></th>
 			<th><fmt:message key="comptes.name" /></th>
 			<th class="numeric"><fmt:message key="comptes.solde" /></th>
 		</tr>
