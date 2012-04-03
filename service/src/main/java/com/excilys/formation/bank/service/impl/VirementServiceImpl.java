@@ -21,6 +21,12 @@ import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
 import com.excilys.formation.bank.service.VirementService;
 
+/**
+ * Implémentation de l'interface VirementService
+ * 
+ * @author excilys
+ * 
+ */
 @Service("virementService")
 @Transactional
 public class VirementServiceImpl implements VirementService {
@@ -34,9 +40,13 @@ public class VirementServiceImpl implements VirementService {
 	@Autowired
 	private CompteDAO compteDAO;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Transaction createVirement(String login, String compteDebiteurId,
-			String compteCrediteurId, double montant, String libelle) {
+	public final Transaction createVirement(String login,
+			String compteDebiteurId, String compteCrediteurId, double montant,
+			String libelle) {
 
 		if (!compteCrediteurId.equals(compteDebiteurId)) {
 			Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
@@ -60,6 +70,18 @@ public class VirementServiceImpl implements VirementService {
 		return null;
 	}
 
+	/**
+	 * Création de l'opération associée à la transaction de type virement.
+	 * 
+	 * @param compteDebiteur
+	 *            : compte débiteur
+	 * @param compteCrediteur
+	 *            : compte créditeur
+	 * @param transaction
+	 *            : la transaction
+	 * @param montant
+	 *            : le montant
+	 */
 	private void createOperations(Compte compteDebiteur,
 			Compte compteCrediteur, Transaction transaction, double montant) {
 		Operation operationDebit = new Operation();
@@ -81,6 +103,17 @@ public class VirementServiceImpl implements VirementService {
 		operationDAO.insert(operationCredit);
 	}
 
+	/**
+	 * Création d'une transaction de type virement.
+	 * 
+	 * @param compteDebiteur
+	 *            : compte débiteur
+	 * @param compteCrediteur
+	 *            : compte créditeur
+	 * @param libelle
+	 *            : libellé
+	 * @return Transation
+	 */
 	private Transaction createTransaction(Compte compteDebiteur,
 			Compte compteCrediteur, String libelle) {
 
