@@ -20,7 +20,7 @@ import com.excilys.formation.bank.bean.User;
 public interface UserService extends UserDetailsService {
 
 	/**
-	 * Get a specific account of a user
+	 * Get a specific account of a user.
 	 * 
 	 * @param login
 	 *            the login of the user
@@ -46,10 +46,31 @@ public interface UserService extends UserDetailsService {
 	@Override
 	User loadUserByUsername(String login);
 
+	/**
+	 * Obtention des opérations carte pour un compte donné.
+	 * 
+	 * @param compteId
+	 *            : the compteId
+	 * @return Liste d'opération
+	 */
 	List<Operation> getOperationsCarteByCompteId(String compteId);
 
+	/**
+	 * Obtention des opérations non carte pour un compte donné.
+	 * 
+	 * @param compteId
+	 *            : the compteId
+	 * @return Liste d'opération
+	 */
 	List<Operation> getOperationsNonCarteByCompteId(String compteId);
 
+	/**
+	 * Obtention du total des opérations cartes pour un compte donné.
+	 * 
+	 * @param compteId
+	 *            : the compteId
+	 * @return total
+	 */
 	double getTotalOperationsCarteByCompteId(String compteId);
 
 }
