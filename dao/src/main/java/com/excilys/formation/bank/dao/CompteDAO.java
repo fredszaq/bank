@@ -2,6 +2,12 @@ package com.excilys.formation.bank.dao;
 
 import com.excilys.formation.bank.bean.Compte;
 
+/**
+ * Interface CompteDAO.
+ * 
+ * @author excilys
+ * 
+ */
 public interface CompteDAO {
 
 	/**
@@ -29,7 +35,9 @@ public interface CompteDAO {
 	 * update the Compte solde.
 	 * 
 	 * @param compteId
+	 *            : the compteId
 	 * @param difference
+	 *            : the difference
 	 */
 	void updateSolde(String compteId, double difference);
 }

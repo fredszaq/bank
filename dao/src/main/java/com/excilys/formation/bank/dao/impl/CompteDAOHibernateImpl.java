@@ -34,9 +34,11 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Compte loadCompteByUsernameAndCompteId(String username,
+	public final Compte loadCompteByUsernameAndCompteId(String username,
 			String compteId) {
-		String query = "select comptes from User user join user.comptes comptes where user.login=:login and comptes.id=:compteId";
+		String query = "select comptes from User user join "
+				+ "user.comptes comptes where user.login=:login "
+				+ "and comptes.id=:compteId";
 		List<?> resultList = sessionFactory.getCurrentSession()
 				.createQuery(query).setString("login", username)
 				.setString("compteId", compteId).list();
@@ -48,7 +50,7 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void updateSolde(String compteId, double difference) {
+	public final void updateSolde(String compteId, double difference) {
 		Compte compte = loadCompteById(compteId);
 		compte.setSolde(compte.getSolde() + difference);
 		sessionFactory.getCurrentSession().update(compte);
