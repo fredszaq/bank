@@ -50,7 +50,7 @@
 	</header>
 	<aside>
 		<ul>
-			<li><a href="${pageContext.request.contextPath}/">accueil</a></li>
+			<li><a href="${pageContext.request.contextPath}/"><fmt:message key="menu.accueil"/></a></li>
 			<c:if test="${not empty pageContext.request.userPrincipal}">
 				<c:forEach var="role"
 					items="${pageContext['request'].userPrincipal.principal.authorities}">
@@ -60,17 +60,17 @@
 				</c:forEach>
 
 				<li><a
-					href="${pageContext.request.contextPath}/secure/accounts.html">accounts</a>
+					href="${pageContext.request.contextPath}/secure/accounts.html"><fmt:message key="menu.accounts"/></a>
 				</li>
 				<li><a
-					href="${pageContext.request.contextPath}/secure/virement.html">virement</a>
+					href="${pageContext.request.contextPath}/secure/virement.html"><fmt:message key="menu.virement"/></a>
 				</li>
 				<li><a
-					href="${pageContext.request.contextPath}/secure/operationcarte.html">carte</a>
+					href="${pageContext.request.contextPath}/secure/operationcarte.html"><fmt:message key="menu.carte"/></a>
 				</li>
 				<c:if test="${pageScope.isAdmin }">
 					<li><a
-						href="${pageContext.request.contextPath}/secure/admin/admin.html">admin</a>
+						href="${pageContext.request.contextPath}/secure/admin/admin.html"><fmt:message key="menu.admin"/></a>
 					</li>
 				</c:if>
 			</c:if>
