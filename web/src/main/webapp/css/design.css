@@ -15,12 +15,30 @@ body {
 	background-color: #fff;
 }
 
+a,a:visited {
+	color: #774b00;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #b77400;
+	text-decoration: underline;
+}
+
 header {
 	width: 100%;
 	display: table;
 	margin-bottom: 15px;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #aaa;
+}
+
+header h1 {
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+	width: 100%;
+	height: 100%;
 }
 
 #logo {
@@ -31,14 +49,6 @@ header {
 #logo img {
 	border: 0;
 	width: 170px;
-}
-
-header h1 {
-	text-align: center;
-	vertical-align: middle;
-	display: table-cell;
-	width: 100%;
-	height: 100%;
 }
 
 #logininfo {
@@ -52,9 +62,35 @@ header h1 {
 aside {
 	float: left;
 	width: 150px;
-	margin: 40px 0px 10px 0px;
+	margin: 20px 0px 10px 0px;
 	padding-right: 20px;
 	border-right: 1px solid #aaa;
+}
+
+aside ul {
+	margin: 0;
+	padding: 0;
+}
+
+aside li {
+	list-style: none;
+	text-align: center;
+	margin: 10px 0px;
+	width: 100%;
+}
+
+aside a {
+	border: 1px solid #aaa;
+	padding: 3px;
+	border-radius: 10px;
+	background-color: #ddd;
+	display:block;
+	width: 100%;
+}
+
+aside a:hover {
+	background-color: #eee;
+	text-decoration: none;
 }
 
 footer {
@@ -94,7 +130,7 @@ nav a {
 
 .loginbox {
 	width: 250px;
-	background-color: #eee;
+	background-color: #ddd;
 	border: 1px solid #aaa;
 	padding: 10px;
 	border-radius: 10px;
@@ -106,7 +142,7 @@ nav a {
 }
 
 .box {
-	background-color: #eee;
+	background-color: #ddd;
 	border: 1px solid #aaa;
 	padding: 10px;
 	border-radius: 10px;

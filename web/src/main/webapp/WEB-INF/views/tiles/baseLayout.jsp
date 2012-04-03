@@ -49,7 +49,6 @@
 
 	</header>
 	<aside>
-		This is the menu
 		<ul>
 			<li><a href="${pageContext.request.contextPath}/">accueil</a></li>
 			<c:if test="${not empty pageContext.request.userPrincipal}">
