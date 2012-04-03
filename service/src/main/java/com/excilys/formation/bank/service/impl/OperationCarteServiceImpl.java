@@ -42,7 +42,7 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 	 */
 	@Override
 	public final Transaction createOperationCarte(String login,
-			String compteDebiteurId, double montant, String libelle) {
+			String compteDebiteurId, long montant, String libelle) {
 
 		Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
 				login, compteDebiteurId);
@@ -72,7 +72,7 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 	 *            : le montant
 	 */
 	private void createOperations(Compte compteDebiteur,
-			Transaction transaction, double montant) {
+			Transaction transaction, long montant) {
 		Operation operationDebit = new Operation();
 
 		operationDebit.setMontant(montant);

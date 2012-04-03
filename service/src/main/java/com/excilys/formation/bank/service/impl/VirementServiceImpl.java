@@ -45,7 +45,7 @@ public class VirementServiceImpl implements VirementService {
 	 */
 	@Override
 	public final Transaction createVirement(String login,
-			String compteDebiteurId, String compteCrediteurId, double montant,
+			String compteDebiteurId, String compteCrediteurId, long montant,
 			String libelle) {
 
 		if (!compteCrediteurId.equals(compteDebiteurId)) {
@@ -83,7 +83,7 @@ public class VirementServiceImpl implements VirementService {
 	 *            : le montant
 	 */
 	private void createOperations(Compte compteDebiteur,
-			Compte compteCrediteur, Transaction transaction, double montant) {
+			Compte compteCrediteur, Transaction transaction, long montant) {
 		Operation operationDebit = new Operation();
 		Operation operationCredit = new Operation();
 

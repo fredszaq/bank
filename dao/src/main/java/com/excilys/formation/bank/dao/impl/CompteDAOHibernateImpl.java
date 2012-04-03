@@ -50,7 +50,7 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final void updateSolde(String compteId, double difference) {
+	public final void updateSolde(String compteId, long difference) {
 		Compte compte = loadCompteById(compteId);
 		compte.setSolde(compte.getSolde() + difference);
 		sessionFactory.getCurrentSession().update(compte);

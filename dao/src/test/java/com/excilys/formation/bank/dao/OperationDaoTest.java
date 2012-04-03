@@ -83,7 +83,7 @@ public class OperationDaoTest extends
 	@Test
 	public final void insertOperation() {
 		Operation operationCarte = new Operation();
-		operationCarte.setMontant(34.0);
+		operationCarte.setMontant(3400);
 		operationCarte.setOperationId(3);
 		operationCarte.setOperationType(OperationType.DEBIT);
 
@@ -96,10 +96,10 @@ public class OperationDaoTest extends
 	 */
 	@Test
 	public final void updateOperation() {
-		operationCredit.setMontant(57.0);
+		operationCredit.setMontant(5700);
 		operationDAO.update(operationCredit);
 		assertThat(operationDAO.getOperationById(2).getMontant()).isEqualTo(
-				57.0);
+				5700);
 	}
 
 	/**

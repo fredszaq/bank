@@ -78,7 +78,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 		List<?> resultList = sessionFactory.getCurrentSession()
 				.createQuery(query).setString("compteId", compteId).list();
 		Object result = resultList.get(0);
-		return result == null ? 0 : (Double) result;
+		return result == null ? 0 : (Long) result;
 	}
 
 	/**

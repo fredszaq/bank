@@ -94,7 +94,8 @@ public class AuthenticatedController {
 				.getContext().getAuthentication().getPrincipal();
 		String login = userDetails.getUsername();
 		Transaction transaction = virementService.createVirement(login,
-				compteDebiteur, compteCrediteur, montant, libelle);
+				compteDebiteur, compteCrediteur, (long) (montant * 100),
+				libelle);
 		if (transaction != null) {
 			return "redirect:/secure/account.html?id=" + compteDebiteur;
 		}
@@ -128,7 +129,7 @@ public class AuthenticatedController {
 				.getContext().getAuthentication().getPrincipal();
 		String login = userDetails.getUsername();
 		operationCarteService.createOperationCarte(login, compteDebiteur,
-				montant, libelle);
+				(long) (montant * 100), libelle);
 		return "redirect:/secure/detailCarte.html?id=" + compteDebiteur;
 	}
 

@@ -17,7 +17,7 @@
 			<td>${compte.compteType}</td>
 			<td>${compte.compteId}</td>
 			<td class="numeric"><fmt:formatNumber type="currency"
-					currencyCode="EUR" value="${compte.solde}" /></td>
+					currencyCode="EUR" value="${compte.solde / 100.0}" /></td>
 		</tr>
 	</table>
 
@@ -33,7 +33,7 @@
 					href="${pageContext.request.contextPath}/secure/detailCarte.html?id=${compte.compteId}"><fmt:message
 							key="compte.carte.total" /></a></th>
 				<td class="numeric"><fmt:formatNumber type="currency"
-						currencyCode="EUR" value="${totalCarte }" /></td>
+						currencyCode="EUR" value="${totalCarte / 100.0 }" /></td>
 			</tr>
 		</table>
 	</c:if>
@@ -53,7 +53,7 @@
 				<td
 					class="numeric ${operation.operationType=='DEBIT' ? 'negative' : 'positive'}"><fmt:formatNumber
 						type="currency" currencyCode="EUR"
-						value="${operation.operationType=='DEBIT' ? - operation.montant : operation.montant}" /></td>
+						value="${operation.operationType=='DEBIT' ? - operation.montant / 100.0 : operation.montant /100.0}" /></td>
 			</tr>
 		</c:forEach>
 
