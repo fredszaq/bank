@@ -3,15 +3,20 @@
 	xmlns:tiles="http://tiles.apache.org/tags-tiles"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+	<fmt:setBundle basename="localization.Messages" />
+	<h2><fmt:message key="virement.title" /></h2>
 
-	<h2>Effectuer un virement</h2>
-
+		<c:if test="${not empty param.error}">
+				<div class="error">
+					<fmt:message key="virement.error" />
+				</div>
+		</c:if>
 
 	<form action="${pageContext.request.contextPath}/secure/virement.form"
 		method="POST">
 		<div class="box">
 			<div>
-				<label for="compteDebiteur">Compte débité</label> <select
+				<label for="compteDebiteur"><fmt:message key="virement.compte.debiteur" /></label> <select
 					name="compteDebiteur" id="compteDebiteur">
 					<c:forEach var="compte" items="${comptes}">
 						<option value="${compte.compteId }">${compte.compteId }</option>
@@ -20,7 +25,7 @@
 			</div>
 
 			<div>
-				<label for="compteCrediteur">Compte crédité</label><select
+				<label for="compteCrediteur"><fmt:message key="virement.compte.crediteur" /></label><select
 					name="compteCrediteur" id="compteCrediteur">
 					<c:forEach var="compte" items="${comptes}">
 						<option value="${compte.compteId }">${compte.compteId }</option>
@@ -29,12 +34,12 @@
 			</div>
 
 			<div>
-				<label for="montant">Montant</label> <input name="montant"
+				<label for="montant"><fmt:message key="virement.montant" /></label> <input name="montant"
 					type="number" id="montant"/>
 			</div>
 
 			<div>
-				<label for="libelle">Libellé</label><input name="libelle"
+				<label for="libelle"><fmt:message key="virement.libelle" /></label><input name="libelle"
 					type="text" id="libelle"/>
 			</div>
 
