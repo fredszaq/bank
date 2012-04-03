@@ -3,15 +3,16 @@
 	xmlns:tiles="http://tiles.apache.org/tags-tiles"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+	<fmt:setBundle basename="localization.Messages" />
 
-	<h2>Effectuer une opération carte</h2>
+	<h2><fmt:message key="carte.title" /></h2>
 
 
 	<form action="${pageContext.request.contextPath}/secure/operationcarte.form"
 		method="POST">
 		<div class="box">
 			<div>
-				<label for="compteDebiteur">Numéro de carte</label> <select
+				<label for="compteDebiteur"><fmt:message key="carte.numerocarte" /></label> <select
 					name="compteDebiteur" id="compteDebiteur">
 					<c:forEach var="compte" items="${comptes}">
 						<option value="${compte.compteId}">${compte.numCarte}</option>
@@ -20,12 +21,12 @@
 			</div>
 
 			<div>
-				<label for="montant">Montant</label> <input name="montant"
+				<label for="montant"><fmt:message key="carte.montant" /></label> <input name="montant"
 					type="number" id="montant"/>
 			</div>
 
 			<div>
-				<label for="libelle">Libellé</label><input name="libelle"
+				<label for="libelle"><fmt:message key="carte.libelle" /></label><input name="libelle"
 					type="text" id="libelle"/>
 			</div>
 
