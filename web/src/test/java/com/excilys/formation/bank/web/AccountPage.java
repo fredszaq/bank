@@ -1,0 +1,29 @@
+package com.excilys.formation.bank.web;
+
+import static org.fest.assertions.Assertions.assertThat;
+
+/**
+ * This class uses the PageObject pattern and describes the main page of the
+ * application.
+ * 
+ * @author excilys
+ * 
+ */
+public class AccountPage extends BankRootPage {
+
+	@Override
+	public final String getUrl() {
+		return TestConstants.BASE_URL + "secure/accounts.html";
+	}
+
+	@Override
+	public final void isAt() {
+		assertThat(pageSource()).contains("Only logged users can view this !");
+	}
+
+	public final double getAccountSolde(String account) {
+		String solde = $("#solde_" + account).getTexts().get(0).toString();
+		return Double.parseDouble(solde.replaceAll("EUR| ", "")
+				.replace(",", ""));
+	}
+}

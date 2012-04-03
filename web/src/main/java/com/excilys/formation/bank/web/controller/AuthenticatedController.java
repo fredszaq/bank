@@ -138,7 +138,7 @@ public class AuthenticatedController {
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
 				userDetails.getUsername(), id);
-		if (compte == null) {
+		if (compte == null || !compte.hasCarte()) {
 			return "redirect:/";
 		}
 		model.put("compte", compte);
