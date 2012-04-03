@@ -39,5 +39,5 @@ public interface CompteDAO {
 	 * @param difference
 	 *            : the difference
 	 */
-	void updateSolde(String compteId, double difference);
+	void updateSolde(String compteId, long difference);
 }

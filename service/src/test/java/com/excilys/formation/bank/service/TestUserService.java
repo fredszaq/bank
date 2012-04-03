@@ -38,6 +38,6 @@ public class TestUserService {
 				"compte3");
 		assertThat(compte.getCompteId()).isEqualTo("compte3");
 		assertThat(compte.getCompteType()).isEqualTo(CompteType.COURANT);
-		assertThat(compte.getSolde()).isEqualTo(150.0);
+		assertThat(compte.getSolde()).isEqualTo(150);
 	}
 }

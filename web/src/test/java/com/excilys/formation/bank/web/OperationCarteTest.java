@@ -1,7 +1,6 @@
 package com.excilys.formation.bank.web;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.fest.assertions.Delta.delta;
 import static org.fest.assertions.fluentlenium.FluentLeniumAssertions.assertThat;
 
 import org.fluentlenium.adapter.FluentTest;
@@ -40,7 +39,7 @@ public class OperationCarteTest extends FluentTest {
 	@Before
 	public final void before() {
 		goTo(loginPage);
-		loginPage.login("robert", "robert");
+		loginPage.login("jacky", "jacky");
 		goTo(operationCartePage);
 	}
 
@@ -55,31 +54,51 @@ public class OperationCarteTest extends FluentTest {
 	@Test
 	public final void tryMakeAnOperationCarte() {
 		goTo(userPage);
-		double solde1 = userPage.getAccountSolde("compte_courant_robert");
+		long solde1 = userPage.getAccountSolde("compte_courant_jacky");
 		goTo(operationCartePage);
-		operationCartePage.fillFormAndSend("compte_courant_robert", 0.01,
-				"test");
+		operationCartePage
+				.fillFormAndSend("compte_courant_jacky", 0.01, "test");
 		goTo(userPage);
-		assertThat(userPage.getAccountSolde("compte_courant_robert"))
-				.isEqualTo(solde1 - 0.01, delta(0.00000001));
+		assertThat(userPage.getAccountSolde("compte_courant_jacky")).isEqualTo(
+				solde1 - 1);
 	}
 
-	/**
-	 * This test uses some javascript to modify the html page and sets the
-	 * compte debiteur to one owned by another user. We check that the virement
-	 * doesn't have any effect in tht case.
-	 */
 	@Test
 	public final void tryTohackTheForm() {
+		// se deco
+		click($("#logininfo a"));
+
+		// se co en temps que robert
+		goTo(loginPage);
+		loginPage.login("robert", "robert");
+
+		// get le solde du compte
 		goTo(userPage);
-		double solde = userPage.getAccountSolde("compte_courant_robert");
+		long solde = userPage.getAccountSolde("compte_courant_robert");
+
+		// se deco
+		click($("#logininfo a"));
+
+		// se co en temps que jacky
+		goTo(loginPage);
+		loginPage.login("jacky", "jacky");
+
+		// hacker le truc
 		goTo(operationCartePage);
-		operationCartePage.hackForm("compte_courant_jacky");
-		operationCartePage.fillFormAndSend("compte_courant_jacky", 1, "test");
+		operationCartePage.hackForm("compte_courant_robert");
+		operationCartePage.fillFormAndSend("compte_courant_robert", 1, "test");
+
+		// se deco
+		click($("#logininfo a"));
+
+		// se co en temps que robert
+		goTo(loginPage);
+		loginPage.login("robert", "robert");
+
+		// get le solde du compte
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))
 				.isEqualTo(solde);
-
 	}
 
 }

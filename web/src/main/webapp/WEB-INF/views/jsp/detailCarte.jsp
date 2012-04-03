@@ -34,7 +34,7 @@
 				<td
 					class="numeric ${operation.operationType=='DEBIT' ? 'negative' : 'positive'}"><fmt:formatNumber
 						type="currency" currencyCode="EUR"
-						value="${operation.operationType=='DEBIT' ? - operation.montant : operation.montant}" /></td>
+						value="${operation.operationType=='DEBIT' ? - operation.montant / 100.0 : operation.montant / 100.0}" /></td>
 			</tr>
 		</c:forEach>
 

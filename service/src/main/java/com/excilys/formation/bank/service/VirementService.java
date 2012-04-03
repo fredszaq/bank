@@ -26,5 +26,5 @@ public interface VirementService {
 	 * @return Transaction
 	 */
 	Transaction createVirement(String login, String compteDebiteurId,
-			String compteCrediteurId, double montant, String libelle);
+			String compteCrediteurId, long montant, String libelle);
 }

@@ -21,9 +21,9 @@ public class AccountsPage extends BankRootPage {
 		assertThat(pageSource()).contains("Only logged users can view this !");
 	}
 
-	public final double getAccountSolde(String account) {
+	public final long getAccountSolde(String account) {
 		String solde = $("#solde_" + account).getTexts().get(0).toString();
-		return Double.parseDouble(solde.replaceAll("EUR| ", "")
-				.replace(",", ""));
+		return Long.parseLong((solde.replaceAll("EUR| €", "").replace(",", "")
+				.replace(".", "")));
 	}
 }

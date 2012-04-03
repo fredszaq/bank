@@ -48,7 +48,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 	private CompteType compteType;
 
 	@Column
-	private Double solde;
+	private long solde;
 
 	@Column(name = "taux_interet")
 	private Double tauxInteret;
@@ -86,7 +86,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 		return numCarte;
 	}
 
-	public final Double getSolde() {
+	public final long getSolde() {
 		return solde;
 	}
 
@@ -110,7 +110,7 @@ public class Compte implements Serializable, Comparable<Compte> {
 		this.numCarte = numCarte;
 	}
 
-	public final void setSolde(Double solde) {
+	public final void setSolde(long solde) {
 		this.solde = solde;
 	}
 

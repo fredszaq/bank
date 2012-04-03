@@ -57,16 +57,16 @@ public class VirementTest extends FluentTest {
 	@Test
 	public final void tryMakeAVirement() {
 		goTo(userPage);
-		double solde1 = userPage.getAccountSolde("compte_courant_robert");
-		double solde2 = userPage.getAccountSolde("compte_epargne_robert");
+		long solde1 = userPage.getAccountSolde("compte_courant_robert");
+		long solde2 = userPage.getAccountSolde("compte_epargne_robert");
 		goTo(virementPage);
 		virementPage.fillFormAndSend("compte_courant_robert",
 				"compte_epargne_robert", 1, "test");
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))
-				.isEqualTo(solde1 - 1);
+				.isEqualTo(solde1 - 100);
 		assertThat(userPage.getAccountSolde("compte_epargne_robert"))
-				.isEqualTo(solde2 + 1);
+				.isEqualTo(solde2 + 100);
 		// Do the virement in the other way so that we can always launch the
 		// tests without going to a negative solde
 		goTo(virementPage);
@@ -99,7 +99,7 @@ public class VirementTest extends FluentTest {
 	@Test
 	public final void tryTohackTheForm() {
 		goTo(userPage);
-		double solde = userPage.getAccountSolde("compte_courant_robert");
+		long solde = userPage.getAccountSolde("compte_courant_robert");
 		goTo(virementPage);
 		virementPage.hackForm("compte_courant_jacky");
 		virementPage.fillFormAndSend("compte_courant_jacky",

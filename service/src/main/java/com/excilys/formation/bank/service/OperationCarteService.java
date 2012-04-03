@@ -24,5 +24,5 @@ public interface OperationCarteService {
 	 * @return Transaction
 	 */
 	Transaction createOperationCarte(String login, String compteDebiteurId,
-			double montant, String libelle);
+			long montant, String libelle);
 }

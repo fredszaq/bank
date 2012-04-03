@@ -33,7 +33,7 @@ public class Operation {
 	private OperationType operationType;
 
 	@Column
-	private Double montant;
+	private long montant;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +57,7 @@ public class Operation {
 	@JoinColumn(name = "transaction_id")
 	private Transaction transaction;
 
-	public final Double getMontant() {
+	public final long getMontant() {
 		return montant;
 	}
 
@@ -77,7 +77,7 @@ public class Operation {
 		return transaction;
 	}
 
-	public final void setMontant(Double montant) {
+	public final void setMontant(long montant) {
 		this.montant = montant;
 	}
 
