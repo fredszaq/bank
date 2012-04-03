@@ -24,7 +24,6 @@ public interface TransactionDAO {
 	 * 
 	 * @param transaction
 	 *            : the transaction
-	 * @return boolean
 	 */
 	void insert(Transaction transaction);
 
@@ -33,7 +32,6 @@ public interface TransactionDAO {
 	 * 
 	 * @param transaction
 	 *            : the transaction
-	 * @return boolean
 	 */
 	void update(Transaction transaction);
 

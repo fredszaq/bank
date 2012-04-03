@@ -5,7 +5,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: Bank
+    Checkstyle-Configuration: CSV
     Description: none
 -->
 <module name="Checker">
@@ -44,6 +44,7 @@
     </module>
     <module name="LineLength">
       <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+      <property name="max" value="120"/>
       <property name="tabWidth" value="4"/>
     </module>
     <module name="EmptyForIteratorPad"/>

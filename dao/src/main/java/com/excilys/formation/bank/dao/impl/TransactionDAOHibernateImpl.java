@@ -8,7 +8,7 @@ import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.dao.TransactionDAO;
 
 /**
- * Implémentation de TransactionDAO via Hibernate
+ * Implémentation de TransactionDAO via Hibernate.
  * 
  * @author excilys
  * 
@@ -40,7 +40,7 @@ public class TransactionDAOHibernateImpl implements TransactionDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void update(Transaction transaction) {
+	public final void update(Transaction transaction) {
 		sessionFactory.getCurrentSession().merge(transaction);
 	}
 
