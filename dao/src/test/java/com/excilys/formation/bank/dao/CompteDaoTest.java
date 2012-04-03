@@ -16,6 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 
+/**
+ * Test pour la classe CompteDAO.
+ * 
+ * @author excilys
+ * 
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath*:context/applicationContext*.xml",
@@ -31,6 +37,9 @@ public class CompteDaoTest extends
 	@Autowired
 	private CompteDAO compteDAO;
 
+	/**
+	 * Test load Compte by Username and CompteId.
+	 */
 	@Test
 	public final void loadCompteByUsernameAndCompteId() {
 		assertThat(
@@ -39,6 +48,10 @@ public class CompteDaoTest extends
 				compteDAO.loadCompteById("compte1user1"));
 	}
 
+	/**
+	 * Test load Compte by Username and CompteId when the User does not own the
+	 * Compte.
+	 */
 	@Test
 	public final void loadCompteByUsernameAndCompteIdWhenTheUserDoesNotOwnTheCompte() {
 		assertThat(compteDAO.loadCompteById("compte1user2")).isNotNull();
@@ -47,6 +60,9 @@ public class CompteDaoTest extends
 						"compte1user2")).isNull();
 	}
 
+	/**
+	 * Test update Compte enlever argent.
+	 */
 	@Test
 	public final void updateCompteEnleverArgent() {
 		Double soldeInitial = compteDAO.loadCompteById("compte1user1")
@@ -56,6 +72,9 @@ public class CompteDaoTest extends
 				.isEqualTo(soldeInitial - 20);
 	}
 
+	/**
+	 * Test update Compte ajouter argent.
+	 */
 	@Test
 	public final void updateCompteAjouterArgent() {
 		Double soldeInitial = compteDAO.loadCompteById("compte1user1")
