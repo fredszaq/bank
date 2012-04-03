@@ -21,6 +21,12 @@ import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.Transaction;
 
+/**
+ * Test de la classe TransactionDAO.
+ * 
+ * @author excilys
+ * 
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath*:context/applicationContext*.xml",
@@ -38,38 +44,50 @@ public class TransactionDaoTest extends
 
 	private Transaction transaction;
 
+	/**
+	 * Méthode d'initialisation avant chaque test.
+	 */
 	@Transactional(readOnly = true)
 	@Before
 	public final void init() {
 		transaction = transactionDAO.getTransactionById(1);
 	}
 
+	/**
+	 * Test obtention d'une transaction.
+	 */
 	@Test
 	public final void getTransactionTest() {
 		System.out.println(transaction.getEtat());
 		assertThat(transaction.getEtat().name()).isEqualTo("VALIDATED");
 	}
 
+	/**
+	 * Test mise à jour d'une transaction.
+	 */
 	@Test
-	public void updateTransactionEtatTest() {
+	public final void updateTransactionEtatTest() {
 		transaction.setEtat(Etat.WAITING);
 		transactionDAO.update(transaction);
 		assertThat(transaction.getEtat()).isEqualTo(Etat.WAITING);
 
 	}
 
+	/**
+	 * Test insertion d'une transaction.
+	 */
 	@Test
-	public void insertTransactionTest() {
-
-		Transaction transaction = new Transaction();
-		transaction.setTransactionId(1);
-		transaction.setEtat(Etat.VALIDATED);
+	public final void insertTransactionTest() {
+		Transaction transactionToInsert = new Transaction();
+		transactionToInsert.setTransactionId(1);
+		transactionToInsert.setEtat(Etat.VALIDATED);
 		Date date = new Date();
-		transaction.setDateValid(date);
-		transaction.setDateInit(date);
-		transactionDAO.insert(transaction);
-		transaction = transactionDAO.getTransactionById(1);
-		assertThat(transaction).isEqualTo(transaction);
+		transactionToInsert.setDateValid(date);
+		transactionToInsert.setDateInit(date);
+		transactionDAO.insert(transactionToInsert);
+		transaction = transactionDAO.getTransactionById(4);
+		assertThat(transaction.getTransactionId()).isEqualTo(
+				transactionToInsert.getTransactionId());
 
 	}
 }

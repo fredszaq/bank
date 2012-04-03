@@ -21,6 +21,12 @@ import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.OperationType;
 
+/**
+ * Test de la classe Operation DAO.
+ * 
+ * @author excilys
+ * 
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath*:context/applicationContext*.xml",
@@ -40,6 +46,9 @@ public class OperationDaoTest extends
 
 	private Operation operationCredit;
 
+	/**
+	 * Méthode d'initialisation avant chaque test.
+	 */
 	@Transactional(readOnly = true)
 	@Before
 	public final void init() {
@@ -48,6 +57,9 @@ public class OperationDaoTest extends
 
 	}
 
+	/**
+	 * Test obtention d'une operation de type débit.
+	 */
 	@Test
 	public final void getOperationDebitTest() {
 		assertThat(operationDebit.getMontant()).isEqualTo(42);
@@ -55,6 +67,9 @@ public class OperationDaoTest extends
 				OperationType.DEBIT);
 	}
 
+	/**
+	 * Test obtention d'une operation de type crédit.
+	 */
 	@Test
 	public final void getOperationCreditTest() {
 		assertThat(operationCredit.getMontant()).isEqualTo(42);
@@ -62,6 +77,9 @@ public class OperationDaoTest extends
 				OperationType.CREDIT);
 	}
 
+	/**
+	 * Test d'insertion d'une opération.
+	 */
 	@Test
 	public final void insertOperation() {
 		Operation operationCarte = new Operation();
@@ -73,6 +91,9 @@ public class OperationDaoTest extends
 		assertThat(operationDAO.getOperationById(5)).isEqualTo(operationCarte);
 	}
 
+	/**
+	 * Test de mise à jour d'une opération.
+	 */
 	@Test
 	public final void updateOperation() {
 		operationCredit.setMontant(57.0);
@@ -81,6 +102,9 @@ public class OperationDaoTest extends
 				57.0);
 	}
 
+	/**
+	 * Test de suppression d'une opération.
+	 */
 	@Test
 	public final void deleteOperation() {
 		operationDAO.delete(operationCredit);
@@ -88,6 +112,9 @@ public class OperationDaoTest extends
 		assertThat(operationCredit).isNull();
 	}
 
+	/**
+	 * Test d'obtention des opérations carte pour un compte donné.
+	 */
 	@Test
 	public final void getOperationCarteFromCompteId() {
 		List<Operation> operations = operationDAO
@@ -97,6 +124,10 @@ public class OperationDaoTest extends
 		assertThat(operations.get(1).getMontant()).isEqualTo(555);
 	}
 
+	/**
+	 * Test d'obtention des opérations carte pour un compte donné quand il n'y a
+	 * pas d'opérations carte existante.
+	 */
 	@Test
 	public final void getOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
 		List<Operation> operations = operationDAO
@@ -104,6 +135,9 @@ public class OperationDaoTest extends
 		assertThat(operations).isEmpty();
 	}
 
+	/**
+	 * Test d'obtention du total des opérations carte.
+	 */
 	@Test
 	public final void getTotalOperationCarteFromCompteId() {
 		assertThat(operationDAO.getTotalOperationCarteFromCompteId("compte1"))
@@ -111,6 +145,9 @@ public class OperationDaoTest extends
 
 	}
 
+	/**
+	 * Test d'obtention du total des opérations carte quand il n'y en a pas.
+	 */
 	@Test
 	public final void getTotalOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
 		assertThat(operationDAO.getTotalOperationCarteFromCompteId("compte2"))
@@ -118,6 +155,9 @@ public class OperationDaoTest extends
 
 	}
 
+	/**
+	 * Test d'obtention des opérations non carte.
+	 */
 	@Test
 	public final void getOperationNonCarteFromCompteId() {
 		List<Operation> operations = operationDAO
