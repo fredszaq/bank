@@ -4,12 +4,14 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
-	<h2>Resumé du compte</h2>
+	<h2>
+		<fmt:message key="compte.title" />
+	</h2>
 	<table>
 		<tr>
-			<th>Type de compte</th>
-			<th>Nom du compte</th>
-			<th class="numeric">Solde</th>
+			<th><fmt:message key="compte.type" /></th>
+			<th><fmt:message key="compte.name" /></th>
+			<th class="numeric"><fmt:message key="compte.solde" /></th>
 		</tr>
 		<tr>
 			<td>${compte.compteType}</td>
@@ -20,14 +22,16 @@
 	</table>
 
 
-	<h2>Opérations</h2>
+	<h2>
+		<fmt:message key="compte.operations" />
+	</h2>
 
 	<c:if test="${compte.hasCarte()}">
 		<table>
 			<tr>
 				<th><a
-					href="${pageContext.request.contextPath}/secure/detailCarte.html?id=${compte.compteId}">Total
-						des operations carte :</a></th>
+					href="${pageContext.request.contextPath}/secure/detailCarte.html?id=${compte.compteId}"><fmt:message
+							key="compte.carte.total" /></a></th>
 				<td class="numeric"><fmt:formatNumber type="currency"
 						currencyCode="EUR" value="${totalCarte }" /></td>
 			</tr>
@@ -36,9 +40,9 @@
 
 	<table>
 		<tr>
-			<th>Date</th>
-			<th>Libellé</th>
-			<th class="numeric">Montant</th>
+			<th><fmt:message key="compte.operations.date" /></th>
+			<th><fmt:message key="compte.operations.libelle" /></th>
+			<th class="numeric"><fmt:message key="compte.operations.montant" /></th>
 		</tr>
 
 		<c:forEach var="operation" items="${operations}"
