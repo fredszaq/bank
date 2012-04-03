@@ -47,7 +47,7 @@ public class VirementTest extends FluentTest {
 	 * This test checks that we are on the right page.
 	 */
 	@Test
-	public final void virementIsAccesible() {
+	public final void virementIsAccessible() {
 		assertThat(virementPage).isAt();
 	}
 

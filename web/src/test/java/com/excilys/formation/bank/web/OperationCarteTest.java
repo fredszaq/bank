@@ -48,7 +48,7 @@ public class OperationCarteTest extends FluentTest {
 	 * This test checks that we are on the right page.
 	 */
 	@Test
-	public final void virementIsAccesible() {
+	public final void operationCarteIsAccessible() {
 		assertThat(operationCartePage).isAt();
 	}
 
