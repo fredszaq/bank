@@ -36,6 +36,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/virement.jsp" />
 	</definition>
 	
+	<definition name="operationcarte" extends="baseLayout">
+		<put-attribute name="title" value="Customer Area" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/operationcarte.jsp" />
+	</definition>
+	
 	<definition name="detailCarte" extends="baseLayout">
 		<put-attribute name="title" value="Customer Area" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/detailCarte.jsp" />

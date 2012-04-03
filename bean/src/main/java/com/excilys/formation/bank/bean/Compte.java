@@ -139,4 +139,8 @@ public class Compte implements Serializable, Comparable<Compte> {
 		this.operations = operations;
 	}
 
+	public boolean hasCarte() {
+		return getNumCarte() == null ? false : true;
+	}
+
 }
