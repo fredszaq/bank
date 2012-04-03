@@ -35,7 +35,7 @@
 					</div>
 					<div>
 						<input id="j_username" type="text" name="j_username"
-							value="${SPRING_SECURITY_LAST_USERNAME}" />
+							value="${SPRING_SECURITY_LAST_USERNAME}" autofocus="autofocus"/>
 					</div>
 					<div>
 						<label for="j_password"><fmt:message key="login.password" /></label>
