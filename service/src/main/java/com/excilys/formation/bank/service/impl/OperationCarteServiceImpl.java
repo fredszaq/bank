@@ -18,6 +18,12 @@ import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
 import com.excilys.formation.bank.service.OperationCarteService;
 
+/**
+ * Implémentation de l'interface OperationCarteService.
+ * 
+ * @author excilys
+ * 
+ */
 @Service("operationCarteService")
 @Transactional
 public class OperationCarteServiceImpl implements OperationCarteService {
@@ -31,8 +37,11 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 	@Autowired
 	private CompteDAO compteDAO;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Transaction createOperationCarte(String login,
+	public final Transaction createOperationCarte(String login,
 			String compteDebiteurId, double montant, String libelle) {
 
 		Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
@@ -52,6 +61,16 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 		return null;
 	}
 
+	/**
+	 * Création de l'opération associée à la transaction de type carte.
+	 * 
+	 * @param compteDebiteur
+	 *            : le compte débiteur
+	 * @param transaction
+	 *            : la transaction associée
+	 * @param montant
+	 *            : le montant
+	 */
 	private void createOperations(Compte compteDebiteur,
 			Transaction transaction, double montant) {
 		Operation operationDebit = new Operation();
@@ -67,6 +86,15 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 		operationDAO.insert(operationDebit);
 	}
 
+	/**
+	 * Création d'une transaction de type carte.
+	 * 
+	 * @param compteDebiteur
+	 *            : compte débiteur
+	 * @param libelle
+	 *            : libellé
+	 * @return Transaction
+	 */
 	private Transaction createTransaction(Compte compteDebiteur, String libelle) {
 
 		Transaction transaction = new Transaction();
