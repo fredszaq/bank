@@ -18,7 +18,7 @@ public class AccountsPage extends BankRootPage {
 
 	@Override
 	public final void isAt() {
-		assertThat(pageSource()).contains("Only logged users can view this !");
+		assertThat(find("#accountList")).hasSize(1);
 	}
 
 	public final long getAccountSolde(String account) {

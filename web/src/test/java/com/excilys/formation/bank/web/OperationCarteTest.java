@@ -65,6 +65,11 @@ public class OperationCarteTest extends FluentTest {
 
 	@Test
 	public final void tryTohackTheForm() {
+
+		// get le solde du compte
+		goTo(userPage);
+		long solde = userPage.getAccountSolde("compte_courant_jacky");
+
 		// se deco
 		click($("#logininfo a"));
 
@@ -72,9 +77,10 @@ public class OperationCarteTest extends FluentTest {
 		goTo(loginPage);
 		loginPage.login("robert", "robert");
 
-		// get le solde du compte
-		goTo(userPage);
-		long solde = userPage.getAccountSolde("compte_courant_robert");
+		// hacker le truc
+		goTo(operationCartePage);
+		operationCartePage.hackForm("compte_courant_jacky");
+		operationCartePage.fillFormAndSend("compte_courant_jacky", 1, "test");
 
 		// se deco
 		click($("#logininfo a"));
@@ -83,22 +89,10 @@ public class OperationCarteTest extends FluentTest {
 		goTo(loginPage);
 		loginPage.login("jacky", "jacky");
 
-		// hacker le truc
-		goTo(operationCartePage);
-		operationCartePage.hackForm("compte_courant_robert");
-		operationCartePage.fillFormAndSend("compte_courant_robert", 1, "test");
-
-		// se deco
-		click($("#logininfo a"));
-
-		// se co en temps que robert
-		goTo(loginPage);
-		loginPage.login("robert", "robert");
-
 		// get le solde du compte
 		goTo(userPage);
-		assertThat(userPage.getAccountSolde("compte_courant_robert"))
-				.isEqualTo(solde);
+		assertThat(userPage.getAccountSolde("compte_courant_jacky")).isEqualTo(
+				solde);
 	}
 
 }

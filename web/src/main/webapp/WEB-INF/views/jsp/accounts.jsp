@@ -4,12 +4,11 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
-	This is a secured page ! Only logged users can view this !
-	<table>
+	<table id="accountList">
 		<tr>
-			<th>Type de compte</th>
-			<th>Nom du compte</th>
-			<th class="numeric">Solde</th>
+			<th><fmt:message key="comptes.types" /></th>
+			<th><fmt:message key="comptes.name" /></th>
+			<th class="numeric"><fmt:message key="comptes.solde" /></th>
 		</tr>
 		<c:forEach var="compte" items="${comptes}" varStatus="loopStatus">
 			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
