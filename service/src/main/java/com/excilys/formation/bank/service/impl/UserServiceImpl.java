@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Compte getCompteByUsernameAndAccountId(String login, String id) {
+	public final Compte getCompteByUsernameAndAccountId(String login, String id) {
 		return compteDAO.loadCompteByUsernameAndCompteId(login, id);
 	}
 
@@ -68,18 +68,27 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public List<Operation> getOperationsCarteByCompteId(String compteId) {
+	public final List<Operation> getOperationsCarteByCompteId(String compteId) {
 		return operationDAO.getOperationCarteFromCompteId(compteId);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public List<Operation> getOperationsNonCarteByCompteId(String compteId) {
+	public final List<Operation> getOperationsNonCarteByCompteId(String compteId) {
 		return operationDAO.getOperationNonCarteFromCompteId(compteId);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public double getTotalOperationsCarteByCompteId(String compteId) {
+	public final double getTotalOperationsCarteByCompteId(String compteId) {
 		return operationDAO.getTotalOperationCarteFromCompteId(compteId);
 	}
 

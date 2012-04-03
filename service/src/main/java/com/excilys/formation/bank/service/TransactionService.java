@@ -3,6 +3,12 @@ package com.excilys.formation.bank.service;
 import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.Transaction;
 
+/**
+ * Interface TransactionService.
+ * 
+ * @author excilys
+ * 
+ */
 public interface TransactionService {
 
 	/**
@@ -19,7 +25,6 @@ public interface TransactionService {
 	 * 
 	 * @param transaction
 	 *            : the transaction
-	 * @return boolean
 	 */
 	void insert(Transaction transaction);
 
@@ -28,7 +33,8 @@ public interface TransactionService {
 	 * 
 	 * @param transaction
 	 *            : the transaction
-	 * @return boolean
+	 * @param etat
+	 *            : l'etat
 	 */
 	void update(Transaction transaction, Etat etat);
 
