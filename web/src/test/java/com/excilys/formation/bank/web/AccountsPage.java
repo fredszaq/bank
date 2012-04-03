@@ -2,8 +2,6 @@ package com.excilys.formation.bank.web;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fluentlenium.core.FluentPage;
-
 /**
  * This class uses the PageObject pattern and describes the main page of the
  * application.
@@ -11,7 +9,7 @@ import org.fluentlenium.core.FluentPage;
  * @author excilys
  * 
  */
-public class AccountsPage extends FluentPage {
+public class AccountsPage extends BankRootPage {
 
 	@Override
 	public final String getUrl() {
@@ -21,13 +19,6 @@ public class AccountsPage extends FluentPage {
 	@Override
 	public final void isAt() {
 		assertThat(pageSource()).contains("Only logged users can view this !");
-	}
-
-	/**
-	 * Checks with assertions that the page is showing errors.
-	 */
-	public final void isShowingErrors() {
-		assertThat(find(".error")).isNotEmpty();
 	}
 
 	public final double getAccountSolde(String account) {

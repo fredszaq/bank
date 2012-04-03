@@ -2,8 +2,6 @@ package com.excilys.formation.bank.web;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.fluentlenium.core.FluentPage;
-
 /**
  * This class uses the PageObject pattern and describes the login page of the
  * application.
@@ -11,7 +9,7 @@ import org.fluentlenium.core.FluentPage;
  * @author excilys
  * 
  */
-public class LoginPage extends FluentPage {
+public class LoginPage extends BankRootPage {
 
 	@Override
 	public final String getUrl() {
@@ -23,13 +21,6 @@ public class LoginPage extends FluentPage {
 		assertThat(find("#j_username")).hasSize(1);
 		assertThat(find("#j_password")).hasSize(1);
 		assertThat(find("#_spring_security_remember_me")).hasSize(1);
-	}
-
-	/**
-	 * Checks with assertions that the page is showing errors.
-	 */
-	public final void isShowingErrors() {
-		assertThat(find(".error")).isNotEmpty();
 	}
 
 	/**
