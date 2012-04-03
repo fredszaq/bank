@@ -1,9 +1,16 @@
 package com.excilys.formation.bank.web.controller;
 
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
+import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.service.OperationCarteService;
 import com.excilys.formation.bank.service.UserService;
@@ -37,8 +45,24 @@ public class AuthenticatedController {
 	@Autowired
 	private OperationCarteService operationCarteService;
 
+	private static Map<Integer, Date> MONTHS;
+
+	@PostConstruct
+	public void onPostConstruct() {
+		DateTime dateTime = new DateTime();
+		MONTHS = new HashMap<Integer, Date>();
+		MONTHS.put(0, dateTime.toDate());
+		MONTHS.put(1, dateTime.minusMonths(1).toDate());
+		MONTHS.put(2, dateTime.minusMonths(2).toDate());
+		MONTHS.put(3, dateTime.minusMonths(3).toDate());
+		MONTHS.put(4, dateTime.minusMonths(4).toDate());
+		MONTHS.put(5, dateTime.minusMonths(5).toDate());
+	}
+
 	@RequestMapping("/account.html")
-	public final String account(ModelMap model, @RequestParam String id) {
+	public final String account(ModelMap model, @RequestParam String id,
+			@RequestParam Integer month) {
+		System.out.println(month);
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
@@ -46,10 +70,13 @@ public class AuthenticatedController {
 		if (compte == null) {
 			return "redirect:/";
 		}
+		List<Operation> operations = userService
+				.getOperationsNonCarteByCompteId(id, month);
 		model.put("compte", compte);
-		model.put("operations", userService.getOperationsNonCarteByCompteId(id));
+		model.put("operations", operations);
 		model.put("totalCarte",
 				userService.getTotalOperationsCarteByCompteId(id));
+		model.put("months", MONTHS);
 		return "account";
 	}
 
@@ -134,7 +161,8 @@ public class AuthenticatedController {
 	}
 
 	@RequestMapping("/detailCarte.html")
-	public final String detailsCarte(ModelMap model, @RequestParam String id) {
+	public final String detailsCarte(ModelMap model, @RequestParam String id,
+			@RequestParam Integer month) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
@@ -143,7 +171,8 @@ public class AuthenticatedController {
 			return "redirect:/";
 		}
 		model.put("compte", compte);
-		model.put("operations", userService.getOperationsCarteByCompteId(id));
+		model.put("operations",
+				userService.getOperationsCarteByCompteId(id, month));
 		return "detailCarte";
 
 	}

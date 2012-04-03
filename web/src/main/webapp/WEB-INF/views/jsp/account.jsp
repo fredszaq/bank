@@ -26,18 +26,31 @@
 		<fmt:message key="compte.operations" />
 	</h2>
 
+	<c:url value="/secure/detailCarte.html" var="detailCarteURL">
+		<c:param name="id" value="${compte.compteId}" />
+	</c:url>
 	<c:if test="${compte.hasCarte()}">
 		<table>
 			<tr>
-				<th><a
-					href="${pageContext.request.contextPath}/secure/detailCarte.html?id=${compte.compteId}"><fmt:message
+				<th><a href="${detailCarteURL}"><fmt:message
 							key="compte.carte.total" /></a></th>
 				<td class="numeric"><fmt:formatNumber type="currency"
 						currencyCode="EUR" value="${totalCarte / 100.0 }" /></td>
 			</tr>
 		</table>
 	</c:if>
-
+	<div>
+		<form action="" method="GET">
+			<input type="hidden" name="id" value="${compte.compteId}" /> <select
+				name="month" id="month">
+				<c:forEach var="entry" items="${months}">
+					<option value="${entry.key}">
+						<fmt:formatDate value="${entry.value}" pattern="MMM yyyy" />
+					</option>
+				</c:forEach>
+			</select> <input type="submit" id="submit" value="search" />
+		</form>
+	</div>
 	<table>
 		<tr>
 			<th><fmt:message key="compte.operations.date" /></th>

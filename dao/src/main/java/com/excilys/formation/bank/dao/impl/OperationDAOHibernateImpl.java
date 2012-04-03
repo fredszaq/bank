@@ -1,5 +1,6 @@
 package com.excilys.formation.bank.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -58,7 +59,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final List<Operation> getOperationCarteFromCompteId(String compteId) {
+	public final List<Operation> getOperationCarteFromCompteId(String compteId,
+			Date dateDebut, Date dateFin) {
 		String query = "select operation from Compte compte join "
 				+ "compte.operations operation where compte.id=:compteId "
 				+ "and operation.transaction.transactionCategorie='CARTE' "
@@ -86,7 +88,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 */
 	@Override
 	public final List<Operation> getOperationNonCarteFromCompteId(
-			String compteId) {
+			String compteId, Date dateDebut, Date dateFin) {
 		String query = "select operation from Compte compte join "
 				+ "compte.operations operation where compte.id=:compteId "
 				+ "and operation.transaction.transactionCategorie!='CARTE' "

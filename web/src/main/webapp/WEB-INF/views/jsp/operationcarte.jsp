@@ -8,7 +8,10 @@
 	<h2><fmt:message key="carte.title" /></h2>
 
 
-	<form action="${pageContext.request.contextPath}/secure/operationcarte.form"
+	<c:url value="/secure/operationcarte.form" var="operationCarteURL">
+	</c:url>
+	<form
+		action="${operationCarteURL}"
 		method="POST">
 		<div class="box">
 			<div>
@@ -28,10 +31,11 @@
 			<div>
 				<label for="libelle"><fmt:message key="carte.libelle" /></label><input name="libelle"
 					type="text" id="libelle"/>
+
 			</div>
 
 
-			<input type="submit" id="submit"/>
+			<input type="submit" id="submit" />
 
 		</div>
 
