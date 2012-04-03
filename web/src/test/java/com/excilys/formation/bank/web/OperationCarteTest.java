@@ -94,5 +94,4 @@ public class OperationCarteTest extends FluentTest {
 		assertThat(userPage.getAccountSolde("compte_courant_jacky")).isEqualTo(
 				solde);
 	}
-
 }

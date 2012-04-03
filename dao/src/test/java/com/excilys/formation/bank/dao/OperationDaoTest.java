@@ -4,6 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,6 +47,10 @@ public class OperationDaoTest extends
 
 	private Operation operationCredit;
 
+	private DateTime dateDebut;
+
+	private DateTime dateFin;
+
 	/**
 	 * Méthode d'initialisation avant chaque test.
 	 */
@@ -54,6 +59,8 @@ public class OperationDaoTest extends
 	public final void init() {
 		operationDebit = operationDAO.getOperationById(1);
 		operationCredit = operationDAO.getOperationById(2);
+		dateDebut = new DateTime().withDate(2010, 9, 10);
+		dateFin = dateDebut.plusMonths(1);
 
 	}
 
@@ -118,7 +125,8 @@ public class OperationDaoTest extends
 	@Test
 	public final void getOperationCarteFromCompteId() {
 		List<Operation> operations = operationDAO
-				.getOperationCarteFromCompteId("compte1");
+				.getOperationCarteFromCompteId("compte1", dateDebut.toDate(),
+						dateFin.toDate());
 		assertThat(operations).hasSize(2);
 		assertThat(operations.get(0).getMontant()).isEqualTo(444);
 		assertThat(operations.get(1).getMontant()).isEqualTo(555);
@@ -131,7 +139,8 @@ public class OperationDaoTest extends
 	@Test
 	public final void getOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
 		List<Operation> operations = operationDAO
-				.getOperationCarteFromCompteId("compte2");
+				.getOperationCarteFromCompteId("compte2", dateDebut.toDate(),
+						dateFin.toDate());
 		assertThat(operations).isEmpty();
 	}
 
@@ -161,7 +170,8 @@ public class OperationDaoTest extends
 	@Test
 	public final void getOperationNonCarteFromCompteId() {
 		List<Operation> operations = operationDAO
-				.getOperationNonCarteFromCompteId("compte1");
+				.getOperationNonCarteFromCompteId("compte1",
+						dateDebut.toDate(), dateFin.toDate());
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(42);
 	}

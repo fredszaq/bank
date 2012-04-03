@@ -1,5 +1,6 @@
 package com.excilys.formation.bank.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.excilys.formation.bank.bean.Operation;
@@ -50,9 +51,14 @@ public interface OperationDAO {
 	 * 
 	 * @param compteId
 	 *            l'id du compte dont il faut chercher les operations carte
+	 * @param dateDebut
+	 *            : la date de début
+	 * @param dateFin
+	 *            : la date de fin
 	 * @return la liste des operation
 	 */
-	List<Operation> getOperationCarteFromCompteId(String compteId);
+	List<Operation> getOperationCarteFromCompteId(String compteId,
+			Date dateDebut, Date dateFin);
 
 	/**
 	 * Retourne le total des operations carte d'un compte.
@@ -68,7 +74,12 @@ public interface OperationDAO {
 	 * 
 	 * @param compteId
 	 *            l'id du compte dont il faut chercher les operations non carte
+	 * @param dateDebut
+	 *            : la date de début
+	 * @param dateFin
+	 *            : la date de fin
 	 * @return la liste des operations
 	 */
-	List<Operation> getOperationNonCarteFromCompteId(String compteId);
+	List<Operation> getOperationNonCarteFromCompteId(String compteId,
+			Date dateDebut, Date dateFin);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -72,16 +73,30 @@ public class UserServiceImpl implements UserService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final List<Operation> getOperationsCarteByCompteId(String compteId) {
-		return operationDAO.getOperationCarteFromCompteId(compteId);
+	public final List<Operation> getOperationsCarteByCompteId(String compteId,
+			Integer month) {
+		DateTime dateDebut = new DateTime().withDayOfMonth(1)
+				.minusMonths(month);
+		System.out.println(dateDebut);
+		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
+		System.out.println(dateFin);
+		return operationDAO.getOperationCarteFromCompteId(compteId,
+				dateDebut.toDate(), dateFin.toDate());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final List<Operation> getOperationsNonCarteByCompteId(String compteId) {
-		return operationDAO.getOperationNonCarteFromCompteId(compteId);
+	public final List<Operation> getOperationsNonCarteByCompteId(
+			String compteId, Integer month) {
+		DateTime dateDebut = new DateTime().withDayOfMonth(1)
+				.minusMonths(month);
+		System.out.println(dateDebut);
+		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
+		System.out.println(dateFin);
+		return operationDAO.getOperationNonCarteFromCompteId(compteId,
+				dateDebut.toDate(), dateFin.toDate());
 	}
 
 	/**

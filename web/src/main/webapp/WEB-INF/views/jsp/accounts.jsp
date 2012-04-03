@@ -13,8 +13,12 @@
 		<c:forEach var="compte" items="${comptes}" varStatus="loopStatus">
 			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
 				<td>${compte.compteType}</td>
-				<td><a href="${pageContext.request.contextPath}/secure/account.html?id=${compte.compteId}">${compte.compteId}</a></td>
-				<td class="numeric" id="solde_${compte.compteId}"> <fmt:formatNumber type="currency" currencyCode="EUR" value="${compte.solde /100.0}" /></td>
+				<c:url value="/secure/account.html" var="accountURL">
+					<c:param name="id" value="${compte.compteId}"/>
+					<c:param name="month" value="0"/>
+				</c:url>
+				<td><a href="${accountURL}">${compte.compteId}</a></td>
+				<td class="numeric" id="solde_${compte.compteId}"> <fmt:formatNumber type="currency" currencyCode="EUR" value="${compte.solde/100.0}" /></td>
 			</tr>
 		</c:forEach>
 	</table> 

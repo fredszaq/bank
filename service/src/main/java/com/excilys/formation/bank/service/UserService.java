@@ -51,18 +51,23 @@ public interface UserService extends UserDetailsService {
 	 * 
 	 * @param compteId
 	 *            : the compteId
+	 * @param month
+	 *            : month
 	 * @return Liste d'opération
 	 */
-	List<Operation> getOperationsCarteByCompteId(String compteId);
+	List<Operation> getOperationsCarteByCompteId(String compteId, Integer month);
 
 	/**
 	 * Obtention des opérations non carte pour un compte donné.
 	 * 
 	 * @param compteId
 	 *            : the compteId
+	 * @param month
+	 *            : month
 	 * @return Liste d'opération
 	 */
-	List<Operation> getOperationsNonCarteByCompteId(String compteId);
+	List<Operation> getOperationsNonCarteByCompteId(String compteId,
+			Integer month);
 
 	/**
 	 * Obtention du total des opérations cartes pour un compte donné.

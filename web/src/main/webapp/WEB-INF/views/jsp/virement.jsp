@@ -12,7 +12,9 @@
 				</div>
 		</c:if>
 
-	<form action="${pageContext.request.contextPath}/secure/virement.form"
+	<c:url value="/secure/virement.form" var="virementURL">
+	</c:url>
+	<form action="${virementURL}"
 		method="POST">
 		<div class="box">
 			<div>

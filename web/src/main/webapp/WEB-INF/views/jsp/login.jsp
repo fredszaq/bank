@@ -6,9 +6,7 @@
 	<fmt:setBundle basename="localization.Messages" />
 	<c:choose>
 		<c:when test="${not empty pageContext.request.userPrincipal}">
-			<div>
-				You are currently authenticated.
-			</div>
+			<div>You are currently authenticated.</div>
 		</c:when>
 		<c:otherwise>
 			<c:if test="${not empty param.login_error}">
@@ -26,9 +24,9 @@
 					<fmt:message key="login.max_session_exceed" />
 				</div>
 			</c:if>
-			<form name="f"
-				action="${pageContext.request.contextPath}/j_spring_security_check"
-				method="POST">
+			<c:url value="/j_spring_security_check" var="securityCheckURL">
+			</c:url>
+			<form name="f" action="${securityCheckURL}" method="POST">
 				<div class="loginbox">
 					<div>
 						<label for="j_username"><fmt:message key="login.username" /></label>
