@@ -114,18 +114,21 @@ nav a {
 	display: table;
 }
 
-.box > div {
+.box>div {
 	display: table-row;
 }
 
-.box > div label, .box > div input {
+.box>div label,.box>div input {
 	display: table-cell;
 }
 
-.box > div label {
-	padding-right: 10px; 
+.box>div select {
+	width: 100%;
 }
 
+.box>div label {
+	padding-right: 10px;
+}
 
 table {
 	background: #ddd;
@@ -175,5 +178,5 @@ table tr:last-child td:last-of-type {
 }
 
 .positive {
+	
 }
-
