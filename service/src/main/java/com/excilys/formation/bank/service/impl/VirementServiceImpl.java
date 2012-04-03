@@ -39,15 +39,18 @@ public class VirementServiceImpl implements VirementService {
 			String compteCrediteurId, double montant, String libelle) {
 
 		if (!compteCrediteurId.equals(compteDebiteurId)) {
-			Compte compteDebiteurUser = compteDAO
-					.loadCompteByUsernameAndCompteId(login, compteDebiteurId);
-			if (compteDebiteurUser != null) {
+			Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
+					login, compteDebiteurId);
+			if (compteDebiteur != null) {
 
-				Transaction transaction = createTransaction(compteDebiteurId,
-						compteCrediteurId, libelle);
+				Compte compteCrediteur = compteDAO
+						.loadCompteById(compteCrediteurId);
 
-				createOperations(compteDebiteurId, compteCrediteurId,
-						transaction, montant);
+				Transaction transaction = createTransaction(compteDebiteur,
+						compteCrediteur, libelle);
+
+				createOperations(compteDebiteur, compteCrediteur, transaction,
+						montant);
 
 				compteDAO.updateSolde(compteDebiteurId, -montant);
 				compteDAO.updateSolde(compteCrediteurId, montant);
@@ -57,8 +60,8 @@ public class VirementServiceImpl implements VirementService {
 		return null;
 	}
 
-	private void createOperations(String compteDebiteurId,
-			String compteCrediteurId, Transaction transaction, double montant) {
+	private void createOperations(Compte compteDebiteur,
+			Compte compteCrediteur, Transaction transaction, double montant) {
 		Operation operationDebit = new Operation();
 		Operation operationCredit = new Operation();
 
@@ -71,18 +74,16 @@ public class VirementServiceImpl implements VirementService {
 		operationDebit.setTransaction(transaction);
 		operationCredit.setTransaction(transaction);
 
-		operationDebit.setCompte(compteDAO.loadCompteById(compteDebiteurId));
-		operationCredit.setCompte(compteDAO.loadCompteById(compteCrediteurId));
+		operationDebit.setCompte(compteDebiteur);
+		operationCredit.setCompte(compteCrediteur);
 
 		operationDAO.insert(operationDebit);
 		operationDAO.insert(operationCredit);
 	}
 
-	private Transaction createTransaction(String compteDebiteurId,
-			String compteCrediteurId, String libelle) {
+	private Transaction createTransaction(Compte compteDebiteur,
+			Compte compteCrediteur, String libelle) {
 
-		Compte compteDebiteur = compteDAO.loadCompteById(compteDebiteurId);
-		Compte compteCrediteur = compteDAO.loadCompteById(compteCrediteurId);
 		Set<User> usersDebiteurs = compteDebiteur.getUsers();
 		Set<User> usersCrediteurs = compteCrediteur.getUsers();
 		Set<User> userIntersection = new HashSet<User>(usersDebiteurs);

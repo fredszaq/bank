@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Transaction;
+import com.excilys.formation.bank.service.OperationCarteService;
 import com.excilys.formation.bank.service.UserService;
 import com.excilys.formation.bank.service.VirementService;
 
@@ -32,6 +33,9 @@ public class AuthenticatedController {
 
 	@Autowired
 	private VirementService virementService;
+
+	@Autowired
+	private OperationCarteService operationCarteService;
 
 	@RequestMapping("/account.html")
 	public final String account(ModelMap model, @RequestParam String id) {
@@ -96,6 +100,36 @@ public class AuthenticatedController {
 		}
 		return "redirect:/secure/virement.html?error=1";
 
+	}
+
+	@RequestMapping("/operationcarte.html")
+	public final String operationCarte(ModelMap model) {
+
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Set<Compte> comptes = userService.getComptesByUsername(userDetails
+				.getUsername());
+		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
+		LinkedList<Compte> listeComptesCartes = new LinkedList<Compte>();
+		for (Compte compte : listeComptes) {
+			if (compte.hasCarte()) {
+				listeComptesCartes.add(compte);
+			}
+		}
+		Collections.sort(listeComptesCartes);
+		model.put("comptes", listeComptesCartes);
+		return "operationcarte";
+	}
+
+	@RequestMapping("/operationcarte.form")
+	public final String doOperationCarte(@RequestParam String compteDebiteur,
+			@RequestParam double montant, @RequestParam String libelle) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		String login = userDetails.getUsername();
+		operationCarteService.createOperationCarte(login, compteDebiteur,
+				montant, libelle);
+		return "redirect:/secure/detailCarte.html?id=" + compteDebiteur;
 	}
 
 	@RequestMapping("/detailCarte.html")

@@ -24,10 +24,10 @@ import com.excilys.formation.bank.bean.TransactionCategorie;
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
 		DataSetTestExecutionListener.class })
 @DataSet("/datasets/dataSetService.xml")
-public class TestVirementService {
+public class TestOperationCarteService {
 
 	@Autowired
-	private VirementService virementService;
+	private OperationCarteService operationCarteService;
 
 	@Autowired
 	private UserService userService;
@@ -40,11 +40,9 @@ public class TestVirementService {
 	public final void creationVirementInterneTest() {
 		double soldeInitialDebiteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
-		double soldeInitialCrediteur = userService
-				.getCompteByUsernameAndAccountId("user1", "compte2").getSolde();
 		DateTime now = DateTime.now();
-		Transaction transaction = virementService.createVirement("user1",
-				"compte1", "compte2", 35, "oh le beau virement");
+		Transaction transaction = operationCarteService.createOperationCarte(
+				"user1", "compte1", 35, "oh le beau virement");
 
 		assertThat(transaction.getLibelle()).isEqualTo("oh le beau virement");
 
@@ -62,50 +60,10 @@ public class TestVirementService {
 		// SOLDES FINAUX
 		double soldeFinalDebiteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
-		double soldeFinalCrediteur = userService
-				.getCompteByUsernameAndAccountId("user1", "compte2").getSolde();
 		assertThat(soldeFinalDebiteur).isEqualTo(soldeInitialDebiteur - 35);
-		assertThat(soldeFinalCrediteur).isEqualTo(soldeInitialCrediteur + 35);
 
-		// VIREMENT INTERNE
+		// OPERATION CARTE
 		assertThat(transaction.getTransactionCategorie()).isEqualTo(
-				TransactionCategorie.VIREMENT_INTERNE);
-	}
-
-	@Test
-	public final void creationVirementExterneTest() {
-		double soldeInitialDebiteur = userService
-				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
-		double soldeInitialCrediteur = userService
-				.getCompteByUsernameAndAccountId("user2", "compte3").getSolde();
-		DateTime now = DateTime.now();
-		Transaction transaction = virementService.createVirement("user1",
-				"compte1", "compte3", 35, "");
-
-		assertThat(transaction.getLibelle()).isEqualTo(
-				"virement de compte1 vers compte3");
-
-		// VÉRIFICATION DE LA DATE INITIALE DE TRANSACTION
-		transaction.getDateInit();
-		DateTime dateTransactionInit = new DateTime(transaction.getDateInit());
-		assertThat(Days.daysBetween(now, dateTransactionInit).getDays())
-				.isEqualTo(0);
-
-		// VÉRIFICATION DE LA DATE FINALE DE TRANSACTION
-		DateTime dateTransactionValid = new DateTime(transaction.getDateValid());
-		assertThat(Days.daysBetween(now, dateTransactionValid).getDays())
-				.isEqualTo(0);
-
-		// SOLDES FINAUX
-		double soldeFinalDebiteur = userService
-				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
-		double soldeFinalCrediteur = userService
-				.getCompteByUsernameAndAccountId("user2", "compte3").getSolde();
-		assertThat(soldeFinalDebiteur).isEqualTo(soldeInitialDebiteur - 35);
-		assertThat(soldeFinalCrediteur).isEqualTo(soldeInitialCrediteur + 35);
-
-		// VIREMENT EXTERNE
-		assertThat(transaction.getTransactionCategorie()).isEqualTo(
-				TransactionCategorie.VIREMENT_EXTERNE);
+				TransactionCategorie.CARTE);
 	}
 }
