@@ -20,7 +20,6 @@ public class LoginPage extends BankRootPage {
 	public final void isAt() {
 		assertThat(find("#j_username")).hasSize(1);
 		assertThat(find("#j_password")).hasSize(1);
-		assertThat(find("#_spring_security_remember_me")).hasSize(1);
 	}
 
 	/**

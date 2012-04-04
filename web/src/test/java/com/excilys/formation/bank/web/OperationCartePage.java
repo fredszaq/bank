@@ -13,7 +13,7 @@ public class OperationCartePage extends BankRootPage {
 
 	@Override
 	public final String getUrl() {
-		return TestConstants.BASE_URL + "secure/operationcarte.html";
+		return TestConstants.BASE_URL + "secure/operationCarte.html";
 	}
 
 	@Override
