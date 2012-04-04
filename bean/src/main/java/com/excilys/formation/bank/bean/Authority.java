@@ -46,23 +46,6 @@ public class Authority implements Serializable, GrantedAuthority {
 	@Enumerated(EnumType.STRING)
 	private AuthorityType authority;
 
-	/**
-	 * Default constructor.
-	 */
-	public Authority() {
-
-	}
-
-	/**
-	 * Logical constructor.
-	 * 
-	 * @param authority
-	 *            the authority
-	 */
-	public Authority(AuthorityType authority) {
-		this.authority = authority;
-	}
-
 	@Override
 	public final String getAuthority() {
 		return authority.name();

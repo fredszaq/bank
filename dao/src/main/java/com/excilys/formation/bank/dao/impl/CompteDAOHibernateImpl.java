@@ -1,7 +1,5 @@
 package com.excilys.formation.bank.dao.impl;
 
-import java.util.List;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -36,13 +34,13 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 	@Override
 	public final Compte loadCompteByUsernameAndCompteId(String username,
 			String compteId) {
-		String query = "select comptes from User user join "
-				+ "user.comptes comptes where user.login=:login "
-				+ "and comptes.id=:compteId";
-		return (Compte) sessionFactory.getCurrentSession().createQuery(query)
-				.setString("login", username).setString("compteId", compteId)
-				.uniqueResult();
-
+		StringBuilder query = new StringBuilder();
+		query.append("select comptes from User user join ")
+				.append("user.comptes comptes where user.login=:login ")
+				.append("and comptes.id=:compteId");
+		return (Compte) sessionFactory.getCurrentSession()
+				.createQuery(query.toString()).setString("login", username)
+				.setString("compteId", compteId).uniqueResult();
 	}
 
 	/**

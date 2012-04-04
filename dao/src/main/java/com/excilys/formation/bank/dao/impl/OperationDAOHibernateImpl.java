@@ -58,16 +58,18 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public final List<Operation> getOperationCarteFromCompteId(String compteId,
 			Date dateDebut, Date dateFin) {
-		String query = "select operation from Compte compte join "
-				+ "compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie = 'CARTE' "
-				+ "and operation.transaction.dateValid between :dateDebut and :dateFin "
-				+ "and operation.transaction.etat = 'VALIDATED' "
-				+ "order by operation.transaction.dateValid DESC";
-		return sessionFactory.getCurrentSession().createQuery(query)
+		StringBuilder query = new StringBuilder();
+		query.append("select operation from Compte compte join ")
+				.append("compte.operations operation where compte.id=:compteId ")
+				.append("and operation.transaction.transactionCategorie = 'CARTE' ")
+				.append("and operation.transaction.dateValid between :dateDebut and :dateFin ")
+				.append("and operation.transaction.etat = 'VALIDATED' ")
+				.append("order by operation.transaction.dateValid DESC");
+		return sessionFactory.getCurrentSession().createQuery(query.toString())
 				.setString("compteId", compteId)
 				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
 				.list();
@@ -77,29 +79,34 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final double getTotalOperationCarteFromCompteId(String compteId) {
-		String query = "select sum(operation.montant) from Compte compte "
-				+ "join compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie='CARTE' "
-				+ "and operation.transaction.etat = 'VALIDATED' ";
-		Object result = sessionFactory.getCurrentSession().createQuery(query)
-				.setString("compteId", compteId).uniqueResult();
+	public final long getTotalOperationCarteFromCompteId(String compteId) {
+
+		StringBuilder query = new StringBuilder();
+		query.append("select sum(operation.montant) from Compte compte ")
+				.append("join compte.operations operation where compte.id=:compteId ")
+				.append("and operation.transaction.transactionCategorie='CARTE' ")
+				.append("and operation.transaction.etat = 'VALIDATED' ");
+		Object result = sessionFactory.getCurrentSession()
+				.createQuery(query.toString()).setString("compteId", compteId)
+				.uniqueResult();
 		return result == null ? 0 : (Long) result;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public final List<Operation> getOperationNonCarteFromCompteId(
 			String compteId, Date dateDebut, Date dateFin) {
-		String query = "select operation from Compte compte join "
-				+ "compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie!='CARTE' "
-				+ "and operation.transaction.dateValid between :dateDebut and :dateFin "
-				+ "and operation.transaction.etat = 'VALIDATED' "
-				+ "order by operation.transaction.dateValid DESC";
-		return sessionFactory.getCurrentSession().createQuery(query)
+		StringBuilder query = new StringBuilder();
+		query.append("select operation from Compte compte join ")
+				.append("compte.operations operation where compte.id=:compteId ")
+				.append("and operation.transaction.transactionCategorie!='CARTE' ")
+				.append("and operation.transaction.dateValid between :dateDebut and :dateFin ")
+				.append("and operation.transaction.etat = 'VALIDATED' ")
+				.append("order by operation.transaction.dateValid DESC");
+		return sessionFactory.getCurrentSession().createQuery(query.toString())
 				.setString("compteId", compteId)
 				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
 				.list();
