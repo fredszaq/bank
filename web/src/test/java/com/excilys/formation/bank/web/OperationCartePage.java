@@ -39,8 +39,6 @@ public class OperationCartePage extends BankRootPage {
 	/**
 	 * Fills the form with the given values.
 	 * 
-	 * TODO give the accounts to !
-	 * 
 	 * @param montant
 	 *            the montant of the virement
 	 * @param libelle
