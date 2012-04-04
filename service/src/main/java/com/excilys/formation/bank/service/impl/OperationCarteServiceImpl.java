@@ -104,7 +104,7 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 		transaction.setDateInit(now);
 		transaction.setDateValid(now);
 
-		if ("".equals(libelle)) {
+		if (libelle == null) {
 			transaction.setLibelle("opération carte depuis "
 					+ compteDebiteur.getCompteId());
 		} else {

@@ -80,7 +80,7 @@ public class TestVirementService {
 				.getCompteByUsernameAndAccountId("user2", "compte3").getSolde();
 		DateTime now = DateTime.now();
 		Transaction transaction = virementService.createVirement("user1",
-				"compte1", "compte3", 35, "");
+				"compte1", "compte3", 35, null);
 
 		assertThat(transaction.getLibelle()).isEqualTo(
 				"virement de compte1 vers compte3");

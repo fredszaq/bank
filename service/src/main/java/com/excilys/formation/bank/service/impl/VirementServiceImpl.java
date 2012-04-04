@@ -129,7 +129,7 @@ public class VirementServiceImpl implements VirementService {
 		transaction.setDateInit(now);
 		transaction.setDateValid(now);
 
-		if ("".equals(libelle)) {
+		if (libelle == null) {
 			transaction.setLibelle("virement de "
 					+ compteDebiteur.getCompteId() + " vers "
 					+ compteCrediteur.getCompteId());
