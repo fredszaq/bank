@@ -70,7 +70,7 @@
 					href="${pageContext.request.contextPath}/secure/virement.html"><fmt:message
 							key="menu.virement" /></a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/secure/operationcarte.html"><fmt:message
+					href="${pageContext.request.contextPath}/secure/operationCarte.html"><fmt:message
 							key="menu.carte" /></a></li>
 				<c:if test="${pageScope.isAdmin }">
 					<li><a
