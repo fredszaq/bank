@@ -16,4 +16,6 @@
 		<property name="password" value="${database.password}" />
 		<property name="suppressClose" value="true" />
 	</bean>
+	
+	
 </beans>

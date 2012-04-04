@@ -109,10 +109,21 @@ public class TestVirementService {
 				TransactionCategorie.VIREMENT_EXTERNE);
 	}
 
-	@Test
+	@Test(expected = Exception.class)
 	public final void creationVirementMontantNegatifTest() {
-		Transaction transaction = virementService.createVirement("user1",
-				"compte1", "compte3", -100, "marche pas");
-		assertThat(transaction).isNull();
+		virementService.createVirement("user1", "compte1", "compte3", -100,
+				"marche pas");
+	}
+
+	@Test(expected = Exception.class)
+	public final void creationVirement2ComptesPareil() {
+		virementService.createVirement("user1", "compte1", "compte1", 100,
+				"marche pas");
+	}
+
+	@Test(expected = Exception.class)
+	public final void creationVirementCompteNApartenantPasALUser() {
+		virementService.createVirement("user2", "compte1", "compte2", 100,
+				"marche pas");
 	}
 }

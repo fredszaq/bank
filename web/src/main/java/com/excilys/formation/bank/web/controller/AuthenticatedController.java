@@ -136,14 +136,15 @@ public class AuthenticatedController {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		String login = userDetails.getUsername();
-		Transaction transaction = virementService.createVirement(login,
-				compteDebiteur, compteCrediteur, (long) (montant * 100),
-				libelle);
-		if (transaction != null) {
-			return "redirect:/secure/account.html?id=" + compteDebiteur
-					+ "&month=0";
+		try {
+			virementService.createVirement(login, compteDebiteur,
+					compteCrediteur, (long) (montant * 100), libelle);
+		} catch (Exception e) {
+			return "redirect:/secure/virement.html?error=1";
 		}
-		return "redirect:/secure/virement.html?error=1";
+
+		return "redirect:/secure/account.html?id=" + compteDebiteur
+				+ "&month=0";
 
 	}
 
