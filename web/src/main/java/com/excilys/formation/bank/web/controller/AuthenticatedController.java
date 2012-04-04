@@ -6,9 +6,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
-
-import javax.annotation.PostConstruct;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,7 @@ public class AuthenticatedController {
 
 	private static Map<Integer, Date> MONTHS;
 
-	@PostConstruct
-	public void onPostConstruct() {
+	public void constructMonths() {
 		DateTime dateTime = new DateTime();
 		MONTHS = new HashMap<Integer, Date>();
 		MONTHS.put(0, dateTime.toDate());
@@ -59,9 +57,28 @@ public class AuthenticatedController {
 		MONTHS.put(5, dateTime.minusMonths(5).toDate());
 	}
 
+	private boolean monthHasChanged() {
+		DateTime dateTime = new DateTime();
+		DateTime dateTime2 = null;
+		for (Entry<Integer, Date> entry : MONTHS.entrySet()) {
+			if (entry.getKey() == 0) {
+				dateTime2 = new DateTime(entry.getValue());
+				break;
+			}
+		}
+		if (dateTime2 == null
+				|| (dateTime.getMonthOfYear() != dateTime2.getMonthOfYear())) {
+			return true;
+		}
+		return false;
+	}
+
 	@RequestMapping("/account.html")
 	public final String account(ModelMap model, @RequestParam String id,
 			@RequestParam Integer month) {
+		if (MONTHS == null || monthHasChanged()) {
+			constructMonths();
+		}
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
@@ -167,6 +184,9 @@ public class AuthenticatedController {
 	@RequestMapping("/detailCarte.html")
 	public final String detailsCarte(ModelMap model, @RequestParam String id,
 			@RequestParam Integer month) {
+		if (MONTHS == null || monthHasChanged()) {
+			constructMonths();
+		}
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
