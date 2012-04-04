@@ -37,7 +37,7 @@
 
 			<div>
 				<label for="montant"><fmt:message key="virement.montant" /></label> <input name="montant"
-					type="number" id="montant"/>
+					type="number" min="0" id="montant"/>
 			</div>
 
 			<div>
