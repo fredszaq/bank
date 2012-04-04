@@ -44,18 +44,20 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 	public final Transaction createOperationCarte(String login,
 			String compteDebiteurId, long montant, String libelle) {
 
-		Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
-				login, compteDebiteurId);
-		if (compteDebiteur != null) {
-			if (compteDebiteur.hasCarte()) {
+		if (montant > 0) {
+			Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
+					login, compteDebiteurId);
+			if (compteDebiteur != null) {
+				if (compteDebiteur.hasCarte()) {
 
-				Transaction transaction = createTransaction(compteDebiteur,
-						libelle);
+					Transaction transaction = createTransaction(compteDebiteur,
+							libelle);
 
-				createOperations(compteDebiteur, transaction, montant);
+					createOperations(compteDebiteur, transaction, montant);
 
-				compteDAO.updateSolde(compteDebiteurId, -montant);
-				return transaction;
+					compteDAO.updateSolde(compteDebiteurId, -montant);
+					return transaction;
+				}
 			}
 		}
 		return null;

@@ -37,14 +37,15 @@ public class TestOperationCarteService {
 	}
 
 	@Test
-	public final void creationVirementInterneTest() {
+	public final void creationOperationCarteTest() {
 		double soldeInitialDebiteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
 		DateTime now = DateTime.now();
 		Transaction transaction = operationCarteService.createOperationCarte(
-				"user1", "compte1", 35, "oh le beau virement");
+				"user1", "compte1", 35, "oh la belle opération carte");
 
-		assertThat(transaction.getLibelle()).isEqualTo("oh le beau virement");
+		assertThat(transaction.getLibelle()).isEqualTo(
+				"oh la belle opération carte");
 
 		// VÉRIFICATION DE LA DATE INITIALE DE TRANSACTION
 		transaction.getDateInit();
@@ -65,5 +66,12 @@ public class TestOperationCarteService {
 		// OPERATION CARTE
 		assertThat(transaction.getTransactionCategorie()).isEqualTo(
 				TransactionCategorie.CARTE);
+	}
+
+	@Test
+	public final void creationOperationCarteMontantNegatifTest() {
+		Transaction transaction = operationCarteService.createOperationCarte(
+				"user1", "compte1", -100, "marche pas");
+		assertThat(transaction).isNull();
 	}
 }

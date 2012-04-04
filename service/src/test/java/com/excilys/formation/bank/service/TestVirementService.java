@@ -108,4 +108,11 @@ public class TestVirementService {
 		assertThat(transaction.getTransactionCategorie()).isEqualTo(
 				TransactionCategorie.VIREMENT_EXTERNE);
 	}
+
+	@Test
+	public final void creationVirementMontantNegatifTest() {
+		Transaction transaction = virementService.createVirement("user1",
+				"compte1", "compte3", -100, "marche pas");
+		assertThat(transaction).isNull();
+	}
 }
