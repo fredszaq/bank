@@ -33,8 +33,12 @@
 		</h1>
 		<div id="logininfo">
 			<c:choose>
-				<c:when test="${pageContext['request'].userPrincipal != null}">	
-			Logged as <br /> ${pageContext['request'].userPrincipal.principal.firstName} ${pageContext['request'].userPrincipal.principal.lastName} <br />
+				<c:when test="${pageContext['request'].userPrincipal != null}">
+					<fmt:message key="baselayout.loggedas">
+						<fmt:param
+							value="${pageContext['request'].userPrincipal.principal.firstName} ${pageContext['request'].userPrincipal.principal.lastName}" />
+					</fmt:message>
+					<br />
 					<a
 						href="${pageContext.request.contextPath}/j_spring_security_logout"><fmt:message
 							key="baselayout.disconnect" /></a>
@@ -50,7 +54,8 @@
 	</header>
 	<aside>
 		<ul>
-			<li><a href="${pageContext.request.contextPath}/"><fmt:message key="menu.accueil"/></a></li>
+			<li><a href="${pageContext.request.contextPath}/"><fmt:message
+						key="menu.accueil" /></a></li>
 			<c:if test="${not empty pageContext.request.userPrincipal}">
 				<c:forEach var="role"
 					items="${pageContext['request'].userPrincipal.principal.authorities}">
@@ -60,18 +65,18 @@
 				</c:forEach>
 
 				<li><a
-					href="${pageContext.request.contextPath}/secure/accounts.html"><fmt:message key="menu.accounts"/></a>
-				</li>
+					href="${pageContext.request.contextPath}/secure/accounts.html"><fmt:message
+							key="menu.accounts" /></a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/secure/virement.html"><fmt:message key="menu.virement"/></a>
-				</li>
+					href="${pageContext.request.contextPath}/secure/virement.html"><fmt:message
+							key="menu.virement" /></a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/secure/operationcarte.html"><fmt:message key="menu.carte"/></a>
-				</li>
+					href="${pageContext.request.contextPath}/secure/operationcarte.html"><fmt:message
+							key="menu.carte" /></a></li>
 				<c:if test="${pageScope.isAdmin }">
 					<li><a
-						href="${pageContext.request.contextPath}/secure/admin/admin.html"><fmt:message key="menu.admin"/></a>
-					</li>
+						href="${pageContext.request.contextPath}/secure/admin/admin.html"><fmt:message
+								key="menu.admin" /></a></li>
 				</c:if>
 			</c:if>
 		</ul>
