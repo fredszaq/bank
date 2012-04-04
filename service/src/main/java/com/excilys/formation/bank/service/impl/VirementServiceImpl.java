@@ -48,23 +48,26 @@ public class VirementServiceImpl implements VirementService {
 			String compteDebiteurId, String compteCrediteurId, long montant,
 			String libelle) {
 
-		if (!compteCrediteurId.equals(compteDebiteurId)) {
-			Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
-					login, compteDebiteurId);
-			if (compteDebiteur != null) {
+		if (montant > 0) {
+			if (!compteCrediteurId.equals(compteDebiteurId)) {
+				Compte compteDebiteur = compteDAO
+						.loadCompteByUsernameAndCompteId(login,
+								compteDebiteurId);
+				if (compteDebiteur != null) {
 
-				Compte compteCrediteur = compteDAO
-						.loadCompteById(compteCrediteurId);
+					Compte compteCrediteur = compteDAO
+							.loadCompteById(compteCrediteurId);
 
-				Transaction transaction = createTransaction(compteDebiteur,
-						compteCrediteur, libelle);
+					Transaction transaction = createTransaction(compteDebiteur,
+							compteCrediteur, libelle);
 
-				createOperations(compteDebiteur, compteCrediteur, transaction,
-						montant);
+					createOperations(compteDebiteur, compteCrediteur,
+							transaction, montant);
 
-				compteDAO.updateSolde(compteDebiteurId, -montant);
-				compteDAO.updateSolde(compteCrediteurId, montant);
-				return transaction;
+					compteDAO.updateSolde(compteDebiteurId, -montant);
+					compteDAO.updateSolde(compteCrediteurId, montant);
+					return transaction;
+				}
 			}
 		}
 		return null;
