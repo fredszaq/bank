@@ -4,6 +4,6 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
-	<fmt:message key="title.custumerarea" />
+	<fmt:message key="title.customerarea" />
 </jsp:root>
 

@@ -25,30 +25,30 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp" />
 	</definition>
 
-	<definition name="custumerArea" extends="baseLayout">
+	<definition name="customerArea" extends="baseLayout">
 		<put-attribute name="title"
-			value="/WEB-INF/views/jsp/titleCustumerArea.jsp" />
+			value="/WEB-INF/views/jsp/titleCustomerArea.jsp" />
 		<put-attribute name="body" value="" />
 	</definition>
 
-	<definition name="accounts" extends="custumerArea">
+	<definition name="accounts" extends="customerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/accounts.jsp" />
 	</definition>
 
-	<definition name="account" extends="custumerArea">
+	<definition name="account" extends="customerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/account.jsp" />
 	</definition>
 
-	<definition name="virement" extends="custumerArea">
+	<definition name="virement" extends="customerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/virement.jsp" />
 	</definition>
 
-	<definition name="operationcarte" extends="custumerArea">
+	<definition name="operationCarte" extends="customerArea">
 		<put-attribute name="body"
-			value="/WEB-INF/views/jsp/operationcarte.jsp" />
+			value="/WEB-INF/views/jsp/operationCarte.jsp" />
 	</definition>
 
-	<definition name="detailCarte" extends="custumerArea">
+	<definition name="detailCarte" extends="customerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/detailCarte.jsp" />
 	</definition>
 
