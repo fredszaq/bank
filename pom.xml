@@ -69,6 +69,7 @@
 		<version.fluentlenium>0.5.6</version.fluentlenium>
 		<version.spring-dbunit>1.1.5</version.spring-dbunit>
 		<version.flyway>1.5</version.flyway>
+		<cxf.version>2.5.2</cxf.version>
 	</properties>
 
 	<prerequisites>
@@ -77,6 +78,27 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- CXF -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<!-- Jetty is needed if you're are not using the CXFServlet -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http-jetty</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
 			<!-- SGBDR dependencies -->
 			<dependency>
 				<groupId>postgresql</groupId>
