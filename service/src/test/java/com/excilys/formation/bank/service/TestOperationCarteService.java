@@ -68,10 +68,21 @@ public class TestOperationCarteService {
 				TransactionCategorie.CARTE);
 	}
 
-	@Test
+	@Test(expected = Exception.class)
 	public final void creationOperationCarteMontantNegatifTest() {
-		Transaction transaction = operationCarteService.createOperationCarte(
-				"user1", "compte1", -100, "marche pas");
-		assertThat(transaction).isNull();
+		operationCarteService.createOperationCarte("user1", "compte1", -100,
+				"marche pas");
+	}
+
+	@Test(expected = Exception.class)
+	public final void creationOperationCompteNApartenantPasALUser() {
+		operationCarteService.createOperationCarte("user1", "compte3", 100,
+				"marche pas");
+	}
+
+	@Test(expected = Exception.class)
+	public final void creationOperationCompteSansCarte() {
+		operationCarteService.createOperationCarte("user1", "compte2", 100,
+				"marche pas");
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Operation;
-import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.service.OperationCarteService;
 import com.excilys.formation.bank.service.UserService;
 import com.excilys.formation.bank.service.VirementService;
@@ -138,7 +138,8 @@ public class AuthenticatedController {
 		String login = userDetails.getUsername();
 		try {
 			virementService.createVirement(login, compteDebiteur,
-					compteCrediteur, (long) (montant * 100), libelle);
+					compteCrediteur, (long) (montant * 100),
+					StringUtils.trimToNull(libelle));
 		} catch (Exception e) {
 			return "redirect:/secure/virement.html?error=1";
 		}
@@ -173,13 +174,15 @@ public class AuthenticatedController {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		String login = userDetails.getUsername();
-		Transaction transaction = operationCarteService.createOperationCarte(
-				login, compteDebiteur, (long) (montant * 100), libelle);
-		if (transaction != null) {
-			return "redirect:/secure/detailCarte.html?id=" + compteDebiteur
-					+ "&month=0";
+		try {
+			operationCarteService.createOperationCarte(login, compteDebiteur,
+					(long) (montant * 100), StringUtils.trimToNull(libelle));
+		} catch (Exception e) {
+			return "redirect:/secure/operationCarte.html?error=1";
 		}
-		return "redirect:/secure/operationCarte.html?error=1";
+		return "redirect:/secure/detailCarte.html?id=" + compteDebiteur
+				+ "&month=0";
+
 	}
 
 	@RequestMapping("/detailCarte.html")

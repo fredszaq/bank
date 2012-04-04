@@ -44,23 +44,23 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 	public final Transaction createOperationCarte(String login,
 			String compteDebiteurId, long montant, String libelle) {
 
-		if (montant > 0) {
-			Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
-					login, compteDebiteurId);
-			if (compteDebiteur != null) {
-				if (compteDebiteur.hasCarte()) {
-
-					Transaction transaction = createTransaction(compteDebiteur,
-							libelle);
-
-					createOperations(compteDebiteur, transaction, montant);
-
-					compteDAO.updateSolde(compteDebiteurId, -montant);
-					return transaction;
-				}
-			}
+		Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
+				login, compteDebiteurId);
+		if (compteDebiteur == null) {
+			throw new IllegalArgumentException(
+					"unable to find this Compte for this user.");
 		}
-		return null;
+		if (!compteDebiteur.hasCarte()) {
+			throw new IllegalArgumentException(
+					"there is not Carte on this account !");
+		}
+
+		Transaction transaction = createTransaction(compteDebiteur, libelle);
+
+		createOperations(compteDebiteur, transaction, montant);
+
+		compteDAO.updateSolde(compteDebiteurId, -montant);
+		return transaction;
 	}
 
 	/**
