@@ -1,5 +1,8 @@
 package com.excilys.formation.webservice;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
 import com.excilys.formation.bank.bean.Transaction;
 
 /**
@@ -8,6 +11,7 @@ import com.excilys.formation.bank.bean.Transaction;
  * @author excilys
  * 
  */
+@WebService(serviceName = "virementService")
 public interface VirementServiceWs {
 
 	/**
@@ -25,6 +29,9 @@ public interface VirementServiceWs {
 	 *            : le libelle
 	 * @return Transaction
 	 */
-	Transaction createVirement(String login, String compteDebiteurId,
-			String compteCrediteurId, long montant, String libelle);
+	Transaction createVirement(@WebParam(name = "login") String login,
+			@WebParam(name = "compteDebiteurId") String compteDebiteurId,
+			@WebParam(name = "compteCrediteurId") String compteCrediteurId,
+			@WebParam(name = "montant") long montant,
+			@WebParam(name = "libelle") String libelle);
 }

@@ -91,6 +91,12 @@
 				<version>${cxf.version}</version>
 				<scope>compile</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				<version>${cxf.version}</version>
+				<scope>compile</scope>
+			</dependency>
 			<!-- Jetty is needed if you're are not using the CXFServlet -->
 			<dependency>
 				<groupId>org.apache.cxf</groupId>
