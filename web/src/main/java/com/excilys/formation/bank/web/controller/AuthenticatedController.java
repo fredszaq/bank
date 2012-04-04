@@ -62,7 +62,6 @@ public class AuthenticatedController {
 	@RequestMapping("/account.html")
 	public final String account(ModelMap model, @RequestParam String id,
 			@RequestParam Integer month) {
-		System.out.println(month);
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
@@ -124,7 +123,8 @@ public class AuthenticatedController {
 				compteDebiteur, compteCrediteur, (long) (montant * 100),
 				libelle);
 		if (transaction != null) {
-			return "redirect:/secure/account.html?id=" + compteDebiteur;
+			return "redirect:/secure/account.html?id=" + compteDebiteur
+					+ "&month=0";
 		}
 		return "redirect:/secure/virement.html?error=1";
 
@@ -157,7 +157,8 @@ public class AuthenticatedController {
 		String login = userDetails.getUsername();
 		operationCarteService.createOperationCarte(login, compteDebiteur,
 				(long) (montant * 100), libelle);
-		return "redirect:/secure/detailCarte.html?id=" + compteDebiteur;
+		return "redirect:/secure/detailCarte.html?id=" + compteDebiteur
+				+ "&month=0";
 	}
 
 	@RequestMapping("/detailCarte.html")
@@ -173,6 +174,7 @@ public class AuthenticatedController {
 		model.put("compte", compte);
 		model.put("operations",
 				userService.getOperationsCarteByCompteId(id, month));
+		model.put("months", MONTHS);
 		return "detailCarte";
 
 	}
