@@ -82,9 +82,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 				+ "join compte.operations operation where compte.id=:compteId "
 				+ "and operation.transaction.transactionCategorie='CARTE' "
 				+ "and operation.transaction.etat = 'VALIDATED' ";
-		List<?> resultList = sessionFactory.getCurrentSession()
-				.createQuery(query).setString("compteId", compteId).list();
-		Object result = resultList.get(0);
+		Object result = sessionFactory.getCurrentSession().createQuery(query)
+				.setString("compteId", compteId).uniqueResult();
 		return result == null ? 0 : (Long) result;
 	}
 

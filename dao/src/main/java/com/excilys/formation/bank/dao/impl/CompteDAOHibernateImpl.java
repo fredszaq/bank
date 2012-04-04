@@ -39,10 +39,9 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 		String query = "select comptes from User user join "
 				+ "user.comptes comptes where user.login=:login "
 				+ "and comptes.id=:compteId";
-		List<?> resultList = sessionFactory.getCurrentSession()
-				.createQuery(query).setString("login", username)
-				.setString("compteId", compteId).list();
-		return resultList.isEmpty() ? null : (Compte) resultList.get(0);
+		return (Compte) sessionFactory.getCurrentSession().createQuery(query)
+				.setString("login", username).setString("compteId", compteId)
+				.uniqueResult();
 
 	}
 
