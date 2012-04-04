@@ -67,7 +67,7 @@ public interface OperationDAO {
 	 *            l'id du compte dont il faut chercher les operations carte
 	 * @return le total des operations
 	 */
-	double getTotalOperationCarteFromCompteId(String compteId);
+	long getTotalOperationCarteFromCompteId(String compteId);
 
 	/**
 	 * Retourne la liste des operations non carte d'un compte.
