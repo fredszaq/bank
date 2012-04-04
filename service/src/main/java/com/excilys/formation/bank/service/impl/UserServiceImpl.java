@@ -77,9 +77,7 @@ public class UserServiceImpl implements UserService {
 			Integer month) {
 		DateTime dateDebut = new DateTime().withDayOfMonth(1)
 				.minusMonths(month);
-		System.out.println(dateDebut);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
-		System.out.println(dateFin);
 		return operationDAO.getOperationCarteFromCompteId(compteId,
 				dateDebut.toDate(), dateFin.toDate());
 	}
@@ -92,9 +90,7 @@ public class UserServiceImpl implements UserService {
 			String compteId, Integer month) {
 		DateTime dateDebut = new DateTime().withDayOfMonth(1)
 				.minusMonths(month);
-		System.out.println(dateDebut);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
-		System.out.println(dateFin);
 		return operationDAO.getOperationNonCarteFromCompteId(compteId,
 				dateDebut.toDate(), dateFin.toDate());
 	}

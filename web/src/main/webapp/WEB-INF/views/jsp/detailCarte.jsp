@@ -18,7 +18,27 @@
 
 
 	<h2>Opérations</h2>
-
+	<div>
+		<form action="" method="GET">
+			<input type="hidden" name="id" value="${compte.compteId}" /> <select
+				name="month" id="month">
+				<c:forEach var="entry" items="${months}">
+					<c:choose>
+						<c:when test="${param.month == entry.key}">
+							<option value="${entry.key}" selected="selected">
+								<fmt:formatDate value="${entry.value}" pattern="MMM yyyy" />
+							</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${entry.key}">
+								<fmt:formatDate value="${entry.value}" pattern="MMM yyyy" />
+							</option>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select> <input type="submit" id="submit" value="search" />
+		</form>
+	</div>
 	<table>
 		<tr>
 			<th>Date</th>

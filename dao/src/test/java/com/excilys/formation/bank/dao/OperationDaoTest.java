@@ -59,8 +59,8 @@ public class OperationDaoTest extends
 	public final void init() {
 		operationDebit = operationDAO.getOperationById(1);
 		operationCredit = operationDAO.getOperationById(2);
-		dateDebut = new DateTime().withDate(2010, 9, 10);
-		dateFin = dateDebut.plusMonths(1);
+		dateDebut = new DateTime().withDate(2009, 9, 10);
+		dateFin = dateDebut.plusYears(4);
 
 	}
 
@@ -127,9 +127,8 @@ public class OperationDaoTest extends
 		List<Operation> operations = operationDAO
 				.getOperationCarteFromCompteId("compte1", dateDebut.toDate(),
 						dateFin.toDate());
-		assertThat(operations).hasSize(2);
+		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(444);
-		assertThat(operations.get(1).getMontant()).isEqualTo(555);
 	}
 
 	/**
@@ -150,7 +149,7 @@ public class OperationDaoTest extends
 	@Test
 	public final void getTotalOperationCarteFromCompteId() {
 		assertThat(operationDAO.getTotalOperationCarteFromCompteId("compte1"))
-				.isEqualTo(999);
+				.isEqualTo(444);
 
 	}
 

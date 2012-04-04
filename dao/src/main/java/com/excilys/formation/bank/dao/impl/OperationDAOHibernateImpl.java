@@ -63,10 +63,14 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 			Date dateDebut, Date dateFin) {
 		String query = "select operation from Compte compte join "
 				+ "compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie='CARTE' "
-				+ "order by operation.transaction.dateValid ASC";
+				+ "and operation.transaction.transactionCategorie = 'CARTE' "
+				+ "and operation.transaction.dateValid between :dateDebut and :dateFin "
+				+ "and operation.transaction.etat = 'VALIDATED' "
+				+ "order by operation.transaction.dateValid DESC";
 		return sessionFactory.getCurrentSession().createQuery(query)
-				.setString("compteId", compteId).list();
+				.setString("compteId", compteId)
+				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
+				.list();
 	}
 
 	/**
@@ -76,7 +80,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	public final double getTotalOperationCarteFromCompteId(String compteId) {
 		String query = "select sum(operation.montant) from Compte compte "
 				+ "join compte.operations operation where compte.id=:compteId "
-				+ "and operation.transaction.transactionCategorie='CARTE' ";
+				+ "and operation.transaction.transactionCategorie='CARTE' "
+				+ "and operation.transaction.etat = 'VALIDATED' ";
 		List<?> resultList = sessionFactory.getCurrentSession()
 				.createQuery(query).setString("compteId", compteId).list();
 		Object result = resultList.get(0);
@@ -92,8 +97,12 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 		String query = "select operation from Compte compte join "
 				+ "compte.operations operation where compte.id=:compteId "
 				+ "and operation.transaction.transactionCategorie!='CARTE' "
-				+ "order by operation.transaction.dateValid ASC";
+				+ "and operation.transaction.dateValid between :dateDebut and :dateFin "
+				+ "and operation.transaction.etat = 'VALIDATED' "
+				+ "order by operation.transaction.dateValid DESC";
 		return sessionFactory.getCurrentSession().createQuery(query)
-				.setString("compteId", compteId).list();
+				.setString("compteId", compteId)
+				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
+				.list();
 	}
 }
