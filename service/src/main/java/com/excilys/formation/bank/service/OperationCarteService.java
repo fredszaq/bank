@@ -1,5 +1,9 @@
 package com.excilys.formation.bank.service;
 
+import javax.validation.constraints.Min;
+
+import org.springframework.validation.annotation.Validated;
+
 import com.excilys.formation.bank.bean.Transaction;
 
 /**
@@ -8,6 +12,7 @@ import com.excilys.formation.bank.bean.Transaction;
  * @author excilys
  * 
  */
+@Validated
 public interface OperationCarteService {
 
 	/**
@@ -24,5 +29,5 @@ public interface OperationCarteService {
 	 * @return Transaction
 	 */
 	Transaction createOperationCarte(String login, String compteDebiteurId,
-			long montant, String libelle);
+			@Min(value = 0) long montant, String libelle);
 }
