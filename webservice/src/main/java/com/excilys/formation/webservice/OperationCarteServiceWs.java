@@ -1,5 +1,8 @@
 package com.excilys.formation.webservice;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
 import com.excilys.formation.bank.bean.Transaction;
 
 /**
@@ -8,6 +11,7 @@ import com.excilys.formation.bank.bean.Transaction;
  * @author excilys
  * 
  */
+@WebService(serviceName = "operationCarteService")
 public interface OperationCarteServiceWs {
 
 	/**
@@ -23,6 +27,8 @@ public interface OperationCarteServiceWs {
 	 *            : libelle
 	 * @return Transaction
 	 */
-	Transaction createOperationCarte(String login, String compteDebiteurId,
-			long montant, String libelle);
+	Transaction createOperationCarte(@WebParam(name = "login") String login,
+			@WebParam(name = "compteCrediteurId") String compteDebiteurId,
+			@WebParam(name = "montant") long montant,
+			@WebParam(name = "libelle") String libelle);
 }

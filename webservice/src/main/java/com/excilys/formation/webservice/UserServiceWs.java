@@ -3,7 +3,9 @@ package com.excilys.formation.webservice;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.excilys.formation.bank.bean.Compte;
@@ -17,7 +19,8 @@ import com.excilys.formation.bank.bean.User;
  * 
  */
 
-public interface UserServiceWs extends UserDetailsService {
+@WebService(serviceName = "userService")
+public interface UserServiceWs {
 
 	/**
 	 * Get a specific account of a user.
@@ -28,7 +31,9 @@ public interface UserServiceWs extends UserDetailsService {
 	 *            the id of the account
 	 * @return the account (null if not found)
 	 */
-	Compte getCompteByUsernameAndAccountId(String login, String id);
+	Compte getCompteByUsernameAndAccountId(
+			@WebParam(name = "login") String login,
+			@WebParam(name = "id") String id);
 
 	/**
 	 * Get the compte by username.
@@ -38,13 +43,12 @@ public interface UserServiceWs extends UserDetailsService {
 	 * @return a set of compte
 	 * @throws UsernameNotFoundException
 	 */
-	Set<Compte> getComptesByUsername(String login);
+	Set<Compte> getComptesByUsername(@WebParam(name = "login") String login);
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	User loadUserByUsername(String login);
+	User loadUserByUsername(@WebParam(name = "login") String login);
 
 	/**
 	 * Obtention des opérations carte pour un compte donné.
@@ -55,7 +59,9 @@ public interface UserServiceWs extends UserDetailsService {
 	 *            : month
 	 * @return Liste d'opération
 	 */
-	List<Operation> getOperationsCarteByCompteId(String compteId, Integer month);
+	List<Operation> getOperationsCarteByCompteId(
+			@WebParam(name = "compteId") String compteId,
+			@WebParam(name = "month") Integer month);
 
 	/**
 	 * Obtention des opérations non carte pour un compte donné.
@@ -66,8 +72,9 @@ public interface UserServiceWs extends UserDetailsService {
 	 *            : month
 	 * @return Liste d'opération
 	 */
-	List<Operation> getOperationsNonCarteByCompteId(String compteId,
-			Integer month);
+	List<Operation> getOperationsNonCarteByCompteId(
+			@WebParam(name = "compteId") String compteId,
+			@WebParam(name = "month") Integer month);
 
 	/**
 	 * Obtention du total des opérations cartes pour un compte donné.
@@ -76,6 +83,7 @@ public interface UserServiceWs extends UserDetailsService {
 	 *            : the compteId
 	 * @return total
 	 */
-	double getTotalOperationsCarteByCompteId(String compteId);
+	double getTotalOperationsCarteByCompteId(
+			@WebParam(name = "compteId") String compteId);
 
 }
