@@ -47,30 +47,29 @@ public class VirementServiceImpl implements VirementService {
 	public final Transaction createVirement(String login,
 			String compteDebiteurId, String compteCrediteurId, long montant,
 			String libelle) {
+		if (compteCrediteurId.equals(compteDebiteurId)) {
+			throw new IllegalArgumentException(
+					"the two ComptesId must be different !");
 
-		if (montant > 0) {
-			if (!compteCrediteurId.equals(compteDebiteurId)) {
-				Compte compteDebiteur = compteDAO
-						.loadCompteByUsernameAndCompteId(login,
-								compteDebiteurId);
-				if (compteDebiteur != null) {
-
-					Compte compteCrediteur = compteDAO
-							.loadCompteById(compteCrediteurId);
-
-					Transaction transaction = createTransaction(compteDebiteur,
-							compteCrediteur, libelle);
-
-					createOperations(compteDebiteur, compteCrediteur,
-							transaction, montant);
-
-					compteDAO.updateSolde(compteDebiteurId, -montant);
-					compteDAO.updateSolde(compteCrediteurId, montant);
-					return transaction;
-				}
-			}
 		}
-		return null;
+		Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
+				login, compteDebiteurId);
+		if (compteDebiteur == null) {
+			throw new IllegalArgumentException(
+					"unable to find this Compte for this user.");
+
+		}
+
+		Compte compteCrediteur = compteDAO.loadCompteById(compteCrediteurId);
+
+		Transaction transaction = createTransaction(compteDebiteur,
+				compteCrediteur, libelle);
+
+		createOperations(compteDebiteur, compteCrediteur, transaction, montant);
+
+		compteDAO.updateSolde(compteDebiteurId, -montant);
+		compteDAO.updateSolde(compteCrediteurId, montant);
+		return transaction;
 	}
 
 	/**

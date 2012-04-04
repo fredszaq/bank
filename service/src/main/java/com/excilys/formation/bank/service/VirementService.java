@@ -1,5 +1,9 @@
 package com.excilys.formation.bank.service;
 
+import javax.validation.constraints.Min;
+
+import org.springframework.validation.annotation.Validated;
+
 import com.excilys.formation.bank.bean.Transaction;
 
 /**
@@ -8,6 +12,7 @@ import com.excilys.formation.bank.bean.Transaction;
  * @author excilys
  * 
  */
+@Validated
 public interface VirementService {
 
 	/**
@@ -16,9 +21,9 @@ public interface VirementService {
 	 * @param login
 	 *            : le login de l'utilisateur
 	 * @param compteDebiteurId
-	 *            : le compte débiteur
+	 *            : le compte débiteur (doit appartenir a l'utilisateur)
 	 * @param compteCrediteurId
-	 *            : le compte créditeur
+	 *            : le compte créditeur (doit etre different du compte débiteur)
 	 * @param montant
 	 *            : le montant
 	 * @param libelle
@@ -26,5 +31,6 @@ public interface VirementService {
 	 * @return Transaction
 	 */
 	Transaction createVirement(String login, String compteDebiteurId,
-			String compteCrediteurId, long montant, String libelle);
+			String compteCrediteurId, @Min(value = 0) long montant,
+			String libelle);
 }
