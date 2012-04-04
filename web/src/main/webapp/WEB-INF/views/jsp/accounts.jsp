@@ -4,6 +4,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<fmt:setBundle basename="localization.Messages" />
+	<h2><fmt:message key="comptes.title" /></h2>
 	<table id="accountList">
 		<tr>
 			<th><fmt:message key="comptes.type" /></th>
