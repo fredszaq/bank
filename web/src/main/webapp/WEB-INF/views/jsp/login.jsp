@@ -6,7 +6,9 @@
 	<fmt:setBundle basename="localization.Messages" />
 	<c:choose>
 		<c:when test="${not empty pageContext.request.userPrincipal}">
-			<div>You are currently authenticated.</div>
+			<div>
+				<fmt:message key="login.already_authenticated" />
+			</div>
 		</c:when>
 		<c:otherwise>
 			<c:if test="${not empty param.login_error}">
@@ -42,11 +44,7 @@
 						<input id="j_password" type="password" name='j_password' />
 					</div>
 					<div>
-						<input name="submit" type="submit" id="submit" /><input
-							id="_spring_security_remember_me" type="checkbox"
-							name="_spring_security_remember_me" /> <label
-							for="_spring_security_remember_me"><fmt:message
-								key="login.rememberme" /></label>
+						<input name="submit" type="submit" id="submit" />
 					</div>
 				</div>
 			</form>

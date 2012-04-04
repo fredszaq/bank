@@ -28,7 +28,6 @@
 				alt="BankRoot logo" /></a>
 		</div>
 		<h1>
-			<!-- <fmt:message key="baselayout.header" />-->
 			<tiles:insertAttribute name="title" />
 		</h1>
 		<div id="logininfo">

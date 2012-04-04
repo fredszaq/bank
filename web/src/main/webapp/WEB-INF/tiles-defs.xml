@@ -11,49 +11,65 @@
 		<put-attribute name="body" value="" />
 	</definition>
 
-	<definition name="index" extends="baseLayout">
-		<put-attribute name="title" value="Welcome" />
+	<definition name="welcomePage" extends="baseLayout">
+		<put-attribute name="title"
+			value="/WEB-INF/views/jsp/titleWelcome.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="index" extends="welcomePage">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/index.jsp" />
 	</definition>
 
-	<definition name="login" extends="baseLayout">
-		<put-attribute name="title" value="Welcome" />
+	<definition name="login" extends="welcomePage">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp" />
 	</definition>
 
-	<definition name="accounts" extends="baseLayout">
-		<put-attribute name="title" value="Customer Area" />
+	<definition name="custumerArea" extends="baseLayout">
+		<put-attribute name="title"
+			value="/WEB-INF/views/jsp/titleCustumerArea.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="accounts" extends="custumerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/accounts.jsp" />
 	</definition>
-	
-	<definition name="account" extends="baseLayout">
-		<put-attribute name="title" value="Customer Area" />
+
+	<definition name="account" extends="custumerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/account.jsp" />
 	</definition>
-	
-	<definition name="virement" extends="baseLayout">
-		<put-attribute name="title" value="Customer Area" />
+
+	<definition name="virement" extends="custumerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/virement.jsp" />
 	</definition>
-	
-	<definition name="operationcarte" extends="baseLayout">
-		<put-attribute name="title" value="Customer Area" />
-		<put-attribute name="body" value="/WEB-INF/views/jsp/operationcarte.jsp" />
+
+	<definition name="operationcarte" extends="custumerArea">
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/operationcarte.jsp" />
 	</definition>
-	
-	<definition name="detailCarte" extends="baseLayout">
-		<put-attribute name="title" value="Customer Area" />
+
+	<definition name="detailCarte" extends="custumerArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/detailCarte.jsp" />
 	</definition>
 
-	<definition name="admin" extends="baseLayout">
-		<put-attribute name="title" value="Admin Area" />
+	<definition name="adminArea" extends="baseLayout">
+		<put-attribute name="title"
+			value="/WEB-INF/views/jsp/titleAdminArea.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="admin" extends="adminArea">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/admin.jsp" />
 	</definition>
 
-	<definition name="accessDenied" extends="baseLayout">
-		<put-attribute name="title" value="Error" />
-		<put-attribute name="body" value="/WEB-INF/views/jsp/accessDenied.jsp" />
+	<definition name="errorPage" extends="baseLayout">
+		<put-attribute name="title" value="/WEB-INF/views/jsp/titleError.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="accessDenied" extends="errorPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/jsp/accessDenied.jsp" />
 	</definition>
 
 </tiles-definitions>
