@@ -21,7 +21,8 @@ public interface OperationCarteService {
 	 * @param login
 	 *            : login de l'utilisateur
 	 * @param compteDebiteurId
-	 *            : id du compte débiteur
+	 *            : id du compte débiteur (doit avoir une carte et appartenir a
+	 *            l'user)
 	 * @param montant
 	 *            : montant
 	 * @param libelle
