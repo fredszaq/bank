@@ -130,7 +130,7 @@ public class AuthenticatedController {
 
 	}
 
-	@RequestMapping("/operationcarte.html")
+	@RequestMapping("/operationCarte.html")
 	public final String operationCarte(ModelMap model) {
 
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
@@ -146,19 +146,22 @@ public class AuthenticatedController {
 		}
 		Collections.sort(listeComptesCartes);
 		model.put("comptes", listeComptesCartes);
-		return "operationcarte";
+		return "operationCarte";
 	}
 
-	@RequestMapping("/operationcarte.form")
+	@RequestMapping("/operationCarte.form")
 	public final String doOperationCarte(@RequestParam String compteDebiteur,
 			@RequestParam double montant, @RequestParam String libelle) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		String login = userDetails.getUsername();
-		operationCarteService.createOperationCarte(login, compteDebiteur,
-				(long) (montant * 100), libelle);
-		return "redirect:/secure/detailCarte.html?id=" + compteDebiteur
-				+ "&month=0";
+		Transaction transaction = operationCarteService.createOperationCarte(
+				login, compteDebiteur, (long) (montant * 100), libelle);
+		if (transaction != null) {
+			return "redirect:/secure/detailCarte.html?id=" + compteDebiteur
+					+ "&month=0";
+		}
+		return "redirect:/secure/operationCarte.html?error=1";
 	}
 
 	@RequestMapping("/detailCarte.html")
