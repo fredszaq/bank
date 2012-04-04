@@ -1,5 +1,6 @@
 package com.excilys.formation.bank.web.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,6 +31,10 @@ public class HomeController {
 	 */
 	@RequestMapping("/login.html")
 	public final String login() {
+		if (!SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal().equals("anonymousUser")) {
+			return "index";
+		}
 		return "login";
 	}
 
