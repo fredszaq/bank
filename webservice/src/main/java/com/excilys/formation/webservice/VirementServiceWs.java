@@ -4,7 +4,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.excilys.formation.bank.bean.Transaction;
+import com.excilys.formation.webservice.dto.bean.TransactionDTO;
 
 /**
  * Interface VirementService.
@@ -31,7 +31,7 @@ public interface VirementServiceWs {
 	 * @return Transaction
 	 */
 	@WebMethod
-	Transaction createVirement(@WebParam(name = "login") String login,
+	TransactionDTO createVirement(@WebParam(name = "login") String login,
 			@WebParam(name = "compteDebiteurId") String compteDebiteurId,
 			@WebParam(name = "compteCrediteurId") String compteCrediteurId,
 			@WebParam(name = "montant") long montant,
