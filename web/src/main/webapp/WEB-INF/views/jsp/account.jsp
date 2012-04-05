@@ -20,6 +20,9 @@
 					currencyCode="EUR" value="${compte.solde / 100.0}" /></td>
 		</tr>
 	</table>
+	<c:url value="/secure/account/${param.month}/${compte.compteId}.xls"
+		var="urlXls" />
+	<a href="${urlXls }"><fmt:message key="compte.download_as_xls" /></a>
 
 
 	<h2>
@@ -28,18 +31,8 @@
 
 	<c:url value="/secure/detailCarte.html" var="detailCarteURL">
 		<c:param name="id" value="${compte.compteId}" />
-		<c:param name="month" value="0" />
+		<c:param name="month" value="${param.month}" />
 	</c:url>
-	<c:if test="${compte.hasCarte()}">
-		<table>
-			<tr>
-				<th><a href="${detailCarteURL}"><fmt:message
-							key="compte.carte.total" /></a></th>
-				<td class="numeric"><fmt:formatNumber type="currency"
-						currencyCode="EUR" value="${totalCarte / 100.0 }" /></td>
-			</tr>
-		</table>
-	</c:if>
 	<div>
 		<form action="" method="GET">
 			<input type="hidden" name="id" value="${compte.compteId}" /> <select
@@ -61,6 +54,16 @@
 			</select> <input type="submit" id="submit" value="search" />
 		</form>
 	</div>
+	<c:if test="${compte.hasCarte()}">
+		<table>
+			<tr>
+				<th><a href="${detailCarteURL}"><fmt:message
+							key="compte.carte.total" /></a></th>
+				<td class="numeric"><fmt:formatNumber type="currency"
+						currencyCode="EUR" value="${totalCarte / 100.0 }" /></td>
+			</tr>
+		</table>
+	</c:if>
 	<table>
 		<tr>
 			<th><fmt:message key="compte.operations.date" /></th>

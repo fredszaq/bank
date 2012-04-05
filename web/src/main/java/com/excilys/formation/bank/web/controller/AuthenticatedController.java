@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -89,9 +90,9 @@ public class AuthenticatedController {
 		return "account";
 	}
 
-	@RequestMapping("/accountExcel.xls")
-	public final String accountExcel(ModelMap model, @RequestParam String id,
-			@RequestParam Integer month) {
+	@RequestMapping("/account/{month}/{id}.xls")
+	public final String accountExcel(ModelMap model, @PathVariable String id,
+			@PathVariable Integer month) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		Compte compte = userService.getCompteByUsernameAndAccountId(
