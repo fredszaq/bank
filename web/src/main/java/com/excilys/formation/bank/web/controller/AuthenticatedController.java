@@ -124,18 +124,22 @@ public class AuthenticatedController {
 		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
 		Collections.sort(listeComptes);
 		HashMap<String, Long> soldesPrevisionnels = new HashMap<String, Long>();
+		HashMap<String, Long> encoursCartes = new HashMap<String, Long>();
 		for (Compte compte : listeComptes) {
 			// TODO s'il y a autre chose que des débits en différé, faudra gérer
 			// le signe
-			soldesPrevisionnels
-					.put(compte.getCompteId(),
-							compte.getSolde()
-									- userService
-											.getTotalOperationsNonValideesByCompteId(compte
-													.getCompteId()));
+			long totalOperationsNonValidees = userService
+					.getTotalOperationsNonValideesByCompteId(compte
+							.getCompteId());
+			soldesPrevisionnels.put(compte.getCompteId(), compte.getSolde()
+					- totalOperationsNonValidees);
+			encoursCartes
+					.put(compte.getCompteId(), -totalOperationsNonValidees);
+
 		}
 		model.put("comptes", listeComptes);
 		model.put("soldesPrevisionnels", soldesPrevisionnels);
+		model.put("encoursCartes", encoursCartes);
 		return "accounts";
 	}
 
