@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
@@ -59,13 +58,7 @@ public class AuthenticatedController {
 
 	private boolean monthHasChanged() {
 		DateTime dateTime = new DateTime();
-		DateTime dateTime2 = null;
-		for (Entry<Integer, Date> entry : MONTHS.entrySet()) {
-			if (entry.getKey() == 0) {
-				dateTime2 = new DateTime(entry.getValue());
-				break;
-			}
-		}
+		DateTime dateTime2 = new DateTime(MONTHS.get(0));
 		if (dateTime2 == null
 				|| (dateTime.getMonthOfYear() != dateTime2.getMonthOfYear())) {
 			return true;
