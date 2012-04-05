@@ -53,4 +53,5 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 	</dependencies>
+	<packaging>war</packaging>
 </project>
