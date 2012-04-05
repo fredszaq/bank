@@ -3,7 +3,6 @@ package com.excilys.formation.webservice.impl;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.service.OperationCarteService;
@@ -15,7 +14,6 @@ import com.excilys.formation.webservice.OperationCarteServiceWs;
  * @author excilys
  * 
  */
-@Service("operationCarteServiceWs")
 @WebService(endpointInterface = "com.excilys.formation.webservice.OperationCarteServiceWs")
 public class OperationCarteServiceWsImpl implements OperationCarteServiceWs {
 

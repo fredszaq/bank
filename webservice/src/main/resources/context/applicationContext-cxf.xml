@@ -7,9 +7,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-	
 	<context:annotation-config />
-	<context:component-scan base-package="com.excilys.formation" />
+	<context:component-scan base-package="com.excilys.formation.bank.service" />
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
@@ -17,13 +16,13 @@
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
 
-	<jaxws:endpoint id="userServiceEndPoint" implementor="#userServiceWs"
+	<jaxws:endpoint id="userServiceEndPoint" implementor="com.excilys.formation.webservice.impl.UserServiceWsImpl"
 		address="/UserService" />
 
 	<jaxws:endpoint id="operationCarteServiceEndPoint"
-		implementor="#operationCarteServiceWs" address="/OperationCarteService" />
+		implementor="com.excilys.formation.webservice.impl.OperationCarteServiceWsImpl" address="/OperationCarteService" />
 
 	<jaxws:endpoint id="virementServiceEndPoint"
-		implementor="#virementServiceWs" address="/VirementService" />
+		implementor="com.excilys.formation.webservice.impl.VirementServiceWsImpl" address="/VirementService" />
 
 </beans>
