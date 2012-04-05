@@ -123,7 +123,15 @@ public class AuthenticatedController {
 				.getUsername());
 		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
 		Collections.sort(listeComptes);
+		HashMap<String, Long> soldesPrevisionnels = new HashMap<String, Long>();
+		for (Compte compte : listeComptes) {
+			soldesPrevisionnels.put(
+					compte.getCompteId(),
+					userService.getTotalOperationsNonValideesByCompteId(compte
+							.getCompteId()) + compte.getSolde());
+		}
 		model.put("comptes", listeComptes);
+		model.put("soldesPrevisionnels", soldesPrevisionnels);
 		return "accounts";
 	}
 

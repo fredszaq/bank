@@ -130,4 +130,17 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
 				.list();
 	}
+
+	@Override
+	public final long getTotalOperationsNonValideesFromCompteId(String compteId) {
+
+		StringBuilder query = new StringBuilder();
+		query.append("select sum(operation.montant) from Compte compte ")
+				.append("join compte.operations operation where compte.id=:compteId ")
+				.append("and operation.transaction.etat = 'WAITING' ");
+		Object result = sessionFactory.getCurrentSession()
+				.createQuery(query.toString()).setString("compteId", compteId)
+				.uniqueResult();
+		return result == null ? 0 : (Long) result;
+	}
 }

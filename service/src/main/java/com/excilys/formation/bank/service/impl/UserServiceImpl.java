@@ -116,4 +116,12 @@ public class UserServiceImpl implements UserService {
 		return operationDAO.getTotalOperationCarteFromCompteId(compteId);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public long getTotalOperationsNonValideesByCompteId(String compteId) {
+		return operationDAO.getTotalOperationsNonValideesFromCompteId(compteId);
+	}
+
 }
