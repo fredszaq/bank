@@ -20,15 +20,9 @@
 					currencyCode="EUR" value="${compte.solde / 100.0}" /></td>
 		</tr>
 	</table>
-	<c:url value="/secure/account/${param.month}/${compte.compteId}.xls"
-		var="urlXls" />
-	<a href="${urlXls }"><fmt:message key="compte.download_as_xls" /></a>
-
-
 	<h2>
 		<fmt:message key="compte.operations" />
 	</h2>
-
 	<c:url value="/secure/detailCarte.html" var="detailCarteURL">
 		<c:param name="id" value="${compte.compteId}" />
 		<c:param name="month" value="${param.month}" />
@@ -54,6 +48,11 @@
 			</select> <input type="submit" id="submit" value="search" />
 		</form>
 	</div>
+	<c:url value="/secure/account/${param.month}/${compte.compteId}.xls"
+		var="urlXls" />
+	<p>
+		<a href="${urlXls }"><fmt:message key="compte.download_as_xls" /></a>
+	</p>
 	<c:if test="${compte.hasCarte()}">
 		<table>
 			<tr>

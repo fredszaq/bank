@@ -79,15 +79,18 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final long getTotalOperationCarteFromCompteId(String compteId) {
+	public final long getTotalOperationCarteFromCompteId(String compteId,
+			Date dateDebut, Date dateFin) {
 
 		StringBuilder query = new StringBuilder();
 		query.append("select sum(operation.montant) from Compte compte ")
 				.append("join compte.operations operation where compte.id=:compteId ")
 				.append("and operation.transaction.transactionCategorie='CARTE' ")
+				.append("and operation.transaction.dateValid between :dateDebut and :dateFin ")
 				.append("and operation.transaction.etat = 'VALIDATED' ");
 		Object result = sessionFactory.getCurrentSession()
 				.createQuery(query.toString()).setString("compteId", compteId)
+				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
 				.uniqueResult();
 		return result == null ? 0 : (Long) result;
 	}
