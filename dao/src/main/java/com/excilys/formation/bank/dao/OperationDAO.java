@@ -65,9 +65,14 @@ public interface OperationDAO {
 	 * 
 	 * @param compteId
 	 *            l'id du compte dont il faut chercher les operations carte
+	 * @param dateDebut
+	 *            la date de debut
+	 * @param dateFin
+	 *            la date de fin
 	 * @return le total des operations
 	 */
-	long getTotalOperationCarteFromCompteId(String compteId);
+	long getTotalOperationCarteFromCompteId(String compteId, Date dateDebut,
+			Date dateFin);
 
 	/**
 	 * Retourne la liste des operations non carte d'un compte.

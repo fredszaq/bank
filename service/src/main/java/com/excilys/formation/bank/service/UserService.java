@@ -50,9 +50,9 @@ public interface UserService extends UserDetailsService {
 	 * Obtention des opérations carte pour un compte donné.
 	 * 
 	 * @param compteId
-	 *            : the compteId
+	 *            the compteId
 	 * @param month
-	 *            : month
+	 *            month
 	 * @return Liste d'opération
 	 */
 	List<Operation> getOperationsCarteByCompteId(String compteId, Integer month);
@@ -61,9 +61,9 @@ public interface UserService extends UserDetailsService {
 	 * Obtention des opérations non carte pour un compte donné.
 	 * 
 	 * @param compteId
-	 *            : the compteId
+	 *            the compteId
 	 * @param month
-	 *            : month
+	 *            month
 	 * @return Liste d'opération
 	 */
 	List<Operation> getOperationsNonCarteByCompteId(String compteId,
@@ -73,9 +73,9 @@ public interface UserService extends UserDetailsService {
 	 * Obtention des opérations pour un compte donné.
 	 * 
 	 * @param compteId
-	 *            : the compteId
+	 *            the compteId
 	 * @param month
-	 *            : month
+	 *            month
 	 * @return Liste d'opération
 	 */
 	List<Operation> getOperationsByCompteId(String compteId, Integer month);
@@ -84,10 +84,12 @@ public interface UserService extends UserDetailsService {
 	 * Obtention du total des opérations cartes pour un compte donné.
 	 * 
 	 * @param compteId
-	 *            : the compteId
+	 *            the compteId
+	 * @param month
+	 *            the month
 	 * @return total
 	 */
-	double getTotalOperationsCarteByCompteId(String compteId);
+	double getTotalOperationsCarteByCompteId(String compteId, Integer month);
 
 	long getTotalOperationsNonValideesByCompteId(String compteId);
 }

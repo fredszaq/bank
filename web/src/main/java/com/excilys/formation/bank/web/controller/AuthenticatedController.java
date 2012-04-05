@@ -85,7 +85,7 @@ public class AuthenticatedController {
 		model.put("compte", compte);
 		model.put("operations", operations);
 		model.put("totalCarte",
-				userService.getTotalOperationsCarteByCompteId(id));
+				userService.getTotalOperationsCarteByCompteId(id, month));
 		model.put("months", MONTHS);
 		return "account";
 	}

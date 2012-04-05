@@ -148,8 +148,11 @@ public class OperationDaoTest extends
 	 */
 	@Test
 	public final void getTotalOperationCarteFromCompteId() {
-		assertThat(operationDAO.getTotalOperationCarteFromCompteId("compte1"))
-				.isEqualTo(444);
+		DateTime debut = new DateTime(2010, 9, 1, 0, 0);
+		DateTime fin = new DateTime(2010, 10, 1, 0, 0);
+		assertThat(
+				operationDAO.getTotalOperationCarteFromCompteId("compte1",
+						debut.toDate(), fin.toDate())).isEqualTo(444);
 
 	}
 
@@ -158,8 +161,11 @@ public class OperationDaoTest extends
 	 */
 	@Test
 	public final void getTotalOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
-		assertThat(operationDAO.getTotalOperationCarteFromCompteId("compte2"))
-				.isEqualTo(0);
+		DateTime debut = new DateTime(2010, 9, 1, 0, 0);
+		DateTime fin = new DateTime(2010, 10, 1, 0, 0);
+		assertThat(
+				operationDAO.getTotalOperationCarteFromCompteId("compte2",
+						debut.toDate(), fin.toDate())).isEqualTo(0);
 
 	}
 
