@@ -70,6 +70,17 @@ public interface UserService extends UserDetailsService {
 			Integer month);
 
 	/**
+	 * Obtention des opérations pour un compte donné.
+	 * 
+	 * @param compteId
+	 *            : the compteId
+	 * @param month
+	 *            : month
+	 * @return Liste d'opération
+	 */
+	List<Operation> getOperationsByCompteId(String compteId, Integer month);
+
+	/**
 	 * Obtention du total des opérations cartes pour un compte donné.
 	 * 
 	 * @param compteId

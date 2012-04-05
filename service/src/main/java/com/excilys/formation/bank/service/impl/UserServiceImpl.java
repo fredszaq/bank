@@ -99,6 +99,19 @@ public class UserServiceImpl implements UserService {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public final List<Operation> getOperationsByCompteId(String compteId,
+			Integer month) {
+		DateTime dateDebut = new DateTime().withDayOfMonth(1)
+				.minusMonths(month);
+		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
+		return operationDAO.getOperationFromCompteId(compteId,
+				dateDebut.toDate(), dateFin.toDate());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public final double getTotalOperationsCarteByCompteId(String compteId) {
 		return operationDAO.getTotalOperationCarteFromCompteId(compteId);
 	}
