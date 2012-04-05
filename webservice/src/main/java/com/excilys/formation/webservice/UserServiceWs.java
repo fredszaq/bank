@@ -8,8 +8,7 @@ import javax.jws.WebService;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.excilys.formation.bank.bean.Compte;
-import com.excilys.formation.bank.bean.User;
+import com.excilys.formation.webservice.dto.bean.CompteDTO;
 
 /**
  * UserService interface.
@@ -30,12 +29,6 @@ public interface UserServiceWs {
 	 * @throws UsernameNotFoundException
 	 */
 	@WebMethod
-	Set<Compte> getComptesByUsername(@WebParam(name = "login") String login);
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@WebMethod
-	User loadUserByUsername(@WebParam(name = "login") String login);
+	Set<CompteDTO> getComptesByUsername(@WebParam(name = "login") String login);
 
 }
