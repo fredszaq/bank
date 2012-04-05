@@ -3,6 +3,7 @@ package com.excilys.formation.webservice;
 import java.util.List;
 import java.util.Set;
 
+import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
@@ -19,7 +20,7 @@ import com.excilys.formation.bank.bean.User;
  * 
  */
 
-@WebService(serviceName = "userService")
+@WebService
 public interface UserServiceWs {
 
 	/**
@@ -31,6 +32,7 @@ public interface UserServiceWs {
 	 *            the id of the account
 	 * @return the account (null if not found)
 	 */
+	@WebMethod
 	Compte getCompteByUsernameAndAccountId(
 			@WebParam(name = "login") String login,
 			@WebParam(name = "id") String id);
@@ -43,11 +45,13 @@ public interface UserServiceWs {
 	 * @return a set of compte
 	 * @throws UsernameNotFoundException
 	 */
+	@WebMethod
 	Set<Compte> getComptesByUsername(@WebParam(name = "login") String login);
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@WebMethod
 	User loadUserByUsername(@WebParam(name = "login") String login);
 
 	/**
@@ -59,6 +63,7 @@ public interface UserServiceWs {
 	 *            : month
 	 * @return Liste d'opération
 	 */
+	@WebMethod
 	List<Operation> getOperationsCarteByCompteId(
 			@WebParam(name = "compteId") String compteId,
 			@WebParam(name = "month") Integer month);
@@ -72,6 +77,7 @@ public interface UserServiceWs {
 	 *            : month
 	 * @return Liste d'opération
 	 */
+	@WebMethod
 	List<Operation> getOperationsNonCarteByCompteId(
 			@WebParam(name = "compteId") String compteId,
 			@WebParam(name = "month") Integer month);
@@ -83,6 +89,7 @@ public interface UserServiceWs {
 	 *            : the compteId
 	 * @return total
 	 */
+	@WebMethod
 	double getTotalOperationsCarteByCompteId(
 			@WebParam(name = "compteId") String compteId);
 
