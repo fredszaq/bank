@@ -3,7 +3,6 @@ package com.excilys.formation.webservice.impl;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.service.VirementService;
@@ -15,7 +14,6 @@ import com.excilys.formation.webservice.VirementServiceWs;
  * @author excilys
  * 
  */
-@Service("virementServiceWs")
 @WebService(endpointInterface = "com.excilys.formation.webservice.VirementServiceWs")
 public class VirementServiceWsImpl implements VirementServiceWs {
 

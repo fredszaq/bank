@@ -8,13 +8,13 @@
 
 	<jaxws:client id="virementServiceWs"
 		serviceClass="com.excilys.formation.webservice.VirementServiceWs"
-		address="http://localhost:9999/services/VirementService" />
+		address="http://localhost:8080/services/VirementService" />
 
 	<jaxws:client id="userServiceWs"
-		serviceClass="com.excilys.formation.webservice.UserServiceWs" address="http://localhost:9999/services/UserService" />
+		serviceClass="com.excilys.formation.webservice.UserServiceWs" address="http://localhost:8080/services/UserService" />
 
 	<jaxws:client id="operationCarteServiceWs"
 		serviceClass="com.excilys.formation.webservice.OperationCarteServiceWs"
-		address="http://localhost:9999/services/OperationCarteService" />
+		address="http://localhost:8080/services/OperationCarteService" />
 
 </beans>
