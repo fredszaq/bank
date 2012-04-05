@@ -15,7 +15,7 @@ import com.excilys.formation.webservice.VirementServiceWs;
  * @author excilys
  * 
  */
-@Service("virementService")
+@Service("virementServiceWs")
 @WebService(endpointInterface = "com.excilys.formation.webservice.VirementServiceWs")
 public class VirementServiceWsImpl implements VirementServiceWs {
 
