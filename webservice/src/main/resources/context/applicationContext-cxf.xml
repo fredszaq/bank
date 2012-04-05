@@ -21,9 +21,6 @@
 	<jaxws:endpoint id="userServiceEndPoint" implementor="com.excilys.formation.webservice.impl.UserServiceWsImpl"
 		address="/UserService" />
 
-	<jaxws:endpoint id="operationCarteServiceEndPoint"
-		implementor="com.excilys.formation.webservice.impl.OperationCarteServiceWsImpl" address="/OperationCarteService" />
-
 	<jaxws:endpoint id="virementServiceEndPoint"
 		implementor="com.excilys.formation.webservice.impl.VirementServiceWsImpl" address="/VirementService" />
 		
