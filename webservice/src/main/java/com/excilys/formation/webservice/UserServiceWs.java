@@ -31,4 +31,18 @@ public interface UserServiceWs {
 	@WebMethod
 	Set<CompteDTO> getComptesByUsername(@WebParam(name = "login") String login);
 
+	/**
+	 * Get a specific account of a user.
+	 * 
+	 * @param login
+	 *            the login of the user
+	 * @param id
+	 *            the id of the account
+	 * @return the account (null if not found)
+	 */
+	@WebMethod
+	CompteDTO getCompteByUsernameAndAccountId(
+			@WebParam(name = "login") String login,
+			@WebParam(name = "lid") String id);
+
 }

@@ -40,4 +40,19 @@ public class UserServiceWsImpl implements UserServiceWs {
 		}
 		return comptesDTO;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public final CompteDTO getCompteByUsernameAndAccountId(String login,
+			String id) {
+		Compte compte = userService.getCompteByUsernameAndAccountId(login, id);
+		CompteDTO compteDTO = new CompteDTO.CompteDTOBuilder()
+				.withCompteType(compte.getCompteType())
+				.withNumCarte(compte.getNumCarte())
+				.withSolde(compte.getSolde())
+				.withTauxInteret(compte.getTauxInteret()).build();
+		return compteDTO;
+	}
 }
