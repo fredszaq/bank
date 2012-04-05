@@ -18,25 +18,17 @@ public class TestVirementService {
 	@Autowired
 	private VirementServiceWs virementServiceWs;
 
+	@Autowired
+	private UserServiceWs userServiceWs;
+
 	@Test
-	public void simpleTest() {
+	public void userServiceWsNotNull() {
+		assertThat(userServiceWs).isNotNull();
+	}
+
+	@Test
+	public void virementServiceWsNotNull() {
 		assertThat(virementServiceWs).isNotNull();
 	}
 
-	/*
-	 * @Test(expected = Exception.class) public final void
-	 * creationVirementMontantNegatifTest() {
-	 * virementServiceWs.createVirement("user1", "compte1", "compte3", -100,
-	 * "marche pas"); }
-	 * 
-	 * @Test(expected = Exception.class) public final void
-	 * creationVirement2ComptesPareil() {
-	 * virementServiceWs.createVirement("user1", "compte1", "compte1", 100,
-	 * "marche pas"); }
-	 * 
-	 * @Test(expected = Exception.class) public final void
-	 * creationVirementCompteNApartenantPasALUser() {
-	 * virementServiceWs.createVirement("user2", "compte1", "compte2", 100,
-	 * "marche pas"); }
-	 */
 }

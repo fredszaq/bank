@@ -18,10 +18,4 @@
 	<jaxws:client id="userServiceWs"
 		serviceClass="com.excilys.formation.webservice.UserServiceWs" address="${server.address}services/UserService" />
 
-	<jaxws:client id="operationCarteServiceWs"
-		serviceClass="com.excilys.formation.webservice.OperationCarteServiceWs"
-		address="${server.address}services/OperationCarteService" />
-		
-
-
 </beans>
