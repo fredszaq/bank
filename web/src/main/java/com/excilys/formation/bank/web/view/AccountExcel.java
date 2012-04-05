@@ -40,13 +40,21 @@ public class AccountExcel extends AbstractExcelView {
 		cellStyleDate.setDataFormat(createHelper.createDataFormat().getFormat(
 				"dd/MM/yyyy"));
 
+		// creation style euro
+		CellStyle cellStyleEuro = workbook.createCellStyle();
+		cellStyleEuro.setDataFormat(createHelper.createDataFormat().getFormat(
+				"#0.00€;[Red]-#0.00€"));
+
 		// Creation header
 		HSSFRow header = sheet.createRow(0);
-		header.setRowStyle(cellStyleBold);
 		header.createCell(0).setCellValue("Date");
+		header.getCell(0).setCellStyle(cellStyleBold);
 		header.createCell(1).setCellValue("Type");
+		header.getCell(1).setCellStyle(cellStyleBold);
 		header.createCell(2).setCellValue("Libelle");
+		header.getCell(2).setCellStyle(cellStyleBold);
 		header.createCell(3).setCellValue("Montant");
+		header.getCell(3).setCellStyle(cellStyleBold);
 
 		// ajout des operations
 		List<Operation> operations = (List<Operation>) model.get("operations");
@@ -66,14 +74,15 @@ public class AccountExcel extends AbstractExcelView {
 							operation.getOperationType() == OperationType.CREDIT ? operation
 									.getMontant() / 100.0 : -operation
 									.getMontant() / 100.0);
+			row.getCell(3).setCellStyle(cellStyleEuro);
 			rowNumber++;
 		}
 
 		// largeur des colones
-		sheet.autoSizeColumn(0);
-		sheet.autoSizeColumn(1);
-		sheet.autoSizeColumn(2);
-		sheet.autoSizeColumn(3);
+		sheet.setColumnWidth(0, 3000);
+		sheet.setColumnWidth(1, 6000);
+		sheet.setColumnWidth(2, 12000);
+		sheet.setColumnWidth(3, 3000);
 	}
 
 }
