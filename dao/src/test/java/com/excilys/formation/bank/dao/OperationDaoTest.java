@@ -174,4 +174,28 @@ public class OperationDaoTest extends
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(42);
 	}
+
+	/**
+	 * Test d'obtention du total des opérations en attente.
+	 */
+	@Test
+	public final void getTotalOperationsNonValideesFromCompteId() {
+		assertThat(
+				operationDAO
+						.getTotalOperationsNonValideesFromCompteId("compte1"))
+				.isEqualTo(555);
+
+	}
+
+	/**
+	 * Test d'obtention du total des opérations carte quand il n'y en a pas.
+	 */
+	@Test
+	public final void getTotalOperationsNonValideesFromCompteIdWhenThereAreNoCarteOperations() {
+		assertThat(
+				operationDAO
+						.getTotalOperationsNonValideesFromCompteId("compte2"))
+				.isEqualTo(0);
+
+	}
 }

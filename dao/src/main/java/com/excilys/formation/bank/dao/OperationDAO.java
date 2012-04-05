@@ -96,4 +96,13 @@ public interface OperationDAO {
 	 */
 	List<Operation> getOperationFromCompteId(String compteId, Date dateDebut,
 			Date dateFin);
+
+	/**
+	 * Retourne le total des operations non validées d'un compte.
+	 * 
+	 * @param compteId
+	 *            l'id du compte dont il faut chercher les opérations
+	 * @return le total des opérations
+	 */
+	long getTotalOperationsNonValideesFromCompteId(String compteId);
 }

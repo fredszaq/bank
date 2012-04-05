@@ -40,4 +40,11 @@ public class TestUserService {
 		assertThat(compte.getCompteType()).isEqualTo(CompteType.COURANT);
 		assertThat(compte.getSolde()).isEqualTo(150);
 	}
+
+	@Test
+	public void testGetTotalOperationsNonValideesByCompteId() {
+		assertThat(
+				userService.getTotalOperationsNonValideesByCompteId("compte1"))
+				.isEqualTo(999);
+	}
 }

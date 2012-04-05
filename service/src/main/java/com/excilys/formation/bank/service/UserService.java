@@ -89,4 +89,5 @@ public interface UserService extends UserDetailsService {
 	 */
 	double getTotalOperationsCarteByCompteId(String compteId);
 
+	long getTotalOperationsNonValideesByCompteId(String compteId);
 }

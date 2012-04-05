@@ -10,6 +10,7 @@
 			<th><fmt:message key="comptes.type" /></th>
 			<th><fmt:message key="comptes.name" /></th>
 			<th class="numeric"><fmt:message key="comptes.solde" /></th>
+			<th class="numeric"><fmt:message key="comptes.soldeprevisionnel" /></th>
 		</tr>
 		<c:forEach var="compte" items="${comptes}" varStatus="loopStatus">
 			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
@@ -20,6 +21,7 @@
 				</c:url>
 				<td><a href="${accountURL}">${compte.compteId}</a></td>
 				<td class="numeric" id="solde_${compte.compteId}"> <fmt:formatNumber type="currency" currencyCode="EUR" value="${compte.solde/100.0}" /></td>
+				<td class="numeric" id="solde_${compte.compteId}"> <fmt:formatNumber type="currency" currencyCode="EUR" value="${soldesPrevisionnels[compte.compteId]/100.0}" /></td>
 			</tr>
 		</c:forEach>
 	</table> 
