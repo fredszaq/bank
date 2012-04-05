@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	
+	<jaxws:client id="virementServiceWs"
+                  serviceClass="com.excilys.formation.webservice.VirementServiceWs"
+                  address="http://localhost:9999/services/VirementService" />
+                  
+	<jaxws:client id="userServiceWs"
+                  serviceClass="com.excilys.formation.webservice.UserServiceWs"
+                  address="http://localhost:9999/services/UserService" />
+                  
+	<jaxws:client id="operationCarteServiceWs"
+                  serviceClass="com.excilys.formation.webservice.OperationCarteServiceWs"
+                  address="http://localhost:9999/services/OperationCarteService" />
+	
+</beans>

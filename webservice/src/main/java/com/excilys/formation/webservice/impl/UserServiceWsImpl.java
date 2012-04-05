@@ -3,7 +3,10 @@ package com.excilys.formation.webservice.impl;
 import java.util.List;
 import java.util.Set;
 
+import javax.jws.WebService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Operation;
@@ -17,7 +20,8 @@ import com.excilys.formation.webservice.UserServiceWs;
  * @author excilys
  * 
  */
-
+@Service("userService")
+@WebService(endpointInterface = "com.excilys.formation.webservice.UserServiceWs")
 public class UserServiceWsImpl implements UserServiceWs {
 
 	@Autowired
