@@ -125,10 +125,14 @@ public class AuthenticatedController {
 		Collections.sort(listeComptes);
 		HashMap<String, Long> soldesPrevisionnels = new HashMap<String, Long>();
 		for (Compte compte : listeComptes) {
-			soldesPrevisionnels.put(
-					compte.getCompteId(),
-					-userService.getTotalOperationsNonValideesByCompteId(compte
-							.getCompteId()) + compte.getSolde());
+			// TODO s'il y a autre chose que des débits en différé, faudra gérer
+			// le signe
+			soldesPrevisionnels
+					.put(compte.getCompteId(),
+							compte.getSolde()
+									- userService
+											.getTotalOperationsNonValideesByCompteId(compte
+													.getCompteId()));
 		}
 		model.put("comptes", listeComptes);
 		model.put("soldesPrevisionnels", soldesPrevisionnels);
