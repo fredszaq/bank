@@ -111,4 +111,23 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
 				.list();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public final List<Operation> getOperationFromCompteId(String compteId,
+			Date dateDebut, Date dateFin) {
+		StringBuilder query = new StringBuilder();
+		query.append("select operation from Compte compte join ")
+				.append("compte.operations operation where compte.id=:compteId ")
+				.append("and operation.transaction.dateValid between :dateDebut and :dateFin ")
+				.append("and operation.transaction.etat = 'VALIDATED' ")
+				.append("order by operation.transaction.dateValid DESC");
+		return sessionFactory.getCurrentSession().createQuery(query.toString())
+				.setString("compteId", compteId)
+				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
+				.list();
+	}
 }

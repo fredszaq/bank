@@ -82,4 +82,18 @@ public interface OperationDAO {
 	 */
 	List<Operation> getOperationNonCarteFromCompteId(String compteId,
 			Date dateDebut, Date dateFin);
+
+	/**
+	 * Retourne la liste des operations d'un compte.
+	 * 
+	 * @param compteId
+	 *            l'id du compte dont il faut chercher les operations non carte
+	 * @param dateDebut
+	 *            : la date de début
+	 * @param dateFin
+	 *            : la date de fin
+	 * @return la liste des operations
+	 */
+	List<Operation> getOperationFromCompteId(String compteId, Date dateDebut,
+			Date dateFin);
 }

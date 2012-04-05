@@ -89,6 +89,23 @@ public class AuthenticatedController {
 		return "account";
 	}
 
+	@RequestMapping("/accountExcel.xls")
+	public final String accountExcel(ModelMap model, @RequestParam String id,
+			@RequestParam Integer month) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal();
+		Compte compte = userService.getCompteByUsernameAndAccountId(
+				userDetails.getUsername(), id);
+		if (compte == null) {
+			return "redirect:/";
+		}
+		List<Operation> operations = userService.getOperationsByCompteId(id,
+				month);
+		model.put("compte", compte);
+		model.put("operations", operations);
+		return "accountExcel";
+	}
+
 	/**
 	 * Returns the user page.
 	 * 
