@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
-		"classpath:contextTest/applicationContext-webServiceTest.xml" })
+		"classpath*:contextTest/applicationContext-*.xml" })
 public class TestOperationCarteService {
 	@Autowired
 	private VirementServiceWs virementServiceWs;
