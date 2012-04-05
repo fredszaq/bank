@@ -15,7 +15,7 @@ import com.excilys.formation.webservice.OperationCarteServiceWs;
  * @author excilys
  * 
  */
-@Service("operationCarteService")
+@Service("operationCarteServiceWs")
 @WebService(endpointInterface = "com.excilys.formation.webservice.OperationCarteServiceWs")
 public class OperationCarteServiceWsImpl implements OperationCarteServiceWs {
 

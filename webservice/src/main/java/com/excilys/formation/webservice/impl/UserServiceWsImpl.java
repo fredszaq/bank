@@ -20,7 +20,7 @@ import com.excilys.formation.webservice.UserServiceWs;
  * @author excilys
  * 
  */
-@Service("userService")
+@Service("userServiceWs")
 @WebService(endpointInterface = "com.excilys.formation.webservice.UserServiceWs")
 public class UserServiceWsImpl implements UserServiceWs {
 
