@@ -127,7 +127,7 @@ public class AuthenticatedController {
 		for (Compte compte : listeComptes) {
 			soldesPrevisionnels.put(
 					compte.getCompteId(),
-					userService.getTotalOperationsNonValideesByCompteId(compte
+					-userService.getTotalOperationsNonValideesByCompteId(compte
 							.getCompteId()) + compte.getSolde());
 		}
 		model.put("comptes", listeComptes);
