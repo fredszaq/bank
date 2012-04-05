@@ -13,6 +13,7 @@
 		<module>service</module>
 		<module>dao</module>
 		<module>webservice</module>
+		<module>webservicers</module>
 	</modules>
 
 	<repositories>

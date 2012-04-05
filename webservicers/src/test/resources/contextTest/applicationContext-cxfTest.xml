@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:jee="http://www.springframework.org/schema/jee"        
+	xmlns:cxf="http://cxf.apache.org/blueprint/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+		http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:testserver.properties" />
+	</bean>
+
+	<jaxrs:client id="virementServiceWs" 
+		serviceClass="com.excilys.formation.webservice.VirementServiceWs"
+		address="${server.address}services/VirementService"/>
+
+	<jaxrs:client id="userServiceWs"
+		serviceClass="com.excilys.formation.webservice.UserServiceWs" 
+		address="${server.address}services/UserService" />
+
+</beans>
