@@ -13,7 +13,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:contextTest/applicationContext-*.xml" })
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
-public class TestVirementService {
+public class TestWebService {
 
 	@Autowired
 	private VirementServiceWs virementServiceWs;
