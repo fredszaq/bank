@@ -10,15 +10,9 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
-import com.excilys.ebi.spring.dbunit.test.DataSet;
-import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath*:context/applicationContext*.xml",
-		"classpath*:contextTest/applicationContext-*.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-		DataSetTestExecutionListener.class })
-@DataSet("/datasets/dataSetService.xml")
+@ContextConfiguration({ "classpath*:contextTest/applicationContext-*.xml" })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
 public class TestVirementService {
 
 	@Autowired
