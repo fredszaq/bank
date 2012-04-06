@@ -2,7 +2,7 @@ package com.excilys.formation.webservice;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Set;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -44,7 +44,7 @@ public class TestWebServiceRs {
 	@Test
 	public void getCompteByLoginTest() {
 		String login = "robert";
-		Set<CompteDTO> comptesDTO = userServiceRs.getComptesByUsername(login);
+		List<CompteDTO> comptesDTO = userServiceRs.getComptesByUsername(login);
 		assertThat(comptesDTO.size()).isEqualTo(2);
 	}
 

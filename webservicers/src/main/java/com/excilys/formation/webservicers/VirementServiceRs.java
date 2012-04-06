@@ -1,6 +1,6 @@
 package com.excilys.formation.webservicers;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -32,7 +32,7 @@ public interface VirementServiceRs {
 	 *            : le libelle
 	 * @return Transaction
 	 */
-	@GET
+	@POST
 	@Path("/effectuerVirement/{login}/{compteDebiteurId}/{compteCrediteurId}/{montant}/{libelle}")
 	TransactionDTO createVirement(@PathParam("login") String login,
 			@PathParam("compteDebiteurId") String compteDebiteurId,

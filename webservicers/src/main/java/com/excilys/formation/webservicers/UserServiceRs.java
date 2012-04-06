@@ -1,6 +1,6 @@
 package com.excilys.formation.webservicers;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -19,7 +19,7 @@ import com.excilys.formation.webservicers.dto.bean.CompteDTO;
  */
 
 @Path("/UserService/")
-@Produces("application/json")
+@Produces("application/xml")
 public interface UserServiceRs {
 
 	/**
@@ -32,7 +32,7 @@ public interface UserServiceRs {
 	 */
 	@GET
 	@Path("/myaccounts/{login}")
-	Set<CompteDTO> getComptesByUsername(@PathParam("login") String login);
+	List<CompteDTO> getComptesByUsername(@PathParam("login") String login);
 
 	@GET
 	@Path("/test/{login}")
