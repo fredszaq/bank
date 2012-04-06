@@ -172,7 +172,7 @@ public class AuthenticatedController {
 			return "redirect:/secure/virement.html?error=1";
 		}
 		StringBuilder stringBuilder = new StringBuilder(
-				"redirect:/secure/account.html/0/");
+				"redirect:/secure/account/0/");
 		stringBuilder.append(compteDebiteur);
 		stringBuilder.append(".html");
 		return stringBuilder.toString();
@@ -211,7 +211,7 @@ public class AuthenticatedController {
 			return "redirect:/secure/operationCarte.html?error=1";
 		}
 		StringBuilder stringBuilder = new StringBuilder(
-				"redirect:/secure/detailCarte.html/0/");
+				"redirect:/secure/detailCarte/0/");
 		stringBuilder.append(compteDebiteur);
 		stringBuilder.append(".html");
 		return stringBuilder.toString();
