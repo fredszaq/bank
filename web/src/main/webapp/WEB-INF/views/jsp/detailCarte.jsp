@@ -16,28 +16,25 @@
 		</tr>
 	</table>
 
+	<c:url value="/secure/account/${month}/${compte.compteId}.html"
+		var="retourCompte" />
+
+	<p>
+		<a href="${retourCompte }"><fmt:message key="carte.retour" /></a>
+	</p>
 
 	<h2>Opérations</h2>
-	<div>
-		<form action="" method="GET">
-			<input type="hidden" name="id" value="${compte.compteId}" /> <select
-				name="month" id="month">
-				<c:forEach var="entry" items="${months}">
-					<c:choose>
-						<c:when test="${param.month == entry.key}">
-							<option value="${entry.key}" selected="selected">
-								<fmt:formatDate value="${entry.value}" pattern="MMM yyyy" />
-							</option>
-						</c:when>
-						<c:otherwise>
-							<option value="${entry.key}">
-								<fmt:formatDate value="${entry.value}" pattern="MMM yyyy" />
-							</option>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</select> <input type="submit" id="submit" value="search" />
-		</form>
+	<div class="buttonRow">
+		<c:forEach var="entry" items="${months}" varStatus="loopStatusUrl">
+			<c:url
+				value="/secure/detailCarte/${entry.key}/${compte.compteId}.html"
+				var="carteURL" />
+			<a href="${carteURL }"
+				class="button${month == entry.key ? ' selected' :'' }"> <fmt:formatDate
+					value="${entry.value}" pattern="MMM yyyy" />
+			</a>
+		</c:forEach>
+
 	</div>
 	<table>
 		<tr>

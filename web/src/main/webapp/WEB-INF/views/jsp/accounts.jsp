@@ -18,19 +18,17 @@
 		<c:forEach var="compte" items="${comptes}" varStatus="loopStatus">
 			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
 				<td>${compte.compteType}</td>
-				<c:url value="/secure/account.html" var="accountURL">
-					<c:param name="id" value="${compte.compteId}" />
-					<c:param name="month" value="0" />
-				</c:url>
+				<c:url value="/secure/account/0/${compte.compteId}.html"
+					var="accountURL" />
 				<td><a href="${accountURL}">${compte.compteId}</a></td>
 				<td class="numeric" id="solde_${compte.compteId}"><fmt:formatNumber
 						type="currency" currencyCode="EUR" value="${compte.solde/100.0}" /></td>
 				<td class="numeric" id="solde_previsionnel_${compte.compteId}"><fmt:formatNumber
-								type="currency" currencyCode="EUR"
-								value="${compte.compteType=='COURANT' ? soldesPrevisionnels[compte.compteId]/100.0 : ''}" /></td>
+						type="currency" currencyCode="EUR"
+						value="${compte.compteType=='COURANT' ? soldesPrevisionnels[compte.compteId]/100.0 : ''}" /></td>
 				<td class="numeric" id="encours_${compte.compteId}"><fmt:formatNumber
-								type="currency" currencyCode="EUR"
-								value="${compte.hasCarte() ? encoursCartes[compte.compteId]/100.0 : ''}" /></td>			
+						type="currency" currencyCode="EUR"
+						value="${compte.hasCarte() ? encoursCartes[compte.compteId]/100.0 : ''}" /></td>
 			</tr>
 		</c:forEach>
 	</table>

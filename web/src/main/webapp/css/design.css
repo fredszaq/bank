@@ -74,23 +74,39 @@ aside ul {
 
 aside li {
 	list-style: none;
-	text-align: center;
 	margin: 10px 0px;
 	width: 100%;
 }
 
-aside a {
+aside a,.button {
 	border: 1px solid #aaa;
 	padding: 3px;
 	border-radius: 10px;
 	background-color: #ddd;
-	display:block;
+	display: block;
+	text-align: center;
+}
+
+aside a {
 	width: 100%;
 }
 
-aside a:hover {
+aside a:hover,.button:hover {
 	background-color: #eee;
 	text-decoration: none;
+}
+
+.button {
+	display: table-cell;
+}
+
+.selected {
+	background-color: #fff
+}
+
+.buttonRow {
+	display: table;
+	width: 100%;
 }
 
 footer {
