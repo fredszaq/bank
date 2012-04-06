@@ -23,37 +23,26 @@
 	<h2>
 		<fmt:message key="compte.operations" />
 	</h2>
-	<c:url value="/secure/detailCarte.html" var="detailCarteURL">
-		<c:param name="id" value="${compte.compteId}" />
-		<c:param name="month" value="${param.month}" />
-	</c:url>
-	<div>
-		<form action="" method="GET">
-			<input type="hidden" name="id" value="${compte.compteId}" /> <select
-				name="month" id="month">
-				<c:forEach var="entry" items="${months}">
-					<c:choose>
-						<c:when test="${param.month == entry.key}">
-							<option value="${entry.key}" selected="selected">
-								<fmt:formatDate value="${entry.value}" pattern="MMM yyyy" />
-							</option>
-						</c:when>
-						<c:otherwise>
-							<option value="${entry.key}">
-								<fmt:formatDate value="${entry.value}" pattern="MMM yyyy" />
-							</option>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</select> <input type="submit" id="submit" value="search" />
-		</form>
+	<div class="buttonRow">
+		<c:forEach var="entry" items="${months}" varStatus="loopStatusUrl">
+			<c:url value="/secure/account/${entry.key}/${compte.compteId}.html"
+				var="accountURL" />
+			<a href="${accountURL }"
+				class="button${month == entry.key ? ' selected' :'' }"> <fmt:formatDate
+					value="${entry.value}" pattern="MMM yyyy" />
+			</a>
+		</c:forEach>
+
 	</div>
-	<c:url value="/secure/account/${param.month}/${compte.compteId}.xls"
+	<c:url value="/secure/account/${month}/${compte.compteId}.xls"
 		var="urlXls" />
 	<p>
 		<a href="${urlXls }"><fmt:message key="compte.download_as_xls" /></a>
 	</p>
 	<c:if test="${compte.hasCarte()}">
+		<c:url
+			value="/secure/detailCarte/${month}/${compte.compteId}.html"
+			var="detailCarteURL" />
 		<table>
 			<tr>
 				<th><a href="${detailCarteURL}"><fmt:message

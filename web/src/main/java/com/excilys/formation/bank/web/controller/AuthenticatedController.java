@@ -67,9 +67,9 @@ public class AuthenticatedController {
 		return false;
 	}
 
-	@RequestMapping("/account.html")
-	public final String account(ModelMap model, @RequestParam String id,
-			@RequestParam Integer month) {
+	@RequestMapping("/account/{month}/{id}.html")
+	public final String account(ModelMap model, @PathVariable String id,
+			@PathVariable Integer month) {
 		if (MONTHS == null || monthHasChanged()) {
 			constructMonths();
 		}
@@ -87,6 +87,7 @@ public class AuthenticatedController {
 		model.put("totalCarte",
 				userService.getTotalOperationsCarteByCompteId(id, month));
 		model.put("months", MONTHS);
+		model.put("month", month);
 		return "account";
 	}
 
@@ -170,9 +171,11 @@ public class AuthenticatedController {
 		} catch (Exception e) {
 			return "redirect:/secure/virement.html?error=1";
 		}
-
-		return "redirect:/secure/account.html?id=" + compteDebiteur
-				+ "&month=0";
+		StringBuilder stringBuilder = new StringBuilder(
+				"redirect:/secure/account.html/0/");
+		stringBuilder.append(compteDebiteur);
+		stringBuilder.append(".html");
+		return stringBuilder.toString();
 
 	}
 
@@ -207,14 +210,17 @@ public class AuthenticatedController {
 		} catch (Exception e) {
 			return "redirect:/secure/operationCarte.html?error=1";
 		}
-		return "redirect:/secure/detailCarte.html?id=" + compteDebiteur
-				+ "&month=0";
+		StringBuilder stringBuilder = new StringBuilder(
+				"redirect:/secure/detailCarte.html/0/");
+		stringBuilder.append(compteDebiteur);
+		stringBuilder.append(".html");
+		return stringBuilder.toString();
 
 	}
 
-	@RequestMapping("/detailCarte.html")
-	public final String detailsCarte(ModelMap model, @RequestParam String id,
-			@RequestParam Integer month) {
+	@RequestMapping("/detailCarte/{month}/{id}.html")
+	public final String detailsCarte(ModelMap model, @PathVariable String id,
+			@PathVariable Integer month) {
 		if (MONTHS == null || monthHasChanged()) {
 			constructMonths();
 		}
@@ -229,6 +235,7 @@ public class AuthenticatedController {
 		model.put("operations",
 				userService.getOperationsCarteByCompteId(id, month));
 		model.put("months", MONTHS);
+		model.put("month", month);
 		return "detailCarte";
 
 	}
