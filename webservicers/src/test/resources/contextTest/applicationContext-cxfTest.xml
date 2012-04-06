@@ -16,10 +16,10 @@
 
 	<jaxrs:client id="virementServiceRs" 
 		serviceClass="com.excilys.formation.webservicers.VirementServiceRs"
-		address="${server.address}services/VirementService"/>
+		address="${server.address}services/"/>
 
 	<jaxrs:client id="userServiceRs"
 		serviceClass="com.excilys.formation.webservicers.UserServiceRs" 
-		address="${server.address}services/UserService" />
+		address="${server.address}services/" />
 
 </beans>

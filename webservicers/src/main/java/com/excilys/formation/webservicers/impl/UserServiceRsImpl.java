@@ -54,4 +54,9 @@ public class UserServiceRsImpl implements UserServiceRs {
 				.withTauxInteret(compte.getTauxInteret()).build();
 		return compteDTO;
 	}
+
+	@Override
+	public String simpleMethod(String login) {
+		return login;
+	}
 }

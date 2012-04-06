@@ -19,7 +19,7 @@ import com.excilys.formation.webservicers.dto.bean.CompteDTO;
  */
 
 @Path("/UserService/")
-@Produces("application/xml")
+@Produces("application/json")
 public interface UserServiceRs {
 
 	/**
@@ -33,6 +33,10 @@ public interface UserServiceRs {
 	@GET
 	@Path("/myaccounts/{login}")
 	Set<CompteDTO> getComptesByUsername(@PathParam("login") String login);
+
+	@GET
+	@Path("/test/{login}")
+	String simpleMethod(@PathParam("login") String login);
 
 	/**
 	 * Get a specific account of a user.
