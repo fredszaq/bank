@@ -13,28 +13,14 @@
 	<context:component-scan base-package="com.excilys.formation" />
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/osgi/cxf-extension-osgi.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
 
-	<jaxrs:server id="userServiceRsEndPoint" address="/">
+	<jaxrs:server id="serverBean" address="/">
 		<jaxrs:serviceBeans>
 			<ref bean="userServiceRsImpl" />
-		</jaxrs:serviceBeans>
-		<jaxrs:extensionMappings>
-			<entry key="xml" value="application/xml" />
-			<entry key="json" value="application/json" />
-		</jaxrs:extensionMappings>
-	</jaxrs:server>
-
-	<jaxrs:server id="virementServiceRsEndPoint" address="/">
-		<jaxrs:serviceBeans>
 			<ref bean="virementServiceRsImpl" />
 		</jaxrs:serviceBeans>
-		<jaxrs:extensionMappings>
-			<entry key="xml" value="application/xml" />
-			<entry key="json" value="application/json" />
-		</jaxrs:extensionMappings>
 	</jaxrs:server>
 
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/dataSourceBank" />

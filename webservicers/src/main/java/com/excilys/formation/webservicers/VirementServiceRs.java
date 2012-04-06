@@ -14,7 +14,7 @@ import com.excilys.formation.webservicers.dto.bean.TransactionDTO;
  * 
  */
 @Path("/VirementService/")
-@Produces("application/xml")
+@Produces("application/json")
 public interface VirementServiceRs {
 
 	/**
