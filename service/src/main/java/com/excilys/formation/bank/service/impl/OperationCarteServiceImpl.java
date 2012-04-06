@@ -1,7 +1,5 @@
 package com.excilys.formation.bank.service.impl;
 
-import java.util.Date;
-
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -100,7 +98,7 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 	private Transaction createTransaction(Compte compteDebiteur, String libelle) {
 
 		Transaction transaction = new Transaction();
-		Date now = new Date(DateTime.now().getMillis());
+		DateTime now = new DateTime();
 		transaction.setDateInit(now);
 		transaction.setDateValid(now);
 

@@ -1,18 +1,18 @@
 package com.excilys.formation.webservicers.dto.bean;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.joda.time.DateTime;
 
 import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.TransactionCategorie;
 
-@XmlRootElement(name = "TransactionDTO")
+@XmlRootElement
 public class TransactionDTO {
 
-	private Date dateInit;
+	private DateTime dateInit;
 
-	private Date dateValid;
+	private DateTime dateValid;
 
 	private Etat etat;
 
@@ -20,19 +20,19 @@ public class TransactionDTO {
 
 	private TransactionCategorie transactionCategorie;
 
-	public Date getDateInit() {
+	public DateTime getDateInit() {
 		return dateInit;
 	}
 
-	public void setDateInit(Date dateInit) {
+	public void setDateInit(DateTime dateInit) {
 		this.dateInit = dateInit;
 	}
 
-	public Date getDateValid() {
+	public DateTime getDateValid() {
 		return dateValid;
 	}
 
-	public void setDateValid(Date dateValid) {
+	public void setDateValid(DateTime dateValid) {
 		this.dateValid = dateValid;
 	}
 
@@ -64,12 +64,12 @@ public class TransactionDTO {
 	public static class TransactionDTOBuilder {
 		private final TransactionDTO transactionDTO = new TransactionDTO();
 
-		public TransactionDTOBuilder withDateInit(Date dateInit) {
+		public TransactionDTOBuilder withDateInit(DateTime dateInit) {
 			transactionDTO.setDateInit(dateInit);
 			return this;
 		}
 
-		public TransactionDTOBuilder withDateValid(Date dateValid) {
+		public TransactionDTOBuilder withDateValid(DateTime dateValid) {
 			transactionDTO.setDateValid(dateValid);
 			return this;
 		}

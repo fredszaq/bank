@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.excilys.formation.bank.bean.CompteType;
 
-@XmlRootElement(name = "CompteDTO")
+@XmlRootElement
 public class CompteDTO {
 	private CompteType compteType;
 
