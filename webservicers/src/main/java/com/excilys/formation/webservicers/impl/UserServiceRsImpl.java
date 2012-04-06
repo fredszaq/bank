@@ -1,6 +1,7 @@
 package com.excilys.formation.webservicers.impl;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ public class UserServiceRsImpl implements UserServiceRs {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final Set<CompteDTO> getComptesByUsername(String login) {
+	public final List<CompteDTO> getComptesByUsername(String login) {
 		Set<Compte> comptes = userService.getComptesByUsername(login);
-		Set<CompteDTO> comptesDTO = new HashSet<CompteDTO>();
+		List<CompteDTO> comptesDTO = new ArrayList<CompteDTO>();
 		for (Compte compte : comptes) {
 			comptesDTO.add(new CompteDTO.CompteDTOBuilder()
 					.withCompteType(compte.getCompteType())

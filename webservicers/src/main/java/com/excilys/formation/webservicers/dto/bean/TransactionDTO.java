@@ -2,9 +2,12 @@ package com.excilys.formation.webservicers.dto.bean;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.TransactionCategorie;
 
+@XmlRootElement(name = "TransactionDTO")
 public class TransactionDTO {
 
 	private Date dateInit;
