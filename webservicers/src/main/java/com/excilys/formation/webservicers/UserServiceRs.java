@@ -34,10 +34,6 @@ public interface UserServiceRs {
 	@Path("/myaccounts/{login}")
 	List<CompteDTO> getComptesByUsername(@PathParam("login") String login);
 
-	@GET
-	@Path("/test/{login}")
-	String simpleMethod(@PathParam("login") String login);
-
 	/**
 	 * Get a specific account of a user.
 	 * 
