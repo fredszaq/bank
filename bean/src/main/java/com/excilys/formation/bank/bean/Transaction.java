@@ -1,7 +1,6 @@
 package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 /**
  * Transaction bean.
@@ -34,10 +34,12 @@ public class Transaction implements Serializable {
 	private Integer transactionId;
 
 	@Column(name = "date_init")
-	private Date dateInit;
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime dateInit;
 
 	@Column(name = "date_valid")
-	private Date dateValid;
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime dateValid;
 
 	@Column(name = "etat")
 	@Type(type = "com.excilys.formation.bank.bean.StringEnumPersistenceType", parameters = {
@@ -60,11 +62,11 @@ public class Transaction implements Serializable {
 			@Parameter(name = "valueOfMethod", value = "valueByString") })
 	private TransactionCategorie transactionCategorie;
 
-	public final Date getDateInit() {
+	public final DateTime getDateInit() {
 		return dateInit;
 	}
 
-	public final Date getDateValid() {
+	public final DateTime getDateValid() {
 		return dateValid;
 	}
 
@@ -76,11 +78,11 @@ public class Transaction implements Serializable {
 		return transactionId;
 	}
 
-	public final void setDateInit(Date dateInit) {
+	public final void setDateInit(DateTime dateInit) {
 		this.dateInit = dateInit;
 	}
 
-	public final void setDateValid(Date dateValid) {
+	public final void setDateValid(DateTime dateValid) {
 		this.dateValid = dateValid;
 	}
 

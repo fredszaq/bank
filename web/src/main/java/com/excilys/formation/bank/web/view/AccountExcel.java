@@ -62,7 +62,7 @@ public class AccountExcel extends AbstractExcelView {
 		for (Operation operation : operations) {
 			HSSFRow row = sheet.createRow(rowNumber);
 			row.createCell(0).setCellValue(
-					operation.getTransaction().getDateValid());
+					operation.getTransaction().getDateValid().toDate());
 			row.getCell(0).setCellStyle(cellStyleDate);
 			row.createCell(1).setCellValue(
 					operation.getTransaction().getTransactionCategorie()

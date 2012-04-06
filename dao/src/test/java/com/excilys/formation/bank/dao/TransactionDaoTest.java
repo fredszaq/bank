@@ -2,8 +2,7 @@ package com.excilys.formation.bank.dao;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import java.util.Date;
-
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -81,7 +80,7 @@ public class TransactionDaoTest extends
 		Transaction transactionToInsert = new Transaction();
 		transactionToInsert.setTransactionId(1);
 		transactionToInsert.setEtat(Etat.VALIDATED);
-		Date date = new Date();
+		DateTime date = new DateTime();
 		transactionToInsert.setDateValid(date);
 		transactionToInsert.setDateInit(date);
 		transactionDAO.insert(transactionToInsert);

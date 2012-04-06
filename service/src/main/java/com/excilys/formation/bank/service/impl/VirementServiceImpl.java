@@ -1,6 +1,5 @@
 package com.excilys.formation.bank.service.impl;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -125,7 +124,7 @@ public class VirementServiceImpl implements VirementService {
 		userIntersection.retainAll(usersCrediteurs);
 
 		Transaction transaction = new Transaction();
-		Date now = new Date(DateTime.now().getMillis());
+		DateTime now = new DateTime();
 		transaction.setDateInit(now);
 		transaction.setDateValid(now);
 
