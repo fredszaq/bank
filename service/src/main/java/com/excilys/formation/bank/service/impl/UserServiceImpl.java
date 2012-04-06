@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.hibernate.Hibernate;
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -78,8 +79,8 @@ public class UserServiceImpl implements UserService {
 		DateTime dateDebut = new DateTime().withDayOfMonth(1)
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
-		return operationDAO.getOperationCarteFromCompteId(compteId,
-				dateDebut.toDate(), dateFin.toDate());
+		Interval interval = new Interval(dateDebut, dateFin);
+		return operationDAO.getOperationCarteFromCompteId(compteId, interval);
 	}
 
 	/**
@@ -91,8 +92,9 @@ public class UserServiceImpl implements UserService {
 		DateTime dateDebut = new DateTime().withDayOfMonth(1)
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
-		return operationDAO.getOperationNonCarteFromCompteId(compteId,
-				dateDebut.toDate(), dateFin.toDate());
+		Interval interval = new Interval(dateDebut, dateFin);
+		return operationDAO
+				.getOperationNonCarteFromCompteId(compteId, interval);
 	}
 
 	/**
@@ -104,8 +106,8 @@ public class UserServiceImpl implements UserService {
 		DateTime dateDebut = new DateTime().withDayOfMonth(1)
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
-		return operationDAO.getOperationFromCompteId(compteId,
-				dateDebut.toDate(), dateFin.toDate());
+		Interval interval = new Interval(dateDebut, dateFin);
+		return operationDAO.getOperationFromCompteId(compteId, interval);
 	}
 
 	/**
@@ -117,8 +119,9 @@ public class UserServiceImpl implements UserService {
 		DateTime dateDebut = new DateTime().withDayOfMonth(1)
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
+		Interval interval = new Interval(dateDebut, dateFin);
 		return operationDAO.getTotalOperationCarteFromCompteId(compteId,
-				dateDebut.toDate(), dateFin.toDate());
+				interval);
 	}
 
 	/**

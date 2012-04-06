@@ -1,7 +1,8 @@
 package com.excilys.formation.bank.dao;
 
-import java.util.Date;
 import java.util.List;
+
+import org.joda.time.Interval;
 
 import com.excilys.formation.bank.bean.Operation;
 
@@ -58,7 +59,7 @@ public interface OperationDAO {
 	 * @return la liste des operation
 	 */
 	List<Operation> getOperationCarteFromCompteId(String compteId,
-			Date dateDebut, Date dateFin);
+			Interval interval);
 
 	/**
 	 * Retourne le total des operations carte d'un compte.
@@ -71,8 +72,7 @@ public interface OperationDAO {
 	 *            la date de fin
 	 * @return le total des operations
 	 */
-	long getTotalOperationCarteFromCompteId(String compteId, Date dateDebut,
-			Date dateFin);
+	long getTotalOperationCarteFromCompteId(String compteId, Interval interval);
 
 	/**
 	 * Retourne la liste des operations non carte d'un compte.
@@ -86,7 +86,7 @@ public interface OperationDAO {
 	 * @return la liste des operations
 	 */
 	List<Operation> getOperationNonCarteFromCompteId(String compteId,
-			Date dateDebut, Date dateFin);
+			Interval interval);
 
 	/**
 	 * Retourne la liste des operations d'un compte.
@@ -99,8 +99,7 @@ public interface OperationDAO {
 	 *            : la date de fin
 	 * @return la liste des operations
 	 */
-	List<Operation> getOperationFromCompteId(String compteId, Date dateDebut,
-			Date dateFin);
+	List<Operation> getOperationFromCompteId(String compteId, Interval interval);
 
 	/**
 	 * Retourne le total des operations non validées d'un compte.
