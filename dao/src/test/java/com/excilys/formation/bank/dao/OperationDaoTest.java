@@ -5,6 +5,7 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -124,9 +125,9 @@ public class OperationDaoTest extends
 	 */
 	@Test
 	public final void getOperationCarteFromCompteId() {
+		Interval interval = new Interval(dateDebut, dateFin);
 		List<Operation> operations = operationDAO
-				.getOperationCarteFromCompteId("compte1", dateDebut.toDate(),
-						dateFin.toDate());
+				.getOperationCarteFromCompteId("compte1", interval);
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(444);
 	}
@@ -137,9 +138,9 @@ public class OperationDaoTest extends
 	 */
 	@Test
 	public final void getOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
+		Interval interval = new Interval(dateDebut, dateFin);
 		List<Operation> operations = operationDAO
-				.getOperationCarteFromCompteId("compte2", dateDebut.toDate(),
-						dateFin.toDate());
+				.getOperationCarteFromCompteId("compte2", interval);
 		assertThat(operations).isEmpty();
 	}
 
@@ -150,9 +151,10 @@ public class OperationDaoTest extends
 	public final void getTotalOperationCarteFromCompteId() {
 		DateTime debut = new DateTime(2010, 9, 1, 0, 0);
 		DateTime fin = new DateTime(2010, 10, 1, 0, 0);
+		Interval interval = new Interval(debut, fin);
 		assertThat(
 				operationDAO.getTotalOperationCarteFromCompteId("compte1",
-						debut.toDate(), fin.toDate())).isEqualTo(444);
+						interval)).isEqualTo(444);
 
 	}
 
@@ -163,9 +165,10 @@ public class OperationDaoTest extends
 	public final void getTotalOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
 		DateTime debut = new DateTime(2010, 9, 1, 0, 0);
 		DateTime fin = new DateTime(2010, 10, 1, 0, 0);
+		Interval interval = new Interval(debut, fin);
 		assertThat(
 				operationDAO.getTotalOperationCarteFromCompteId("compte2",
-						debut.toDate(), fin.toDate())).isEqualTo(0);
+						interval)).isEqualTo(0);
 
 	}
 
@@ -174,9 +177,9 @@ public class OperationDaoTest extends
 	 */
 	@Test
 	public final void getOperationNonCarteFromCompteId() {
+		Interval interval = new Interval(dateDebut, dateFin);
 		List<Operation> operations = operationDAO
-				.getOperationNonCarteFromCompteId("compte1",
-						dateDebut.toDate(), dateFin.toDate());
+				.getOperationNonCarteFromCompteId("compte1", interval);
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(42);
 	}

@@ -1,9 +1,9 @@
 package com.excilys.formation.bank.dao.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.joda.time.Interval;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -61,7 +61,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public final List<Operation> getOperationCarteFromCompteId(String compteId,
-			Date dateDebut, Date dateFin) {
+			Interval interval) {
 		StringBuilder query = new StringBuilder();
 		query.append("select operation from Compte compte join ")
 				.append("compte.operations operation where compte.id=:compteId ")
@@ -71,8 +71,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 				.append("order by operation.transaction.dateValid DESC");
 		return sessionFactory.getCurrentSession().createQuery(query.toString())
 				.setString("compteId", compteId)
-				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
-				.list();
+				.setDate("dateDebut", interval.getStart().toDate())
+				.setDate("dateFin", interval.getEnd().toDate()).list();
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 */
 	@Override
 	public final long getTotalOperationCarteFromCompteId(String compteId,
-			Date dateDebut, Date dateFin) {
+			Interval interval) {
 
 		StringBuilder query = new StringBuilder();
 		query.append("select sum(operation.montant) from Compte compte ")
@@ -90,8 +90,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 				.append("and operation.transaction.etat = 'VALIDATED' ");
 		Object result = sessionFactory.getCurrentSession()
 				.createQuery(query.toString()).setString("compteId", compteId)
-				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
-				.uniqueResult();
+				.setDate("dateDebut", interval.getStart().toDate())
+				.setDate("dateFin", interval.getEnd().toDate()).uniqueResult();
 		return result == null ? 0 : (Long) result;
 	}
 
@@ -101,7 +101,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public final List<Operation> getOperationNonCarteFromCompteId(
-			String compteId, Date dateDebut, Date dateFin) {
+			String compteId, Interval interval) {
 		StringBuilder query = new StringBuilder();
 		query.append("select operation from Compte compte join ")
 				.append("compte.operations operation where compte.id=:compteId ")
@@ -111,8 +111,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 				.append("order by operation.transaction.dateValid DESC");
 		return sessionFactory.getCurrentSession().createQuery(query.toString())
 				.setString("compteId", compteId)
-				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
-				.list();
+				.setDate("dateDebut", interval.getStart().toDate())
+				.setDate("dateFin", interval.getEnd().toDate()).list();
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public final List<Operation> getOperationFromCompteId(String compteId,
-			Date dateDebut, Date dateFin) {
+			Interval interval) {
 		StringBuilder query = new StringBuilder();
 		query.append("select operation from Compte compte join ")
 				.append("compte.operations operation where compte.id=:compteId ")
@@ -130,8 +130,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 				.append("order by operation.transaction.dateValid DESC");
 		return sessionFactory.getCurrentSession().createQuery(query.toString())
 				.setString("compteId", compteId)
-				.setDate("dateDebut", dateDebut).setDate("dateFin", dateFin)
-				.list();
+				.setDate("dateDebut", interval.getStart().toDate())
+				.setDate("dateFin", interval.getEnd().toDate()).list();
 	}
 
 	@Override

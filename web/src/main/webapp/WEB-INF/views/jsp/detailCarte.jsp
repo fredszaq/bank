@@ -46,7 +46,7 @@
 		<c:forEach var="operation" items="${operations}"
 			varStatus="loopStatus">
 			<tr class="${loopStatus.index % 2 == 0 ? 'odd' : 'even'}">
-				<td><fmt:formatDate value="${operation.transaction.dateInit}" /></td>
+				<td><fmt:formatDate value="${operation.transaction.dateValid.toDate()}" /></td>
 				<td>${operation.transaction.libelle}</td>
 				<td
 					class="numeric ${operation.operationType=='DEBIT' ? 'negative' : 'positive'}"><fmt:formatNumber
