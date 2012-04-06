@@ -10,29 +10,30 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.excilys.formation.bank.service" />
+	<context:component-scan base-package="com.excilys.formation" />
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
+    <import resource="classpath:META-INF/cxf/osgi/cxf-extension-osgi.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
 
-	<jaxrs:server id="userServiceRS" address="/">
+	<jaxrs:server id="userServiceRsEndPoint" address="/">
 		<jaxrs:serviceBeans>
-			<ref bean="userService" />
+			<ref bean="userServiceRsImpl" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
+			<entry key="xml" value="application/xml" />
 			<entry key="json" value="application/json" />
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 
-	<jaxrs:server id="virementServiceRS" address="/">
+	<jaxrs:server id="virementServiceRsEndPoint" address="/">
 		<jaxrs:serviceBeans>
-			<ref bean="virementService" />
+			<ref bean="virementServiceRsImpl" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
-			<entry key="json" value="application/json" />
 			<entry key="xml" value="application/xml" />
+			<entry key="json" value="application/json" />
 		</jaxrs:extensionMappings>
 	</jaxrs:server>
 

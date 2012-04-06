@@ -14,12 +14,12 @@
 		<property name="location" value="classpath:testserver.properties" />
 	</bean>
 
-	<jaxrs:client id="virementServiceWs" 
-		serviceClass="com.excilys.formation.webservice.VirementServiceWs"
+	<jaxrs:client id="virementServiceRs" 
+		serviceClass="com.excilys.formation.webservicers.VirementServiceRs"
 		address="${server.address}services/VirementService"/>
 
-	<jaxrs:client id="userServiceWs"
-		serviceClass="com.excilys.formation.webservice.UserServiceWs" 
+	<jaxrs:client id="userServiceRs"
+		serviceClass="com.excilys.formation.webservicers.UserServiceRs" 
 		address="${server.address}services/UserService" />
 
 </beans>

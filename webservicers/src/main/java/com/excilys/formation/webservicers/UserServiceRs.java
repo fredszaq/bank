@@ -2,6 +2,11 @@ package com.excilys.formation.webservicers;
 
 import java.util.Set;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.excilys.formation.webservicers.dto.bean.CompteDTO;
@@ -13,7 +18,9 @@ import com.excilys.formation.webservicers.dto.bean.CompteDTO;
  * 
  */
 
-public interface UserServiceWs {
+@Path("/UserService/")
+@Produces("application/xml")
+public interface UserServiceRs {
 
 	/**
 	 * Get the compte by username.
@@ -23,7 +30,9 @@ public interface UserServiceWs {
 	 * @return a set of compte
 	 * @throws UsernameNotFoundException
 	 */
-	Set<CompteDTO> getComptesByUsername(String login);
+	@GET
+	@Path("/myaccounts/{login}")
+	Set<CompteDTO> getComptesByUsername(@PathParam("login") String login);
 
 	/**
 	 * Get a specific account of a user.
@@ -34,6 +43,9 @@ public interface UserServiceWs {
 	 *            the id of the account
 	 * @return the account (null if not found)
 	 */
-	CompteDTO getCompteByUsernameAndAccountId(String login, String id);
+	@GET
+	@Path("/myaccount/{login}/{id}/")
+	CompteDTO getCompteByUsernameAndAccountId(@PathParam("login") String login,
+			@PathParam("id") String id);
 
 }
