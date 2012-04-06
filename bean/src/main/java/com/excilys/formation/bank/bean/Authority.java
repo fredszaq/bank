@@ -20,7 +20,7 @@ import org.springframework.security.core.GrantedAuthority;
  * 
  */
 @Entity
-@Table(name = "authorities")
+@Table(name = "droit")
 public class Authority implements Serializable, GrantedAuthority {
 
 	/**

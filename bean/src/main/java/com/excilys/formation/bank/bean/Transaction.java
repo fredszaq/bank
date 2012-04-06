@@ -20,7 +20,7 @@ import org.joda.time.DateTime;
  * 
  */
 @Entity
-@Table(name = "transactions")
+@Table(name = "transaction")
 public class Transaction implements Serializable {
 
 	/**

@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "etats")
+@Table(name = "etat")
 public enum Etat {
 	VALIDATED("VALIDATED"), WAITING("WAITING");
 

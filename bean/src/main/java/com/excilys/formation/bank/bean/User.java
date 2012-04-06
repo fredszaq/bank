@@ -21,7 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * 
  */
 @Entity
-@Table(name = "users")
+@Table(name = "utilisateur")
 public class User implements Serializable, UserDetails {
 
 	/**
@@ -46,11 +46,11 @@ public class User implements Serializable, UserDetails {
 	private String address;
 
 	@ManyToMany
-	@JoinTable(name = "users_authorities", joinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) })
+	@JoinTable(name = "utilisateur_droit", joinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) })
 	private Set<Authority> authorities;
 
 	@ManyToMany
-	@JoinTable(name = "users_comptes", joinColumns = @JoinColumn(name = "login"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
+	@JoinTable(name = "utilisateur_compte", joinColumns = @JoinColumn(name = "login"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
 	private Set<Compte> comptes;
 
 	public final String getAddress() {

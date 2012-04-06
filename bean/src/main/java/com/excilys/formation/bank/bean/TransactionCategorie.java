@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "transaction_categories")
+@Table(name = "transaction_categorie")
 public enum TransactionCategorie implements Serializable {
 	CARTE("CARTE"), VIREMENT_INTERNE("VIREMENT_INTERNE"), VIREMENT_EXTERNE(
 			"VIREMENT_EXTERNE");

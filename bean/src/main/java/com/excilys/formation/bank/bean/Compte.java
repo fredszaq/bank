@@ -23,7 +23,7 @@ import org.hibernate.annotations.Type;
  * 
  */
 @Entity
-@Table(name = "comptes")
+@Table(name = "compte")
 public class Compte implements Serializable, Comparable<Compte> {
 
 	/**
@@ -62,11 +62,11 @@ public class Compte implements Serializable, Comparable<Compte> {
 	private String compteId;
 
 	@ManyToMany
-	@JoinTable(name = "users_comptes", joinColumns = @JoinColumn(name = "compte_id"), inverseJoinColumns = @JoinColumn(name = "login"))
+	@JoinTable(name = "utilisateur_compte", joinColumns = @JoinColumn(name = "compte_id"), inverseJoinColumns = @JoinColumn(name = "login"))
 	private Set<User> users;
 
 	@OneToMany
-	@JoinTable(name = "comptes_operations", joinColumns = @JoinColumn(name = "compte_id"), inverseJoinColumns = @JoinColumn(name = "operation_id"))
+	@JoinTable(name = "compte_operation", joinColumns = @JoinColumn(name = "compte_id"), inverseJoinColumns = @JoinColumn(name = "operation_id"))
 	private Set<Operation> operations;
 
 	@Override
