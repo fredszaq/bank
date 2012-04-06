@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "operation_types")
+@Table(name = "operation_type")
 public enum OperationType {
 	CREDIT("CREDIT"), DEBIT("DEBIT");
 

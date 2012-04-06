@@ -20,7 +20,7 @@ import org.hibernate.annotations.Type;
  * 
  */
 @Entity
-@Table(name = "operations")
+@Table(name = "operation")
 public class Operation {
 
 	@Column(name = "operation_type")
@@ -41,7 +41,7 @@ public class Operation {
 	private Integer operationId;
 
 	@ManyToOne
-	@JoinTable(name = "comptes_operations", joinColumns = @JoinColumn(name = "operation_id"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
+	@JoinTable(name = "compte_operation", joinColumns = @JoinColumn(name = "operation_id"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
 	private Compte compte;
 
 	@Override

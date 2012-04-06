@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "compte_types")
+@Table(name = "compte_type")
 public enum CompteType {
 	COURANT("COURANT"), EPARGNE("EPARGNE");
 
