@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.excilys.formation.dto.CompteDTO;
 
 /**
- * UserService interface.
+ * UserServiceRs interface.
  * 
  * @author excilys
  * 

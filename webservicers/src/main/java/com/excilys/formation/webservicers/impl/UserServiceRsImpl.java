@@ -13,7 +13,7 @@ import com.excilys.formation.dto.CompteDTO;
 import com.excilys.formation.webservicers.UserServiceRs;
 
 /**
- * UserService interface.
+ * UserServiceRsImpl interface.
  * 
  * @author excilys
  * 

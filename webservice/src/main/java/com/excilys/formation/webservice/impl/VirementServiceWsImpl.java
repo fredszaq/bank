@@ -10,7 +10,7 @@ import com.excilys.formation.dto.TransactionDTO;
 import com.excilys.formation.webservice.VirementServiceWs;
 
 /**
- * Interface VirementService.
+ * Interface VirementServiceWsImpl.
  * 
  * @author excilys
  * 
