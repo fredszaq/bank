@@ -4,10 +4,10 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import com.excilys.formation.webservice.dto.bean.TransactionDTO;
+import com.excilys.formation.dto.TransactionDTO;
 
 /**
- * Interface VirementService.
+ * Interface VirementServiceWs.
  * 
  * @author excilys
  * 

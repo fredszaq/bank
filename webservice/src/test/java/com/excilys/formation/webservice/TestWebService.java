@@ -15,8 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.excilys.formation.bank.bean.TransactionCategorie;
-import com.excilys.formation.webservice.dto.bean.CompteDTO;
-import com.excilys.formation.webservice.dto.bean.TransactionDTO;
+import com.excilys.formation.dto.CompteDTO;
+import com.excilys.formation.dto.TransactionDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:contextTest/applicationContext-*.xml" })
