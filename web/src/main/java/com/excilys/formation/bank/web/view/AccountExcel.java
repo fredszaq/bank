@@ -30,9 +30,9 @@ public class AccountExcel extends AbstractExcelView {
 
 		// creation style gras
 		CellStyle cellStyleBold = workbook.createCellStyle();
-		HSSFFont Boldfont = workbook.createFont();
-		Boldfont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-		cellStyleBold.setFont(Boldfont);
+		HSSFFont boldfont = workbook.createFont();
+		boldfont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+		cellStyleBold.setFont(boldfont);
 
 		// creation style date
 		CellStyle cellStyleDate = workbook.createCellStyle();
