@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +23,12 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "operation")
-public class Operation {
+public class Operation implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2714507915414592950L;
 
 	@Column(name = "operation_type")
 	@Type(type = "com.excilys.formation.bank.bean.StringEnumPersistenceType", parameters = {
