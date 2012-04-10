@@ -49,7 +49,8 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 				.createQuery(query.toString()).setString("login", username)
 				.setString("compteId", compteId).uniqueResult();
 		if (compte == null) {
-			throw new CompteNotFoundException("Compte inconnu");
+			throw new CompteNotFoundException(
+					"Compte inconnu pour cet utilisateur");
 		}
 		return compte;
 	}

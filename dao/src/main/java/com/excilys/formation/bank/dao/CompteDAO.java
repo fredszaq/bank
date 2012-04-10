@@ -19,6 +19,8 @@ public interface CompteDAO {
 	 * @param id
 	 *            the compte id
 	 * @return the compte
+	 * @throws CompteNotFoundException
+	 *             if the account wasn't found
 	 */
 	Compte getCompteById(String id) throws CompteNotFoundException;
 
@@ -29,8 +31,9 @@ public interface CompteDAO {
 	 *            the username
 	 * @param compteId
 	 *            the compte id
-	 * @return the compte (or null if the COmpte doesn't exists or isn't owned
-	 *         by the user
+	 * @return the compte
+	 * @throws CompteNotFoundException
+	 *             if the account wasn't found
 	 */
 	Compte getCompteByUsernameAndCompteId(String username, String compteId)
 			throws CompteNotFoundException;
@@ -42,6 +45,8 @@ public interface CompteDAO {
 	 *            : the compteId
 	 * @param difference
 	 *            : the difference
+	 * @throws CompteNotFoundException
+	 *             if the account wasn't found
 	 */
 	void updateSolde(String compteId, long difference)
 			throws CompteNotFoundException;
