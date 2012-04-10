@@ -43,6 +43,6 @@ public interface UserServiceWs {
 	@WebMethod
 	CompteDTO getCompteByUsernameAndAccountId(
 			@WebParam(name = "login") String login,
-			@WebParam(name = "lid") String id);
+			@WebParam(name = "id") String id);
 
 }
