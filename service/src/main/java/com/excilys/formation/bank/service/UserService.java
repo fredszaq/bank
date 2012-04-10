@@ -97,4 +97,19 @@ public interface UserService extends UserDetailsService,
 	double getTotalOperationsCarteByCompteId(String compteId, Integer month);
 
 	long getTotalOperationsNonValideesByCompteId(String compteId);
+
+	/**
+	 * Method used in the admin panel
+	 * 
+	 * @return list all the accounts
+	 */
+	List<Compte> getAllComptes();
+
+	/**
+	 * Method used in the admin panel
+	 * 
+	 * @return list all the users
+	 */
+	List<User> getAllUsers();
+
 }

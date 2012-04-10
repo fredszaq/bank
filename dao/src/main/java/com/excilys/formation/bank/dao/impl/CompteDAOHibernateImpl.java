@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -62,5 +64,12 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 		compte.setSolde(compte.getSolde() + difference);
 		sessionFactory.getCurrentSession().update(compte);
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Compte> getAll() {
+		String query = "from Compte compte order by compte.id";
+		return sessionFactory.getCurrentSession().createQuery(query).list();
 	}
 }

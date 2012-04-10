@@ -1,6 +1,6 @@
 package com.excilys.formation.bank.web.controller;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,26 +24,24 @@ public class AdministratorController {
 	@Autowired
 	private UserService userService;
 
-	/**
-	 * Returns the user page.
-	 * 
-	 * @return "admin"
-	 */
-	@RequestMapping("/admin.html")
-	public final String admin(ModelMap model) {
-		Set<Compte> comptes = userService.getComptesByUsername("robert");
-		Set<Compte> comptes_jacky = userService.getComptesByUsername("jacky");
-		comptes.addAll(comptes_jacky);
+	@RequestMapping("/comptes.html")
+	public final String adminComptes(ModelMap model) {
+		// TODO PROPRIFIER !
+		List<Compte> comptes = userService.getAllComptes();
 		model.put("comptes", comptes);
-		return "admin";
+		return "adminComptes";
 	}
 
-	private String concatenerUsers(Set<User> users, String separator) {
-		StringBuilder result = new StringBuilder();
-		for (User user : users) {
-			result.append(user.getLogin());
-			result.append(separator);
-		}
-		return result.substring(0, result.length() - 1);
+	@RequestMapping("/users.html")
+	public final String adminUsers(ModelMap model) {
+		List<User> users = userService.getAllUsers();
+		model.put("users", users);
+		return "adminUsers";
 	}
+
+	@RequestMapping("/admin.html")
+	public final String admin(ModelMap model) {
+		return "adminArea";
+	}
+
 }

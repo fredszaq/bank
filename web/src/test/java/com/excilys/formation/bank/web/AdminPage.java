@@ -18,7 +18,7 @@ public class AdminPage extends BankRootPage {
 
 	@Override
 	public final void isAt() {
-		assertThat(find("#adminAccountList")).hasSize(1);
+		assertThat(find("#adminContent")).hasSize(1);
 	}
 
 }
