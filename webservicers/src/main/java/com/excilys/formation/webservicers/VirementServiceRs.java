@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import com.excilys.formation.dto.TransactionDTO;
 
 /**
- * Interface VirementService.
+ * Interface VirementServiceRs.
  * 
  * @author excilys
  * 
