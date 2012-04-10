@@ -18,7 +18,7 @@ public class AdminPage extends BankRootPage {
 
 	@Override
 	public final void isAt() {
-		assertThat(pageSource()).contains("Only admins can view this !");
+		assertThat(find("#adminAccountList")).hasSize(1);
 	}
 
 }
