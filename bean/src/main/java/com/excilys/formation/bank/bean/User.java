@@ -2,6 +2,7 @@ package com.excilys.formation.bank.bean;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.SortedSet;
 
 import javax.annotation.Generated;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Sort;
+import org.hibernate.annotations.SortType;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -57,7 +60,8 @@ public class User implements Serializable, UserDetails {
 
 	@ManyToMany
 	@JoinTable(name = "utilisateur_compte", joinColumns = @JoinColumn(name = "login"), inverseJoinColumns = @JoinColumn(name = "compte_id"))
-	private Set<Compte> comptes;
+	@Sort(type = SortType.NATURAL)
+	private SortedSet<Compte> comptes;
 
 	public final String getAddress() {
 		return address;
@@ -122,7 +126,7 @@ public class User implements Serializable, UserDetails {
 		this.authorities = authorities;
 	}
 
-	public final void setComptes(Set<Compte> comptes) {
+	public final void setComptes(SortedSet<Compte> comptes) {
 		this.comptes = comptes;
 	}
 

@@ -81,6 +81,35 @@ public class VirementTest extends FluentTest {
 	}
 
 	/**
+	 * Just a simple virement test.
+	 */
+	@Test
+	public final void tryMakeAVirementWithCents() {
+		goTo(userPage);
+		long solde1 = userPage.getAccountSolde("compte_courant_robert");
+		long solde2 = userPage.getAccountSolde("compte_epargne_robert");
+		goTo(virementPage);
+		virementPage.fillFormAndSend("compte_courant_robert",
+				"compte_epargne_robert", 1.42, "test");
+		goTo(userPage);
+		assertThat(userPage.getAccountSolde("compte_courant_robert"))
+				.isEqualTo(solde1 - 142);
+		assertThat(userPage.getAccountSolde("compte_epargne_robert"))
+				.isEqualTo(solde2 + 142);
+		// Do the virement in the other way so that we can always launch the
+		// tests without going to a negative solde
+		goTo(virementPage);
+		virementPage.fillFormAndSend("compte_epargne_robert",
+				"compte_courant_robert", 1.42, "test");
+		goTo(userPage);
+		assertThat(userPage.getAccountSolde("compte_courant_robert"))
+				.isEqualTo(solde1);
+		assertThat(userPage.getAccountSolde("compte_epargne_robert"))
+				.isEqualTo(solde2);
+
+	}
+
+	/**
 	 * This test tries to make a virement between twice the same compte and
 	 * checks that an error is displayed.
 	 */

@@ -24,7 +24,6 @@ import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.exception.CompteNotFoundException;
 import com.excilys.formation.bank.service.OperationCarteService;
 import com.excilys.formation.bank.service.UserService;
-import com.excilys.formation.bank.service.VirementService;
 
 /**
  * A controller used for authenticated section.
@@ -38,9 +37,6 @@ public class AuthenticatedController {
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private VirementService virementService;
 
 	@Autowired
 	private OperationCarteService operationCarteService;
@@ -127,11 +123,9 @@ public class AuthenticatedController {
 				.getContext().getAuthentication().getPrincipal();
 		Set<Compte> comptes = userService.getComptesByUsername(userDetails
 				.getUsername());
-		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
-		Collections.sort(listeComptes);
 		HashMap<String, Long> soldesPrevisionnels = new HashMap<String, Long>();
 		HashMap<String, Long> encoursCartes = new HashMap<String, Long>();
-		for (Compte compte : listeComptes) {
+		for (Compte compte : comptes) {
 			// TODO s'il y a autre chose que des débits en différé, faudra gérer
 			// le signe
 			long totalOperationsNonValidees = userService
@@ -143,45 +137,10 @@ public class AuthenticatedController {
 					.put(compte.getCompteId(), -totalOperationsNonValidees);
 
 		}
-		model.put("comptes", listeComptes);
+		model.put("comptes", comptes);
 		model.put("soldesPrevisionnels", soldesPrevisionnels);
 		model.put("encoursCartes", encoursCartes);
 		return "accounts";
-	}
-
-	@RequestMapping("/virement.html")
-	public final String virement(ModelMap model) {
-
-		UserDetails userDetails = (UserDetails) SecurityContextHolder
-				.getContext().getAuthentication().getPrincipal();
-		Set<Compte> comptes = userService.getComptesByUsername(userDetails
-				.getUsername());
-		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
-		Collections.sort(listeComptes);
-		model.put("comptes", listeComptes);
-		return "virement";
-	}
-
-	@RequestMapping("/virement.form")
-	public final String doVirement(@RequestParam String compteDebiteur,
-			@RequestParam String compteCrediteur, @RequestParam double montant,
-			@RequestParam String libelle) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder
-				.getContext().getAuthentication().getPrincipal();
-		String login = userDetails.getUsername();
-		try {
-			virementService.createVirement(login, compteDebiteur,
-					compteCrediteur, (long) (montant * 100),
-					StringUtils.trimToNull(libelle));
-		} catch (Exception e) {
-			return "redirect:/secure/virement.html?error=1";
-		}
-		StringBuilder stringBuilder = new StringBuilder(
-				"redirect:/secure/account/0/");
-		stringBuilder.append(compteDebiteur);
-		stringBuilder.append(".html");
-		return stringBuilder.toString();
-
 	}
 
 	@RequestMapping("/operationCarte.html")
