@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.service.VirementService;
+import com.excilys.formation.dto.TransactionDTO;
 import com.excilys.formation.webservicers.VirementServiceRs;
-import com.excilys.formation.webservicers.dto.bean.TransactionDTO;
 
 /**
  * Interface VirementService.

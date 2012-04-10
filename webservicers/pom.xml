@@ -19,10 +19,6 @@
 	</properties>
 	<dependencies>
 		<!-- CXF -->
-		<!-- dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-		</dependency>-->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
@@ -54,6 +50,10 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.excilys.formation</groupId>
+			<artifactId>dto</artifactId>
 		</dependency>
 	</dependencies>
 	<packaging>war</packaging>

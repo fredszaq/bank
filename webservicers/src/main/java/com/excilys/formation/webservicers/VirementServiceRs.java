@@ -5,7 +5,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.excilys.formation.webservicers.dto.bean.TransactionDTO;
+import com.excilys.formation.dto.TransactionDTO;
 
 /**
  * Interface VirementService.

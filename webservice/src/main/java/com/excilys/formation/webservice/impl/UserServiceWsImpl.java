@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.service.UserService;
+import com.excilys.formation.dto.CompteDTO;
 import com.excilys.formation.webservice.UserServiceWs;
-import com.excilys.formation.webservice.dto.bean.CompteDTO;
 
 /**
  * UserService interface.

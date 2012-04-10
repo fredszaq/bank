@@ -8,10 +8,10 @@ import javax.jws.WebService;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.excilys.formation.webservice.dto.bean.CompteDTO;
+import com.excilys.formation.dto.CompteDTO;
 
 /**
- * UserService interface.
+ * UserServiceWs interface.
  * 
  * @author excilys
  * 

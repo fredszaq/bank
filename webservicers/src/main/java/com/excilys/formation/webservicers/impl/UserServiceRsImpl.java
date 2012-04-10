@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.service.UserService;
+import com.excilys.formation.dto.CompteDTO;
 import com.excilys.formation.webservicers.UserServiceRs;
-import com.excilys.formation.webservicers.dto.bean.CompteDTO;
 
 /**
  * UserService interface.

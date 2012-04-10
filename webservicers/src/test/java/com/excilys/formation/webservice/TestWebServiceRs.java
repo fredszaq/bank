@@ -15,10 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.excilys.formation.bank.bean.TransactionCategorie;
+import com.excilys.formation.dto.CompteDTO;
+import com.excilys.formation.dto.TransactionDTO;
 import com.excilys.formation.webservicers.UserServiceRs;
 import com.excilys.formation.webservicers.VirementServiceRs;
-import com.excilys.formation.webservicers.dto.bean.CompteDTO;
-import com.excilys.formation.webservicers.dto.bean.TransactionDTO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:contextTest/applicationContext-*.xml" })
