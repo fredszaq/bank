@@ -44,7 +44,7 @@ public class VirementValidator {
 	}
 
 	public long getLongMontant() {
-		return (long) montant * 100;
+		return (long) (montant * 100);
 	}
 
 	public void setMontant(double montant) {
