@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -130,6 +131,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public long getTotalOperationsNonValideesByCompteId(String compteId) {
 		return operationDAO.getTotalOperationsNonValideesFromCompteId(compteId);
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public void onApplicationEvent(AuthenticationSuccessEvent arg0) {
+		userDAO.updatelastConnectionDate(arg0.getAuthentication().getName());
+
 	}
 
 }
