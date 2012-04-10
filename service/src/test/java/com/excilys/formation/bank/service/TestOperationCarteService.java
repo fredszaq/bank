@@ -17,6 +17,7 @@ import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.bean.TransactionCategorie;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
@@ -37,7 +38,8 @@ public class TestOperationCarteService {
 	}
 
 	@Test
-	public final void creationOperationCarteTest() {
+	public final void creationOperationCarteTest()
+			throws CompteNotFoundException {
 		double soldeInitialDebiteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
 		DateTime now = DateTime.now();
@@ -69,19 +71,22 @@ public class TestOperationCarteService {
 	}
 
 	@Test(expected = Exception.class)
-	public final void creationOperationCarteMontantNegatifTest() {
+	public final void creationOperationCarteMontantNegatifTest()
+			throws CompteNotFoundException {
 		operationCarteService.createOperationCarte("user1", "compte1", -100,
 				"marche pas");
 	}
 
 	@Test(expected = Exception.class)
-	public final void creationOperationCompteNApartenantPasALUser() {
+	public final void creationOperationCompteNApartenantPasALUser()
+			throws CompteNotFoundException {
 		operationCarteService.createOperationCarte("user1", "compte3", 100,
 				"marche pas");
 	}
 
 	@Test(expected = Exception.class)
-	public final void creationOperationCompteSansCarte() {
+	public final void creationOperationCompteSansCarte()
+			throws CompteNotFoundException {
 		operationCarteService.createOperationCarte("user1", "compte2", 100,
 				"marche pas");
 	}

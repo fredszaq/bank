@@ -1,6 +1,7 @@
 package com.excilys.formation.bank.dao;
 
 import com.excilys.formation.bank.bean.Transaction;
+import com.excilys.formation.bank.exception.TransactionNotFoundException;
 
 /**
  * Interface TransactionDAO.
@@ -17,7 +18,8 @@ public interface TransactionDAO {
 	 *            : the transaction id
 	 * @return transaction
 	 */
-	Transaction getTransactionById(Integer transactionId);
+	Transaction getTransactionById(Integer transactionId)
+			throws TransactionNotFoundException;
 
 	/**
 	 * Insertion d'une transaction.

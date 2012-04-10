@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import org.springframework.validation.annotation.Validated;
 
 import com.excilys.formation.bank.bean.Transaction;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 /**
  * Interface VirementService.
@@ -32,5 +33,5 @@ public interface VirementService {
 	 */
 	Transaction createVirement(String login, String compteDebiteurId,
 			String compteCrediteurId, @Min(value = 0) long montant,
-			String libelle);
+			String libelle) throws CompteNotFoundException;
 }

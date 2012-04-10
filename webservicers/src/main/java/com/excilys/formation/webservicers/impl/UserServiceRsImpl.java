@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Compte;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 import com.excilys.formation.bank.service.UserService;
 import com.excilys.formation.dto.CompteDTO;
 import com.excilys.formation.webservicers.UserServiceRs;
@@ -43,11 +44,18 @@ public class UserServiceRsImpl implements UserServiceRs {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws CompteNotFoundException
 	 */
 	@Override
 	public final CompteDTO getCompteByUsernameAndAccountId(String login,
 			String id) {
-		Compte compte = userService.getCompteByUsernameAndAccountId(login, id);
+		Compte compte;
+		try {
+			compte = userService.getCompteByUsernameAndAccountId(login, id);
+		} catch (CompteNotFoundException e) {
+			return null;
+		}
 		CompteDTO compteDTO = new CompteDTO.CompteDTOBuilder()
 				.withCompteType(compte.getCompteType())
 				.withNumCarte(compte.getNumCarte())

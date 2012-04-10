@@ -14,6 +14,7 @@ import com.excilys.formation.bank.bean.TransactionCategorie;
 import com.excilys.formation.bank.dao.CompteDAO;
 import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 import com.excilys.formation.bank.service.OperationCarteService;
 
 /**
@@ -37,17 +38,20 @@ public class OperationCarteServiceImpl implements OperationCarteService {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws CompteNotFoundException
 	 */
 	@Override
 	public final Transaction createOperationCarte(String login,
-			String compteDebiteurId, long montant, String libelle) {
+			String compteDebiteurId, long montant, String libelle)
+			throws CompteNotFoundException {
 
-		Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
-				login, compteDebiteurId);
-		if (compteDebiteur == null) {
-			throw new IllegalArgumentException(
-					"unable to find this Compte for this user.");
-		}
+		Compte compteDebiteur = compteDAO.getCompteByUsernameAndCompteId(login,
+				compteDebiteurId);
+		/*
+		 * if (compteDebiteur == null) { throw new IllegalArgumentException(
+		 * "unable to find this Compte for this user."); }
+		 */
 		if (!compteDebiteur.hasCarte()) {
 			throw new IllegalArgumentException(
 					"there is not Carte on this account !");

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.dao.OperationDAO;
+import com.excilys.formation.bank.exception.OperationNotFoundException;
 
 /**
  * Implémentation de l'interface OperationDAO en utilisant Hibernate.
@@ -26,17 +27,14 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final void delete(Operation operation) {
-		sessionFactory.getCurrentSession().delete(operation);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public final Operation getOperationById(Integer id) {
-		return (Operation) sessionFactory.getCurrentSession().get(
-				Operation.class, id);
+	public final Operation getOperationById(Integer id)
+			throws OperationNotFoundException {
+		Operation operation = (Operation) sessionFactory.getCurrentSession()
+				.get(Operation.class, id);
+		if (operation == null) {
+			throw new OperationNotFoundException("Operation inconnu");
+		}
+		return operation;
 	}
 
 	/**
@@ -60,8 +58,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public final List<Operation> getOperationCarteFromCompteId(String compteId,
-			Interval interval) {
+	public final List<Operation> searchOperationCarteFromCompteId(
+			String compteId, Interval interval) {
 		StringBuilder query = new StringBuilder();
 		query.append("select operation from Compte compte join ")
 				.append("compte.operations operation where compte.id=:compteId ")
@@ -79,7 +77,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final long getTotalOperationCarteFromCompteId(String compteId,
+	public final long searchTotalOperationCarteFromCompteId(String compteId,
 			Interval interval) {
 
 		StringBuilder query = new StringBuilder();
@@ -100,7 +98,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public final List<Operation> getOperationNonCarteFromCompteId(
+	public final List<Operation> searchOperationNonCarteFromCompteId(
 			String compteId, Interval interval) {
 		StringBuilder query = new StringBuilder();
 		query.append("select operation from Compte compte join ")
@@ -120,7 +118,7 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public final List<Operation> getOperationFromCompteId(String compteId,
+	public final List<Operation> searchOperationFromCompteId(String compteId,
 			Interval interval) {
 		StringBuilder query = new StringBuilder();
 		query.append("select operation from Compte compte join ")
@@ -135,7 +133,8 @@ public class OperationDAOHibernateImpl implements OperationDAO {
 	}
 
 	@Override
-	public final long getTotalOperationsNonValideesFromCompteId(String compteId) {
+	public final long searchTotalOperationsNonValideesFromCompteId(
+			String compteId) {
 
 		StringBuilder query = new StringBuilder();
 		query.append("select sum(operation.montant) from Compte compte ")

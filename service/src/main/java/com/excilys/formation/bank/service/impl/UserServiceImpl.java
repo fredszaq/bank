@@ -18,6 +18,8 @@ import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.dao.CompteDAO;
 import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.UserDAO;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
+import com.excilys.formation.bank.exception.UserNotFoundException;
 import com.excilys.formation.bank.service.UserService;
 
 /**
@@ -41,10 +43,13 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws CompteNotFoundException
 	 */
 	@Override
-	public final Compte getCompteByUsernameAndAccountId(String login, String id) {
-		return compteDAO.loadCompteByUsernameAndCompteId(login, id);
+	public final Compte getCompteByUsernameAndAccountId(String login, String id)
+			throws CompteNotFoundException {
+		return compteDAO.getCompteByUsernameAndCompteId(login, id);
 	}
 
 	/**
@@ -52,7 +57,13 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public final Set<Compte> getComptesByUsername(String login) {
-		Set<Compte> comptes = userDAO.loadUserByUsername(login).getComptes();
+		User user = null;
+		try {
+			user = userDAO.loadUserByUsername(login);
+		} catch (UserNotFoundException unfe) {
+			throw new UsernameNotFoundException(login + " not found");
+		}
+		Set<Compte> comptes = user.getComptes();
 		Hibernate.initialize(comptes);
 		return comptes;
 	}
@@ -63,8 +74,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public final User loadUserByUsername(String login)
 			throws UsernameNotFoundException {
-		User user = userDAO.loadUserByUsername(login);
-		if (user == null) {
+		User user = null;
+		try {
+			user = userDAO.loadUserByUsername(login);
+		} catch (UserNotFoundException unfe) {
 			throw new UsernameNotFoundException(login + " not found");
 		}
 		Hibernate.initialize(user.getAuthorities());
@@ -81,7 +94,8 @@ public class UserServiceImpl implements UserService {
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
 		Interval interval = new Interval(dateDebut, dateFin);
-		return operationDAO.getOperationCarteFromCompteId(compteId, interval);
+		return operationDAO
+				.searchOperationCarteFromCompteId(compteId, interval);
 	}
 
 	/**
@@ -94,8 +108,8 @@ public class UserServiceImpl implements UserService {
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
 		Interval interval = new Interval(dateDebut, dateFin);
-		return operationDAO
-				.getOperationNonCarteFromCompteId(compteId, interval);
+		return operationDAO.searchOperationNonCarteFromCompteId(compteId,
+				interval);
 	}
 
 	/**
@@ -108,7 +122,7 @@ public class UserServiceImpl implements UserService {
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
 		Interval interval = new Interval(dateDebut, dateFin);
-		return operationDAO.getOperationFromCompteId(compteId, interval);
+		return operationDAO.searchOperationFromCompteId(compteId, interval);
 	}
 
 	/**
@@ -121,7 +135,7 @@ public class UserServiceImpl implements UserService {
 				.minusMonths(month);
 		DateTime dateFin = dateDebut.plusMonths(1).minusDays(1);
 		Interval interval = new Interval(dateDebut, dateFin);
-		return operationDAO.getTotalOperationCarteFromCompteId(compteId,
+		return operationDAO.searchTotalOperationCarteFromCompteId(compteId,
 				interval);
 	}
 
@@ -130,7 +144,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public long getTotalOperationsNonValideesByCompteId(String compteId) {
-		return operationDAO.getTotalOperationsNonValideesFromCompteId(compteId);
+		return operationDAO
+				.searchTotalOperationsNonValideesFromCompteId(compteId);
 	}
 
 	@Override

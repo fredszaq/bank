@@ -22,6 +22,7 @@ import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.OperationType;
+import com.excilys.formation.bank.exception.OperationNotFoundException;
 
 /**
  * Test de la classe Operation DAO.
@@ -57,7 +58,7 @@ public class OperationDaoTest extends
 	 */
 	@Transactional(readOnly = true)
 	@Before
-	public final void init() {
+	public final void init() throws OperationNotFoundException {
 		operationDebit = operationDAO.getOperationById(1);
 		operationCredit = operationDAO.getOperationById(2);
 		dateDebut = new DateTime().withDate(2009, 9, 10);
@@ -89,7 +90,7 @@ public class OperationDaoTest extends
 	 * Test d'insertion d'une opération.
 	 */
 	@Test
-	public final void insertOperation() {
+	public final void insertOperation() throws OperationNotFoundException {
 		Operation operationCarte = new Operation();
 		operationCarte.setMontant(3400);
 		operationCarte.setOperationId(3);
@@ -103,21 +104,11 @@ public class OperationDaoTest extends
 	 * Test de mise à jour d'une opération.
 	 */
 	@Test
-	public final void updateOperation() {
+	public final void updateOperation() throws OperationNotFoundException {
 		operationCredit.setMontant(5700);
 		operationDAO.update(operationCredit);
 		assertThat(operationDAO.getOperationById(2).getMontant()).isEqualTo(
 				5700);
-	}
-
-	/**
-	 * Test de suppression d'une opération.
-	 */
-	@Test
-	public final void deleteOperation() {
-		operationDAO.delete(operationCredit);
-		operationCredit = operationDAO.getOperationById(2);
-		assertThat(operationCredit).isNull();
 	}
 
 	/**
@@ -127,7 +118,7 @@ public class OperationDaoTest extends
 	public final void getOperationCarteFromCompteId() {
 		Interval interval = new Interval(dateDebut, dateFin);
 		List<Operation> operations = operationDAO
-				.getOperationCarteFromCompteId("compte1", interval);
+				.searchOperationCarteFromCompteId("compte1", interval);
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(444);
 	}
@@ -140,7 +131,7 @@ public class OperationDaoTest extends
 	public final void getOperationCarteFromCompteIdWhenThereAreNoCarteOperations() {
 		Interval interval = new Interval(dateDebut, dateFin);
 		List<Operation> operations = operationDAO
-				.getOperationCarteFromCompteId("compte2", interval);
+				.searchOperationCarteFromCompteId("compte2", interval);
 		assertThat(operations).isEmpty();
 	}
 
@@ -153,7 +144,7 @@ public class OperationDaoTest extends
 		DateTime fin = new DateTime(2010, 10, 1, 0, 0);
 		Interval interval = new Interval(debut, fin);
 		assertThat(
-				operationDAO.getTotalOperationCarteFromCompteId("compte1",
+				operationDAO.searchTotalOperationCarteFromCompteId("compte1",
 						interval)).isEqualTo(444);
 
 	}
@@ -167,7 +158,7 @@ public class OperationDaoTest extends
 		DateTime fin = new DateTime(2010, 10, 1, 0, 0);
 		Interval interval = new Interval(debut, fin);
 		assertThat(
-				operationDAO.getTotalOperationCarteFromCompteId("compte2",
+				operationDAO.searchTotalOperationCarteFromCompteId("compte2",
 						interval)).isEqualTo(0);
 
 	}
@@ -179,7 +170,7 @@ public class OperationDaoTest extends
 	public final void getOperationNonCarteFromCompteId() {
 		Interval interval = new Interval(dateDebut, dateFin);
 		List<Operation> operations = operationDAO
-				.getOperationNonCarteFromCompteId("compte1", interval);
+				.searchOperationNonCarteFromCompteId("compte1", interval);
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0).getMontant()).isEqualTo(42);
 	}
@@ -191,7 +182,7 @@ public class OperationDaoTest extends
 	public final void getTotalOperationsNonValideesFromCompteId() {
 		assertThat(
 				operationDAO
-						.getTotalOperationsNonValideesFromCompteId("compte1"))
+						.searchTotalOperationsNonValideesFromCompteId("compte1"))
 				.isEqualTo(555);
 
 	}
@@ -203,7 +194,7 @@ public class OperationDaoTest extends
 	public final void getTotalOperationsNonValideesFromCompteIdWhenThereAreNoCarteOperations() {
 		assertThat(
 				operationDAO
-						.getTotalOperationsNonValideesFromCompteId("compte2"))
+						.searchTotalOperationsNonValideesFromCompteId("compte2"))
 				.isEqualTo(0);
 
 	}

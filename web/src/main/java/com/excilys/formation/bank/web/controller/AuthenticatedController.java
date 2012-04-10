@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Operation;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 import com.excilys.formation.bank.service.OperationCarteService;
 import com.excilys.formation.bank.service.UserService;
 import com.excilys.formation.bank.service.VirementService;
@@ -75,9 +76,11 @@ public class AuthenticatedController {
 		}
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
-		Compte compte = userService.getCompteByUsernameAndAccountId(
-				userDetails.getUsername(), id);
-		if (compte == null) {
+		Compte compte = null;
+		try {
+			compte = userService.getCompteByUsernameAndAccountId(
+					userDetails.getUsername(), id);
+		} catch (CompteNotFoundException cnfe) {
 			return "redirect:/";
 		}
 		List<Operation> operations = userService
@@ -96,9 +99,11 @@ public class AuthenticatedController {
 			@PathVariable Integer month) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
-		Compte compte = userService.getCompteByUsernameAndAccountId(
-				userDetails.getUsername(), id);
-		if (compte == null) {
+		Compte compte = null;
+		try {
+			compte = userService.getCompteByUsernameAndAccountId(
+					userDetails.getUsername(), id);
+		} catch (CompteNotFoundException cnfe) {
 			return "redirect:/";
 		}
 		List<Operation> operations = userService.getOperationsByCompteId(id,
@@ -226,9 +231,14 @@ public class AuthenticatedController {
 		}
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
-		Compte compte = userService.getCompteByUsernameAndAccountId(
-				userDetails.getUsername(), id);
-		if (compte == null || !compte.hasCarte()) {
+		Compte compte = null;
+		try {
+			compte = userService.getCompteByUsernameAndAccountId(
+					userDetails.getUsername(), id);
+		} catch (CompteNotFoundException cnfe) {
+			return "redirect:/";
+		}
+		if (!compte.hasCarte()) {
 			return "redirect:/";
 		}
 		model.put("compte", compte);

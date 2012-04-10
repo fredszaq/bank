@@ -17,6 +17,7 @@ import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.bean.TransactionCategorie;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
@@ -37,7 +38,8 @@ public class TestVirementService {
 	}
 
 	@Test
-	public final void creationVirementInterneTest() {
+	public final void creationVirementInterneTest()
+			throws CompteNotFoundException {
 		double soldeInitialDebiteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
 		double soldeInitialCrediteur = userService
@@ -73,7 +75,8 @@ public class TestVirementService {
 	}
 
 	@Test
-	public final void creationVirementExterneTest() {
+	public final void creationVirementExterneTest()
+			throws CompteNotFoundException {
 		double soldeInitialDebiteur = userService
 				.getCompteByUsernameAndAccountId("user1", "compte1").getSolde();
 		double soldeInitialCrediteur = userService
@@ -110,19 +113,22 @@ public class TestVirementService {
 	}
 
 	@Test(expected = Exception.class)
-	public final void creationVirementMontantNegatifTest() {
+	public final void creationVirementMontantNegatifTest()
+			throws CompteNotFoundException {
 		virementService.createVirement("user1", "compte1", "compte3", -100,
 				"marche pas");
 	}
 
 	@Test(expected = Exception.class)
-	public final void creationVirement2ComptesPareil() {
+	public final void creationVirement2ComptesPareil()
+			throws CompteNotFoundException {
 		virementService.createVirement("user1", "compte1", "compte1", 100,
 				"marche pas");
 	}
 
 	@Test(expected = Exception.class)
-	public final void creationVirementCompteNApartenantPasALUser() {
+	public final void creationVirementCompteNApartenantPasALUser()
+			throws CompteNotFoundException {
 		virementService.createVirement("user2", "compte1", "compte2", 100,
 				"marche pas");
 	}
