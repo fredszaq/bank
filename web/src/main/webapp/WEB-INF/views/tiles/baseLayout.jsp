@@ -33,13 +33,21 @@
 		<div id="logininfo">
 			<c:choose>
 				<c:when test="${pageContext['request'].userPrincipal != null}">
-				<fmt:formatDate value="${pageContext['request'].userPrincipal.principal.lastConnection.toDate()}" type="date" var="dateLastConnection"/>
 					<fmt:message key="baselayout.loggedas">
 						<fmt:param
 							value="${pageContext['request'].userPrincipal.principal.firstName} ${pageContext['request'].userPrincipal.principal.lastName}" />
-						<fmt:param
-							value="${dateLastConnection}" />
+
 					</fmt:message>
+					<c:if
+						test="${pageContext['request'].userPrincipal.principal.lastConnection != null }">
+						<fmt:formatDate
+							value="${pageContext['request'].userPrincipal.principal.lastConnection.toDate()}"
+							type="date" var="dateLastConnection" />
+						<br />
+						<fmt:message key="baselayout.lastconnection">
+							<fmt:param value="${dateLastConnection}" />
+						</fmt:message>
+					</c:if>
 					<br />
 					<a
 						href="${pageContext.request.contextPath}/j_spring_security_logout"><fmt:message
