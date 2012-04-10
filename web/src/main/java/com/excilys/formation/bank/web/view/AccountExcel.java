@@ -57,6 +57,7 @@ public class AccountExcel extends AbstractExcelView {
 		header.getCell(3).setCellStyle(cellStyleBold);
 
 		// ajout des operations
+		@SuppressWarnings("unchecked")
 		List<Operation> operations = (List<Operation>) model.get("operations");
 		int rowNumber = 1;
 		for (Operation operation : operations) {
