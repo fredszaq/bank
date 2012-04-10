@@ -46,7 +46,7 @@ public class VirementPage extends BankRootPage {
 	 *            the libelle
 	 */
 	public final void fillFormAndSend(String compteDebiteur,
-			String compteCrediteur, int montant, String libelle) {
+			String compteCrediteur, double montant, String libelle) {
 		findFirst("#compteDebiteur option[value=" + compteDebiteur + "]")
 				.click();
 		findFirst("#compteCrediteur option[value=" + compteCrediteur + "]")

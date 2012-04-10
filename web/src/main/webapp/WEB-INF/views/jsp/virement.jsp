@@ -2,7 +2,8 @@
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
 	xmlns:tiles="http://tiles.apache.org/tags-tiles"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:form="http://www.springframework.org/tags/form">
 	<fmt:setBundle basename="localization.Messages" />
 	<h2><fmt:message key="virement.title" /></h2>
 
@@ -12,37 +13,36 @@
 				</div>
 		</c:if>
 
-	<c:url value="/secure/virement.form" var="virementURL">
+	<c:url value="/secure/virement.html" var="virementURL">
 	</c:url>
-	<form action="${virementURL}"
-		method="POST">
+	<form:form action="${virementURL}" method="POST" commandName="virementValidator">
 		<div class="box">
 			<div>
-				<label for="compteDebiteur"><fmt:message key="virement.compte.debiteur" /></label> <select
-					name="compteDebiteur" id="compteDebiteur">
-					<c:forEach var="compte" items="${comptes}">
-						<option value="${compte.compteId }">${compte.compteId }</option>
-					</c:forEach>
-				</select>
+				<label for="compteDebiteur"><fmt:message key="virement.compte.debiteur" /></label>
+ 			<form:select
+ 					path="compteDebiteur"> 
+ 					<c:forEach var="compte" items="${comptes}"> 
+ 						<form:option value="${compte.compteId }" /> <!-- ${compte.compteId }</option> --> 
+ 					</c:forEach>
+ 				</form:select>
 			</div>
 
 			<div>
-				<label for="compteCrediteur"><fmt:message key="virement.compte.crediteur" /></label><select
-					name="compteCrediteur" id="compteCrediteur">
-					<c:forEach var="compte" items="${comptes}">
-						<option value="${compte.compteId }">${compte.compteId }</option>
-					</c:forEach>
-				</select>
+				<label for="compteCrediteur"><fmt:message key="virement.compte.crediteur" /></label>
+ 				<form:select
+ 					path="compteCrediteur">
+ 					<c:forEach var="compte" items="${comptes}">
+ 						<form:option value="${compte.compteId }" /> <!-- ${compte.compteId }</option> -->
+ 					</c:forEach>
+ 				</form:select>
 			</div>
 
 			<div>
-				<label for="montant"><fmt:message key="virement.montant" /></label> <input name="montant"
-					type="number" min="0" id="montant"/>
+				<label for="montant"><fmt:message key="virement.montant" /> <form:errors path="montant"/></label> <form:input path="montant"/>
 			</div>
 
 			<div>
-				<label for="libelle"><fmt:message key="virement.libelle" /></label><input name="libelle"
-					type="text" id="libelle"/>
+				<label for="libelle"><fmt:message key="virement.libelle" /></label><form:input path="libelle"/>
 			</div>
 
 
@@ -50,8 +50,6 @@
 
 		</div>
 
-	</form>
-
-
+	</form:form>
 </jsp:root>
 

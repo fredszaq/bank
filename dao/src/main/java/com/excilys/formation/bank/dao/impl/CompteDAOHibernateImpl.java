@@ -73,4 +73,5 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 		String query = "from Compte compte order by compte.id";
 		return sessionFactory.getCurrentSession().createQuery(query).list();
 	}
+
 }
