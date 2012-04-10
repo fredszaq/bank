@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.dao;
 
+import java.util.List;
+
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.exception.CompteNotFoundException;
 
@@ -43,4 +45,12 @@ public interface CompteDAO {
 	 */
 	void updateSolde(String compteId, long difference)
 			throws CompteNotFoundException;
+
+	/**
+	 * List all the accounts.
+	 * 
+	 * @return all the accounts
+	 */
+	List<Compte> getAll();
+
 }

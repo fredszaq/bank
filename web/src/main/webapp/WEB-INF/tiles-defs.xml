@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
  
 <!DOCTYPE tiles-definitions PUBLIC
-"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
 
@@ -55,11 +55,16 @@
 	<definition name="adminArea" extends="baseLayout">
 		<put-attribute name="title"
 			value="/WEB-INF/views/jsp/titleAdminArea.jsp" />
-		<put-attribute name="body" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/tiles/admin.jsp" />
+		<put-attribute name="adminContent" value="" cascade="true"/>
 	</definition>
 
-	<definition name="admin" extends="adminArea">
-		<put-attribute name="body" value="/WEB-INF/views/jsp/admin.jsp" />
+	<definition name="adminComptes" extends="adminArea">
+		<put-attribute name="adminContent" value="/WEB-INF/views/jsp/adminComptes.jsp" cascade="true" />
+	</definition>
+	
+	<definition name="adminUsers" extends="adminArea">
+		<put-attribute name="adminContent" value="/WEB-INF/views/jsp/adminUsers.jsp" cascade="true" />
 	</definition>
 
 	<definition name="errorPage" extends="baseLayout">

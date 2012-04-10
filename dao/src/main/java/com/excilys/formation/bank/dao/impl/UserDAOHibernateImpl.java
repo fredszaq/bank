@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,12 @@ public class UserDAOHibernateImpl implements UserDAO {
 				login);
 		user.setLastConnection(new DateTime());
 		sessionFactory.getCurrentSession().save(user);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getAll() {
+		String query = "from User user order by user.id";
+		return sessionFactory.getCurrentSession().createQuery(query).list();
 	}
 }

@@ -1,5 +1,7 @@
 package com.excilys.formation.bank.dao;
 
+import java.util.List;
+
 import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.exception.UserNotFoundException;
 
@@ -20,6 +22,19 @@ public interface UserDAO {
 	 */
 	User loadUserByUsername(String login) throws UserNotFoundException;
 
+	/**
+	 * Set the last connection date to now.
+	 * 
+	 * @param login
+	 *            the user to update
+	 */
 	void updatelastConnectionDate(String login);
+
+	/**
+	 * list all users.
+	 * 
+	 * @return all users
+	 */
+	List<User> getAll();
 
 }

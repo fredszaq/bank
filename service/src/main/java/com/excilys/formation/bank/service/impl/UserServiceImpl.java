@@ -155,4 +155,16 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public List<Compte> getAllComptes() {
+		// TODO Auto-generated method stub
+		return compteDAO.getAll();
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return userDAO.getAll();
+	}
+
 }
