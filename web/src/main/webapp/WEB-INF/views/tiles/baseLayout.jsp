@@ -33,9 +33,12 @@
 		<div id="logininfo">
 			<c:choose>
 				<c:when test="${pageContext['request'].userPrincipal != null}">
+				<fmt:formatDate value="${pageContext['request'].userPrincipal.principal.lastConnection.toDate()}" type="date" var="dateLastConnection"/>
 					<fmt:message key="baselayout.loggedas">
 						<fmt:param
 							value="${pageContext['request'].userPrincipal.principal.firstName} ${pageContext['request'].userPrincipal.principal.lastName}" />
+						<fmt:param
+							value="${dateLastConnection}" />
 					</fmt:message>
 					<br />
 					<a

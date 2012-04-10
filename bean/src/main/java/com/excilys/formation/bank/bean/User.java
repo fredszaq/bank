@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -44,6 +46,10 @@ public class User implements Serializable, UserDetails {
 
 	@Column
 	private String address;
+
+	@Column(name = "last_connection")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime lastConnection;
 
 	@ManyToMany
 	@JoinTable(name = "utilisateur_droit", joinColumns = { @JoinColumn(name = "login", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "authority_id", nullable = false, updatable = false) })
@@ -132,13 +138,20 @@ public class User implements Serializable, UserDetails {
 		this.login = login;
 	}
 
-	@Override
-	public final String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [login=").append(login).append(", password=")
-				.append(password).append(", lastName=").append(lastName)
-				.append(", firstName=").append(firstName).append(", address=")
-				.append(address).append("]");
-		return builder.toString();
+	public DateTime getLastConnection() {
+		return lastConnection;
 	}
+
+	public void setLastConnection(DateTime lastConnection) {
+		this.lastConnection = lastConnection;
+	}
+
+	@Override
+	public String toString() {
+		return "User [login=" + login + ", password=" + password
+				+ ", lastName=" + lastName + ", firstName=" + firstName
+				+ ", address=" + address + ", lastConnection=" + lastConnection
+				+ ", authorities=" + authorities + ", comptes=" + comptes + "]";
+	}
+
 }

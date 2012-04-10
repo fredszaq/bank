@@ -19,4 +19,6 @@ public interface UserDAO {
 	 */
 	User loadUserByUsername(String login);
 
+	void updatelastConnectionDate(String login);
+
 }

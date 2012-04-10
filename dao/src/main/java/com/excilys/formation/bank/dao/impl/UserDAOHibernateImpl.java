@@ -1,6 +1,7 @@
 package com.excilys.formation.bank.dao.impl;
 
 import org.hibernate.SessionFactory;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +26,13 @@ public class UserDAOHibernateImpl implements UserDAO {
 	@Override
 	public final User loadUserByUsername(String login) {
 		return (User) sessionFactory.getCurrentSession().get(User.class, login);
+	}
+
+	@Override
+	public void updatelastConnectionDate(String login) {
+		User user = (User) sessionFactory.getCurrentSession().get(User.class,
+				login);
+		user.setLastConnection(new DateTime());
+		sessionFactory.getCurrentSession().save(user);
 	}
 }

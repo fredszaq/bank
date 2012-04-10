@@ -3,6 +3,8 @@ package com.excilys.formation.bank.service;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.context.ApplicationListener;
+import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -17,7 +19,8 @@ import com.excilys.formation.bank.bean.User;
  * 
  */
 
-public interface UserService extends UserDetailsService {
+public interface UserService extends UserDetailsService,
+		ApplicationListener<AuthenticationSuccessEvent> {
 
 	/**
 	 * Get a specific account of a user.
