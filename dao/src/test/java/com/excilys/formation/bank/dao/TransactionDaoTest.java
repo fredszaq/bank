@@ -19,6 +19,7 @@ import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Etat;
 import com.excilys.formation.bank.bean.Transaction;
+import com.excilys.formation.bank.exception.TransactionNotFoundException;
 
 /**
  * Test de la classe TransactionDAO.
@@ -48,7 +49,7 @@ public class TransactionDaoTest extends
 	 */
 	@Transactional(readOnly = true)
 	@Before
-	public final void init() {
+	public final void init() throws TransactionNotFoundException {
 		transaction = transactionDAO.getTransactionById(1);
 	}
 
@@ -76,7 +77,8 @@ public class TransactionDaoTest extends
 	 * Test insertion d'une transaction.
 	 */
 	@Test
-	public final void insertTransactionTest() {
+	public final void insertTransactionTest()
+			throws TransactionNotFoundException {
 		Transaction transactionToInsert = new Transaction();
 		transactionToInsert.setTransactionId(1);
 		transactionToInsert.setEtat(Etat.VALIDATED);

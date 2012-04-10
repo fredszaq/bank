@@ -1,6 +1,7 @@
 package com.excilys.formation.bank.dao;
 
 import com.excilys.formation.bank.bean.Compte;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 /**
  * Interface CompteDAO.
@@ -17,7 +18,7 @@ public interface CompteDAO {
 	 *            the compte id
 	 * @return the compte
 	 */
-	Compte loadCompteById(String id);
+	Compte getCompteById(String id) throws CompteNotFoundException;
 
 	/**
 	 * retrieve a Compte by id only if it belongs to the given user.
@@ -29,7 +30,8 @@ public interface CompteDAO {
 	 * @return the compte (or null if the COmpte doesn't exists or isn't owned
 	 *         by the user
 	 */
-	Compte loadCompteByUsernameAndCompteId(String username, String compteId);
+	Compte getCompteByUsernameAndCompteId(String username, String compteId)
+			throws CompteNotFoundException;
 
 	/**
 	 * update the Compte solde.
@@ -39,5 +41,6 @@ public interface CompteDAO {
 	 * @param difference
 	 *            : the difference
 	 */
-	void updateSolde(String compteId, long difference);
+	void updateSolde(String compteId, long difference)
+			throws CompteNotFoundException;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.joda.time.Interval;
 
 import com.excilys.formation.bank.bean.Operation;
+import com.excilys.formation.bank.exception.OperationNotFoundException;
 
 /**
  * Dao en charge des opérations.
@@ -15,21 +16,13 @@ import com.excilys.formation.bank.bean.Operation;
 public interface OperationDAO {
 
 	/**
-	 * supprime une Operation.
-	 * 
-	 * @param operation
-	 *            : l'identifiant de l'opération
-	 */
-	void delete(Operation operation);
-
-	/**
 	 * récupère une Operation.
 	 * 
 	 * @param id
 	 *            : l'identifiant de l'opération
 	 * @return l'opération trouvée s'il y a lieu
 	 */
-	Operation getOperationById(Integer id);
+	Operation getOperationById(Integer id) throws OperationNotFoundException;
 
 	/**
 	 * insère une opération.
@@ -58,7 +51,7 @@ public interface OperationDAO {
 	 *            : la date de fin
 	 * @return la liste des operation
 	 */
-	List<Operation> getOperationCarteFromCompteId(String compteId,
+	List<Operation> searchOperationCarteFromCompteId(String compteId,
 			Interval interval);
 
 	/**
@@ -72,7 +65,8 @@ public interface OperationDAO {
 	 *            la date de fin
 	 * @return le total des operations
 	 */
-	long getTotalOperationCarteFromCompteId(String compteId, Interval interval);
+	long searchTotalOperationCarteFromCompteId(String compteId,
+			Interval interval);
 
 	/**
 	 * Retourne la liste des operations non carte d'un compte.
@@ -85,7 +79,7 @@ public interface OperationDAO {
 	 *            : la date de fin
 	 * @return la liste des operations
 	 */
-	List<Operation> getOperationNonCarteFromCompteId(String compteId,
+	List<Operation> searchOperationNonCarteFromCompteId(String compteId,
 			Interval interval);
 
 	/**
@@ -99,7 +93,8 @@ public interface OperationDAO {
 	 *            : la date de fin
 	 * @return la liste des operations
 	 */
-	List<Operation> getOperationFromCompteId(String compteId, Interval interval);
+	List<Operation> searchOperationFromCompteId(String compteId,
+			Interval interval);
 
 	/**
 	 * Retourne le total des operations non validées d'un compte.
@@ -108,5 +103,5 @@ public interface OperationDAO {
 	 *            l'id du compte dont il faut chercher les opérations
 	 * @return le total des opérations
 	 */
-	long getTotalOperationsNonValideesFromCompteId(String compteId);
+	long searchTotalOperationsNonValideesFromCompteId(String compteId);
 }

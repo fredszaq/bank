@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 /**
  * Test pour la classe CompteDAO.
@@ -41,22 +42,24 @@ public class CompteDaoTest extends
 	 * Test load Compte by Username and CompteId.
 	 */
 	@Test
-	public final void loadCompteByUsernameAndCompteId() {
+	public final void loadCompteByUsernameAndCompteId()
+			throws CompteNotFoundException {
 		assertThat(
-				compteDAO.loadCompteByUsernameAndCompteId("testUser1",
+				compteDAO.getCompteByUsernameAndCompteId("testUser1",
 						"compte1user1")).isEqualTo(
-				compteDAO.loadCompteById("compte1user1"));
+				compteDAO.getCompteById("compte1user1"));
 	}
 
 	/**
 	 * Test load Compte by Username and CompteId when the User does not own the
 	 * Compte.
 	 */
-	@Test
-	public final void loadCompteByUsernameAndCompteIdWhenTheUserDoesNotOwnTheCompte() {
-		assertThat(compteDAO.loadCompteById("compte1user2")).isNotNull();
+	@Test(expected = CompteNotFoundException.class)
+	public final void loadCompteByUsernameAndCompteIdWhenTheUserDoesNotOwnTheCompte()
+			throws CompteNotFoundException {
+		assertThat(compteDAO.getCompteById("compte1user2")).isNotNull();
 		assertThat(
-				compteDAO.loadCompteByUsernameAndCompteId("testUser1",
+				compteDAO.getCompteByUsernameAndCompteId("testUser1",
 						"compte1user2")).isNull();
 	}
 
@@ -64,10 +67,11 @@ public class CompteDaoTest extends
 	 * Test update Compte enlever argent.
 	 */
 	@Test
-	public final void updateCompteEnleverArgent() {
-		long soldeInitial = compteDAO.loadCompteById("compte1user1").getSolde();
+	public final void updateCompteEnleverArgent()
+			throws CompteNotFoundException {
+		long soldeInitial = compteDAO.getCompteById("compte1user1").getSolde();
 		compteDAO.updateSolde("compte1user1", -20);
-		assertThat(compteDAO.loadCompteById("compte1user1").getSolde())
+		assertThat(compteDAO.getCompteById("compte1user1").getSolde())
 				.isEqualTo(soldeInitial - 20);
 	}
 
@@ -75,10 +79,11 @@ public class CompteDaoTest extends
 	 * Test update Compte ajouter argent.
 	 */
 	@Test
-	public final void updateCompteAjouterArgent() {
-		long soldeInitial = compteDAO.loadCompteById("compte1user1").getSolde();
+	public final void updateCompteAjouterArgent()
+			throws CompteNotFoundException {
+		long soldeInitial = compteDAO.getCompteById("compte1user1").getSolde();
 		compteDAO.updateSolde("compte1user1", 20);
-		assertThat(compteDAO.loadCompteById("compte1user1").getSolde())
+		assertThat(compteDAO.getCompteById("compte1user1").getSolde())
 				.isEqualTo(soldeInitial + 20);
 	}
 }

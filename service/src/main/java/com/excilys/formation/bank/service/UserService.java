@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.bean.User;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 /**
  * UserService interface.
@@ -31,7 +32,8 @@ public interface UserService extends UserDetailsService,
 	 *            the id of the account
 	 * @return the account (null if not found)
 	 */
-	Compte getCompteByUsernameAndAccountId(String login, String id);
+	Compte getCompteByUsernameAndAccountId(String login, String id)
+			throws CompteNotFoundException;
 
 	/**
 	 * Get the compte by username.

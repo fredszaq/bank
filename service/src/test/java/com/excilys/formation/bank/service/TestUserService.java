@@ -14,6 +14,7 @@ import com.excilys.ebi.spring.dbunit.test.DataSet;
 import com.excilys.ebi.spring.dbunit.test.DataSetTestExecutionListener;
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.CompteType;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath*:context/applicationContext*.xml",
@@ -25,15 +26,17 @@ public class TestUserService {
 	@Autowired
 	private UserService userService;
 
-	@Test
-	public void testGetCompteByUsernameAndAccountIdWhenTheUserDoesNotOwnsTheCompte() {
+	@Test(expected = CompteNotFoundException.class)
+	public void testGetCompteByUsernameAndAccountIdWhenTheUserDoesNotOwnsTheCompte()
+			throws CompteNotFoundException {
 		Compte compte = userService.getCompteByUsernameAndAccountId("user2",
 				"compte1");
 		assertThat(compte).isNull();
 	}
 
 	@Test
-	public void testGetCompteByUsernameAndAccountIdWhenTheUserOwnsTheCompte() {
+	public void testGetCompteByUsernameAndAccountIdWhenTheUserOwnsTheCompte()
+			throws CompteNotFoundException {
 		Compte compte = userService.getCompteByUsernameAndAccountId("user2",
 				"compte3");
 		assertThat(compte.getCompteId()).isEqualTo("compte3");

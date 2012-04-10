@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.dao.UserDAO;
+import com.excilys.formation.bank.exception.UserNotFoundException;
 
 /**
  * Hibernate implementation for the UserDAO interface.
@@ -24,8 +25,14 @@ public class UserDAOHibernateImpl implements UserDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final User loadUserByUsername(String login) {
-		return (User) sessionFactory.getCurrentSession().get(User.class, login);
+	public final User loadUserByUsername(String login)
+			throws UserNotFoundException {
+		User user = (User) sessionFactory.getCurrentSession().get(User.class,
+				login);
+		if (user == null) {
+			throw new UserNotFoundException("Utilisateur inconnu");
+		}
+		return user;
 	}
 
 	@Override

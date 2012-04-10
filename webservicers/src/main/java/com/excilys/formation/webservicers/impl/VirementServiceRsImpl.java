@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Transaction;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 import com.excilys.formation.bank.service.VirementService;
 import com.excilys.formation.dto.TransactionDTO;
 import com.excilys.formation.webservicers.VirementServiceRs;
@@ -22,13 +23,20 @@ public class VirementServiceRsImpl implements VirementServiceRs {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws CompteNotFoundException
 	 */
 	@Override
 	public final TransactionDTO createVirement(String login,
 			String compteDebiteurId, String compteCrediteurId, long montant,
 			String libelle) {
-		Transaction transaction = virementService.createVirement(login,
-				compteDebiteurId, compteCrediteurId, montant, libelle);
+		Transaction transaction;
+		try {
+			transaction = virementService.createVirement(login,
+					compteDebiteurId, compteCrediteurId, montant, libelle);
+		} catch (CompteNotFoundException e) {
+			return null;
+		}
 		TransactionDTO transactionDTO = new TransactionDTO.TransactionDTOBuilder()
 				.withDateInit(transaction.getDateInit())
 				.withDateValid(transaction.getDateValid())

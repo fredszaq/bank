@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.dao.CompteDAO;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 /**
  * Hibernate implementation for the UserDAO interface.
@@ -23,32 +24,41 @@ public class CompteDAOHibernateImpl implements CompteDAO {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final Compte loadCompteById(String id) {
-		return (Compte) sessionFactory.getCurrentSession()
-				.get(Compte.class, id);
+	public final Compte getCompteById(String id) throws CompteNotFoundException {
+		Compte compte = (Compte) sessionFactory.getCurrentSession().get(
+				Compte.class, id);
+		if (compte == null) {
+			throw new CompteNotFoundException("Compte inconnu");
+		}
+		return compte;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final Compte loadCompteByUsernameAndCompteId(String username,
-			String compteId) {
+	public final Compte getCompteByUsernameAndCompteId(String username,
+			String compteId) throws CompteNotFoundException {
 		StringBuilder query = new StringBuilder();
 		query.append("select comptes from User user join ")
 				.append("user.comptes comptes where user.login=:login ")
 				.append("and comptes.id=:compteId");
-		return (Compte) sessionFactory.getCurrentSession()
+		Compte compte = (Compte) sessionFactory.getCurrentSession()
 				.createQuery(query.toString()).setString("login", username)
 				.setString("compteId", compteId).uniqueResult();
+		if (compte == null) {
+			throw new CompteNotFoundException("Compte inconnu");
+		}
+		return compte;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final void updateSolde(String compteId, long difference) {
-		Compte compte = loadCompteById(compteId);
+	public final void updateSolde(String compteId, long difference)
+			throws CompteNotFoundException {
+		Compte compte = getCompteById(compteId);
 		compte.setSolde(compte.getSolde() + difference);
 		sessionFactory.getCurrentSession().update(compte);
 

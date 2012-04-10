@@ -18,6 +18,7 @@ import com.excilys.formation.bank.bean.User;
 import com.excilys.formation.bank.dao.CompteDAO;
 import com.excilys.formation.bank.dao.OperationDAO;
 import com.excilys.formation.bank.dao.TransactionDAO;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 import com.excilys.formation.bank.service.VirementService;
 
 /**
@@ -41,25 +42,28 @@ public class VirementServiceImpl implements VirementService {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws CompteNotFoundException
 	 */
 	@Override
 	public final Transaction createVirement(String login,
 			String compteDebiteurId, String compteCrediteurId, long montant,
-			String libelle) {
+			String libelle) throws CompteNotFoundException {
 		if (compteCrediteurId.equals(compteDebiteurId)) {
 			throw new IllegalArgumentException(
 					"the two ComptesId must be different !");
 
 		}
-		Compte compteDebiteur = compteDAO.loadCompteByUsernameAndCompteId(
-				login, compteDebiteurId);
-		if (compteDebiteur == null) {
-			throw new IllegalArgumentException(
-					"unable to find this Compte for this user.");
+		Compte compteDebiteur = compteDAO.getCompteByUsernameAndCompteId(login,
+				compteDebiteurId);
+		/*
+		 * if (compteDebiteur == null) { throw new IllegalArgumentException(
+		 * "unable to find this Compte for this user.");
+		 * 
+		 * }
+		 */
 
-		}
-
-		Compte compteCrediteur = compteDAO.loadCompteById(compteCrediteurId);
+		Compte compteCrediteur = compteDAO.getCompteById(compteCrediteurId);
 
 		Transaction transaction = createTransaction(compteDebiteur,
 				compteCrediteur, libelle);

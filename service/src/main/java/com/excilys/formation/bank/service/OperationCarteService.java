@@ -5,6 +5,7 @@ import javax.validation.constraints.Min;
 import org.springframework.validation.annotation.Validated;
 
 import com.excilys.formation.bank.bean.Transaction;
+import com.excilys.formation.bank.exception.CompteNotFoundException;
 
 /**
  * Interface OperationCarteService.
@@ -30,5 +31,6 @@ public interface OperationCarteService {
 	 * @return Transaction
 	 */
 	Transaction createOperationCarte(String login, String compteDebiteurId,
-			@Min(value = 0) long montant, String libelle);
+			@Min(value = 0) long montant, String libelle)
+			throws CompteNotFoundException;
 }
