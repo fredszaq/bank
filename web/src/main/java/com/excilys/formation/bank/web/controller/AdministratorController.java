@@ -26,7 +26,6 @@ public class AdministratorController {
 
 	@RequestMapping("/comptes.html")
 	public final String adminComptes(ModelMap model) {
-		// TODO PROPRIFIER !
 		List<Compte> comptes = userService.getAllComptes();
 		model.put("comptes", comptes);
 		return "adminComptes";
