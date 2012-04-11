@@ -38,7 +38,7 @@
 			</div>
 
 			<div>
-				<label for="montant"><fmt:message key="virement.montant" /> <form:errors path="montant"/></label> <form:input path="montant"/>
+				<label for="montant"><fmt:message key="virement.montant" /> <form:errors path="montant"/></label> <form:input path="montant"/>
 			</div>
 
 			<div>

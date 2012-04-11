@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.service.UserService;
 import com.excilys.formation.bank.service.VirementService;
+import com.excilys.formation.bank.web.validator.VirementValidator;
 
 @Controller
 @RequestMapping("/secure/virement.html")

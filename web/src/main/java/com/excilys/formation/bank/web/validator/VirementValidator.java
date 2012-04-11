@@ -1,4 +1,4 @@
-package com.excilys.formation.bank.web.controller;
+package com.excilys.formation.bank.web.validator;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
