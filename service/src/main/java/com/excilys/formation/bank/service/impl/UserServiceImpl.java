@@ -150,8 +150,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void onApplicationEvent(AuthenticationSuccessEvent arg0) {
-		userDAO.updatelastConnectionDate(arg0.getAuthentication().getName());
+	public void onApplicationEvent(AuthenticationSuccessEvent event) {
+		userDAO.updateLastConnectionDate(event.getAuthentication().getName());
 
 	}
 

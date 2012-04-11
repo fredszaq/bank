@@ -38,7 +38,7 @@ public class UserDAOHibernateImpl implements UserDAO {
 	}
 
 	@Override
-	public void updatelastConnectionDate(String login) {
+	public void updateLastConnectionDate(String login) {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class,
 				login);
 		user.setLastConnection(new DateTime());
