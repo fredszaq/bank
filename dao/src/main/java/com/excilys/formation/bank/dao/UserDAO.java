@@ -28,7 +28,7 @@ public interface UserDAO {
 	 * @param login
 	 *            the user to update
 	 */
-	void updatelastConnectionDate(String login);
+	void updateLastConnectionDate(String login);
 
 	/**
 	 * list all users.
