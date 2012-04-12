@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,7 +21,7 @@ import com.excilys.formation.bank.service.VirementService;
 import com.excilys.formation.bank.web.validator.VirementValidator;
 
 @Controller
-@RequestMapping("/secure/virement.html")
+@RequestMapping("/secure/virement/{type}.html")
 public class VirementController {
 
 	@Autowired
@@ -30,13 +31,15 @@ public class VirementController {
 	private VirementService virementService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public final String showVirementForm(ModelMap model) {
+	public final String showVirementForm(ModelMap model,
+			@PathVariable String type) {
 
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		Set<Compte> comptes = userService.getComptesByUsername(userDetails
 				.getUsername());
 		model.put("comptes", comptes);
+		model.put("type", type);
 		VirementValidator virementValidator = new VirementValidator();
 		model.put("virementValidator", virementValidator);
 
@@ -46,21 +49,23 @@ public class VirementController {
 	@RequestMapping(method = RequestMethod.POST)
 	public final String processVirementFormValidation(
 			@Valid @ModelAttribute("virementValidator") VirementValidator virementValidator,
-			BindingResult result, ModelMap model) {
+			BindingResult result, ModelMap model, @PathVariable String type) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		if (result.hasErrors()) {
 			Set<Compte> comptes = userService.getComptesByUsername(userDetails
 					.getUsername());
 			model.put("comptes", comptes);
+			model.put("type", type);
 			model.put("virementValidator", virementValidator);
 			return "virement";
 		}
 
-		return doVirement(virementValidator);
+		return doVirement(virementValidator, type);
 	}
 
-	private final String doVirement(VirementValidator virementValidator) {
+	private final String doVirement(VirementValidator virementValidator,
+			String type) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		String login = userDetails.getUsername();
@@ -71,7 +76,8 @@ public class VirementController {
 					virementValidator.getLongMontant(),
 					virementValidator.getLibelle());
 		} catch (Exception e) {
-			return "redirect:/secure/virement.html?error=1";
+			return new StringBuilder("redirect:/secure/virement/").append(type)
+					.append(".html?error=1").toString();
 		}
 		StringBuilder stringBuilder = new StringBuilder(
 				"redirect:/secure/account/0/");

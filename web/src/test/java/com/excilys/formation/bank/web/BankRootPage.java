@@ -20,4 +20,8 @@ public class BankRootPage extends FluentPage {
 		assertThat(find(".error")).isNotEmpty();
 	}
 
+	public final void disconnect() {
+		click($("#logininfo a"));
+	}
+
 }

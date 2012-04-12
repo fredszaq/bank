@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Operation;
 import com.excilys.formation.bank.exception.CompteNotFoundException;
-import com.excilys.formation.bank.service.OperationCarteService;
 import com.excilys.formation.bank.service.UserService;
 
 /**
@@ -33,9 +32,6 @@ public class AuthenticatedController {
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private OperationCarteService operationCarteService;
 
 	private static Map<Integer, Date> MONTHS;
 

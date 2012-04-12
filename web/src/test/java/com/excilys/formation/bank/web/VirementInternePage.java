@@ -9,11 +9,11 @@ import static org.fest.assertions.Assertions.assertThat;
  * @author excilys
  * 
  */
-public class VirementPage extends BankRootPage {
+public class VirementInternePage extends BankRootPage {
 
 	@Override
 	public final String getUrl() {
-		return TestConstants.BASE_URL + "secure/virement.html";
+		return TestConstants.BASE_URL + "secure/virement/interne.html";
 	}
 
 	@Override
