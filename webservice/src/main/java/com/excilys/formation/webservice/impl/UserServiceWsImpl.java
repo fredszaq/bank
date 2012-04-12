@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.converter.Converter;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.exception.CompteNotFoundException;
@@ -25,6 +27,10 @@ public class UserServiceWsImpl implements UserServiceWs {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	@Qualifier("Compte2CompteDTOConverter")
+	private Converter<Compte, CompteDTO> compte2CompteDTOConverter;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -33,11 +39,7 @@ public class UserServiceWsImpl implements UserServiceWs {
 		Set<Compte> comptes = userService.getComptesByUsername(login);
 		Set<CompteDTO> comptesDTO = new HashSet<CompteDTO>();
 		for (Compte compte : comptes) {
-			comptesDTO.add(new CompteDTO.CompteDTOBuilder()
-					.withCompteType(compte.getCompteType())
-					.withNumCarte(compte.getNumCarte())
-					.withSolde(compte.getSolde())
-					.withTauxInteret(compte.getTauxInteret()).build());
+			comptesDTO.add(compte2CompteDTOConverter.convert(compte));
 		}
 		return comptesDTO;
 	}
@@ -56,11 +58,6 @@ public class UserServiceWsImpl implements UserServiceWs {
 		} catch (CompteNotFoundException e) {
 			return null;
 		}
-		CompteDTO compteDTO = new CompteDTO.CompteDTOBuilder()
-				.withCompteType(compte.getCompteType())
-				.withNumCarte(compte.getNumCarte())
-				.withSolde(compte.getSolde())
-				.withTauxInteret(compte.getTauxInteret()).build();
-		return compteDTO;
+		return compte2CompteDTOConverter.convert(compte);
 	}
 }

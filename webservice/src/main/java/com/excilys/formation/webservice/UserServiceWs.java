@@ -29,7 +29,7 @@ public interface UserServiceWs {
 	 * @throws UsernameNotFoundException
 	 */
 	@WebMethod
-	Set<CompteDTO> getComptesByUsername(@WebParam(name = "login") String login);
+	Set<CompteDTO> getComptesByUsername(@WebParam String login);
 
 	/**
 	 * Get a specific account of a user.
@@ -41,8 +41,7 @@ public interface UserServiceWs {
 	 * @return the account (null if not found)
 	 */
 	@WebMethod
-	CompteDTO getCompteByUsernameAndAccountId(
-			@WebParam(name = "login") String login,
-			@WebParam(name = "id") String id);
+	CompteDTO getCompteByUsernameAndAccountId(@WebParam String login,
+			@WebParam String id);
 
 }

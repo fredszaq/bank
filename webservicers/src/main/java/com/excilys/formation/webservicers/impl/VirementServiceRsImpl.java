@@ -1,6 +1,8 @@
 package com.excilys.formation.webservicers.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
 import com.excilys.formation.bank.bean.Transaction;
@@ -21,6 +23,10 @@ public class VirementServiceRsImpl implements VirementServiceRs {
 	@Autowired
 	private VirementService virementService;
 
+	@Autowired
+	@Qualifier("Transaction2TransactionDTOConverter")
+	private Converter<Transaction, TransactionDTO> transaction2TransactionDTOConverter;
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -37,13 +43,6 @@ public class VirementServiceRsImpl implements VirementServiceRs {
 		} catch (CompteNotFoundException e) {
 			return null;
 		}
-		TransactionDTO transactionDTO = new TransactionDTO.TransactionDTOBuilder()
-				.withDateInit(transaction.getDateInit())
-				.withDateValid(transaction.getDateValid())
-				.withEtat(transaction.getEtat())
-				.withLibelle(transaction.getLibelle())
-				.withTransactionCategorie(transaction.getTransactionCategorie())
-				.build();
-		return transactionDTO;
+		return transaction2TransactionDTOConverter.convert(transaction);
 	}
 }

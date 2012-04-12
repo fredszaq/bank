@@ -3,6 +3,8 @@ package com.excilys.formation.webservice.impl;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.converter.Converter;
 
 import com.excilys.formation.bank.bean.Transaction;
 import com.excilys.formation.bank.exception.CompteNotFoundException;
@@ -22,6 +24,10 @@ public class VirementServiceWsImpl implements VirementServiceWs {
 	@Autowired
 	private VirementService virementService;
 
+	@Autowired
+	@Qualifier("Transaction2TransactionDTOConverter")
+	private Converter<Transaction, TransactionDTO> transaction2TransactionDTOConverter;
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -38,13 +44,7 @@ public class VirementServiceWsImpl implements VirementServiceWs {
 		} catch (CompteNotFoundException e) {
 			return null;
 		}
-		TransactionDTO transactionDTO = new TransactionDTO.TransactionDTOBuilder()
-				.withDateInit(transaction.getDateInit())
-				.withDateValid(transaction.getDateValid())
-				.withEtat(transaction.getEtat())
-				.withLibelle(transaction.getLibelle())
-				.withTransactionCategorie(transaction.getTransactionCategorie())
-				.build();
-		return transactionDTO;
+
+		return transaction2TransactionDTOConverter.convert(transaction);
 	}
 }

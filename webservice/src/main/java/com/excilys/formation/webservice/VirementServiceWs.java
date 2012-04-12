@@ -31,9 +31,8 @@ public interface VirementServiceWs {
 	 * @return Transaction
 	 */
 	@WebMethod
-	TransactionDTO createVirement(@WebParam(name = "login") String login,
-			@WebParam(name = "compteDebiteurId") String compteDebiteurId,
-			@WebParam(name = "compteCrediteurId") String compteCrediteurId,
-			@WebParam(name = "montant") long montant,
-			@WebParam(name = "libelle") String libelle);
+	TransactionDTO createVirement(@WebParam String login,
+			@WebParam String compteDebiteurId,
+			@WebParam String compteCrediteurId, @WebParam long montant,
+			@WebParam String libelle);
 }

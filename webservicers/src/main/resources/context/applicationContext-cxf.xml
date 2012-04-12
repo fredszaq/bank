@@ -11,6 +11,7 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.excilys.formation" />
+	<context:component-scan base-package="com.excilys.formation.dto.converter" />
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
