@@ -1,14 +1,11 @@
 package com.excilys.formation.bank.web.controller;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.excilys.formation.bank.bean.Compte;
 import com.excilys.formation.bank.bean.Operation;
@@ -141,45 +137,6 @@ public class AuthenticatedController {
 		model.put("soldesPrevisionnels", soldesPrevisionnels);
 		model.put("encoursCartes", encoursCartes);
 		return "accounts";
-	}
-
-	@RequestMapping("/operationCarte.html")
-	public final String operationCarte(ModelMap model) {
-
-		UserDetails userDetails = (UserDetails) SecurityContextHolder
-				.getContext().getAuthentication().getPrincipal();
-		Set<Compte> comptes = userService.getComptesByUsername(userDetails
-				.getUsername());
-		LinkedList<Compte> listeComptes = new LinkedList<Compte>(comptes);
-		LinkedList<Compte> listeComptesCartes = new LinkedList<Compte>();
-		for (Compte compte : listeComptes) {
-			if (compte.hasCarte()) {
-				listeComptesCartes.add(compte);
-			}
-		}
-		Collections.sort(listeComptesCartes);
-		model.put("comptes", listeComptesCartes);
-		return "operationCarte";
-	}
-
-	@RequestMapping("/operationCarte.form")
-	public final String doOperationCarte(@RequestParam String compteDebiteur,
-			@RequestParam double montant, @RequestParam String libelle) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder
-				.getContext().getAuthentication().getPrincipal();
-		String login = userDetails.getUsername();
-		try {
-			operationCarteService.createOperationCarte(login, compteDebiteur,
-					(long) (montant * 100), StringUtils.trimToNull(libelle));
-		} catch (Exception e) {
-			return "redirect:/secure/operationCarte.html?error=1";
-		}
-		StringBuilder stringBuilder = new StringBuilder(
-				"redirect:/secure/detailCarte/0/");
-		stringBuilder.append(compteDebiteur);
-		stringBuilder.append(".html");
-		return stringBuilder.toString();
-
 	}
 
 	@RequestMapping("/detailCarte/{month}/{id}.html")
