@@ -22,7 +22,7 @@
  			<form:select
  					path="compteDebiteur"> 
  					<c:forEach var="compte" items="${comptes}"> 
- 						<form:option value="${compte.compteId }" /> <!-- ${compte.compteId }</option> --> 
+ 						<form:option value="${compte.compteId }" />  
  					</c:forEach>
  				</form:select>
 			</div>
@@ -32,13 +32,13 @@
  				<form:select
  					path="compteCrediteur">
  					<c:forEach var="compte" items="${comptes}">
- 						<form:option value="${compte.compteId }" /> <!-- ${compte.compteId }</option> -->
+ 						<form:option value="${compte.compteId }" />
  					</c:forEach>
  				</form:select>
 			</div>
 
 			<div>
-				<label for="montant"><fmt:message key="virement.montant" /> <form:errors path="montant"/></label> <form:input path="montant"/>
+				<label for="montant"><fmt:message key="virement.montant" />&#160;<form:errors path="montant"/></label> <form:input path="montant"/>
 			</div>
 
 			<div>
