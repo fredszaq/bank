@@ -78,8 +78,11 @@
 					href="${pageContext.request.contextPath}/secure/accounts.html"><fmt:message
 							key="menu.accounts" /></a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/secure/virement.html"><fmt:message
-							key="menu.virement" /></a></li>
+					href="${pageContext.request.contextPath}/secure/virement/interne.html"><fmt:message
+							key="menu.virement_interne" /></a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/secure/virement/externe.html"><fmt:message
+							key="menu.virement_externe" /></a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/secure/operationCarte.html"><fmt:message
 							key="menu.carte" /></a></li>

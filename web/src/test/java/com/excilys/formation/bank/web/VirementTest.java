@@ -26,7 +26,10 @@ public class VirementTest extends FluentTest {
 	private AccountsPage userPage;
 
 	@Page
-	private VirementPage virementPage;
+	private VirementInternePage virementInternePage;
+
+	@Page
+	private VirementExternePage virementExternePage;
 
 	@Override
 	public final WebDriver getDefaultDriver() {
@@ -40,7 +43,7 @@ public class VirementTest extends FluentTest {
 	public final void before() {
 		goTo(loginPage);
 		loginPage.login("robert", "robert");
-		goTo(virementPage);
+		goTo(virementInternePage);
 	}
 
 	/**
@@ -48,7 +51,7 @@ public class VirementTest extends FluentTest {
 	 */
 	@Test
 	public final void virementIsAccessible() {
-		assertThat(virementPage).isAt();
+		assertThat(virementInternePage).isAt();
 	}
 
 	/**
@@ -59,8 +62,8 @@ public class VirementTest extends FluentTest {
 		goTo(userPage);
 		long solde1 = userPage.getAccountSolde("compte_courant_robert");
 		long solde2 = userPage.getAccountSolde("compte_epargne_robert");
-		goTo(virementPage);
-		virementPage.fillFormAndSend("compte_courant_robert",
+		goTo(virementInternePage);
+		virementInternePage.fillFormAndSend("compte_courant_robert",
 				"compte_epargne_robert", 1, "test");
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))
@@ -69,8 +72,8 @@ public class VirementTest extends FluentTest {
 				.isEqualTo(solde2 + 100);
 		// Do the virement in the other way so that we can always launch the
 		// tests without going to a negative solde
-		goTo(virementPage);
-		virementPage.fillFormAndSend("compte_epargne_robert",
+		goTo(virementInternePage);
+		virementInternePage.fillFormAndSend("compte_epargne_robert",
 				"compte_courant_robert", 1, "test");
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))
@@ -88,8 +91,8 @@ public class VirementTest extends FluentTest {
 		goTo(userPage);
 		long solde1 = userPage.getAccountSolde("compte_courant_robert");
 		long solde2 = userPage.getAccountSolde("compte_epargne_robert");
-		goTo(virementPage);
-		virementPage.fillFormAndSend("compte_courant_robert",
+		goTo(virementInternePage);
+		virementInternePage.fillFormAndSend("compte_courant_robert",
 				"compte_epargne_robert", 1.42, "test");
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))
@@ -98,8 +101,8 @@ public class VirementTest extends FluentTest {
 				.isEqualTo(solde2 + 142);
 		// Do the virement in the other way so that we can always launch the
 		// tests without going to a negative solde
-		goTo(virementPage);
-		virementPage.fillFormAndSend("compte_epargne_robert",
+		goTo(virementInternePage);
+		virementInternePage.fillFormAndSend("compte_epargne_robert",
 				"compte_courant_robert", 1.42, "test");
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))
@@ -115,9 +118,9 @@ public class VirementTest extends FluentTest {
 	 */
 	@Test
 	public final void tryToMakeAVirementBetweenTwiceTheSameCompte() {
-		virementPage.fillFormAndSend("compte_courant_robert",
+		virementInternePage.fillFormAndSend("compte_courant_robert",
 				"compte_courant_robert", 1, "test");
-		virementPage.isShowingErrors();
+		virementInternePage.isShowingErrors();
 	}
 
 	/**
@@ -129,9 +132,75 @@ public class VirementTest extends FluentTest {
 	public final void tryTohackTheForm() {
 		goTo(userPage);
 		long solde = userPage.getAccountSolde("compte_courant_robert");
-		goTo(virementPage);
-		virementPage.hackForm("compte_courant_jacky");
-		virementPage.fillFormAndSend("compte_courant_jacky",
+		goTo(virementInternePage);
+		virementInternePage.hackForm("compte_courant_jacky");
+		virementInternePage.fillFormAndSend("compte_courant_jacky",
+				"compte_courant_robert", 1, "test");
+		goTo(userPage);
+		assertThat(userPage.getAccountSolde("compte_courant_robert"))
+				.isEqualTo(solde);
+
+	}
+
+	/**
+	 * Just a simple virement test.
+	 */
+	@Test
+	public final void tryMakeAVirementExterne() {
+		goTo(userPage);
+		long solde1 = userPage.getAccountSolde("compte_courant_robert");
+
+		// se déco
+		userPage.disconnect();
+		// se co en temps que jacky
+		goTo(loginPage);
+		loginPage.login("jacky", "jacky");
+		goTo(userPage);
+		long solde2 = userPage.getAccountSolde("compte_courant_jacky");
+
+		// se déco
+		userPage.disconnect();
+		// se co en temps que robert
+		goTo(loginPage);
+		loginPage.login("robert", "robert");
+		goTo(userPage);
+
+		goTo(virementExternePage);
+		virementExternePage.fillFormAndSend("compte_courant_robert",
+				"compte_courant_jacky", 1, "test");
+		goTo(userPage);
+		assertThat(userPage.getAccountSolde("compte_courant_robert"))
+				.isEqualTo(solde1 - 100);
+
+		// Do the virement in the other way so that we can always launch the
+		// tests without going to a negative solde
+		// se déco
+		userPage.disconnect();
+		// se co en temps que jacky
+		goTo(loginPage);
+		loginPage.login("jacky", "jacky");
+		goTo(userPage);
+
+		goTo(virementExternePage);
+		virementExternePage.fillFormAndSend("compte_courant_jacky",
+				"compte_courant_robert", 1, "test");
+		goTo(userPage);
+		assertThat(userPage.getAccountSolde("compte_courant_jacky")).isEqualTo(
+				solde2);
+	}
+
+	/**
+	 * This test uses some javascript to modify the html page and sets the
+	 * compte debiteur to one owned by another user. We check that the virement
+	 * doesn't have any effect in that case.
+	 */
+	@Test
+	public final void tryTohackTheFormExterne() {
+		goTo(userPage);
+		long solde = userPage.getAccountSolde("compte_courant_robert");
+		goTo(virementExternePage);
+		virementExternePage.hackForm("compte_courant_jacky");
+		virementExternePage.fillFormAndSend("compte_courant_jacky",
 				"compte_courant_robert", 1, "test");
 		goTo(userPage);
 		assertThat(userPage.getAccountSolde("compte_courant_robert"))

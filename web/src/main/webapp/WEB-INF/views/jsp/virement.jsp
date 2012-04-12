@@ -5,48 +5,61 @@
 	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
 	xmlns:form="http://www.springframework.org/tags/form">
 	<fmt:setBundle basename="localization.Messages" />
-	<h2><fmt:message key="virement.title" /></h2>
+	<h2>
+		<fmt:message key="virement.title" />
+	</h2>
 
-		<c:if test="${not empty param.error}">
-				<div class="error">
-					<fmt:message key="virement.error" />
-				</div>
-		</c:if>
+	<c:if test="${not empty param.error}">
+		<div class="error">
+			<fmt:message key="virement.error" />
+		</div>
+	</c:if>
 
-	<c:url value="/secure/virement.html" var="virementURL">
+	<c:url value="/secure/virement/${type}.html" var="virementURL">
 	</c:url>
-	<form:form action="${virementURL}" method="POST" commandName="virementValidator">
+	<form:form action="${virementURL}" method="POST"
+		commandName="virementValidator">
 		<div class="box">
 			<div>
-				<label for="compteDebiteur"><fmt:message key="virement.compte.debiteur" /></label>
- 			<form:select
- 					path="compteDebiteur"> 
- 					<c:forEach var="compte" items="${comptes}"> 
- 						<form:option value="${compte.compteId }" />  
- 					</c:forEach>
- 				</form:select>
+				<label for="compteDebiteur"><fmt:message
+						key="virement.compte.debiteur" /></label>
+				<form:select path="compteDebiteur">
+					<c:forEach var="compte" items="${comptes}">
+						<form:option value="${compte.compteId }" />
+					</c:forEach>
+				</form:select>
 			</div>
 
 			<div>
-				<label for="compteCrediteur"><fmt:message key="virement.compte.crediteur" /></label>
- 				<form:select
- 					path="compteCrediteur">
- 					<c:forEach var="compte" items="${comptes}">
- 						<form:option value="${compte.compteId }" />
- 					</c:forEach>
- 				</form:select>
+				<label for="compteCrediteur"><fmt:message
+						key="virement.compte.crediteur" /></label>
+				<c:choose>
+					<c:when test="${type.equals('interne')}">
+						<form:select path="compteCrediteur">
+							<c:forEach var="compte" items="${comptes}">
+								<form:option value="${compte.compteId }" />
+							</c:forEach>
+						</form:select>
+					</c:when>
+					<c:otherwise>
+						<form:input path="compteCrediteur" />
+					</c:otherwise>
+				</c:choose>
 			</div>
 
 			<div>
-				<label for="montant"><fmt:message key="virement.montant" />&#160;<form:errors path="montant"/></label> <form:input path="montant"/>
+				<label for="montant"><fmt:message key="virement.montant" />&#160;<form:errors
+						path="montant" /></label>
+				<form:input path="montant" />
 			</div>
 
 			<div>
-				<label for="libelle"><fmt:message key="virement.libelle" /></label><form:input path="libelle"/>
+				<label for="libelle"><fmt:message key="virement.libelle" /></label>
+				<form:input path="libelle" />
 			</div>
 
 
-			<input type="submit" id="submit"/>
+			<input type="submit" id="submit" />
 
 		</div>
 

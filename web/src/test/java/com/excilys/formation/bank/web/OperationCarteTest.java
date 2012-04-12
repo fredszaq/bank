@@ -83,7 +83,7 @@ public class OperationCarteTest extends FluentTest {
 		operationCartePage.fillFormAndSend("compte_courant_jacky", 1, "test");
 
 		// se deco
-		click($("#logininfo a"));
+		loginPage.disconnect();
 
 		// se co en temps que jacky
 		goTo(loginPage);
